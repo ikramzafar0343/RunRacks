@@ -1,64 +1,70 @@
-/* Admin RDP text hero + manifesto char scrub */
+/* Admin RDP two-column hero + manifesto char scrub (Sage & Ink / Nourd) */
 
 .ardpHero {
   position: relative;
   isolation: isolate;
   padding-top: clamp(4.25rem, 8vw, 5.75rem);
-  padding-bottom: clamp(2rem, 4vw, 3rem);
-  padding-inline: var(--ardp-gutter);
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  padding-inline: var(--ardp-gutter, clamp(1.25rem, 4vw, 3.5rem));
   color: var(--color-heading);
-  background: var(--gradient-hero);
+  background: transparent;
+  font-family: var(--font-nourd), system-ui, sans-serif;
+  overflow: clip;
 }
 
-.ardpHeroInner {
-  width: min(100%, 56rem);
+.ardpHeroShell {
+  width: min(100%, 91.25rem);
   margin-inline: auto;
-  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+  align-items: center;
+  gap: clamp(1.25rem, 3.5vw, 3.5rem);
 }
 
-/* Full-bleed curved band under CTAs — no card chrome */
-.ardpHeroGrid {
-  margin-inline: calc(-1 * var(--ardp-gutter));
-  width: calc(100% + 2 * var(--ardp-gutter));
-  max-width: none;
-}
-
-.ardpHeroEyebrow {
-  margin: 0 0 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--color-muted);
+.ardpHeroCopy {
+  position: relative;
+  z-index: 3;
+  min-width: 0;
 }
 
 .ardpHeroTitle {
+  max-width: none;
   margin: 0;
-  font-size: clamp(1.85rem, 5vw, 3rem);
-  font-weight: 700;
-  line-height: 1.06;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.35rem, 4.2vw, 4.125rem);
+  font-weight: 800;
+  line-height: 1.09;
+  letter-spacing: -0.048em;
   color: var(--color-heading);
+  font-family: var(--font-nourd-heading), var(--font-nourd), sans-serif;
 }
 
 .ardpHeroTitleLine {
   display: block;
+  white-space: nowrap;
+}
+
+.ardpHeroTitleAccent {
+  display: block;
+  font-size: clamp(2.1rem, 3.8vw, 3.7rem);
+  font-weight: 400;
+  letter-spacing: -0.036em;
+  line-height: 1.18;
 }
 
 .ardpHeroLead {
-  margin: 1.25rem auto 0;
-  max-width: 36rem;
-  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
-  line-height: 1.55;
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
+  line-height: 1.65;
   color: var(--color-body);
 }
 
 .ardpHeroCtas {
-  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 .ardpHeroCtaPrimary,
@@ -66,43 +72,200 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 3rem;
-  padding: 0.75rem 1.5rem;
+  gap: 0.8rem;
+  min-height: 3.375rem;
+  padding: 0 2.1rem;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.875rem;
   text-decoration: none;
   transition:
     transform var(--motion-fast, 150ms) ease,
     background var(--motion-fast, 150ms) ease,
+    box-shadow var(--motion-fast, 150ms) ease,
     filter var(--motion-fast, 150ms) ease;
 }
 
 .ardpHeroCtaPrimary {
-  background: var(--color-lime);
+  background: linear-gradient(
+    95deg,
+    var(--color-lime),
+    color-mix(in srgb, var(--color-lime) 78%, var(--color-brand))
+  );
   color: var(--color-on-lime);
-  box-shadow: 0 8px 24px
-    color-mix(in srgb, var(--color-heading) 12%, transparent);
+  box-shadow: 0 8px 20px
+    color-mix(in srgb, var(--color-lime) 28%, transparent);
 }
 
 .ardpHeroCtaPrimary:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.04);
   transform: translateY(-2px);
 }
 
 .ardpHeroCtaSecondary {
-  border: 1px solid color-mix(in srgb, var(--color-heading) 22%, transparent);
+  border: 1px solid var(--color-border);
   color: var(--color-heading);
-  background: transparent;
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
 }
 
 .ardpHeroCtaSecondary:hover {
-  background: color-mix(in srgb, var(--color-heading) 8%, transparent);
+  background: var(--color-surface);
 }
 
 .ardpHeroCtaPrimary:focus-visible,
 .ardpHeroCtaSecondary:focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 3px;
+}
+
+.ardpHeroNote {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.ardpHeroStatusDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-success, #48ae49);
+  box-shadow: 0 0 0 4px
+    color-mix(in srgb, var(--color-success, #48ae49) 16%, transparent);
+}
+
+.ardpHeroNoteDivider {
+  width: 1px;
+  height: 0.85rem;
+  margin-inline: 0.15rem;
+  background: var(--color-border);
+}
+
+.ardpHeroVisual {
+  position: relative;
+  z-index: 1;
+  align-self: end;
+  min-width: 0;
+  height: clamp(20rem, 42vw, 36.5rem);
+  margin-inline: clamp(-2.5rem, -4vw, -4rem) clamp(-1.5rem, -3vw, -3.5rem);
+}
+
+.ardpHeroHalo,
+.ardpHeroOrbits {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.ardpHeroHalo {
+  z-index: 0;
+}
+
+.ardpHeroOrbits {
+  z-index: 1;
+  opacity: 0.83;
+}
+
+.ardpHeroImage {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 1.5rem;
+  width: 108%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(
+    0 12px 13px color-mix(in srgb, var(--color-heading) 8%, transparent)
+  );
+}
+
+.ardpHeroFloat {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 11.875rem;
+  padding: 0.875rem 1.05rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--color-heading) 4%, transparent),
+    0 12px 24px color-mix(in srgb, var(--color-heading) 10%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.ardpHeroFloat--connection {
+  top: 14%;
+  right: 1rem;
+}
+
+.ardpHeroFloatIcon {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.ardpHeroFloatText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.ardpHeroFloatText strong {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  white-space: nowrap;
+}
+
+.ardpHeroFloatText small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.ardpHeroFloatText small i {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-success, #6ecc52);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-success, #6ecc52) 22%, transparent);
+}
+
+.ardpHeroRule {
+  width: min(100% - 2rem, 85rem);
+  height: 1px;
+  margin: clamp(1.25rem, 2.5vw, 2rem) auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-border) 85%, transparent),
+    transparent
+  );
+}
+
+html.dark .ardpHeroFloat {
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+}
+
+html.dark .ardpHeroOrbits {
+  opacity: 0.7;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -116,9 +279,125 @@
   }
 }
 
+@media (max-width: 1240px) {
+  .ardpHeroShell {
+    gap: 1.25rem;
+  }
+
+  .ardpHeroVisual {
+    margin-inline: -2rem -1.5rem;
+  }
+
+  .ardpHeroFloat--connection {
+    right: 0;
+    min-width: 10rem;
+  }
+}
+
+@media (max-width: 970px) {
+  .ardpHeroShell {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .ardpHeroTitle {
+    max-width: none;
+    font-size: clamp(2.2rem, 6.5vw, 3.875rem);
+  }
+
+  .ardpHeroTitleAccent {
+    font-size: clamp(2rem, 5.9vw, 3.4rem);
+  }
+
+  .ardpHeroCtas {
+    margin-top: 1.5rem;
+  }
+
+  .ardpHeroVisual {
+    align-self: stretch;
+    height: 26rem;
+    margin: 0.5rem calc(var(--ardp-gutter, 1.75rem) * -1) 0;
+  }
+
+  .ardpHeroImage {
+    left: 2%;
+    width: 95%;
+    bottom: 0;
+  }
+
+  .ardpHeroFloat--connection {
+    top: 1.25rem;
+    right: 7%;
+  }
+}
+
+@media (max-width: 620px) {
+  .ardpHeroCtas {
+    margin-top: 1.35rem;
+    gap: 0.65rem;
+  }
+
+  .ardpHeroCtaPrimary,
+  .ardpHeroCtaSecondary {
+    min-height: 2.875rem;
+    padding-inline: 1.1rem;
+    font-size: 0.75rem;
+  }
+
+  .ardpHeroVisual {
+    height: 20rem;
+    margin-inline: -1.05rem;
+  }
+
+  .ardpHeroImage {
+    width: 110%;
+    left: -5%;
+  }
+
+  .ardpHeroFloat--connection {
+    top: 1.75rem;
+    right: 5%;
+    min-width: 0;
+    padding: 0.5rem 0.65rem;
+    gap: 0.45rem;
+    border-radius: 0.75rem;
+  }
+
+  .ardpHeroFloatIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .ardpHeroFloatText strong {
+    font-size: 0.6875rem;
+  }
+
+  .ardpHeroFloatText small {
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .ardpHeroCtas {
+    align-items: stretch;
+  }
+
+  .ardpHeroCtaPrimary,
+  .ardpHeroCtaSecondary {
+    flex: 1;
+  }
+
+  .ardpHeroVisual {
+    height: 18rem;
+  }
+}
+
 /* Manifesto — character opacity scrub */
 .ardpManifesto {
-  padding: var(--ardp-section-y, clamp(1.75rem, 3.5vw, 3rem)) var(--ardp-gutter);
+  padding: var(--ardp-section-y, clamp(1.75rem, 3.5vw, 3rem))
+    var(--ardp-gutter, clamp(1.25rem, 4vw, 3.5rem));
   text-align: center;
 }
 
@@ -134,10 +413,9 @@
   letter-spacing: -0.02em;
   font-weight: 600;
   text-wrap: pretty;
-  color: var(--ardp-fg);
+  color: var(--ardp-fg, var(--color-heading));
 }
 
-/* Keep whole words on one line; chars inside still animate opacity */
 .ardpWordFillWord {
   display: inline-block;
   white-space: nowrap;
@@ -147,7 +425,6 @@
   display: inline;
 }
 
-/* Full opacity by default so manifesto is readable before GSAP hydrates */
 .ardpWordFillChar {
   display: inline-block;
   opacity: 1;

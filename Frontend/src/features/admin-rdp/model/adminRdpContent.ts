@@ -17,38 +17,32 @@ export const ADMIN_RDP = {
   metaDescription:
     "Windows Admin RDP with full administrator access. Compare demo plans, see how teams work remotely, and open Pricing when checkout is configured.",
   hero: {
-    eyebrow: "+ ( What we offer )",
-    lines: ["Windows Admin RDP", "with full administrator access"] as const,
-    /** Short hero subtitle — manifesto below keeps the long scroll text */
-    lead: "Remote Windows desktops with full admin access. Compare demo plans, then open Pricing when checkout is configured.",
+    lines: ["Windows Admin RDP", "with Full Control"] as const,
+    lead: "Access your Windows desktop with full administrator rights — anytime, anywhere.",
+    notes: ["Private remote desktop", "Full admin access"] as const,
     primaryCta: {
-      label: "View plans",
-      href: "/pricing" as Route,
-    },
-    secondaryCta: {
-      label: "View pricing",
+      label: "Explore Plans",
       href: "/products/admin-rdp#vps-plans" as Route,
     },
+    secondaryCta: {
+      label: "View Pricing",
+      href: "/pricing" as Route,
+    },
+    visual: {
+      src: "/images/admin-rdp/hero-workstation-transparent.webp",
+      alt: "Illustrative workstation with monitor, PC tower, keyboard, mouse, and plant",
+    },
+    visualMobile: {
+      src: "/images/admin-rdp/hero-workstation-mobile.webp",
+      alt: "Illustrative workstation with monitor, PC tower, keyboard, mouse, and plant",
+    },
+    cards: {
+      connection: {
+        title: "Windows RDP",
+        detail: "Ready to connect",
+      },
+    },
   },
-  /** Curved tilted-grid band under hero CTAs — float-01..04 WebP ~640 */
-  heroGallery: [
-    {
-      src: "/images/admin-rdp/float-01.webp",
-      alt: "Windows Admin RDP server racks on a green field",
-    },
-    {
-      src: "/images/admin-rdp/float-02.webp",
-      alt: "Operator with laptop beside Admin RDP product screens",
-    },
-    {
-      src: "/images/admin-rdp/float-03.webp",
-      alt: "Operator with phone and laptop in a neon green studio",
-    },
-    {
-      src: "/images/admin-rdp/float-04.webp",
-      alt: "Stepping through a doorway into a Windows server workspace",
-    },
-  ] as const,
   /** Centered scroll word-fill block under the float stage */
   manifesto: {
     paragraphs: [

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+<title id="title">Ram</title><desc id="desc">RAM memory module</desc>
+<rect x="6" y="19" width="52" height="27" rx="5" fill="#E0EDE5" stroke="#20372F" stroke-width="2.5"/><rect x="14" y="26" width="11" height="13" rx="2" fill="#34745A"/><rect x="28" y="26" width="11" height="13" rx="2" fill="#34745A"/><rect x="42" y="26" width="8" height="13" rx="2" fill="#34745A"/><path d="M15 47v6m9-6v6m9-6v6m9-6v6m9-6v6" stroke="#20372F" stroke-width="2.3"/>
+</svg>

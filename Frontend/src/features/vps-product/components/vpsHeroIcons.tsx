@@ -1,5 +1,5 @@
 /**
- * Lucide map for VPS product hero trust row + feature cards.
+ * Lucide map for VPS product feature cards.
  */
 import type { LucideIcon } from "lucide-react";
 import {
@@ -8,7 +8,6 @@ import {
   HardDrive,
   Headphones,
   KeyRound,
-  ListChecks,
   Shield,
 } from "lucide-react";
 import type { VpsHeroIconId } from "@/features/vps-product/model/vpsProductContent";
@@ -20,5 +19,4 @@ export const VPS_HERO_ICONS: Record<VpsHeroIconId, LucideIcon> = {
   globe: Globe,
   shield: Shield,
   headphones: Headphones,
-  listChecks: ListChecks,
 };

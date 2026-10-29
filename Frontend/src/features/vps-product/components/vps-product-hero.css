@@ -1,235 +1,545 @@
 /*
- * VPS product hero — Sage & Ink, Nourd, Lucide icon wells.
+ * VPS product hero — two-column layered server scene (Sage & Ink / Nourd).
  */
 
 .vpsProductHero {
-  width: 100%;
-  padding: clamp(4.25rem, 8vw, 5.75rem) var(--vp-gutter, clamp(1.25rem, 3vw, 4rem))
-    clamp(2rem, 4vw, 3rem);
-  text-align: center;
-  background-color: var(--color-canvas);
-  background-image: var(--gradient-hero);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  font-family: var(--font-nourd), ui-sans-serif, sans-serif;
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding-top: clamp(4.25rem, 8vw, 5.75rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  padding-inline: var(--vp-gutter, clamp(1.25rem, 3vw, 4rem));
+  color: var(--color-heading);
+  background: transparent;
+  font-family: var(--font-nourd), system-ui, sans-serif;
 }
 
 .vpsProductHeroInner {
-  width: min(100%, 1120px);
+  width: min(100%, 91.875rem);
+  min-height: clamp(28rem, 55vw, 39.375rem);
   margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  position: relative;
+}
+
+.vpsProductHeroCopy {
+  position: relative;
+  z-index: 3;
+  min-width: 0;
 }
 
 .vpsProductHeroTitle {
   margin: 0;
   font-family: var(--font-nourd-heading), var(--font-nourd), sans-serif;
-  font-size: clamp(1.65rem, 4.8vw, 3.65rem);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
+  font-size: clamp(2.5rem, 4.15vw, 4.125rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1.12;
   color: var(--color-heading);
 }
 
-.vpsProductHeroLineMask {
+.vpsProductHeroTitleLine {
   display: block;
-  overflow: hidden;
-  padding-bottom: 0.04em;
+  white-space: nowrap;
 }
 
-.vpsProductHeroLine {
+.vpsProductHeroTitleAccent {
   display: block;
-}
-
-.vpsProductHeroLine:not(.vpsProductHeroLine--accent) {
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
-@media (min-width: 768px) {
-  .vpsProductHeroLine:not(.vpsProductHeroLine--accent) {
-    white-space: nowrap;
-  }
-}
-
-.vpsProductHeroLine--accent {
-  color: var(--color-brand);
-}
-
-.vpsProductHeroLead {
-  margin: clamp(1.35rem, 2.5vw, 1.75rem) auto 0;
-  max-width: 38rem;
-  font-family: var(--font-nourd), sans-serif;
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-size: clamp(2.2rem, 3.85vw, 3.8rem);
   font-weight: 400;
-  line-height: 1.55;
-  color: var(--color-body);
+  line-height: 1.25;
+  letter-spacing: -0.051em;
+}
+
+.vpsProductHeroHighlights {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  gap: 0;
+}
+
+.vpsProductHeroHighlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0 0.95rem;
+  border-right: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.vpsProductHeroHighlight:first-child {
+  padding-left: 0;
+}
+
+.vpsProductHeroHighlight:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.vpsProductHeroHighlightIcon {
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 75%, transparent);
 }
 
 .vpsProductHeroActions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: clamp(1.5rem, 3vw, 2rem);
+  gap: 1.1rem;
+  margin-top: 2rem;
 }
 
-.vpsProductHeroCta {
+.vpsProductHeroCtaPrimary,
+.vpsProductHeroCtaSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 3rem;
-  padding: 0 1.5rem;
+  gap: 0.85rem;
+  min-height: 3.4rem;
+  min-width: 12rem;
+  padding: 0 1.55rem;
   border-radius: 999px;
-  font-family: var(--font-nourd), sans-serif;
+  font-weight: 800;
   font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
   text-decoration: none;
-  transition:
-    background 180ms var(--vp-ease, ease),
-    color 180ms var(--vp-ease, ease),
-    border-color 180ms var(--vp-ease, ease),
-    transform 180ms var(--vp-ease, ease);
-}
-
-.vpsProductHeroCta--primary {
-  background: var(--color-lime);
-  border: 1px solid var(--color-lime);
-  color: var(--color-on-lime);
-}
-
-.vpsProductHeroCta--primary:is(:hover, :active) {
-  background: var(--color-brand);
-  border-color: var(--color-brand);
-  color: var(--color-brand-contrast);
-  transform: translateY(-1px);
-}
-
-.vpsProductHeroCta--secondary {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
   color: var(--color-heading);
+  transition:
+    transform var(--motion-fast, 150ms) ease,
+    filter var(--motion-fast, 150ms) ease,
+    background var(--motion-fast, 150ms) ease;
 }
 
-.vpsProductHeroCta--secondary:is(:hover, :active) {
-  border-color: var(--color-brand);
-  color: var(--color-brand);
-  transform: translateY(-1px);
+.vpsProductHeroCtaPrimary {
+  background: linear-gradient(
+    110deg,
+    var(--color-lime),
+    color-mix(in srgb, var(--color-lime) 82%, var(--color-brand))
+  );
+  border: 1px solid color-mix(in srgb, var(--color-lime) 70%, var(--color-brand));
+  color: var(--color-on-lime);
+  box-shadow: 0 8px 20px
+    color-mix(in srgb, var(--color-lime) 28%, transparent);
 }
 
-.vpsProductHeroCta:focus-visible {
-  outline: 2px solid var(--color-lime);
+.vpsProductHeroCtaSecondary {
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  border: 1px solid var(--color-border);
+}
+
+.vpsProductHeroCtaPrimary:hover,
+.vpsProductHeroCtaSecondary:hover {
+  transform: translateY(-2px);
+}
+
+.vpsProductHeroCtaPrimary:hover {
+  filter: saturate(1.12);
+}
+
+.vpsProductHeroCtaSecondary:hover {
+  background: var(--color-surface);
+}
+
+.vpsProductHeroCtaPrimary:focus-visible,
+.vpsProductHeroCtaSecondary:focus-visible {
+  outline: 2px solid var(--color-brand);
   outline-offset: 3px;
 }
 
-.vpsProductHeroTrust {
-  list-style: none;
-  margin: clamp(1.35rem, 2.5vw, 1.75rem) auto 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem 1.25rem;
-  max-width: 42rem;
-  font-family: var(--font-nourd), sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--color-muted);
-}
-
-.vpsProductHeroTrustItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.vpsProductHeroTrustItem svg {
-  flex: none;
-  color: var(--color-brand);
-}
-
-.vpsProductHeroFeatures {
-  list-style: none;
-  margin: clamp(1.75rem, 3.5vw, 2.5rem) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.875rem;
-  text-align: left;
-}
-
-.vpsProductHeroFeature {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.9rem;
+.vpsProductHeroScene {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: clamp(22rem, 48vw, 35.625rem);
   min-width: 0;
-  padding: 1.1rem 1.15rem;
-  border: 1px solid var(--color-border);
-  border-radius: 0.875rem;
-  background: var(--color-surface);
 }
 
-.vpsProductHeroFeatureIcon {
+.vpsProductHeroHalo,
+.vpsProductHeroOrbits,
+.vpsProductHeroCloud,
+.vpsProductHeroBaseGlow {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.vpsProductHeroHalo,
+.vpsProductHeroOrbits {
+  inset: 0;
+}
+
+.vpsProductHeroHalo {
+  z-index: 0;
+  background-image: url("/images/vps/decor/hero-halo.svg");
+  transform: scale(1.09);
+}
+
+.vpsProductHeroOrbits {
+  z-index: 1;
+  opacity: 0.8;
+  background-image: url("/images/vps/decor/orbit-lines.svg");
+  animation: vpsHeroOrbit 28s ease-in-out infinite alternate;
+}
+
+.vpsProductHeroCloud {
+  z-index: 2;
+  width: 7.7rem;
+  height: 5.4rem;
+  right: 10%;
+  top: 4rem;
+  background-image: url("/images/vps/decor/cloud-outline.svg");
+}
+
+.vpsProductHeroBaseGlow {
+  z-index: 1;
+  width: 85%;
+  height: 9.4rem;
+  bottom: 1.5rem;
+  left: 13%;
+  background-image: url("/images/vps/decor/base-glow.svg");
+}
+
+.vpsProductHeroServer {
+  position: absolute !important;
+  z-index: 2;
+  left: 8%;
+  top: 6.25rem;
+  width: min(88%, 40rem) !important;
+  height: auto !important;
+  filter: drop-shadow(
+    0 24px 19px color-mix(in srgb, var(--color-heading) 14%, transparent)
+  );
+  animation: vpsHeroAppear 0.85s ease both;
+}
+
+.vpsProductHeroSpec {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 11.5rem;
+  max-width: 15rem;
+  min-height: 4.875rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 95%, transparent);
+  box-shadow: 0 13px 29px
+    color-mix(in srgb, var(--color-heading) 9%, transparent);
+  backdrop-filter: blur(10px);
+  animation: vpsHeroFloat 5s ease-in-out infinite;
+}
+
+.vpsProductHeroSpecIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
   display: grid;
   place-items: center;
-  flex: none;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.65rem;
-  background: var(--color-accent-soft);
-  color: var(--color-brand);
+  flex-shrink: 0;
+  background: var(--color-accent-soft, #e2f2e4);
 }
 
-.vpsProductHeroFeatureCopy {
+.vpsProductHeroSpecText {
+  display: grid;
+  gap: 0.2rem;
+  white-space: nowrap;
   min-width: 0;
 }
 
-.vpsProductHeroFeatureTitle {
-  margin: 0;
-  font-family: var(--font-nourd), sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
+.vpsProductHeroSpecText strong {
+  font-size: 1rem;
   color: var(--color-heading);
 }
 
-.vpsProductHeroFeatureBody {
-  margin: 0.35rem 0 0;
-  font-family: var(--font-nourd), sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.5;
+.vpsProductHeroSpecText small {
+  font-size: 0.75rem;
   color: var(--color-muted);
 }
 
-@media (min-width: 640px) {
-  .vpsProductHeroFeatures {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.vpsProductHeroSpec--cpu {
+  top: 5.7rem;
+  left: -5%;
+  animation-delay: 0.3s;
+}
+
+.vpsProductHeroSpec--ram {
+  bottom: 7.6rem;
+  left: -8%;
+  animation-delay: -1.9s;
+}
+
+.vpsProductHeroSpec--storage {
+  top: 14.3rem;
+  right: -3%;
+  animation-delay: -3.5s;
+}
+
+html.dark .vpsProductHeroSpec {
+  background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+}
+
+html.dark .vpsProductHeroSpecIcon {
+  background: color-mix(in srgb, var(--color-lime) 14%, var(--color-surface));
+}
+
+html.dark .vpsProductHeroOrbits {
+  opacity: 0.65;
+}
+
+@keyframes vpsHeroOrbit {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
   }
 }
 
-@media (min-width: 960px) {
-  .vpsProductHeroFeatures {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+@keyframes vpsHeroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes vpsHeroAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1280px) {
+  .vpsProductHeroTitle {
+    font-size: clamp(2.2rem, 4.15vw, 3.55rem);
+  }
+
+  .vpsProductHeroTitleAccent {
+    font-size: clamp(2rem, 3.85vw, 3.25rem);
+  }
+
+  .vpsProductHeroHighlight {
+    font-size: 0.75rem;
+    padding-inline: 0.65rem;
+  }
+
+  .vpsProductHeroSpec {
+    min-width: 10rem;
+  }
+
+  .vpsProductHeroServer {
+    top: 7.8rem;
+  }
+}
+
+@media (max-width: 1020px) {
+  .vpsProductHeroInner {
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 0.5rem;
+    min-height: 0;
+  }
+
+  .vpsProductHeroTitleLine {
+    white-space: normal;
+  }
+
+  .vpsProductHeroTitle {
+    font-size: clamp(2.5rem, 6.8vw, 4.2rem);
+  }
+
+  .vpsProductHeroTitleAccent {
+    font-size: clamp(2.3rem, 6.1vw, 3.8rem);
+  }
+
+  .vpsProductHeroScene {
+    height: 31rem;
+    max-width: 45rem;
+    margin-inline: auto;
+  }
+
+  .vpsProductHeroServer {
+    left: 10%;
+    top: 5rem;
+    width: 78% !important;
+  }
+
+  .vpsProductHeroSpec--cpu {
+    left: 3%;
+    top: 4.6rem;
+  }
+
+  .vpsProductHeroSpec--ram {
+    left: 1%;
+    bottom: 5.5rem;
+  }
+
+  .vpsProductHeroSpec--storage {
+    right: 2%;
+    top: 13.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .vpsProductHeroTitle {
+    font-size: clamp(2.1rem, 9.1vw, 3.375rem);
+    line-height: 1.08;
+  }
+
+  .vpsProductHeroTitleAccent {
+    font-size: clamp(1.9rem, 8.2vw, 3rem);
+    line-height: 1.14;
+  }
+
+  .vpsProductHeroHighlights {
+    margin-top: 1.5rem;
+    gap: 0.5rem 0.7rem;
+  }
+
+  .vpsProductHeroHighlight {
+    font-size: 0.6875rem;
+    padding: 0;
+    border: 0;
+    gap: 0.3rem;
+  }
+
+  .vpsProductHeroHighlightIcon {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
+  .vpsProductHeroActions {
+    gap: 0.65rem;
+    margin-top: 1.8rem;
+  }
+
+  .vpsProductHeroCtaPrimary,
+  .vpsProductHeroCtaSecondary {
+    min-height: 2.95rem;
+    min-width: 0;
+    flex: 1;
+    padding-inline: 0.65rem;
+    font-size: 0.8125rem;
+  }
+
+  .vpsProductHeroScene {
+    height: 21.5rem;
+    margin: 1.1rem calc(var(--vp-gutter, 1.2rem) * -1) -1.1rem;
+    width: calc(100% + var(--vp-gutter, 1.2rem) * 2);
+  }
+
+  .vpsProductHeroHalo,
+  .vpsProductHeroOrbits {
+    transform: scale(1.12);
+  }
+
+  .vpsProductHeroServer {
+    left: 11%;
+    top: 3.6rem;
+    width: 76% !important;
+  }
+
+  .vpsProductHeroCloud {
+    width: 4rem;
+    height: 2.8rem;
+    top: 1.5rem;
+    right: 7%;
+  }
+
+  .vpsProductHeroSpec {
+    min-width: 0;
+    max-width: 8.1rem;
+    min-height: 2.9rem;
+    padding: 0.4rem 0.5rem;
+    gap: 0.4rem;
+    border-radius: 0.8rem;
+  }
+
+  .vpsProductHeroSpecIcon {
+    width: 1.95rem;
+    height: 1.95rem;
+  }
+
+  .vpsProductHeroSpecIcon img {
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+  }
+
+  .vpsProductHeroSpecText strong {
+    font-size: 0.625rem;
+  }
+
+  .vpsProductHeroSpecText small {
+    font-size: 0.5rem;
+  }
+
+  .vpsProductHeroSpec--cpu {
+    top: 1.8rem;
+    left: 1%;
+  }
+
+  .vpsProductHeroSpec--ram {
+    left: 0;
+    bottom: 3rem;
+  }
+
+  .vpsProductHeroSpec--storage {
+    right: 0;
+    top: 7.5rem;
+  }
+
+  .vpsProductHeroBaseGlow {
+    bottom: 0.9rem;
+    height: 6rem;
+  }
+}
+
+@media (max-width: 365px) {
+  .vpsProductHeroTitle {
+    font-size: 2.1rem;
+  }
+
+  .vpsProductHeroTitleAccent {
+    font-size: 2rem;
+  }
+
+  .vpsProductHeroSpec {
+    max-width: 7rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vpsProductHeroLine,
-  .vpsProductHeroLead,
-  .vpsProductHeroActions,
-  .vpsProductHeroTrust,
-  .vpsProductHeroFeature {
-    will-change: auto;
-    opacity: 1 !important;
-    transform: none !important;
+  .vpsProductHeroServer,
+  .vpsProductHeroOrbits,
+  .vpsProductHeroSpec,
+  .vpsProductHeroCtaPrimary,
+  .vpsProductHeroCtaSecondary {
+    animation: none !important;
+    transition: none !important;
   }
 
-  .vpsProductHeroCta:is(:hover, :active) {
+  .vpsProductHeroCtaPrimary:hover,
+  .vpsProductHeroCtaSecondary:hover {
     transform: none;
   }
 }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 970 590" role="img" aria-label="Fine green orbital lines and rounded outline">
+  <defs><linearGradient id="line" x1="0" y1=".2" x2="1" y2="1"><stop stop-color="#BCE96D" stop-opacity="0"/><stop offset=".24" stop-color="#A1D952" stop-opacity=".90"/><stop offset=".75" stop-color="#73B95D" stop-opacity=".64"/><stop offset="1" stop-color="#7ABF69" stop-opacity="0"/></linearGradient></defs>
+  <rect x="207" y="71" width="686" height="398" rx="39" fill="none" stroke="url(#line)" stroke-width="1.6"/>
+  <path d="M151 361a127 127 0 0 1 127-127" fill="none" stroke="#ADD968" stroke-width="2" opacity=".80"/>
+  <path d="M710 58h134a49 49 0 0 1 49 49v76" stroke="#B7E889" stroke-width="1.5" fill="none" opacity=".7"/>
+  <circle cx="893" cy="365" r="5" fill="#90D24F"/>
+  <circle cx="151" cy="360" r="4" fill="#B3E07F"/>
+
+</svg>

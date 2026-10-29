@@ -1,0 +1,107 @@
+/*
+ * VPS feature cards after pricing — bordered 3×2 grid (Sage & Ink).
+ */
+
+.vpsProductFeatures {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: var(--vp-section-y, clamp(1.75rem, 3.5vw, 3rem)) 0;
+  background:
+    radial-gradient(
+      ellipse 42% 60% at 0% 50%,
+      color-mix(in srgb, var(--color-brand) 12%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 42% 60% at 100% 50%,
+      color-mix(in srgb, var(--color-brand) 12%, transparent),
+      transparent 70%
+    );
+  font-family: var(--font-nourd), system-ui, sans-serif;
+}
+
+html.dark .vpsProductFeatures {
+  background:
+    radial-gradient(
+      ellipse 42% 60% at 0% 50%,
+      color-mix(in srgb, var(--color-lime) 10%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 42% 60% at 100% 50%,
+      color-mix(in srgb, var(--color-lime) 10%, transparent),
+      transparent 70%
+    );
+}
+
+.vpsProductFeaturesGrid {
+  list-style: none;
+  width: min(100% - var(--vp-gutter, clamp(1.25rem, 3vw, 4rem)) * 2, 1100px);
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
+}
+
+.vpsProductFeaturesCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  min-width: 0;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.875rem;
+  background: var(--color-surface);
+}
+
+.vpsProductFeaturesIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.65rem;
+  background: var(--color-accent-soft);
+  color: var(--color-brand);
+}
+
+html.dark .vpsProductFeaturesIcon {
+  background: color-mix(in srgb, var(--color-lime) 14%, var(--color-surface));
+  color: var(--color-lime);
+}
+
+.vpsProductFeaturesCopy {
+  min-width: 0;
+}
+
+.vpsProductFeaturesTitle {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--color-heading);
+}
+
+.vpsProductFeaturesBody {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+@media (min-width: 640px) {
+  .vpsProductFeaturesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .vpsProductFeaturesGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}

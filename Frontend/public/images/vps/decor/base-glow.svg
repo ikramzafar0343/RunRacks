@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-labelledby="title desc">
+<title id="title">Base Glow</title><desc id="desc">Transparent elliptical glow to place beneath the server hardware</desc>
+<defs><radialGradient id="g"><stop stop-color="#98E14C" stop-opacity=".50"/><stop offset=".50" stop-color="#A0D96A" stop-opacity=".18"/><stop offset="1" stop-color="#A0D96A" stop-opacity="0"/></radialGradient></defs><ellipse cx="360" cy="80" rx="350" ry="78" fill="url(#g)"/>
+
+</svg>

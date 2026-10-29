@@ -11,21 +11,14 @@ export type EditorialImage = {
   objectPosition?: string;
 };
 
-/** Lucide icon keys resolved in VpsProductHeroFeatures / Motion. */
+/** Lucide icon keys resolved in VpsProductFeatures. */
 export type VpsHeroIconId =
   | "cpu"
   | "hardDrive"
   | "keyRound"
   | "globe"
   | "shield"
-  | "headphones"
-  | "listChecks";
-
-export type VpsHeroTrustItem = {
-  id: string;
-  icon: VpsHeroIconId;
-  label: string;
-};
+  | "headphones";
 
 export type VpsHeroFeature = {
   id: string;
@@ -64,17 +57,29 @@ export const VPS_PRODUCT = {
   metaDescription:
     "NVMe VPS with full root access, clear plans, and predictable performance from RunRacks.",
   hero: {
-    titleLines: ["High performance VPS Hosting"],
-    accentLine: "Full root access",
-    lead: "Deploy RunRacks VPS with NVMe storage, dedicated resources, full root access, and clear plan choices across regions.",
-    primaryCta: { label: "View plans", href: "#vps-plans" },
-    secondaryCta: { label: "Contact us", href: "/contact" },
-    trust: [
-      { id: "root", icon: "keyRound", label: "Full root access" },
-      { id: "nvme", icon: "hardDrive", label: "NVMe storage" },
-      { id: "specs", icon: "listChecks", label: "Clear plan specs" },
-      { id: "ddos", icon: "shield", label: "DDoS mitigation" },
-    ] satisfies readonly VpsHeroTrustItem[],
+    titleLine: "Powerful VPS Hosting",
+    accentLine: "for Your Next Project",
+    highlights: [
+      { id: "speed", icon: "speed", label: "Fast Performance" },
+      { id: "uptime", icon: "shield", label: "Reliable Uptime" },
+      { id: "locations", icon: "globe", label: "Global Locations" },
+    ] as const,
+    primaryCta: { label: "View Plans", href: "#vps-plans" },
+    secondaryCta: { label: "Learn More", href: "#vps-features" },
+    visual: {
+      src: "/images/vps/hero/server-stack-large.webp",
+      alt: "Three dark VPS server units with illuminated green status lights",
+    },
+    visualMobile: {
+      src: "/images/vps/hero/server-stack-mobile.webp",
+      alt: "Three dark VPS server units with illuminated green status lights",
+    },
+    /** Demo catalog floor (VPS 1) — not a live provisioning claim. */
+    specs: [
+      { id: "cpu", icon: "cpu", label: "CPU", value: "From 1 vCPU" },
+      { id: "ram", icon: "ram", label: "RAM", value: "From 1 GB" },
+      { id: "storage", icon: "storage", label: "Storage", value: "From 20 GB NVMe" },
+    ] as const,
     features: [
       {
         id: "dedicated",

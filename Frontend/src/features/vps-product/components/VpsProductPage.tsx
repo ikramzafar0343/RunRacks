@@ -11,6 +11,7 @@ import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaS
 import { VpsCompanyRail } from "@/features/vps-product/components/VpsCompanyRail";
 import { VpsPhotoPair } from "@/features/vps-product/components/VpsPhotoPair";
 import { VpsPrinciples } from "@/features/vps-product/components/VpsPrinciples";
+import { VpsProductFeatures } from "@/features/vps-product/components/VpsProductFeatures";
 import { VpsProductHero } from "@/features/vps-product/components/VpsProductHero";
 import { VpsProductStory } from "@/features/vps-product/components/VpsProductStory";
 import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
@@ -53,6 +54,7 @@ export function VpsProductPage({
           />
         </Suspense>
       </section>
+      <VpsProductFeatures />
       <CustomizeHostingSection
         regions={catalog.regions}
         sectionId="vps-customize"
