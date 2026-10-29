@@ -4,9 +4,9 @@
  */
 import { Suspense } from "react";
 import { CustomizeHostingSection } from "@/features/customize/components/CustomizeHostingSection";
+import { BrandsSection } from "@/features/home/components/BrandsSection";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { VpsClientStrip } from "@/features/vps-product/components/VpsClientStrip";
 import { VpsCompanyRail } from "@/features/vps-product/components/VpsCompanyRail";
 import { VpsPhotoPair } from "@/features/vps-product/components/VpsPhotoPair";
 import { VpsPrinciples } from "@/features/vps-product/components/VpsPrinciples";
@@ -16,6 +16,7 @@ import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
 import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
 import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
+import { VPS_CUSTOMIZE_TRUST } from "@/features/vps-product/model/vpsCustomizeTrust";
 import "@/features/vps-product/components/vps-product.css";
 
 export type VpsProductPageProps = {
@@ -55,11 +56,12 @@ export function VpsProductPage({
         regions={catalog.regions}
         sectionId="vps-customize"
         plansHref="#vps-plans"
+        trust={VPS_CUSTOMIZE_TRUST}
       />
       <VpsProductStory />
       <VpsPhotoPair />
       <VpsPrinciples />
-      <VpsClientStrip />
+      <BrandsSection />
       <VpsCompanyRail />
       <FaqSection />
       <SupportCtaSection />

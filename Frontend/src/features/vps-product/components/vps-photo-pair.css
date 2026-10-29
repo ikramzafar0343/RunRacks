@@ -1,6 +1,6 @@
 .vpsPhotoPair {
   width: 100%;
-  padding: 0 0 var(--vp-section-y, clamp(4.5rem, 10vw, 11rem));
+  padding: 0 0 var(--vp-section-y, clamp(1.75rem, 3.5vw, 3rem));
   background: var(--vp-band-canvas, var(--color-canvas));
 }
 

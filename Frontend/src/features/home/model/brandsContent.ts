@@ -23,13 +23,13 @@ export const brandsHeadingLine2 = "platforms we build around";
 export const brandsNotice =
   "Illustrative technology marks — not partnership or endorsement claims.";
 
-/** First 14 pack brands; reading order = row1 then row2. */
+/** Home marquee roster (single track). */
 export const approvedBrands: readonly BrandLogo[] = [
   {
     id: "cloudflare",
     name: "Cloudflare",
     src: "/images/brands/01_cloudflare.png",
-    displayWidth: 168,
+    displayWidth: 205,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -37,7 +37,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "aws",
     name: "Amazon Web Services",
     src: "/images/brands/02_amazon_web_services.png",
-    displayWidth: 188,
+    displayWidth: 229,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -45,7 +45,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "google",
     name: "Google",
     src: "/images/brands/03_google.png",
-    displayWidth: 148,
+    displayWidth: 181,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -53,7 +53,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "microsoft",
     name: "Microsoft",
     src: "/images/brands/04_microsoft.png",
-    displayWidth: 176,
+    displayWidth: 215,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -61,7 +61,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "digitalocean",
     name: "DigitalOcean",
     src: "/images/brands/05_digitalocean.png",
-    displayWidth: 186,
+    displayWidth: 227,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -69,7 +69,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "akamai-linode",
     name: "Akamai Linode",
     src: "/images/brands/06_akamai_linode.png",
-    displayWidth: 182,
+    displayWidth: 222,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -77,7 +77,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "wordpress",
     name: "WordPress",
     src: "/images/brands/07_wordpress.png",
-    displayWidth: 168,
+    displayWidth: 205,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -85,7 +85,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "shopify",
     name: "Shopify",
     src: "/images/brands/08_shopify.png",
-    displayWidth: 158,
+    displayWidth: 193,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -93,7 +93,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "docker",
     name: "Docker",
     src: "/images/brands/09_docker.png",
-    displayWidth: 156,
+    displayWidth: 190,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -101,7 +101,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "github",
     name: "GitHub",
     src: "/images/brands/10_github.png",
-    displayWidth: 148,
+    displayWidth: 181,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -109,7 +109,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "gitlab",
     name: "GitLab",
     src: "/images/brands/11_gitlab.png",
-    displayWidth: 148,
+    displayWidth: 181,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -117,7 +117,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "stripe",
     name: "Stripe",
     src: "/images/brands/12_stripe.png",
-    displayWidth: 140,
+    displayWidth: 171,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -125,7 +125,7 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "paypal",
     name: "PayPal",
     src: "/images/brands/13_paypal.png",
-    displayWidth: 148,
+    displayWidth: 181,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
@@ -133,14 +133,9 @@ export const approvedBrands: readonly BrandLogo[] = [
     id: "ubuntu",
     name: "Ubuntu",
     src: "/images/brands/14_ubuntu.png",
-    displayWidth: 156,
+    displayWidth: 190,
     intrinsicWidth: 400,
     intrinsicHeight: 133,
   },
 ];
 
-/** Marquee track A (scrolls left). */
-export const brandsRowOne: readonly BrandLogo[] = approvedBrands.slice(0, 7);
-
-/** Marquee track B (scrolls right). */
-export const brandsRowTwo: readonly BrandLogo[] = approvedBrands.slice(7, 14);

@@ -1,5 +1,5 @@
 /**
- * Platforms & Technologies — dual-row logo marquee + scroll-ink heading.
+ * Platforms & Technologies — single-row logo marquee + scroll-ink heading.
  * Illustrative marks only (not partnership claims).
  * Pack symbols: Font Awesome Free Brands, CC BY 4.0 (Fonticons, Inc.).
  */

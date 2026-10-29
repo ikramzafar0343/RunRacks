@@ -1,11 +1,8 @@
 /*
- * Platforms & Technologies — dual opposite marquees + breakpoints.
+ * Platforms & Technologies — single logo marquee + breakpoints.
  */
 
 .brandsMarquee {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(48px, 5.5vw, 88px);
   margin-top: clamp(56px, 6vw, 80px);
   width: 100%;
 }
@@ -31,14 +28,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.brandsMarqueeRailA .brandsMarqueeTrack {
   animation: brandsMarqueeLeft var(--brands-marquee-duration) linear infinite;
-}
-
-.brandsMarqueeRailB .brandsMarqueeTrack {
-  animation: brandsMarqueeRight var(--brands-marquee-duration) linear infinite;
 }
 
 .brandsMarqueeRail:hover .brandsMarqueeTrack {
@@ -54,14 +44,14 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  height: 108px;
+  height: 132px;
   min-width: 0;
 }
 
 .brandsLogo {
   display: block;
-  max-width: min(100%, 220px);
-  max-height: 96px;
+  max-width: min(100%, 260px);
+  max-height: 118px;
   height: auto !important;
   width: auto;
   object-fit: contain;
@@ -83,15 +73,6 @@ html.dark .brandsLogo {
   }
 }
 
-@keyframes brandsMarqueeRight {
-  from {
-    transform: translate3d(-50%, 0, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 @media (min-width: 1440px) {
   .brandsSection {
     padding-top: 80px;
@@ -109,7 +90,7 @@ html.dark .brandsLogo {
   }
 
   .brandsLogo {
-    max-width: min(100%, 190px);
+    max-width: min(100%, 230px);
   }
 }
 
@@ -125,12 +106,12 @@ html.dark .brandsLogo {
   }
 
   .brandsItem {
-    height: 90px;
+    height: 112px;
   }
 
   .brandsLogo {
-    max-width: min(100%, 170px);
-    max-height: 80px;
+    max-width: min(100%, 200px);
+    max-height: 98px;
   }
 }
 
@@ -157,19 +138,18 @@ html.dark .brandsLogo {
   }
 
   .brandsMarquee {
-    gap: 40px;
     margin-top: 52px;
-    --brands-marquee-gap: 36px;
-    --brands-marquee-duration: 40s;
+    --brands-marquee-gap: 40px;
+    --brands-marquee-duration: 56s;
   }
 
   .brandsItem {
-    height: 80px;
+    height: 96px;
   }
 
   .brandsLogo {
-    max-width: min(100%, 148px);
-    max-height: 70px;
+    max-width: min(100%, 176px);
+    max-height: 84px;
   }
 }
 
@@ -183,8 +163,8 @@ html.dark .brandsLogo {
   .brandsMarqueeRail {
     mask-image: none;
   }
-  .brandsMarqueeRailA .brandsMarqueeTrack,
-  .brandsMarqueeRailB .brandsMarqueeTrack {
+
+  .brandsMarqueeTrack {
     animation: none;
     transform: none;
     width: 100%;
@@ -192,9 +172,10 @@ html.dark .brandsLogo {
     margin-inline: auto;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 28px 20px;
+    gap: 28px 24px;
     padding-inline: 20px;
   }
+
   .brandsItemClone {
     display: none;
   }

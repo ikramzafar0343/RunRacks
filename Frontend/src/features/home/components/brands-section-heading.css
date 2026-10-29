@@ -14,8 +14,8 @@
     var(--color-heading) 42%,
     transparent
   );
-  --brands-marquee-gap: clamp(48px, 5.5vw, 96px);
-  --brands-marquee-duration: 48s;
+  --brands-marquee-gap: clamp(52px, 6vw, 104px);
+  --brands-marquee-duration: 64s;
 
   position: relative;
   width: 100%;

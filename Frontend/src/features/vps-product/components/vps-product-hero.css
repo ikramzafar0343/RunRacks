@@ -4,8 +4,8 @@
 
 .vpsProductHero {
   width: 100%;
-  padding: clamp(5.5rem, 11vw, 7.5rem) var(--vp-gutter, clamp(1.25rem, 3vw, 4rem))
-    clamp(2.75rem, 5vw, 4.5rem);
+  padding: clamp(4.25rem, 8vw, 5.75rem) var(--vp-gutter, clamp(1.25rem, 3vw, 4rem))
+    clamp(2rem, 4vw, 3rem);
   text-align: center;
   background-color: var(--color-canvas);
   background-image: var(--gradient-hero);
@@ -152,7 +152,7 @@
 
 .vpsProductHeroFeatures {
   list-style: none;
-  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  margin: clamp(1.75rem, 3.5vw, 2.5rem) 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;

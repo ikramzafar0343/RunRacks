@@ -2,7 +2,6 @@
  * Static VPS product page content — swap image paths when final assets land.
  * Placeholder media from existing public showcase / stories / brands.
  */
-import { approvedBrands } from "@/features/home/model/brandsContent";
 
 export type EditorialImage = {
   src: string;
@@ -190,12 +189,6 @@ export const VPS_PRODUCT = {
         "We refine defaults and documentation over time so everyday hosting stays useful as stacks and teams change.",
     },
   ] satisfies readonly Principle[],
-  logos: {
-    heading: "Platforms that fit modern stacks",
-    intro:
-      "Illustrative technology marks for environments teams commonly run on VPS—not partnership or endorsement claims.",
-    brands: approvedBrands.slice(0, 8),
-  },
   rail: {
     label: "A closer look at RunRacks",
     cards: [

@@ -9,7 +9,7 @@
 
 .czHostingSection {
   width: 100%;
-  padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  padding: clamp(2.25rem, 4.5vw, 3.25rem) 0 clamp(2rem, 4vw, 2.75rem);
   background-color: var(--color-canvas);
   background-image: var(--gradient-hero);
   background-repeat: no-repeat;
@@ -48,18 +48,27 @@
 
 .czHostingTrust {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.65rem 1rem;
   margin-top: 1.75rem;
 }
 
 @media (min-width: 640px) {
   .czHostingTrust {
     flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
   }
+}
+
+.czHostingTrustNotice {
+  flex: 1 0 100%;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-align: center;
 }
 
 .czHostingAvatars {
@@ -71,16 +80,57 @@
   margin-left: -0.75rem;
 }
 
+.czHostingTrustCopy {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem 0.65rem;
+}
+
+.czHostingTrustStars {
+  --cz-star: var(--color-brand);
+  --cz-star-empty: color-mix(in srgb, var(--color-heading) 18%, transparent);
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.czHostingTrustStar {
+  --fill: 1;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    90deg,
+    var(--cz-star) calc(var(--fill) * 100%),
+    var(--cz-star-empty) 0
+  );
+}
+
+.czHostingTrustStar svg {
+  width: 0.625rem;
+  height: 0.625rem;
+  fill: #ffffff;
+}
+
 .czHostingTrustLabel {
   margin: 0;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-muted);
+  font-weight: 600;
+  color: var(--color-heading);
   text-align: left;
 }
 
 .czConfig {
   padding: 0.35rem 1.15rem 3.25rem;
+}
+
+.vpsProductPage .czConfig {
+  padding-bottom: 2rem;
 }
 
 .czConfigInner {

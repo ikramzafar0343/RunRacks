@@ -1,13 +1,12 @@
 "use client";
 
 /**
- * Dual-row logo marquee — pauses animation while off-screen.
+ * Single-row logo marquee — pauses animation while off-screen.
  */
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
-  brandsRowOne,
-  brandsRowTwo,
+  approvedBrands,
   type BrandLogo,
 } from "@/features/home/model/brandsContent";
 
@@ -70,17 +69,10 @@ export function BrandsMarquee() {
       data-paused={paused ? "true" : "false"}
       aria-label="Platforms and technologies"
     >
-      <div className="brandsMarqueeRail brandsMarqueeRailA">
+      <div className="brandsMarqueeRail">
         <ul className="brandsMarqueeTrack">
-          <BrandItems brands={brandsRowOne} keyPrefix="a1" />
-          <BrandItems brands={brandsRowOne} keyPrefix="a2" decorative />
-        </ul>
-      </div>
-
-      <div className="brandsMarqueeRail brandsMarqueeRailB">
-        <ul className="brandsMarqueeTrack">
-          <BrandItems brands={brandsRowTwo} keyPrefix="b1" />
-          <BrandItems brands={brandsRowTwo} keyPrefix="b2" decorative />
+          <BrandItems brands={approvedBrands} keyPrefix="a1" />
+          <BrandItems brands={approvedBrands} keyPrefix="a2" decorative />
         </ul>
       </div>
     </div>
