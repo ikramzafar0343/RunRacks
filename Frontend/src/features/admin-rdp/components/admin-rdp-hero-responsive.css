@@ -1,0 +1,116 @@
+/* Admin RDP hero — responsive breakpoints */
+
+@media (max-width: 1240px) {
+  .ardpHeroShell {
+    gap: 1.25rem;
+  }
+
+  .ardpHeroVisual {
+    margin-inline: -2rem -1.5rem;
+  }
+
+  .ardpHeroFloat--connection {
+    right: 0;
+    min-width: 10rem;
+  }
+}
+
+@media (max-width: 970px) {
+  .ardpHeroShell {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .ardpHeroTitle {
+    max-width: none;
+    font-size: clamp(2.2rem, 6.5vw, 3.875rem);
+  }
+
+  .ardpHeroTitleAccent {
+    font-size: clamp(2rem, 5.9vw, 3.4rem);
+  }
+
+  .ardpHeroCtas {
+    margin-top: 1.5rem;
+  }
+
+  .ardpHeroVisual {
+    align-self: stretch;
+    height: 26rem;
+    margin: 0.5rem calc(var(--ardp-gutter, 1.75rem) * -1) 0;
+  }
+
+  .ardpHeroImage {
+    left: 2%;
+    width: 95%;
+    bottom: 0;
+  }
+
+  .ardpHeroFloat--connection {
+    top: 1.25rem;
+    right: 7%;
+  }
+}
+
+@media (max-width: 620px) {
+  .ardpHeroCtas {
+    margin-top: 1.35rem;
+    gap: 0.65rem;
+  }
+
+  .ardpHeroCtaPrimary,
+  .ardpHeroCtaSecondary {
+    min-height: 2.875rem;
+    padding-inline: 1.1rem;
+    font-size: 0.75rem;
+  }
+
+  .ardpHeroVisual {
+    height: 20rem;
+    margin-inline: -1.05rem;
+  }
+
+  .ardpHeroImage {
+    width: 110%;
+    left: -5%;
+  }
+
+  .ardpHeroFloat--connection {
+    top: 1.75rem;
+    right: 5%;
+    min-width: 0;
+    padding: 0.5rem 0.65rem;
+    gap: 0.45rem;
+    border-radius: 0.75rem;
+  }
+
+  .ardpHeroFloatIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .ardpHeroFloatText strong {
+    font-size: 0.6875rem;
+  }
+
+  .ardpHeroFloatText small {
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .ardpHeroCtas {
+    align-items: stretch;
+  }
+
+  .ardpHeroCtaPrimary,
+  .ardpHeroCtaSecondary {
+    flex: 1;
+  }
+
+  .ardpHeroVisual {
+    height: 18rem;
+  }
+}

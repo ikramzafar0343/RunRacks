@@ -1,0 +1,174 @@
+/* VPS product hero — layered server scene + float specs */
+
+.vpsProductHeroScene {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: clamp(22rem, 48vw, 35.625rem);
+  min-width: 0;
+}
+
+.vpsProductHeroHalo,
+.vpsProductHeroOrbits,
+.vpsProductHeroCloud,
+.vpsProductHeroBaseGlow {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.vpsProductHeroHalo,
+.vpsProductHeroOrbits {
+  inset: 0;
+}
+
+.vpsProductHeroHalo {
+  z-index: 0;
+  background-image: url("/images/vps/decor/hero-halo.svg");
+  transform: scale(1.09);
+}
+
+.vpsProductHeroOrbits {
+  z-index: 1;
+  opacity: 0.8;
+  background-image: url("/images/vps/decor/orbit-lines.svg");
+  animation: vpsHeroOrbit 28s ease-in-out infinite alternate;
+}
+
+.vpsProductHeroCloud {
+  z-index: 2;
+  width: 7.7rem;
+  height: 5.4rem;
+  right: 10%;
+  top: 4rem;
+  background-image: url("/images/vps/decor/cloud-outline.svg");
+}
+
+.vpsProductHeroBaseGlow {
+  z-index: 1;
+  width: 85%;
+  height: 9.4rem;
+  bottom: 1.5rem;
+  left: 13%;
+  background-image: url("/images/vps/decor/base-glow.svg");
+}
+
+.vpsProductHeroServer {
+  position: absolute !important;
+  z-index: 2;
+  left: 8%;
+  top: 6.25rem;
+  width: min(88%, 40rem) !important;
+  height: auto !important;
+  filter: drop-shadow(
+    0 24px 19px color-mix(in srgb, var(--color-heading) 14%, transparent)
+  );
+  animation: vpsHeroAppear 0.85s ease both;
+}
+
+.vpsProductHeroSpec {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 11.5rem;
+  max-width: 15rem;
+  min-height: 4.875rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 95%, transparent);
+  box-shadow: 0 13px 29px
+    color-mix(in srgb, var(--color-heading) 9%, transparent);
+  backdrop-filter: blur(10px);
+  animation: vpsHeroFloat 5s ease-in-out infinite;
+}
+
+.vpsProductHeroSpecIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--color-accent-soft, #e2f2e4);
+}
+
+.vpsProductHeroSpecText {
+  display: grid;
+  gap: 0.2rem;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.vpsProductHeroSpecText strong {
+  font-size: 1rem;
+  color: var(--color-heading);
+}
+
+.vpsProductHeroSpecText small {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.vpsProductHeroSpec--cpu {
+  top: 5.7rem;
+  left: -5%;
+  animation-delay: 0.3s;
+}
+
+.vpsProductHeroSpec--ram {
+  bottom: 7.6rem;
+  left: -8%;
+  animation-delay: -1.9s;
+}
+
+.vpsProductHeroSpec--storage {
+  top: 14.3rem;
+  right: -3%;
+  animation-delay: -3.5s;
+}
+
+html.dark .vpsProductHeroSpec {
+  background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+}
+
+html.dark .vpsProductHeroSpecIcon {
+  background: color-mix(in srgb, var(--color-lime) 14%, var(--color-surface));
+}
+
+html.dark .vpsProductHeroOrbits {
+  opacity: 0.65;
+}
+
+@keyframes vpsHeroOrbit {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes vpsHeroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes vpsHeroAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

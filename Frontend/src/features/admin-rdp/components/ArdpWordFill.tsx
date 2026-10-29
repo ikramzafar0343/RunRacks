@@ -10,7 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMemo, useRef, type ReactNode } from "react";
 import { ADMIN_RDP } from "@/features/admin-rdp/model/adminRdpContent";
-import "@/features/admin-rdp/components/admin-rdp-hero.css";
+import "@/features/admin-rdp/components/admin-rdp-manifesto.css";
 
 gsap.registerPlugin(ScrollTrigger);
 

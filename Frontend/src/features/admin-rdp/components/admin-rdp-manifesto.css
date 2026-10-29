@@ -1,0 +1,36 @@
+/* Manifesto — character opacity scrub */
+
+.ardpManifesto {
+  padding: var(--ardp-section-y, clamp(1.75rem, 3.5vw, 3rem))
+    var(--ardp-gutter, clamp(1.25rem, 4vw, 3.5rem));
+  text-align: center;
+}
+
+.ardpManifestoInner {
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+.ardpWordFillPara {
+  margin: 0;
+  font-size: clamp(1.35rem, 3.2vw, 2.15rem);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  text-wrap: pretty;
+  color: var(--ardp-fg, var(--color-heading));
+}
+
+.ardpWordFillWord {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ardpWordFillSpace {
+  display: inline;
+}
+
+.ardpWordFillChar {
+  display: inline-block;
+  opacity: 1;
+}

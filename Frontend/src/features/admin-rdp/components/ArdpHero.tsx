@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ADMIN_RDP } from "@/features/admin-rdp/model/adminRdpContent";
 import "@/features/admin-rdp/components/admin-rdp-hero.css";
+import "@/features/admin-rdp/components/admin-rdp-hero-responsive.css";
 
 const ASSET = "/images/admin-rdp";
 

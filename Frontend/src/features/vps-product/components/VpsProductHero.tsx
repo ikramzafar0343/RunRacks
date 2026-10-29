@@ -6,6 +6,8 @@ import Link from "next/link";
 import type { Route } from "next";
 import { VPS_PRODUCT } from "@/features/vps-product/model/vpsProductContent";
 import "@/features/vps-product/components/vps-product-hero.css";
+import "@/features/vps-product/components/vps-product-hero-scene.css";
+import "@/features/vps-product/components/vps-product-hero-responsive.css";
 
 const ASSET = "/images/vps";
 
