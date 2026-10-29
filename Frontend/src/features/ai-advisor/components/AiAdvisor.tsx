@@ -25,6 +25,12 @@ import { fetchAiConfig } from "@/features/ai-advisor/services/aiClient";
 import type { AiTopic } from "@/shared/lib/apiContracts";
 import type { VpsFamily } from "@/features/vps-pricing/model/types";
 import "@/features/ai-advisor/components/ai-advisor.css";
+import "@/features/ai-advisor/components/ai-advisor-chat.css";
+import "@/features/ai-advisor/components/ai-advisor-composer.css";
+import "@/features/ai-advisor/components/ai-advisor-dock.css";
+import "@/features/ai-advisor/components/ai-advisor-panels.css";
+import "@/features/ai-advisor/components/ai-advisor-dialog.css";
+import "@/features/ai-advisor/components/ai-advisor-regions.css";
 
 type AiAdvisorProps = {
   topicParam?: string | null;

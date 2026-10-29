@@ -1,0 +1,241 @@
+/* AI Advisor — plan-finder dialog */
+/* Dialog */
+.aiDialogBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--color-heading) 42%, transparent);
+}
+
+.aiDialogPanel {
+  width: min(100%, 34rem);
+  max-height: min(90dvh, 40rem);
+  overflow: auto;
+  border-radius: 1.15rem;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  color: var(--ai-heading);
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--color-heading) 22%, transparent);
+}
+
+.aiDialogPanel--lg {
+  width: min(100%, 42rem);
+}
+
+.aiDialogHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem 0.35rem;
+}
+
+.aiDialogTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.aiDialogClose {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ai-muted);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.aiDialogClose:hover,
+.aiDialogClose:focus-visible {
+  background: var(--ai-accent-bg);
+  color: var(--ai-heading);
+  outline: none;
+}
+
+.aiDialogBody {
+  padding: 0.5rem 1.15rem 1.15rem;
+}
+
+.aiPlanStepMeta {
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: var(--ai-muted);
+}
+
+.aiPlanProgress {
+  display: block;
+  height: 4px;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  background: var(--ai-border);
+  overflow: hidden;
+}
+
+.aiPlanProgressFill {
+  display: block;
+  height: 100%;
+  background: var(--ai-accent);
+}
+
+.aiPlanFieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.aiPlanLegend {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--ai-heading);
+}
+
+.aiPlanGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+@media (min-width: 720px) {
+  .aiPlanGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .aiPlanGrid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.aiPlanCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  min-height: 5.5rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.aiPlanCard--icon {
+  align-items: center;
+  text-align: center;
+  min-height: 8.25rem;
+}
+
+.aiPlanCardIcon {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 10px;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+}
+
+.aiPlanCard strong {
+  font-size: 0.92rem;
+  color: var(--ai-heading);
+}
+
+.aiPlanCard span {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ai-muted);
+}
+
+.aiPlanCard--selected,
+.aiPlanCard:hover,
+.aiPlanCard:focus-visible {
+  border-color: var(--ai-accent);
+  background: var(--ai-accent-bg);
+  outline: none;
+}
+
+.aiPlanResultTitle {
+  margin: 0 0 0.45rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.aiPlanResultWhy {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ai-muted);
+}
+
+.aiPlanResultActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.aiPlanPrimary,
+.aiPlanNext {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.6rem;
+  padding: 0 1.1rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--ai-accent);
+  color: var(--color-brand-contrast, #fff);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.aiPlanPrimary:hover,
+.aiPlanNext:hover:not(:disabled) {
+  background: var(--ai-accent-hover);
+}
+
+.aiPlanSecondary,
+.aiPlanBack {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.6rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--ai-border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.aiPlanNav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
+
+.aiPlanBack:disabled,
+.aiPlanNext:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+

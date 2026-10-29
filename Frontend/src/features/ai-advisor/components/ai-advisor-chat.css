@@ -1,0 +1,261 @@
+/* AI Advisor — shell, header, chips, transcript */
+.aiAdvisorShell {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  gap: 0;
+}
+
+.aiAdvisorMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: min(100% - 1.5rem, var(--ai-max));
+  margin-inline: auto;
+  padding: clamp(4.75rem, 10vw, 6.5rem) 0.75rem 1.25rem;
+  min-height: 100dvh;
+}
+
+.aiAdvisorShell--split {
+  align-items: stretch;
+}
+
+.aiAdvisorShell--split .aiAdvisorMain {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  margin-inline: 0;
+  padding-inline: 0.85rem;
+}
+
+.aiAdvisorHeader--hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  animation: aiFadeUp 0.55s ease both;
+}
+
+.aiAdvisorHeader--compact {
+  padding-bottom: 0.35rem;
+}
+
+.aiAdvisorSparkle {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.85rem;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ai-accent) 20%, transparent);
+}
+
+.aiAdvisorTitle {
+  margin: 0;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.12;
+  color: var(--ai-heading);
+}
+
+.aiAdvisorTitleAccent {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--ai-lime) 80%, var(--ai-accent));
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.18em;
+}
+
+.aiAdvisorLead {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--ai-muted);
+}
+
+.aiAdvisorStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ai-muted);
+}
+
+.aiAdvisorStatusDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ai-muted) 70%, transparent);
+}
+
+.aiAdvisorChips {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  width: min(100%, 22rem);
+  margin: 1.5rem auto 0;
+  padding: 0;
+  list-style: none;
+  animation: aiFadeUp 0.6s ease 0.08s both;
+}
+
+.aiAdvisorChip {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  min-height: 52px;
+  padding: 0.75rem 0.95rem;
+  border-radius: 14px;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    transform 150ms ease;
+}
+
+.aiAdvisorChip:hover,
+.aiAdvisorChip:focus-visible {
+  border-color: var(--ai-accent);
+  background: var(--ai-accent-bg);
+  outline: none;
+}
+
+.aiAdvisorChip:focus-visible {
+  outline: 2px solid var(--ai-accent);
+  outline-offset: 2px;
+}
+
+.aiAdvisorChipIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+}
+
+.aiAdvisorChipLabel {
+  line-height: 1.35;
+}
+
+.aiAdvisorSpacer {
+  flex: 1;
+  min-height: 4rem;
+}
+
+.aiAdvisorTranscript {
+  flex: 1;
+  min-height: 10rem;
+  max-height: min(48dvh, 26rem);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0.5rem 0.1rem 0.75rem;
+}
+
+.aiAdvisorEmpty {
+  margin: auto 0;
+  padding: 1rem 0;
+  text-align: center;
+  color: var(--ai-muted);
+  font-size: 0.95rem;
+}
+
+.aiAdvisorMsg {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-width: 88%;
+}
+
+.aiAdvisorMsg--user {
+  align-self: flex-end;
+}
+
+.aiAdvisorMsg--assistant,
+.aiAdvisorMsg--system {
+  align-self: flex-start;
+}
+
+.aiAdvisorMsgRole {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ai-muted);
+}
+
+.aiAdvisorMsgBubble {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--ai-radius-md);
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.aiAdvisorMsg--user .aiAdvisorMsgBubble {
+  border-radius: 18px 18px 6px 18px;
+  background: var(--ai-accent);
+  border-color: var(--ai-accent);
+  color: var(--color-brand-contrast, #fff);
+}
+
+.aiAdvisorBanner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+  margin: 0.75rem 0 0;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--ai-radius-sm);
+  border: 1px solid color-mix(in srgb, var(--ai-accent) 35%, var(--ai-border));
+  background: var(--ai-accent-bg);
+  color: var(--ai-heading);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.aiAdvisorBanner p {
+  margin: 0;
+}
+
+.aiAdvisorBanner--error {
+  border-color: color-mix(in srgb, var(--ai-error) 40%, var(--ai-border));
+}
+
+.aiAdvisorComposerShell {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: auto;
+  padding: 0.75rem 0 0.35rem;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--color-canvas, var(--color-surface)) 92%, transparent) 22%
+  );
+}

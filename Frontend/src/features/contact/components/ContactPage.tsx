@@ -10,6 +10,7 @@ import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaS
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import "@/features/about/components/about-page.css";
 import "@/features/contact/components/contact.css";
+import "@/features/contact/components/contact-form.css";
 
 export function ContactPage() {
   return (

@@ -1,0 +1,108 @@
+/* AI Advisor — regions panel + motion/mobile */
+/* Regions panel */
+.aiRegionsPanel {
+  position: fixed;
+  top: 4.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 30;
+  width: min(100% - 1.5rem, 26rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1.15rem;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--color-heading) 14%, transparent);
+  overflow: auto;
+}
+
+@media (min-width: 1100px) {
+  .aiRegionsPanel {
+    position: sticky;
+    top: 5.25rem;
+    right: auto;
+    bottom: auto;
+    width: min(100%, 24rem);
+    max-height: calc(100dvh - 6.5rem);
+    margin: 5.25rem 1rem 1rem 0;
+  }
+
+  .aiAdvisorShell {
+    align-items: flex-start;
+  }
+}
+
+.aiRegionsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.aiRegionsTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.aiRegionsNote {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ai-muted);
+}
+
+.aiRegionsMap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--ai-border);
+}
+
+.aiRegionsLinks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.9rem;
+}
+
+@keyframes aiFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aiAdvisorHeader--hero,
+  .aiAdvisorChips,
+  .aiTipStrip {
+    animation: none;
+  }
+
+  .aiAdvisorChip {
+    transition: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .aiAdvisorMain {
+    width: min(100% - 1rem, var(--ai-max));
+  }
+
+  .aiPlanGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aiAdvisorComposer {
+    border-radius: 18px;
+  }
+}
