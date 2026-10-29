@@ -30,11 +30,14 @@ import "@/features/customize/components/customize-summary.css";
 export type CustomizeConfiguratorProps = {
   regions: readonly VpsRegion[];
   defaultRegionId: string;
+  /** Override summary CTAs (e.g. `#vps-plans` when embedded on the VPS page). */
+  plansHref?: string;
 };
 
 export function CustomizeConfigurator({
   regions,
   defaultRegionId,
+  plansHref,
 }: CustomizeConfiguratorProps) {
   const d = CUSTOMIZE.defaults;
   const [family, setFamily] = useState<VpsFamily>(d.family);
@@ -241,6 +244,7 @@ export function CustomizeConfigurator({
         dedicatedIpv4={dedicatedIpv4}
         automatedBackups={automatedBackups}
         price={price}
+        {...(plansHref ? { plansHref } : {})}
       />
     </div>
   );

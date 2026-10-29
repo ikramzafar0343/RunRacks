@@ -62,6 +62,11 @@ function termPrices(
   }));
 }
 
+function accessDetail(family: VpsFamily): string {
+  if (family === "linux") return "Full root access";
+  return "Full root / administrator access";
+}
+
 export function buildPlan(seed: PlanSeed): VpsPlan {
   const plan: VpsPlan = {
     id: seed.id,
@@ -72,7 +77,7 @@ export function buildPlan(seed: PlanSeed): VpsPlan {
     nvmeGb: seed.nvmeGb,
     availableRegionIds: [...REGION_IDS],
     details: [
-      { label: "Access", value: "Full root / administrator access" },
+      { label: "Access", value: accessDetail(seed.family) },
       { label: "Storage", value: "NVMe SSD" },
       { label: "Network", value: "Dedicated IPv4 address" },
       { label: "Operating systems", value: seed.osHint },

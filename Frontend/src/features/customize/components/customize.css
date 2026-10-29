@@ -7,6 +7,78 @@
   color: var(--color-body);
 }
 
+.czHostingSection {
+  width: 100%;
+  padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  background-color: var(--color-canvas);
+  background-image: var(--gradient-hero);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  font-family: var(--font-nourd), ui-sans-serif, sans-serif;
+}
+
+.czHostingIntro {
+  width: min(100% - 2.3rem, 42rem);
+  margin: 0 auto clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.czHostingTitle {
+  margin: 0;
+  font-family: var(--font-nourd-heading), var(--font-nourd), sans-serif;
+  font-size: clamp(1.85rem, 3.8vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-heading);
+}
+
+.czHostingLead {
+  margin: 1rem auto 0;
+  max-width: 36rem;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.czHostingCta {
+  margin-top: 1.75rem;
+}
+
+.czHostingTrust {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .czHostingTrust {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+.czHostingAvatars {
+  display: inline-flex;
+  align-items: center;
+}
+
+.czHostingAvatars > * + * {
+  margin-left: -0.75rem;
+}
+
+.czHostingTrustLabel {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-align: left;
+}
+
 .czConfig {
   padding: 0.35rem 1.15rem 3.25rem;
 }

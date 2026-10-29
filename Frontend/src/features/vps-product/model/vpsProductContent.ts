@@ -12,6 +12,29 @@ export type EditorialImage = {
   objectPosition?: string;
 };
 
+/** Lucide icon keys resolved in VpsProductHeroFeatures / Motion. */
+export type VpsHeroIconId =
+  | "cpu"
+  | "hardDrive"
+  | "keyRound"
+  | "globe"
+  | "shield"
+  | "headphones"
+  | "listChecks";
+
+export type VpsHeroTrustItem = {
+  id: string;
+  icon: VpsHeroIconId;
+  label: string;
+};
+
+export type VpsHeroFeature = {
+  id: string;
+  icon: VpsHeroIconId;
+  title: string;
+  description: string;
+};
+
 export type Principle = {
   id: string;
   number: string;
@@ -42,22 +65,62 @@ export const VPS_PRODUCT = {
   metaDescription:
     "NVMe VPS with full root access, clear plans, and predictable performance from RunRacks.",
   hero: {
-    lines: [
-      "Root access without the guesswork",
-      "NVMe plans with clear control after launch",
-    ],
-    supportLines: [
-      "Compare clear specs and regions before you order",
-      "Ship with full root and predictable performance",
-    ],
+    titleLines: ["High performance VPS Hosting"],
+    accentLine: "Full root access",
+    lead: "Deploy RunRacks VPS with NVMe storage, dedicated resources, full root access, and clear plan choices across regions.",
+    primaryCta: { label: "View plans", href: "#vps-plans" },
+    secondaryCta: { label: "Contact us", href: "/contact" },
+    trust: [
+      { id: "root", icon: "keyRound", label: "Full root access" },
+      { id: "nvme", icon: "hardDrive", label: "NVMe storage" },
+      { id: "specs", icon: "listChecks", label: "Clear plan specs" },
+      { id: "ddos", icon: "shield", label: "DDoS mitigation" },
+    ] satisfies readonly VpsHeroTrustItem[],
+    features: [
+      {
+        id: "dedicated",
+        icon: "cpu",
+        title: "Dedicated resources",
+        description:
+          "Clear vCPU and memory on every plan so performance stays predictable after launch.",
+      },
+      {
+        id: "nvme",
+        icon: "hardDrive",
+        title: "NVMe SSD storage",
+        description:
+          "Enterprise NVMe drives for fast I/O on production apps, databases, and builds.",
+      },
+      {
+        id: "root",
+        icon: "keyRound",
+        title: "Full root access",
+        description:
+          "Complete control over your environment—install software and configure what you need.",
+      },
+      {
+        id: "regions",
+        icon: "globe",
+        title: "Clear regions",
+        description:
+          "Compare locations on the plan cards and pick the region closest to your users.",
+      },
+      {
+        id: "ddos",
+        icon: "shield",
+        title: "DDoS mitigation",
+        description:
+          "Mitigation included across plan tiers so networking stays part of the product.",
+      },
+      {
+        id: "support",
+        icon: "headphones",
+        title: "Human support",
+        description:
+          "Reach the team through Contact when you need help choosing or running a plan.",
+      },
+    ] satisfies readonly VpsHeroFeature[],
   },
-  lead: {
-    src: "/images/showcase/vps-lead.jpg",
-    alt: "RunRacks team reviewing a VPS deployment together at a laptop",
-    width: 1024,
-    height: 682,
-    objectPosition: "50% 48%",
-  } satisfies EditorialImage,
   story: {
     label: "About RunRacks VPS",
     paragraphs: [

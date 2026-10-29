@@ -4,7 +4,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { HiCheck } from "react-icons/hi2";
 import {
   familyIcon,
@@ -34,6 +33,8 @@ export type CustomizePriceCardProps = {
   dedicatedIpv4: boolean;
   automatedBackups: boolean;
   price: CustomizePriceResult;
+  /** Override summary CTAs (e.g. `#vps-plans` when embedded on the VPS page). */
+  plansHref?: string;
 };
 
 export function CustomizePriceCard({
@@ -48,6 +49,7 @@ export function CustomizePriceCard({
   dedicatedIpv4,
   automatedBackups,
   price,
+  plansHref,
 }: CustomizePriceCardProps) {
   const features = [
     `${vcpu} vCPU`,
@@ -57,6 +59,8 @@ export function CustomizePriceCard({
     ...(dedicatedIpv4 ? [CUSTOMIZE.addons.dedicatedIpv4.label] : []),
     ...(automatedBackups ? [CUSTOMIZE.addons.automatedBackups.label] : []),
   ];
+  const primaryHref = plansHref ?? CUSTOMIZE.summary.cta.href;
+  const secondaryHref = plansHref ?? CUSTOMIZE.summary.secondary.href;
 
   return (
     <article className="czPriceCard" aria-live="polite">
@@ -98,9 +102,9 @@ export function CustomizePriceCard({
         </p>
       </div>
 
-      <Link className="czCtaPrimary" href={CUSTOMIZE.summary.cta.href}>
+      <a className="czCtaPrimary" href={primaryHref}>
         {CUSTOMIZE.summary.cta.label}
-      </Link>
+      </a>
 
       <ul className="czPriceCardFeatures">
         {features.map((item) => (
@@ -113,9 +117,9 @@ export function CustomizePriceCard({
 
       <p className="czNotice">{price.notice}</p>
 
-      <Link className="czCtaSecondary" href={CUSTOMIZE.summary.secondary.href}>
+      <a className="czCtaSecondary" href={secondaryHref}>
         {CUSTOMIZE.summary.secondary.label}
-      </Link>
+      </a>
     </article>
   );
 }

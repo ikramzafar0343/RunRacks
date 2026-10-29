@@ -3,11 +3,11 @@
  * Hero + pricing stay eager; below-fold GSAP/rails use dynamic() for JS budget.
  */
 import { Suspense } from "react";
+import { CustomizeHostingSection } from "@/features/customize/components/CustomizeHostingSection";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
 import { VpsClientStrip } from "@/features/vps-product/components/VpsClientStrip";
 import { VpsCompanyRail } from "@/features/vps-product/components/VpsCompanyRail";
-import { VpsLeadPhoto } from "@/features/vps-product/components/VpsLeadPhoto";
 import { VpsPhotoPair } from "@/features/vps-product/components/VpsPhotoPair";
 import { VpsPrinciples } from "@/features/vps-product/components/VpsPrinciples";
 import { VpsProductHero } from "@/features/vps-product/components/VpsProductHero";
@@ -36,7 +36,6 @@ export function VpsProductPage({
   return (
     <main className="vpsProductPage flex flex-1 flex-col">
       <VpsProductHero />
-      <VpsLeadPhoto />
       <section
         id="vps-plans"
         className="vpsProductPricing"
@@ -52,6 +51,11 @@ export function VpsProductPage({
           />
         </Suspense>
       </section>
+      <CustomizeHostingSection
+        regions={catalog.regions}
+        sectionId="vps-customize"
+        plansHref="#vps-plans"
+      />
       <VpsProductStory />
       <VpsPhotoPair />
       <VpsPrinciples />

@@ -1,55 +1,23 @@
 /**
  * Home page — hero is the primary above-the-fold experience.
- * Below-fold sections are dynamically imported for slow-network JS budgets.
+ * Client-heavy below-fold sections sit in Suspense so Cache Components
+ * can prerender the shell without Turbopack client-proxy `instant` failures.
  */
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { BrandTrustSection } from "@/features/brand-trust/components/BrandTrustSection";
+import { CustomerStoriesSection } from "@/features/customer-stories/components/CustomerStoriesSection";
+import { FeatureShowcaseSection } from "@/features/feature-showcase/components/FeatureShowcaseSection";
 import { BrandsSection } from "@/features/home/components/BrandsSection";
+import { AiCtaSection } from "@/features/home/components/AiCtaSection";
 import { HeroSection } from "@/features/home/components/HeroSection";
+import { HowWeWorkSection } from "@/features/how-we-work/components/HowWeWorkSection";
+import { StatisticsSection } from "@/features/statistics/components/StatisticsSection";
+import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
+import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
 import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
-
-const StatisticsSection = dynamic(() =>
-  import("@/features/statistics/components/StatisticsSection").then((m) => m.StatisticsSection),
-);
-
-const HowWeWorkSection = dynamic(() =>
-  import("@/features/how-we-work/components/HowWeWorkSection").then((m) => m.HowWeWorkSection),
-);
-
-const FeatureShowcaseSection = dynamic(() =>
-  import("@/features/feature-showcase/components/FeatureShowcaseSection").then(
-    (m) => m.FeatureShowcaseSection,
-  ),
-);
-
-const CustomerStoriesSection = dynamic(() =>
-  import("@/features/customer-stories/components/CustomerStoriesSection").then(
-    (m) => m.CustomerStoriesSection,
-  ),
-);
-
-const AiCtaSection = dynamic(() =>
-  import("@/features/home/components/AiCtaSection").then((m) => m.AiCtaSection),
-);
-
-const BrandTrustSection = dynamic(() =>
-  import("@/features/brand-trust/components/BrandTrustSection").then(
-    (m) => m.BrandTrustSection,
-  ),
-);
-
-const FaqSection = dynamic(() =>
-  import("@/features/vps-faq/components/FaqSection").then((m) => m.FaqSection),
-);
-
-const SupportCtaSection = dynamic(() =>
-  import("@/features/support-cta/components/SupportCtaSection").then(
-    (m) => m.SupportCtaSection,
-  ),
-);
 
 export const metadata: Metadata = {
   title: "VPS Hosting & Windows Servers",
@@ -68,12 +36,22 @@ export default function Home() {
       <Suspense fallback={<VpsPricingFallback variant="embedded" />}>
         <VpsPricingSection variant="embedded" initialCatalog={catalog} />
       </Suspense>
-      <StatisticsSection />
-      <HowWeWorkSection />
-      <FeatureShowcaseSection />
-      <CustomerStoriesSection />
+      <Suspense fallback={null}>
+        <StatisticsSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <HowWeWorkSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <FeatureShowcaseSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <CustomerStoriesSection />
+      </Suspense>
       <AiCtaSection />
-      <BrandTrustSection />
+      <Suspense fallback={null}>
+        <BrandTrustSection />
+      </Suspense>
       <FaqSection />
       <SupportCtaSection />
     </main>
