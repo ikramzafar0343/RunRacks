@@ -2,14 +2,14 @@
 
 .phNetworkLists {
   display: grid;
-  gap: 1.25rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
 @media (min-width: 1024px) {
   .phNetworkLists {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
+    gap: 1.25rem;
   }
 }
 
@@ -65,6 +65,15 @@
   color: var(--net-accent);
 }
 
+.phNetworkRowFlag {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 0.875rem;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-heading) 12%, transparent);
+}
+
 .phNetworkRowName {
   flex: 1;
   font-size: 0.78125rem;
@@ -114,8 +123,8 @@
 .phNetworkMetrics {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 1rem 1.25rem;
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
 @media (min-width: 640px) {

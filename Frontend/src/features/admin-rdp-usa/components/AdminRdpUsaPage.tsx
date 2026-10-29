@@ -21,7 +21,7 @@ export type AdminRdpUsaPageProps = {
 
 export function AdminRdpUsaPage({ initialCatalog }: AdminRdpUsaPageProps) {
   return (
-    <main className="ardpUsaPage flex flex-1 flex-col">
+    <main className="ardpUsaPage rrDenseSpacing flex flex-1 flex-col">
       <AdminRdpUsaHero />
       <AdminRdpBenefitsSection />
       <section

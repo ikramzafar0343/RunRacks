@@ -18,6 +18,7 @@ import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
 import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
+import "@/features/home/components/home-page.css";
 
 export const metadata: Metadata = {
   title: "VPS Hosting & Windows Servers",
@@ -30,7 +31,7 @@ export default function Home() {
   const catalog = getDemoVpsCatalog();
 
   return (
-    <main className="flex flex-1 flex-col pt-16 md:pt-[4.8rem]">
+    <main className="homePage rrDenseSpacing flex flex-1 flex-col pt-16 md:pt-[4.8rem]">
       <HeroSection />
       <BrandsSection />
       <Suspense fallback={<VpsPricingFallback variant="embedded" />}>

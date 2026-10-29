@@ -1,0 +1,50 @@
+/*
+ * Home page shell — dense section rhythm (opt-in via .homePage.rrDenseSpacing).
+ */
+
+.homePage {
+  --home-section-y: var(--rr-section-y, clamp(1.75rem, 3.5vw, 3rem));
+}
+
+.homePage .statisticsSection {
+  padding: var(--home-section-y) 24px clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.homePage .processSection {
+  padding: clamp(2.5rem, 5vw, 3.5rem) 0 clamp(2.25rem, 4.5vw, 3.25rem);
+}
+
+.homePage .featureShowcase {
+  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+}
+
+.homePage .customerStories {
+  padding: clamp(2.25rem, 4.5vw, 3.25rem) 0;
+}
+
+.homePage .promiseStage {
+  padding: clamp(2rem, 4vw, 3rem) 24px clamp(1.75rem, 3.5vw, 2.5rem);
+  min-height: 0;
+}
+
+.homePage .homeAiCta {
+  padding: clamp(1.75rem, 3.5vw, 2.5rem) 0;
+}
+
+@media (max-width: 767px) {
+  .homePage .statisticsSection {
+    padding: 2rem 16px;
+  }
+
+  .homePage .processSection {
+    padding: 2rem 0 2.25rem;
+  }
+
+  .homePage .featureShowcase {
+    padding: 2rem 0;
+  }
+
+  .homePage .customerStories {
+    padding: 1.75rem 0 2rem;
+  }
+}

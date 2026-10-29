@@ -16,7 +16,7 @@
 .contactPage {
   --contact-max: 72rem;
   --contact-pad: clamp(1.25rem, 4vw, 4rem);
-  --contact-gap: clamp(3.5rem, 8vw, 6.5rem);
+  --contact-gap: var(--rr-section-y, clamp(1.75rem, 3.5vw, 3rem));
   position: relative;
   width: 100%;
   overflow: clip;
@@ -37,7 +37,7 @@
 .contactHero {
   position: relative;
   isolation: isolate;
-  padding: clamp(5.5rem, 12vw, 8rem) 0 clamp(2.75rem, 5vw, 4rem);
+  padding: clamp(4.25rem, 8vw, 5.75rem) 0 clamp(1.75rem, 3.5vw, 2.75rem);
 }
 
 .contactHeroWash {

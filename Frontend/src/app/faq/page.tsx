@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function FaqPage() {
   return (
-    <main className="flex flex-1 flex-col">
+    <main className="faqPage rrDenseSpacing flex flex-1 flex-col">
       <FaqSection page />
     </main>
   );

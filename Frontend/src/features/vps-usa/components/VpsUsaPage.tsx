@@ -24,7 +24,7 @@ export type VpsUsaPageProps = {
 
 export function VpsUsaPage({ initialCatalog }: VpsUsaPageProps) {
   return (
-    <main className="usaPage flex flex-1 flex-col">
+    <main className="usaPage rrDenseSpacing flex flex-1 flex-col">
       <VpsUsaHero />
       <VpsUsaWhy />
       <VpsUsaCoverage />

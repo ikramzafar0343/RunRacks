@@ -15,7 +15,7 @@
   position: relative;
   isolation: isolate;
   overflow: clip;
-  padding: clamp(4rem, 8vw, 5.75rem) 0;
+  padding: var(--win-usa-section-y, clamp(1.75rem, 3.5vw, 3rem)) 0;
   background:
     radial-gradient(
       ellipse 40% 55% at 0% 50%,

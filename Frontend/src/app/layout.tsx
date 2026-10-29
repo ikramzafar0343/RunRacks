@@ -6,6 +6,7 @@ import { SiteFooter } from "@/shared/ui/SiteFooter";
 import { SiteFooterGate } from "@/shared/ui/SiteFooterGate";
 import { SiteHeader } from "@/shared/ui/SiteHeader";
 import { nourd, nourdHeading } from "@/styles/fonts";
+import "@/shared/styles/dense-section-spacing.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

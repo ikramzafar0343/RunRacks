@@ -50,7 +50,7 @@ html.dark .ardpNetworkGlow {
   z-index: 1;
   width: min(100% - 2 * var(--ardp-gutter), var(--ardp-max));
   margin-inline: auto;
-  padding-block: clamp(4rem, 8vw, 7rem);
+  padding-block: var(--ardp-section-y, clamp(1.75rem, 3.5vw, 3rem));
 }
 
 .ardpNetworkHeader {

@@ -24,7 +24,7 @@ export type AdminRdpPageProps = {
 
 export function AdminRdpPage({ initialCatalog }: AdminRdpPageProps) {
   return (
-    <main className="ardpPage flex flex-1 flex-col">
+    <main className="ardpPage rrDenseSpacing flex flex-1 flex-col">
       <ArdpHero />
       <section
         id="vps-plans"

@@ -20,7 +20,7 @@ export type WindowsUsaPageProps = {
 
 export function WindowsUsaPage({ initialCatalog }: WindowsUsaPageProps) {
   return (
-    <main className="winUsaPage flex flex-1 flex-col">
+    <main className="winUsaPage rrDenseSpacing flex flex-1 flex-col">
       <WindowsUsaHero />
       <WindowsUsaShowcase />
       <section

@@ -46,7 +46,7 @@ export function ProductHostingPage({
     content.defaultFamily;
   const startingPrice = getStartingPrice(catalog, family, initialLocation);
   return (
-    <main className="phPage flex flex-1 flex-col">
+    <main className="phPage rrDenseSpacing flex flex-1 flex-col">
       {product === "windows" ? (
         <WindowsProductHero content={content} startingPrice={startingPrice} />
       ) : (
@@ -56,7 +56,7 @@ export function ProductHostingPage({
         </>
       )}
 
-      <div id="vps-pricing" className="phPricingWrap phSection">
+      <div id="vps-pricing" className="phPricingWrap">
         <Suspense fallback={<VpsPricingFallback variant="page" />}>
           <VpsPricingSection
             variant="embedded"
@@ -82,7 +82,12 @@ export function ProductHostingPage({
         items={content.workloads}
       />
 
-      <PhInfra heading={content.infraHeading} regions={catalog.regions} />
+      <PhInfra
+        heading={content.infraHeading}
+        regions={catalog.regions}
+        intro="Same catalog regions as pricing filters—select a row, then jump to Windows plans for that location."
+        pricingAnchor="#vps-pricing"
+      />
 
       <VpsAiSection />
 

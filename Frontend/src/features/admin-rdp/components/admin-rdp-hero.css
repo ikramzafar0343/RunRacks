@@ -3,8 +3,8 @@
 .ardpHero {
   position: relative;
   isolation: isolate;
-  padding-top: clamp(6.5rem, 12vw, 9rem);
-  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+  padding-top: clamp(4.25rem, 8vw, 5.75rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
   padding-inline: var(--ardp-gutter);
   color: var(--color-heading);
   background: var(--gradient-hero);
@@ -118,7 +118,7 @@
 
 /* Manifesto — character opacity scrub */
 .ardpManifesto {
-  padding: clamp(3rem, 8vw, 6rem) var(--ardp-gutter) clamp(4rem, 10vw, 7rem);
+  padding: var(--ardp-section-y, clamp(1.75rem, 3.5vw, 3rem)) var(--ardp-gutter);
   text-align: center;
 }
 

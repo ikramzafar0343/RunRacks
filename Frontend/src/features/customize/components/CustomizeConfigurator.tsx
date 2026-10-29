@@ -32,15 +32,18 @@ export type CustomizeConfiguratorProps = {
   defaultRegionId: string;
   /** Override summary CTAs (e.g. `#vps-plans` when embedded on the VPS page). */
   plansHref?: string;
+  /** When set, locks family and hides the Hosting type control. */
+  lockedFamily?: VpsFamily;
 };
 
 export function CustomizeConfigurator({
   regions,
   defaultRegionId,
   plansHref,
+  lockedFamily,
 }: CustomizeConfiguratorProps) {
   const d = CUSTOMIZE.defaults;
-  const [family, setFamily] = useState<VpsFamily>(d.family);
+  const [family, setFamily] = useState<VpsFamily>(lockedFamily ?? d.family);
   const [regionId, setRegionId] = useState(defaultRegionId);
   const [term, setTerm] = useState<BillingTermMonths>(d.billingTermMonths);
   const [vcpu, setVcpu] = useState<number>(d.vcpu);
@@ -86,28 +89,34 @@ export function CustomizeConfigurator({
   return (
     <div className="czConfigInner">
       <div className="czPanel">
-        <div className="czFieldBlock">
-          <p className="czFieldLabel" id="cz-family-label">
-            <span className="czFieldLabelIcon" aria-hidden>
-              <HiServer size={14} />
-            </span>
-            Hosting type
-          </p>
-          <div className="czSeg" role="group" aria-labelledby="cz-family-label">
-            {CUSTOMIZE.families.map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                className="czSegBtn"
-                aria-pressed={family === f.id}
-                onClick={() => setFamily(f.id)}
-              >
-                <span className="czSegBtnIcon">{familyIcon(f.id)}</span>
-                {f.label}
-              </button>
-            ))}
+        {lockedFamily ? null : (
+          <div className="czFieldBlock">
+            <p className="czFieldLabel" id="cz-family-label">
+              <span className="czFieldLabelIcon" aria-hidden>
+                <HiServer size={14} />
+              </span>
+              Hosting type
+            </p>
+            <div
+              className="czSeg"
+              role="group"
+              aria-labelledby="cz-family-label"
+            >
+              {CUSTOMIZE.families.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  className="czSegBtn"
+                  aria-pressed={family === f.id}
+                  onClick={() => setFamily(f.id)}
+                >
+                  <span className="czSegBtnIcon">{familyIcon(f.id)}</span>
+                  {f.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="czFieldBlock">
           <p className="czFieldLabel" id="cz-region-label">

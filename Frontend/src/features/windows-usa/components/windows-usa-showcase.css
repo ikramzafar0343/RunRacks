@@ -43,7 +43,7 @@
   isolation: isolate;
   width: 100%;
   min-height: 760px;
-  padding: 62px 24px 56px;
+  padding: clamp(2rem, 4vw, 3rem) 24px clamp(1.75rem, 3.5vw, 2.75rem);
   overflow: clip;
   background: var(--ws-bg);
   color: var(--ws-main);

@@ -34,43 +34,4 @@ html.dark .vpsProductPage {
   width: 100%;
 }
 
-/* Compact shared sections only on the VPS product page */
-.vpsProductPage .vpsPricingSection:not([data-variant="embedded"]) {
-  padding: 2.75rem 0 1.75rem;
-}
-
-.vpsProductPage .brandsSection {
-  padding: 2.25rem 0 2rem;
-}
-
-.vpsProductPage .brandsMarquee {
-  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
-}
-
-.vpsProductPage .vpsFaq {
-  padding: 2.25rem 0 2.5rem;
-}
-
-.vpsProductPage .supportCta {
-  padding: clamp(1.75rem, 3.5vw, 2.5rem) 0;
-}
-
-@media (max-width: 1199px) {
-  .vpsProductPage .brandsSection {
-    padding: 2rem 0 1.75rem;
-  }
-}
-
-@media (max-width: 560px) {
-  .vpsProductPage .vpsPricingSection:not([data-variant="embedded"]) {
-    padding-top: 2.25rem;
-  }
-
-  .vpsProductPage .brandsSection {
-    padding: 1.75rem 0 1.5rem;
-  }
-
-  .vpsProductPage .vpsFaq {
-    padding: 1.75rem 0 2rem;
-  }
-}
+/* Shared dense Brands/FAQ/Support/Pricing: .rrDenseSpacing on the page shell */

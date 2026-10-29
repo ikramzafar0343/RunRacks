@@ -13,6 +13,10 @@
   border: 0;
 }
 
+.phPage .phPricingWrap {
+  padding-block: 0;
+}
+
 .phPage {
   --ph-bg: transparent;
   --ph-surface: var(--color-surface);
@@ -27,9 +31,9 @@
   --ph-muted: var(--color-ink-muted);
   --ph-border: color-mix(in srgb, var(--color-ink) 12%, transparent);
   --ph-content: 72.5rem;
-  --ph-pad-y: clamp(3.5rem, 6vw, 6rem);
-  --ph-pad-y-md: clamp(3rem, 5vw, 4.5rem);
-  --ph-pad-y-sm: clamp(2.5rem, 4vw, 3.5rem);
+  --ph-pad-y: var(--rr-section-y, clamp(1.75rem, 3.5vw, 3rem));
+  --ph-pad-y-md: clamp(1.5rem, 3vw, 2.5rem);
+  --ph-pad-y-sm: clamp(1.25rem, 2.5vw, 2rem);
   background: transparent;
   color: var(--ph-ink);
   font-family: var(--font-nourd), system-ui, sans-serif;
@@ -89,7 +93,7 @@
 /* —— Hero —— */
 .phHero {
   position: relative;
-  padding-block: clamp(4rem, 10vw, 7rem) var(--ph-pad-y-md);
+  padding-block: clamp(3.5rem, 7vw, 5rem) var(--ph-pad-y-md);
   overflow: hidden;
   text-align: center;
 }

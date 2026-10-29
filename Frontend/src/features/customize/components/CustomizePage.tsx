@@ -19,7 +19,7 @@ export function CustomizePage({ regions }: CustomizePageProps) {
   const { hero, faq } = CUSTOMIZE;
 
   return (
-    <main className="czPage flex flex-1 flex-col">
+    <main className="czPage rrDenseSpacing flex flex-1 flex-col">
       <Hero7
         heading={hero.title}
         description={hero.lead}

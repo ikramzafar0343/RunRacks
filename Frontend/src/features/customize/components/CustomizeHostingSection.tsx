@@ -8,7 +8,10 @@ import { Button } from "@/components/ui/button";
 import { CustomizeConfigurator } from "@/features/customize/components/CustomizeConfigurator";
 import { CUSTOMIZE } from "@/features/customize/model/customizeContent";
 import type { CustomizeHostingTrust } from "@/features/customize/model/customizeTrust";
-import type { VpsRegion } from "@/features/vps-pricing/model/types";
+import type {
+  VpsFamily,
+  VpsRegion,
+} from "@/features/vps-pricing/model/types";
 import "@/features/customize/components/customize.css";
 import "@/features/customize/components/customize-summary.css";
 
@@ -21,6 +24,8 @@ export type CustomizeHostingSectionProps = {
   plansHref?: string;
   /** When set, replaces flag trust with customer avatars + demo rating. */
   trust?: CustomizeHostingTrust;
+  /** Locks hosting family and hides the Hosting type control. */
+  lockedFamily?: VpsFamily;
 };
 
 export function CustomizeHostingSection({
@@ -28,6 +33,7 @@ export function CustomizeHostingSection({
   sectionId = "vps-customize",
   plansHref,
   trust,
+  lockedFamily,
 }: CustomizeHostingSectionProps) {
   const defaultRegionId = regions[0]?.id ?? "us";
   const configId = `${sectionId}-config`;
@@ -103,6 +109,7 @@ export function CustomizeHostingSection({
           regions={regions}
           defaultRegionId={defaultRegionId}
           {...(plansHref ? { plansHref } : {})}
+          {...(lockedFamily ? { lockedFamily } : {})}
         />
       </div>
     </section>

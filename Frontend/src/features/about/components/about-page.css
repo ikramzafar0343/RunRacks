@@ -15,7 +15,7 @@
 .aboutPage {
   --about-max: 82.5rem;
   --about-pad: clamp(1.25rem, 4vw, 4rem);
-  --about-gap: clamp(4.25rem, 9vw, 8.5rem);
+  --about-gap: var(--rr-section-y, clamp(1.75rem, 3.5vw, 3rem));
   --about-radius-lg: 1.5rem;
   --about-radius-md: 1.125rem;
   width: 100%;

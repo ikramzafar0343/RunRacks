@@ -115,7 +115,7 @@
 @media (max-width: 767px) {
   .winShowcase {
     min-height: 0;
-    padding: 64px 20px 72px;
+    padding: 2rem 20px 2.25rem;
   }
 
   .winShowcaseHeading {

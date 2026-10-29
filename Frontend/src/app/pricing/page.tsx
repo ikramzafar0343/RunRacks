@@ -22,9 +22,9 @@ export default function PricingPage() {
   const catalog = getDemoVpsCatalog();
 
   return (
-    <main className="flex flex-1 flex-col pt-16 md:pt-[4.8rem]">
+    <main className="pricingPage rrDenseSpacing flex flex-1 flex-col pt-16 md:pt-[4.8rem]">
       <HeroSection />
-      <BrandsSection className="!pt-44 sm:!pt-48 md:!pt-52" />
+      <BrandsSection />
       <div id="pricing-plans" className="scroll-mt-24">
         <Suspense fallback={<VpsPricingFallback variant="page" />}>
           <VpsPricingSection variant="page" initialCatalog={catalog} />

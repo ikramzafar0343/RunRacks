@@ -4,8 +4,10 @@
  * Catalog regions map — Sage & Ink section chrome + dotted WorldMap.
  */
 import { useId, useMemo, useState, type KeyboardEvent } from "react";
-import { HiArrowRight, HiMapPin } from "react-icons/hi2";
+import Image from "next/image";
+import { HiArrowRight } from "react-icons/hi2";
 import { WorldMap } from "@/components/ui/map";
+import { flagSrc } from "@/features/customize/components/customizeIcons";
 import {
   NETWORK_GROUP_LABELS,
   NETWORK_GROUP_ORDER,
@@ -15,21 +17,34 @@ import {
   type NetworkGroupId,
 } from "@/features/product-hosting/model/networkLocations";
 import type { VpsRegion } from "@/features/vps-pricing/model/types";
+import "@/features/product-hosting/components/product-hosting-network.css";
 
 type PhInfraProps = {
   heading: string;
   regions: readonly VpsRegion[];
+  /** Supporting line under the heading. */
+  intro?: string;
+  /** In-page pricing anchor (hash). Defaults to `#vps-pricing`. */
+  pricingAnchor?: string;
 };
 
 /** Same-tab jump to pricing with location query (hash after search). */
-function pricingHref(locationId: string) {
+function pricingHref(locationId: string, pricingAnchor: string) {
   const params = new URLSearchParams();
   if (locationId !== "us") params.set("location", locationId);
   const q = params.toString();
-  return q ? `?${q}#vps-pricing` : "#vps-pricing";
+  const hash = pricingAnchor.startsWith("#")
+    ? pricingAnchor
+    : `#${pricingAnchor}`;
+  return q ? `?${q}${hash}` : hash;
 }
 
-export function PhInfra({ heading, regions }: PhInfraProps) {
+export function PhInfra({
+  heading,
+  regions,
+  intro = "Same catalog regions as pricing filters—select a row, then jump to Windows plans for that location.",
+  pricingAnchor = "#vps-pricing",
+}: PhInfraProps) {
   const baseId = useId();
   const [activeId, setActiveId] = useState(regions[0]?.id ?? "");
 
@@ -84,21 +99,18 @@ export function PhInfra({ heading, regions }: PhInfraProps) {
   return (
     <section
       id="locations"
-      className="phSection phNetwork"
+      className="phNetwork"
       aria-labelledby={`${baseId}-heading`}
     >
       <div className="phNetworkGlow" aria-hidden />
-      <div className="phInner phNetworkInner">
+      <div className="phNetworkInner">
         <header className="phNetworkHeader">
           <p className="phNetworkEyebrow">Global network</p>
           <h2 id={`${baseId}-heading`} className="phNetworkHeading">
             <span className="phNetworkHeadingAccent">{regions.length}</span>{" "}
             locations. Pick a region, open plans.
           </h2>
-          <p className="phNetworkIntro">
-            Same catalog regions as pricing filters—select a row, then jump to
-            Windows plans for that location.
-          </p>
+          <p className="phNetworkIntro">{intro}</p>
         </header>
 
         <div
@@ -132,7 +144,7 @@ export function PhInfra({ heading, regions }: PhInfraProps) {
                     <li key={r.id}>
                       <a
                         id={`${baseId}-row-${r.id}`}
-                        href={pricingHref(r.id)}
+                        href={pricingHref(r.id, pricingAnchor)}
                         role="tab"
                         aria-selected={active}
                         tabIndex={active ? 0 : -1}
@@ -142,7 +154,14 @@ export function PhInfra({ heading, regions }: PhInfraProps) {
                         onFocus={() => activate(r.id)}
                         onClick={() => activate(r.id)}
                       >
-                        <HiMapPin className="phNetworkRowPin" aria-hidden />
+                        <Image
+                          src={flagSrc(r.countryCode)}
+                          alt=""
+                          width={18}
+                          height={14}
+                          className="phNetworkRowFlag"
+                          aria-hidden
+                        />
                         <span className="phNetworkRowName">{r.name}</span>
                         <span className="phNetworkRowStatus" aria-hidden />
                         <span className="phNetworkRowChip">In catalog</span>

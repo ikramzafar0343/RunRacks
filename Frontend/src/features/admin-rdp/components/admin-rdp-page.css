@@ -15,6 +15,7 @@
   --ardp-glow: color-mix(in srgb, var(--color-brand) 28%, transparent);
   --ardp-gutter: clamp(1.25rem, 4vw, 3.5rem);
   --ardp-max: 72rem;
+  --ardp-section-y: var(--rr-section-y, clamp(1.75rem, 3.5vw, 3rem));
   font-family: var(--font-nourd), system-ui, sans-serif;
   color: var(--ardp-fg);
   background: transparent;
@@ -34,7 +35,7 @@
 }
 
 .ardpSection {
-  padding-block: clamp(3.5rem, 8vw, 7rem);
+  padding-block: var(--ardp-section-y);
 }
 
 .ardpLead,

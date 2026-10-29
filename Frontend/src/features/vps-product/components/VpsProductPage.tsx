@@ -5,6 +5,7 @@
 import { Suspense } from "react";
 import { CustomizeHostingSection } from "@/features/customize/components/CustomizeHostingSection";
 import { BrandsSection } from "@/features/home/components/BrandsSection";
+import { PhInfra } from "@/features/product-hosting/components/PhInfra";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
 import { VpsCompanyRail } from "@/features/vps-product/components/VpsCompanyRail";
@@ -35,7 +36,7 @@ export function VpsProductPage({
   const catalog = initialCatalog ?? getDemoVpsCatalog();
 
   return (
-    <main className="vpsProductPage flex flex-1 flex-col">
+    <main className="vpsProductPage rrDenseSpacing flex flex-1 flex-col">
       <VpsProductHero />
       <section
         id="vps-plans"
@@ -57,6 +58,13 @@ export function VpsProductPage({
         sectionId="vps-customize"
         plansHref="#vps-plans"
         trust={VPS_CUSTOMIZE_TRUST}
+        lockedFamily="linux"
+      />
+      <PhInfra
+        heading="Catalog regions"
+        regions={catalog.regions}
+        intro="Same catalog regions as pricing filters—select a row, then jump to VPS plans for that location."
+        pricingAnchor="#vps-plans"
       />
       <VpsProductStory />
       <VpsPhotoPair />

@@ -1,5 +1,7 @@
 /* —— Network map theme, glow, header, map wrap —— */
 .phNetwork {
+  --ph-pad-y: var(--rr-section-y, clamp(1.75rem, 3.5vw, 3rem));
+  --ph-content: 72.5rem;
   --net-bg: transparent;
   --net-fg: var(--color-heading);
   --net-muted: var(--color-muted);
@@ -21,6 +23,7 @@
   --net-accent: var(--color-brand);
 
   position: relative;
+  padding-block: var(--ph-pad-y);
   background: var(--net-bg);
   color: var(--net-fg);
   overflow: hidden;
@@ -47,17 +50,18 @@ html.dark .phNetworkGlow {
 .phNetworkInner {
   position: relative;
   z-index: 1;
-  padding-block: clamp(4rem, 8vw, 7rem);
+  width: min(100% - 2rem, var(--ph-content, 72.5rem));
+  margin-inline: auto;
 }
 
 .phNetworkHeader {
   max-width: 48rem;
-  margin: 0 auto 3rem;
+  margin: 0 auto clamp(1.25rem, 2.5vw, 1.75rem);
   text-align: center;
 }
 
 .phNetworkEyebrow {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.5rem;
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -67,10 +71,10 @@ html.dark .phNetworkGlow {
 
 .phNetworkHeading {
   margin: 0;
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-size: clamp(1.75rem, 3.6vw, 2.75rem);
   font-weight: 600;
   letter-spacing: -0.025em;
-  line-height: 1.05;
+  line-height: 1.1;
   color: var(--net-fg);
   text-wrap: balance;
 }
@@ -80,7 +84,7 @@ html.dark .phNetworkGlow {
 }
 
 .phNetworkIntro {
-  margin: 1.15rem auto 0;
+  margin: 0.75rem auto 0;
   max-width: 36rem;
   font-size: 0.9375rem;
   line-height: 1.5;

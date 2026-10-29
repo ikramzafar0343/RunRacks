@@ -1,0 +1,66 @@
+/*
+ * Dense marketing section rhythm (matches /products/vps).
+ * Opt-in via .rrDenseSpacing on a page wrapper — does not change globals.
+ */
+
+.rrDenseSpacing {
+  --rr-section-y: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+.rrDenseSpacing .vpsPricingSection:not([data-variant="embedded"]) {
+  padding: 2.75rem 0 1.75rem;
+}
+
+.rrDenseSpacing .vpsPricingSection[data-variant="embedded"] {
+  padding: 2.5rem 0 1.75rem;
+}
+
+.rrDenseSpacing .brandsSection {
+  padding: 2.25rem 0 2rem;
+}
+
+.rrDenseSpacing .brandsMarquee {
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.rrDenseSpacing .vpsFaq {
+  padding: 2.25rem 0 2.5rem;
+}
+
+.rrDenseSpacing .vpsFaq--page {
+  padding-top: clamp(3.25rem, 5.5vw, 4.25rem);
+  padding-bottom: 2.5rem;
+}
+
+.rrDenseSpacing .supportCta {
+  padding: clamp(1.75rem, 3.5vw, 2.5rem) 0;
+}
+
+@media (max-width: 1199px) {
+  .rrDenseSpacing .brandsSection {
+    padding: 2rem 0 1.75rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .rrDenseSpacing .vpsPricingSection:not([data-variant="embedded"]) {
+    padding-top: 2.25rem;
+  }
+
+  .rrDenseSpacing .vpsPricingSection[data-variant="embedded"] {
+    padding-top: 2rem;
+  }
+
+  .rrDenseSpacing .brandsSection {
+    padding: 1.75rem 0 1.5rem;
+  }
+
+  .rrDenseSpacing .vpsFaq {
+    padding: 1.75rem 0 2rem;
+  }
+
+  .rrDenseSpacing .vpsFaq--page {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+}

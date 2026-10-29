@@ -14,7 +14,7 @@ import "@/features/contact/components/contact-form.css";
 
 export function ContactPage() {
   return (
-    <div className="contactPage">
+    <div className="contactPage rrDenseSpacing">
       <ContactHero />
       <ContactChannels />
       <ContactFormSection />
