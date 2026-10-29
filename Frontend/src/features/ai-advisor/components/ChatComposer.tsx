@@ -4,7 +4,7 @@
  * Composer — text, photos, files, and browser voice-to-text.
  * Attachments stay on the device; the message API is text-only.
  */
-import { ArrowUp, Image, Mic, Paperclip, X } from "lucide-react";
+import { ArrowUp, ImageIcon, Mic, Paperclip, X } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { speechCtor, type SpeechRec } from "@/features/ai-advisor/components/composerSpeech";
 import { AI_COPY, AI_MAX_INPUT_CHARS } from "@/features/ai-advisor/model/aiContent";
@@ -186,7 +186,7 @@ export function ChatComposer({
           disabled={pending || disabled}
           onClick={() => imageRef.current?.click()}
         >
-          <Image size={18} aria-hidden />
+          <ImageIcon size={18} aria-hidden />
         </button>
         <button
           type="button"
@@ -269,6 +269,8 @@ export function ChatComposer({
           {attachments.map((item) => (
             <li key={item.id} className="aiComposerChip">
               {item.previewUrl ? (
+                // Local blob preview — next/image cannot optimize object URLs.
+                // eslint-disable-next-line @next/next/no-img-element -- blob: preview
                 <img src={item.previewUrl} alt="" />
               ) : null}
               <span>{item.name}</span>
