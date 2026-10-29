@@ -1,0 +1,17 @@
+---
+description: Reserved backend/DB seams; never fake readiness
+alwaysApply: true
+---
+
+# Backend and database seams
+
+Current phase is frontend-only. Reserved plugs live under `Frontend/`:
+
+- Env names: `.env.example` → `DATABASE_URL`, `BACKEND_API_BASE_URL`
+- Validation: `src/shared/config/env.ts` (`getIntegrationStatus`)
+- Contracts: `src/shared/lib/apiContracts.ts`
+- Process health: `GET /api/health`
+- Readiness: `GET /api/v1/ready` → **503** + `NOT_CONFIGURED` until backend and DB env exist
+- DAL home: `src/server/dal/` (no fake queries)
+
+When backend/DB work starts: implement real handlers/DAL; never return simulated success, empty stand-ins, or `ready: true` without real configuration and checks.

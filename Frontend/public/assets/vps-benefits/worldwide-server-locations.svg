@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 480" fill="none" role="img" aria-label="Worldwide Server Locations Global Network Infrastructure">
+  <defs>
+    <!-- Background Canvas Gradients -->
+    <linearGradient id="wwBaseGrad" x1="40" y1="20" x2="610" y2="460" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#EAF2ED" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#F6F9F7" stop-opacity="0.95"/>
+    </linearGradient>
+    <radialGradient id="wwGlobeAtmosphere" cx="45%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#4C9C7B"/>
+      <stop offset="50%" stop-color="#2D6B52"/>
+      <stop offset="85%" stop-color="#1B4634"/>
+      <stop offset="100%" stop-color="#0E281E"/>
+    </radialGradient>
+    <radialGradient id="wwGlowHighlight" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#A2E2C8" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#2D6B52" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wwLimeGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4FF66"/>
+      <stop offset="100%" stop-color="#AEE82C"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="wwShadowSm" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#152B23" flood-opacity="0.08"/>
+    </filter>
+    <filter id="wwShadowMd" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#152B23" flood-opacity="0.14"/>
+    </filter>
+    <filter id="wwShadowGlobe" x="-35%" y="-35%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#0D241B" flood-opacity="0.25"/>
+    </filter>
+    <filter id="wwNeonPulse" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop Panel -->
+  <g filter="url(#wwShadowSm)">
+    <rect x="44" y="24" width="562" height="236" rx="20" fill="url(#wwBaseGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <!-- Dashboard Window Controls -->
+    <circle cx="74" cy="48" r="5" fill="#E26D5C" opacity="0.85"/>
+    <circle cx="92" cy="48" r="5" fill="#E8B949" opacity="0.85"/>
+    <circle cx="110" cy="48" r="5" fill="#52B788" opacity="0.85"/>
+    <text x="130" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#20372F" opacity="0.75">network-topology / global-anycast-mesh</text>
+    <!-- Grid -->
+    <path d="M44 70h562" stroke="#D3E2D8" stroke-width="1" stroke-opacity="0.6"/>
+  </g>
+
+  <!-- Central Holographic Globe Sphere -->
+  <g transform="translate(185, 96)" filter="url(#wwShadowGlobe)">
+    <!-- Globe Outer Atmosphere Glow Ring -->
+    <circle cx="140" cy="140" r="132" fill="none" stroke="#52A582" stroke-width="1.5" stroke-opacity="0.4"/>
+    <circle cx="140" cy="140" r="136" fill="none" stroke="#C9FB50" stroke-width="1" stroke-opacity="0.25" stroke-dasharray="4 6"/>
+
+    <!-- Globe Sphere Body -->
+    <circle cx="140" cy="140" r="126" fill="url(#wwGlobeAtmosphere)"/>
+    <!-- Specular Highlight Overlay -->
+    <circle cx="140" cy="140" r="126" fill="url(#wwGlowHighlight)"/>
+
+    <!-- Graticule: Longitude Lines (Parallels & Meridians) -->
+    <!-- Equator & Horizontal Latitudes -->
+    <ellipse cx="140" cy="140" rx="124" ry="34" fill="none" stroke="#E1ECE5" stroke-width="1.2" stroke-opacity="0.35"/>
+    <ellipse cx="140" cy="85" rx="112" ry="26" fill="none" stroke="#E1ECE5" stroke-width="1.2" stroke-opacity="0.3"/>
+    <ellipse cx="140" cy="195" rx="112" ry="26" fill="none" stroke="#E1ECE5" stroke-width="1.2" stroke-opacity="0.3"/>
+    <ellipse cx="140" cy="42" rx="76" ry="16" fill="none" stroke="#E1ECE5" stroke-width="1" stroke-opacity="0.25"/>
+    <ellipse cx="140" cy="238" rx="76" ry="16" fill="none" stroke="#E1ECE5" stroke-width="1" stroke-opacity="0.25"/>
+
+    <!-- Vertical Meridians -->
+    <ellipse cx="140" cy="140" rx="42" ry="124" fill="none" stroke="#E1ECE5" stroke-width="1.2" stroke-opacity="0.35"/>
+    <ellipse cx="140" cy="140" rx="84" ry="124" fill="none" stroke="#E1ECE5" stroke-width="1.2" stroke-opacity="0.35"/>
+    <line x1="140" y1="16" x2="140" y2="264" stroke="#E1ECE5" stroke-width="1.2" stroke-opacity="0.35"/>
+
+    <!-- Stylized Continent Landmass Dots & Outlines (North America, Europe, Asia) -->
+    <!-- North America Cluster -->
+    <g fill="#AEE82C" fill-opacity="0.9">
+      <circle cx="94" cy="92" r="3.5"/>
+      <circle cx="106" cy="86" r="3"/>
+      <circle cx="118" cy="94" r="3.5"/>
+      <circle cx="90" cy="106" r="3.5"/>
+      <circle cx="102" cy="102" r="4"/>
+      <circle cx="114" cy="108" r="4"/>
+      <circle cx="128" cy="104" r="3.5"/>
+      <circle cx="108" cy="118" r="3.5"/>
+      <circle cx="120" cy="120" r="3"/>
+      <circle cx="132" cy="114" r="3.5"/>
+      <circle cx="114" cy="132" r="2.5"/>
+    </g>
+    <!-- Europe Cluster -->
+    <g fill="#FFFFFF" fill-opacity="0.8">
+      <circle cx="168" cy="84" r="3"/>
+      <circle cx="178" cy="80" r="3"/>
+      <circle cx="172" cy="92" r="3.5"/>
+      <circle cx="184" cy="90" r="3.5"/>
+      <circle cx="192" cy="84" r="3"/>
+      <circle cx="180" cy="102" r="3"/>
+      <circle cx="192" cy="98" r="3.5"/>
+    </g>
+    <!-- Asia / Pacific Cluster -->
+    <g fill="#FFFFFF" fill-opacity="0.75">
+      <circle cx="210" cy="94" r="3"/>
+      <circle cx="222" cy="90" r="3.5"/>
+      <circle cx="234" cy="96" r="3.5"/>
+      <circle cx="216" cy="108" r="3"/>
+      <circle cx="228" cy="112" r="3"/>
+      <circle cx="242" cy="108" r="3"/>
+      <circle cx="218" cy="134" r="2.5"/>
+      <circle cx="230" cy="138" r="3"/>
+    </g>
+
+    <!-- Transcontinental Optical Arcs -->
+    <path d="M102 102 C 130 65, 160 65, 184 90" stroke="#C9FB50" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="5 4"/>
+    <path d="M184 90 C 205 78, 225 82, 234 96" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 4" stroke-opacity="0.8"/>
+    <path d="M102 102 C 120 120, 160 140, 218 134" stroke="#52A582" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 4"/>
+
+    <!-- Light Pulse Packets on Arcs -->
+    <circle cx="140" cy="74" r="4" fill="#C9FB50" filter="url(#wwNeonPulse)"/>
+    <circle cx="210" cy="85" r="3.5" fill="#FFFFFF" filter="url(#wwNeonPulse)"/>
+
+    <!-- PRIMARY USA DATA CENTER NODE (Highlighted with Multiple Rings) -->
+    <g transform="translate(102, 102)">
+      <circle cx="0" cy="0" r="22" fill="#C9FB50" fill-opacity="0.18"/>
+      <circle cx="0" cy="0" r="14" fill="#C9FB50" fill-opacity="0.3" stroke="#C9FB50" stroke-width="1.2"/>
+      <circle cx="0" cy="0" r="7" fill="#C9FB50"/>
+      <circle cx="0" cy="0" r="3" fill="#0E281E"/>
+      <!-- Pulse beacon wave -->
+      <circle cx="0" cy="0" r="28" fill="none" stroke="#C9FB50" stroke-width="1" stroke-dasharray="2 3" opacity="0.6"/>
+    </g>
+
+    <!-- EUROPE NODE -->
+    <g transform="translate(184, 90)">
+      <circle cx="0" cy="0" r="10" fill="#FFFFFF" fill-opacity="0.25"/>
+      <circle cx="0" cy="0" r="5" fill="#FFFFFF"/>
+      <circle cx="0" cy="0" r="2" fill="#1B4634"/>
+    </g>
+
+    <!-- ASIA NODE -->
+    <g transform="translate(234, 96)">
+      <circle cx="0" cy="0" r="10" fill="#52A582" fill-opacity="0.3"/>
+      <circle cx="0" cy="0" r="5" fill="#C9FB50"/>
+      <circle cx="0" cy="0" r="2" fill="#0E281E"/>
+    </g>
+  </g>
+
+  <!-- Left Floating Latency Telemetry Card -->
+  <g transform="translate(56, 298)" filter="url(#wwShadowMd)">
+    <rect width="186" height="116" rx="16" fill="#152B23" stroke="#2B5646" stroke-width="1.5"/>
+    <!-- Card Header -->
+    <circle cx="24" cy="24" r="6" fill="#C9FB50"/>
+    <text x="38" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">USA East Hub</text>
+    <line x1="16" y1="40" x2="170" y2="40" stroke="#25473B" stroke-width="1"/>
+    <!-- Metrics -->
+    <text x="16" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#90B2A3">LATENCY</text>
+    <text x="16" y="76" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#C9FB50">8.4 ms</text>
+
+    <text x="104" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#90B2A3">PACKET LOSS</text>
+    <text x="104" y="76" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">0.00%</text>
+
+    <!-- Mini Throughput Waveform -->
+    <path d="M16 98 L40 94 L65 98 L90 92 L115 96 L140 90 L170 94" fill="none" stroke="#52B788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Right Floating Anycast Routing Card -->
+  <g transform="translate(424, 298)" filter="url(#wwShadowMd)">
+    <rect width="176" height="116" rx="16" fill="#FFFFFF" stroke="#DCE8E0" stroke-width="1.5"/>
+    <!-- Card Header -->
+    <circle cx="26" cy="24" r="5" fill="#3D8567"/>
+    <text x="38" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#20372F">BGP Anycast Edge</text>
+    <line x1="16" y1="40" x2="160" y2="40" stroke="#EAF2ED" stroke-width="1"/>
+
+    <text x="16" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#5F7A6E">BANDWIDTH UPLINK</text>
+    <text x="16" y="76" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#20372F">10 Gbps Redundant</text>
+
+    <!-- Status Badge -->
+    <rect x="16" y="88" width="144" height="18" rx="5" fill="#E8F6EE"/>
+    <circle cx="26" cy="97" r="3.5" fill="#3D8567"/>
+    <text x="36" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#245F48">TIER-1 FIBER CONNECTIVITY</text>
+  </g>
+</svg>

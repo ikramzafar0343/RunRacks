@@ -1,0 +1,209 @@
+/*
+ * Brand promise stage — Sage & Ink ice surface, reel mask, wordmark.
+ */
+
+.brandTrust {
+  --trust-bg: transparent;
+  --trust-ink: var(--color-heading);
+  --trust-muted: var(--color-muted);
+  --trust-faint: color-mix(in srgb, var(--color-muted) 55%, #c5d0c8);
+  --trust-accent: var(--color-brand);
+  --trust-line: color-mix(in srgb, var(--color-brand) 28%, var(--color-border));
+  --trust-ring: color-mix(in srgb, var(--color-brand) 42%, #cfe3d8);
+  --trust-icon-bg: color-mix(in srgb, var(--color-accent-soft) 85%, #fff);
+  --trust-text-secondary: var(--color-body);
+  --trust-focus: var(--color-brand);
+  --trust-ease: var(--ease-standard);
+  --statement-line: 44px;
+
+  width: 100%;
+  overflow: clip;
+  background: var(--trust-bg);
+  color: var(--trust-ink);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 640px;
+}
+
+html.dark .brandTrust {
+  --trust-bg: transparent;
+  --trust-accent: var(--color-brand);
+  --trust-faint: color-mix(in srgb, var(--color-muted) 50%, transparent);
+  --trust-line: color-mix(in srgb, var(--color-brand) 35%, var(--color-border));
+  --trust-ring: color-mix(in srgb, var(--color-brand) 45%, #2b4539);
+  --trust-icon-bg: var(--color-accent-soft);
+}
+
+.brandTrustNotice {
+  margin: 0;
+  padding: 1.1rem 1.25rem 0;
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--trust-muted);
+}
+
+.promiseStage {
+  min-height: 390px;
+  padding: 56px 24px 44px;
+  display: grid;
+  place-items: center;
+}
+
+.promiseInner {
+  width: min(100%, 900px);
+  display: grid;
+  grid-template-columns: max-content 28px minmax(0, 460px);
+  align-items: center;
+  justify-content: center;
+  column-gap: 18px;
+}
+
+.brandWordmark {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: var(--trust-ink);
+  white-space: nowrap;
+}
+
+.brandArrow {
+  width: 30px;
+  height: 36px;
+  color: var(--trust-accent);
+  align-self: start;
+  margin-top: 0.35rem;
+}
+
+.brandArrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.promiseReel {
+  position: relative;
+  width: 100%;
+  height: calc(6 * var(--statement-line));
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 18%,
+    #000 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 18%,
+    #000 80%,
+    transparent 100%
+  );
+}
+
+.promiseReelTrack {
+  display: flex;
+  flex-direction: column;
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.promiseReelTrack[data-instant="true"] {
+  transition: none;
+}
+
+.promiseLine {
+  flex: 0 0 var(--statement-line);
+  height: var(--statement-line);
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: var(--statement-line);
+  letter-spacing: -0.025em;
+  color: var(--trust-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 200ms var(--trust-ease);
+}
+
+.promiseLine[data-active="true"] {
+  color: var(--trust-accent);
+  font-weight: 600;
+}
+
+@media (max-width: 1279px) {
+  .brandWordmark {
+    font-size: 1.875rem;
+  }
+
+  .promiseLine {
+    font-size: 1.6875rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .brandWordmark {
+    font-size: 1.75rem;
+  }
+
+  .promiseLine {
+    font-size: 1.5rem;
+  }
+
+  .promiseInner {
+    column-gap: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .promiseStage {
+    min-height: 320px;
+    padding: 44px 20px 36px;
+  }
+
+  .promiseInner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 10px;
+    text-align: center;
+  }
+
+  .brandArrow {
+    margin-top: 0;
+    transform: rotate(90deg);
+  }
+
+  .promiseReel {
+    --statement-line: 37px;
+    height: calc(3 * var(--statement-line));
+    max-width: 22rem;
+  }
+
+  .promiseLine {
+    font-size: 1.375rem;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 479px) {
+  .brandWordmark {
+    font-size: 1.625rem;
+  }
+
+  .promiseReel {
+    --statement-line: 34px;
+  }
+
+  .promiseLine {
+    font-size: 1.1875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promiseReelTrack {
+    transition: none;
+  }
+}

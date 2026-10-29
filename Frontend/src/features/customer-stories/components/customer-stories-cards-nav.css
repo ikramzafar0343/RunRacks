@@ -1,0 +1,152 @@
+/*
+ * Customer stories — carousel arrows, CTA, reduced motion.
+ */
+
+.csArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: var(--cs-arrow-bg);
+  color: var(--cs-arrow-fg);
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    transform 180ms ease;
+}
+
+.csArrowDesktop {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.csArrowDesktop.csArrow--prev {
+  left: -70px;
+}
+.csArrowDesktop.csArrow--next {
+  right: -70px;
+}
+
+.csArrow:is(:hover, :active, :focus-visible) {
+  background: var(--color-lime);
+  color: var(--color-on-lime);
+  border-color: var(--color-lime);
+}
+
+.csArrowDesktop:is(:hover, :focus-visible) {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.csArrowDesktop:active {
+  transform: translateY(-50%) scale(0.97);
+}
+.csMobileNav .csArrow:is(:hover, :focus-visible) {
+  transform: scale(1.05);
+}
+.csMobileNav .csArrow:active {
+  transform: scale(0.97);
+}
+
+.csArrow:focus-visible {
+  outline: 2px solid var(--cs-lime);
+  outline-offset: 3px;
+}
+
+.csMobileNav {
+  display: none;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+@media (max-width: 1023px) {
+  .csMobileNav {
+    display: flex;
+  }
+  .csArrowDesktop {
+    display: none;
+  }
+}
+
+.csCtaWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 86px;
+  padding-inline: 24px;
+}
+
+.csCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 6px 14px 6px 18px;
+  border-radius: 10px;
+  background: var(--cs-cta-bg);
+  color: var(--cs-cta-text);
+  text-decoration: none;
+  transition:
+    background 200ms ease,
+    color 200ms ease;
+}
+
+.csCtaLabel {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.csCtaTile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--cs-lime);
+  color: var(--cs-ink-deep);
+  transition:
+    transform 200ms ease,
+    background 200ms ease,
+    color 200ms ease;
+}
+
+.csCta:is(:hover, :active) {
+  background: var(--color-lime);
+  color: var(--color-on-lime);
+}
+
+.csCta:is(:hover, :active) .csCtaTile {
+  background: var(--color-on-lime);
+  color: var(--color-lime);
+  transform: translateX(3px);
+}
+
+.csCta:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .csMediaImage,
+  .csPlay,
+  .csArrow,
+  .csCta,
+  .csCtaTile {
+    transition: none;
+  }
+
+  .csMedia:hover .csMediaImage,
+  .csPlay:is(:hover, :active, :focus-visible),
+  .csArrowDesktop:is(:hover, :focus-visible, :active),
+  .csMobileNav .csArrow:is(:hover, :focus-visible, :active),
+  .csCta:is(:hover, :active) .csCtaTile {
+    transform: none;
+  }
+}

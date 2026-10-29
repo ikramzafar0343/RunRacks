@@ -1,0 +1,16 @@
+---
+description: Frontend feature architecture, naming, 300-line cap
+globs: Frontend/**
+alwaysApply: false
+---
+
+# Frontend architecture
+
+Source: `Rules/FRONTEND_PRODUCTION_ENGINEERING_RULES.md` §§3–5.
+
+- App lives in `Frontend/src/`. Routing authority is `src/app/` (App Router only).
+- Feature code goes in `src/features/<feature>/` only when a real feature exists.
+- Dependency direction: `app` → `features` → `shared` / `server`. No reverse imports. Features do not import each other’s private files.
+- Naming: PascalCase components/files; camelCase functions/vars; `useX` hooks; kebab-case feature dirs.
+- Every hand-authored file MUST be ≤300 physical lines. Refactor by responsibility before the limit.
+- Use `@/` imports across feature boundaries; clear relative imports locally.

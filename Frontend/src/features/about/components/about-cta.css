@@ -1,0 +1,49 @@
+/* About — closing contact CTA panel and bottom padding */
+
+.aboutCtaPanel {
+  display: grid;
+  gap: 1.5rem;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background: var(--color-inverse);
+  color: var(--color-on-inverse);
+  border: 1px solid var(--color-inverse-border);
+  padding: clamp(2rem, 5vw, 5.5rem);
+}
+
+@media (min-width: 900px) {
+  .aboutCtaPanel {
+    grid-template-columns: 1.3fr 0.9fr;
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+
+.aboutCtaPanel .aboutH2 {
+  color: var(--color-on-inverse);
+  max-width: 14ch;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+}
+
+.aboutCtaPanel p {
+  margin: 0;
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-inverse-muted);
+}
+
+.aboutCtaMedia {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.aboutCtaMedia img {
+  object-fit: cover;
+}
+
+.aboutPageBottom {
+  padding-bottom: clamp(4rem, 8vw, 6.5rem);
+}

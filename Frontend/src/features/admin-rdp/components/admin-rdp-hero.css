@@ -1,0 +1,154 @@
+/* Admin RDP text hero + manifesto char scrub */
+
+.ardpHero {
+  position: relative;
+  isolation: isolate;
+  padding-top: clamp(6.5rem, 12vw, 9rem);
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+  padding-inline: var(--ardp-gutter);
+  color: var(--color-heading);
+  background: var(--gradient-hero);
+}
+
+.ardpHeroInner {
+  width: min(100%, 56rem);
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* Full-bleed curved band under CTAs — no card chrome */
+.ardpHeroGrid {
+  margin-inline: calc(-1 * var(--ardp-gutter));
+  width: calc(100% + 2 * var(--ardp-gutter));
+  max-width: none;
+}
+
+.ardpHeroEyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+.ardpHeroTitle {
+  margin: 0;
+  font-size: clamp(1.85rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+}
+
+.ardpHeroTitleLine {
+  display: block;
+}
+
+.ardpHeroLead {
+  margin: 1.25rem auto 0;
+  max-width: 36rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--color-body);
+}
+
+.ardpHeroCtas {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ardpHeroCtaPrimary,
+.ardpHeroCtaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform var(--motion-fast, 150ms) ease,
+    background var(--motion-fast, 150ms) ease,
+    filter var(--motion-fast, 150ms) ease;
+}
+
+.ardpHeroCtaPrimary {
+  background: var(--color-lime);
+  color: var(--color-on-lime);
+  box-shadow: 0 8px 24px
+    color-mix(in srgb, var(--color-heading) 12%, transparent);
+}
+
+.ardpHeroCtaPrimary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
+
+.ardpHeroCtaSecondary {
+  border: 1px solid color-mix(in srgb, var(--color-heading) 22%, transparent);
+  color: var(--color-heading);
+  background: transparent;
+}
+
+.ardpHeroCtaSecondary:hover {
+  background: color-mix(in srgb, var(--color-heading) 8%, transparent);
+}
+
+.ardpHeroCtaPrimary:focus-visible,
+.ardpHeroCtaSecondary:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ardpHeroCtaPrimary,
+  .ardpHeroCtaSecondary {
+    transition: none;
+  }
+
+  .ardpHeroCtaPrimary:hover {
+    transform: none;
+  }
+}
+
+/* Manifesto — character opacity scrub */
+.ardpManifesto {
+  padding: clamp(3rem, 8vw, 6rem) var(--ardp-gutter) clamp(4rem, 10vw, 7rem);
+  text-align: center;
+}
+
+.ardpManifestoInner {
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+.ardpWordFillPara {
+  margin: 0;
+  font-size: clamp(1.35rem, 3.2vw, 2.15rem);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  text-wrap: pretty;
+  color: var(--ardp-fg);
+}
+
+/* Keep whole words on one line; chars inside still animate opacity */
+.ardpWordFillWord {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ardpWordFillSpace {
+  display: inline;
+}
+
+/* Full opacity by default so manifesto is readable before GSAP hydrates */
+.ardpWordFillChar {
+  display: inline-block;
+  opacity: 1;
+}

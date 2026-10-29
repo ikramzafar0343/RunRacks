@@ -1,0 +1,20 @@
+/** About page content barrel. */
+export {
+  ABOUT_CAPABILITIES,
+  ABOUT_FEATURES,
+  ABOUT_HERO,
+  ABOUT_INTRO,
+  ABOUT_META,
+} from "./aboutContentHero";
+export {
+  ABOUT_CTA,
+  ABOUT_PRINCIPLES,
+  ABOUT_STORIES_INTRO,
+  ABOUT_TEAM,
+  ABOUT_TEAM_INTRO,
+  ABOUT_TECH,
+  ABOUT_TIMELINE,
+  ABOUT_TIMELINE_INTRO,
+  ABOUT_VALUES,
+  ABOUT_VALUES_INTRO,
+} from "./aboutContentRest";

@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 480" fill="none" role="img" aria-label="Seamless Scalability Cloud and Hardware Architecture">
+  <defs>
+    <!-- Background Canvas Gradients -->
+    <linearGradient id="scBaseGrad" x1="40" y1="20" x2="610" y2="460" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#EAF2ED" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#F6F9F7" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="scCloudGrad" x1="170" y1="90" x2="360" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3D8567"/>
+      <stop offset="50%" stop-color="#2D6850"/>
+      <stop offset="100%" stop-color="#1B4635"/>
+    </linearGradient>
+    <linearGradient id="scCloudGlow" x1="200" y1="110" x2="320" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#52A582" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#2D6850" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="scLimeGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4FF66"/>
+      <stop offset="100%" stop-color="#AEE82C"/>
+    </linearGradient>
+    <linearGradient id="scChipGrad" x1="470" y1="35" x2="590" y2="155" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1E3B30"/>
+      <stop offset="100%" stop-color="#10251E"/>
+    </linearGradient>
+    <linearGradient id="scGoldPin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="100%" stop-color="#CCA038"/>
+    </linearGradient>
+    <linearGradient id="scNvmePcb" x1="50" y1="280" x2="230" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#213E34"/>
+      <stop offset="100%" stop-color="#132720"/>
+    </linearGradient>
+    <linearGradient id="scRamPcb" x1="330" y1="330" x2="600" y2="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#264A3E"/>
+      <stop offset="100%" stop-color="#162E26"/>
+    </linearGradient>
+
+    <!-- Filters for Depth -->
+    <filter id="scShadowSm" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#152B23" flood-opacity="0.08"/>
+    </filter>
+    <filter id="scShadowMd" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#152B23" flood-opacity="0.14"/>
+    </filter>
+    <filter id="scShadowLg" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#0E2019" flood-opacity="0.2"/>
+    </filter>
+    <filter id="scNeonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop Panel -->
+  <g filter="url(#scShadowSm)">
+    <rect x="44" y="24" width="562" height="236" rx="20" fill="url(#scBaseGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <!-- Dashboard Window Controls -->
+    <circle cx="74" cy="48" r="5" fill="#E26D5C" opacity="0.85"/>
+    <circle cx="92" cy="48" r="5" fill="#E8B949" opacity="0.85"/>
+    <circle cx="110" cy="48" r="5" fill="#52B788" opacity="0.85"/>
+    <!-- Subtle Grid Lines -->
+    <path d="M44 70h562" stroke="#D3E2D8" stroke-width="1" stroke-opacity="0.6"/>
+    <path d="M140 70v190M260 70v190M380 70v190M500 70v190" stroke="#D3E2D8" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- Telemetry HUD Bars (Upper Right inside Dashboard) -->
+  <g transform="translate(372, 104)" filter="url(#scShadowSm)">
+    <!-- Rail 1: vCPU Load -->
+    <rect width="186" height="30" rx="8" fill="#FFFFFF" fill-opacity="0.85" stroke="#D6E5DC" stroke-width="1"/>
+    <text x="14" y="19" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#20372F">vCPU Auto-Scale</text>
+    <rect x="100" y="11" width="72" height="8" rx="4" fill="#E1ECE5"/>
+    <rect x="100" y="11" width="58" height="8" rx="4" fill="url(#scLimeGlow)"/>
+    <circle cx="158" cy="15" r="5" fill="#1B4635"/>
+
+    <!-- Rail 2: RAM Allocation -->
+    <g transform="translate(0, 38)">
+      <rect width="186" height="30" rx="8" fill="#FFFFFF" fill-opacity="0.85" stroke="#D6E5DC" stroke-width="1"/>
+      <text x="14" y="19" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#20372F">DDR5 Dynamic</text>
+      <rect x="100" y="11" width="72" height="8" rx="4" fill="#E1ECE5"/>
+      <rect x="100" y="11" width="46" height="8" rx="4" fill="#3D8567"/>
+      <circle cx="146" cy="15" r="5" fill="#C9FB50"/>
+    </g>
+
+    <!-- Rail 3: NVMe I/O Pool -->
+    <g transform="translate(0, 76)">
+      <rect width="186" height="30" rx="8" fill="#FFFFFF" fill-opacity="0.85" stroke="#D6E5DC" stroke-width="1"/>
+      <text x="14" y="19" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#20372F">NVMe Storage</text>
+      <rect x="100" y="11" width="72" height="8" rx="4" fill="#E1ECE5"/>
+      <rect x="100" y="11" width="64" height="8" rx="4" fill="#4B88A6"/>
+      <circle cx="164" cy="15" r="5" fill="#FFFFFF" stroke="#4B88A6" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Bus Data Connector Lines -->
+  <g opacity="0.75">
+    <path d="M250 240 C 230 280, 160 270, 150 300" stroke="#3D8567" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+    <path d="M300 240 C 320 290, 420 290, 430 330" stroke="#3D8567" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+    <circle cx="150" cy="300" r="3" fill="#C9FB50"/>
+    <circle cx="430" cy="330" r="3" fill="#C9FB50"/>
+  </g>
+
+  <!-- Central Cloud Compute Engine -->
+  <g filter="url(#scShadowLg)">
+    <!-- Base Cloud Volumetric Silhouette -->
+    <path d="M216 112 C 182 112, 154 135, 144 167 C 118 160, 92 180, 92 208 C 92 236, 114 258, 142 258 L 328 258 C 358 258, 382 234, 382 204 C 382 176, 360 154, 332 152 C 324 122, 296 98, 262 98 C 246 98, 230 104, 216 112 Z" fill="url(#scCloudGrad)"/>
+    <!-- Top Specular Highlight Arc -->
+    <path d="M218 114 C 188 114, 162 134, 150 162 C 142 160, 134 160, 126 163 C 144 140, 178 122, 218 120 C 248 118, 280 126, 298 144 C 286 126, 260 114, 218 114 Z" fill="url(#scCloudGlow)"/>
+    <path d="M264 100 C 294 100, 318 120, 326 148 C 334 146, 342 148, 350 152 C 342 134, 320 112, 286 104 C 278 102, 271 100, 264 100 Z" fill="#FFFFFF" fill-opacity="0.35"/>
+
+    <!-- High-Tech Scalability Glyph on Cloud -->
+    <g transform="translate(186, 150)">
+      <!-- Central Scale Matrix Ring -->
+      <circle cx="50" cy="46" r="28" fill="#143427" fill-opacity="0.55" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5"/>
+      <!-- Multi-directional Expansion Arrows -->
+      <path d="M50 24 L50 40 M50 24 L44 30 M50 24 L56 30" stroke="#C9FB50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M50 68 L50 52 M50 68 L44 62 M50 68 L56 62" stroke="#C9FB50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M28 46 L44 46 M28 46 L34 40 M28 46 L34 52" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M72 46 L56 46 M72 46 L66 40 M72 46 L66 52" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="50" cy="46" r="4" fill="#C9FB50"/>
+    </g>
+  </g>
+
+  <!-- High-Performance CPU Processor Module (Upper Right) -->
+  <g transform="translate(488, 34)" filter="url(#scShadowMd)">
+    <!-- Heatspreader Metallic Base -->
+    <rect width="94" height="94" rx="16" fill="url(#scLimeGlow)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <!-- Outer Gold Edge Contact Pins -->
+    <rect x="7" y="7" width="80" height="80" rx="12" fill="url(#scChipGrad)"/>
+    <!-- Silicon Die Cap -->
+    <rect x="18" y="18" width="58" height="58" rx="8" fill="#1B382E" stroke="#487864" stroke-width="1.2"/>
+    <!-- Circuit Substrate Traces -->
+    <path d="M24 24h10 M24 28h6 M24 64h8 M24 68h12 M70 24h-10 M70 28h-6 M70 64h-8 M70 68h-12" stroke="#5DAE8A" stroke-width="1" opacity="0.65"/>
+    <rect x="28" y="28" width="38" height="38" rx="5" fill="#10251E" stroke="#C9FB50" stroke-width="1"/>
+    <!-- Laser Etched Typography -->
+    <text x="47" y="47" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" letter-spacing="1" fill="#C9FB50">vCPU</text>
+    <text x="47" y="58" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="600" letter-spacing="0.5" fill="#A4C2B4">3.8GHz</text>
+    <!-- Alignment Notch -->
+    <polygon points="18,18 25,18 18,25" fill="#FFE082"/>
+  </g>
+
+  <!-- Realistic Enterprise NVMe SSD Drive (Bottom Left) -->
+  <g transform="translate(54, 290)" filter="url(#scShadowMd)">
+    <!-- Drive Aluminum Enclosure -->
+    <rect width="184" height="128" rx="16" fill="url(#scNvmePcb)" stroke="#3A6353" stroke-width="1.5"/>
+    <!-- Inner Recessed Heatsink Area -->
+    <rect x="12" y="12" width="160" height="104" rx="10" fill="#12241D" stroke="#25473B" stroke-width="1"/>
+    <!-- Thermal Cooling Fin Slots -->
+    <line x1="24" y1="26" x2="160" y2="26" stroke="#1E382E" stroke-width="3" stroke-linecap="round"/>
+    <line x1="24" y1="36" x2="160" y2="36" stroke="#1E382E" stroke-width="3" stroke-linecap="round"/>
+    <!-- NAND Flash IC Chips -->
+    <rect x="24" y="48" width="46" height="52" rx="4" fill="#183329" stroke="#366653" stroke-width="1"/>
+    <circle cx="32" cy="56" r="2" fill="#588B76"/>
+    <text x="47" y="77" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#E0EDE5">NAND</text>
+
+    <rect x="76" y="48" width="46" height="52" rx="4" fill="#183329" stroke="#366653" stroke-width="1"/>
+    <circle cx="84" cy="56" r="2" fill="#588B76"/>
+    <text x="99" y="77" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#E0EDE5">NVMe</text>
+
+    <!-- PCIe Controller IC -->
+    <rect x="130" y="52" width="32" height="34" rx="3" fill="#25493B" stroke="#488069" stroke-width="1"/>
+    <!-- LED Indicators -->
+    <circle cx="138" cy="96" r="2.5" fill="#C9FB50" filter="url(#scNeonGlow)"/>
+    <circle cx="152" cy="96" r="2.5" fill="#5B8FA8"/>
+    <!-- Gold Screws on corners -->
+    <circle cx="8" cy="8" r="3" fill="url(#scGoldPin)"/>
+    <circle cx="176" cy="8" r="3" fill="url(#scGoldPin)"/>
+    <circle cx="8" cy="120" r="3" fill="url(#scGoldPin)"/>
+    <circle cx="176" cy="120" r="3" fill="url(#scGoldPin)"/>
+    <!-- Drive Spec Label -->
+    <rect x="40" y="4" width="104" height="15" rx="3" fill="#2E5445"/>
+    <text x="92" y="15" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="700" letter-spacing="0.5" fill="#C9FB50">PCIe 4.0 NVMe SSD</text>
+  </g>
+
+  <!-- Server Grade DDR5 RAM Module (Bottom Right) -->
+  <g transform="translate(320, 328)" filter="url(#scShadowMd)">
+    <!-- RAM Stick Main PCB -->
+    <rect width="276" height="84" rx="10" fill="url(#scRamPcb)" stroke="#396B58" stroke-width="1.5"/>
+    <!-- Center Aluminum Heatspreader Armor -->
+    <rect x="12" y="8" width="252" height="52" rx="6" fill="#142B22" stroke="#254B3D" stroke-width="1"/>
+    <!-- Memory BGA IC Modules -->
+    <g transform="translate(20, 16)">
+      <rect x="0" y="0" width="24" height="36" rx="3" fill="#1E3D31" stroke="#356653" stroke-width="0.8"/>
+      <rect x="30" y="0" width="24" height="36" rx="3" fill="#1E3D31" stroke="#356653" stroke-width="0.8"/>
+      <rect x="60" y="0" width="24" height="36" rx="3" fill="#1E3D31" stroke="#356653" stroke-width="0.8"/>
+      <rect x="90" y="0" width="24" height="36" rx="3" fill="#1E3D31" stroke="#356653" stroke-width="0.8"/>
+      <rect x="120" y="0" width="24" height="36" rx="3" fill="#1E3D31" stroke="#356653" stroke-width="0.8"/>
+      <rect x="150" y="0" width="24" height="36" rx="3" fill="#1E3D31" stroke="#356653" stroke-width="0.8"/>
+      <rect x="180" y="0" width="24" height="36" rx="3" fill="#1E3D31" stroke="#356653" stroke-width="0.8"/>
+      <rect x="210" y="0" width="24" height="36" rx="3" fill="#1E3D31" stroke="#356653" stroke-width="0.8"/>
+    </g>
+    <!-- RAM Heatspreader Branding Label -->
+    <rect x="74" y="24" width="128" height="20" rx="4" fill="#27503F" stroke="#48866C" stroke-width="1"/>
+    <text x="138" y="38" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" letter-spacing="1" fill="#C9FB50">DDR5 ECC REGISTERED</text>
+    <!-- Gold Edge Connector Contact Fingers with Center Key Notch -->
+    <g transform="translate(14, 68)">
+      <!-- Left Contact Bank -->
+      <path d="M0 0h110v9H0z" fill="url(#scGoldPin)"/>
+      <path d="M4 0v9 M10 0v9 M16 0v9 M22 0v9 M28 0v9 M34 0v9 M40 0v9 M46 0v9 M52 0v9 M58 0v9 M64 0v9 M70 0v9 M76 0v9 M82 0v9 M88 0v9 M94 0v9 M100 0v9 M106 0v9" stroke="#9A7822" stroke-width="0.8"/>
+      <!-- Alignment Key Notch -->
+      <rect x="114" y="0" width="16" height="5" fill="#162E26"/>
+      <!-- Right Contact Bank -->
+      <path d="M134 0h114v9H134z" fill="url(#scGoldPin)"/>
+      <path d="M138 0v9 M144 0v9 M150 0v9 M156 0v9 M162 0v9 M168 0v9 M174 0v9 M180 0v9 M186 0v9 M192 0v9 M198 0v9 M204 0v9 M210 0v9 M216 0v9 M222 0v9 M228 0v9 M234 0v9 M240 0v9" stroke="#9A7822" stroke-width="0.8"/>
+    </g>
+  </g>
+</svg>

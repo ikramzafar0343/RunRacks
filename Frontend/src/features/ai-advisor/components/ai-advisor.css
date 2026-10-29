@@ -1,0 +1,1466 @@
+/* AI Advisor — WaseerHost-parity chrome, Sage & Ink / Nourd */
+
+.aiAdvisor .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.aiAdvisor {
+  --ai-panel: var(--color-surface);
+  --ai-text: var(--color-body);
+  --ai-heading: var(--color-heading);
+  --ai-muted: var(--color-muted);
+  --ai-border: var(--color-border);
+  --ai-accent-bg: var(--color-accent-soft);
+  --ai-accent: var(--color-brand);
+  --ai-accent-hover: var(--color-brand-hover);
+  --ai-lime: var(--color-lime);
+  --ai-error: var(--color-danger, #b42318);
+  --ai-radius-sm: 10px;
+  --ai-radius-md: 16px;
+  --ai-radius-lg: 22px;
+  --ai-max: 46rem;
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100dvh;
+  color: var(--ai-text);
+  background: transparent;
+}
+
+.aiSidebar {
+  position: fixed;
+  z-index: 45;
+  pointer-events: none;
+  top: 4rem;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(18.5rem, calc(100vw - 2.75rem));
+  padding: 0.9rem 0.75rem 1.15rem;
+  border-right: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  transform: translateX(-105%);
+  transition: transform 180ms ease;
+  overflow: auto;
+}
+
+.aiSidebar--open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.aiSidebarBackdrop {
+  position: fixed;
+  z-index: 44;
+  inset: 4rem 0 0;
+  border: 0;
+  padding: 0;
+  background: color-mix(in srgb, var(--color-heading) 32%, transparent);
+  cursor: pointer;
+}
+
+.aiSidebarHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.aiSidebarBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  color: var(--ai-heading);
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.aiSidebarMark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+}
+
+.aiSidebarClose {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ai-heading);
+  cursor: pointer;
+}
+
+.aiSidebarClose:hover,
+.aiSidebarClose:focus-visible,
+.aiSidebarItem:hover,
+.aiSidebarItem:focus-visible,
+.aiSidebarToggle:hover,
+.aiSidebarToggle:focus-visible {
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+  outline: none;
+}
+
+.aiSidebarClose:focus-visible,
+.aiSidebarItem:focus-visible,
+.aiSidebarToggle:focus-visible {
+  outline: 2px solid var(--ai-accent);
+  outline-offset: 2px;
+}
+
+.aiSidebarNav {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.aiSidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 0.7rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.aiSidebarSection {
+  margin: 1.15rem 0 0.35rem;
+  padding: 0 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ai-muted);
+}
+
+.aiSidebarEmpty {
+  margin: 0;
+  padding: 0 0.7rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--ai-muted);
+}
+
+.aiSidebarChats {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.aiSidebarChat {
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  color: var(--ai-heading);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aiSidebarToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  align-self: flex-start;
+  min-height: 2.75rem;
+  margin-bottom: 0.85rem;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .aiSidebar,
+  .aiSidebarBackdrop {
+    top: 4.8rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .aiSidebar {
+    position: sticky;
+    top: 4.8rem;
+    bottom: auto;
+    align-self: flex-start;
+    flex: 0 0 16.25rem;
+    width: 16.25rem;
+    height: calc(100dvh - 4.8rem);
+    margin-top: 4.8rem;
+    transform: none;
+    z-index: 2;
+    pointer-events: auto;
+  }
+
+  .aiSidebarClose,
+  .aiSidebarToggle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aiSidebar {
+    transition: none;
+  }
+}
+
+.aiAdvisorShell {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  gap: 0;
+}
+
+.aiAdvisorMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: min(100% - 1.5rem, var(--ai-max));
+  margin-inline: auto;
+  padding: clamp(4.75rem, 10vw, 6.5rem) 0.75rem 1.25rem;
+  min-height: 100dvh;
+}
+
+.aiAdvisorShell--split {
+  align-items: stretch;
+}
+
+.aiAdvisorShell--split .aiAdvisorMain {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  margin-inline: 0;
+  padding-inline: 0.85rem;
+}
+
+.aiAdvisorHeader--hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  animation: aiFadeUp 0.55s ease both;
+}
+
+.aiAdvisorHeader--compact {
+  padding-bottom: 0.35rem;
+}
+
+.aiAdvisorSparkle {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.85rem;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ai-accent) 20%, transparent);
+}
+
+.aiAdvisorTitle {
+  margin: 0;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.12;
+  color: var(--ai-heading);
+}
+
+.aiAdvisorTitleAccent {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--ai-lime) 80%, var(--ai-accent));
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.18em;
+}
+
+.aiAdvisorLead {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--ai-muted);
+}
+
+.aiAdvisorStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ai-muted);
+}
+
+.aiAdvisorStatusDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ai-muted) 70%, transparent);
+}
+
+.aiAdvisorChips {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  width: min(100%, 22rem);
+  margin: 1.5rem auto 0;
+  padding: 0;
+  list-style: none;
+  animation: aiFadeUp 0.6s ease 0.08s both;
+}
+
+.aiAdvisorChip {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  min-height: 52px;
+  padding: 0.75rem 0.95rem;
+  border-radius: 14px;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    transform 150ms ease;
+}
+
+.aiAdvisorChip:hover,
+.aiAdvisorChip:focus-visible {
+  border-color: var(--ai-accent);
+  background: var(--ai-accent-bg);
+  outline: none;
+}
+
+.aiAdvisorChip:focus-visible {
+  outline: 2px solid var(--ai-accent);
+  outline-offset: 2px;
+}
+
+.aiAdvisorChipIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+}
+
+.aiAdvisorChipLabel {
+  line-height: 1.35;
+}
+
+.aiAdvisorSpacer {
+  flex: 1;
+  min-height: 4rem;
+}
+
+.aiAdvisorTranscript {
+  flex: 1;
+  min-height: 10rem;
+  max-height: min(48dvh, 26rem);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0.5rem 0.1rem 0.75rem;
+}
+
+.aiAdvisorEmpty {
+  margin: auto 0;
+  padding: 1rem 0;
+  text-align: center;
+  color: var(--ai-muted);
+  font-size: 0.95rem;
+}
+
+.aiAdvisorMsg {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-width: 88%;
+}
+
+.aiAdvisorMsg--user {
+  align-self: flex-end;
+}
+
+.aiAdvisorMsg--assistant,
+.aiAdvisorMsg--system {
+  align-self: flex-start;
+}
+
+.aiAdvisorMsgRole {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ai-muted);
+}
+
+.aiAdvisorMsgBubble {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--ai-radius-md);
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.aiAdvisorMsg--user .aiAdvisorMsgBubble {
+  border-radius: 18px 18px 6px 18px;
+  background: var(--ai-accent);
+  border-color: var(--ai-accent);
+  color: var(--color-brand-contrast, #fff);
+}
+
+.aiAdvisorBanner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+  margin: 0.75rem 0 0;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--ai-radius-sm);
+  border: 1px solid color-mix(in srgb, var(--ai-accent) 35%, var(--ai-border));
+  background: var(--ai-accent-bg);
+  color: var(--ai-heading);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.aiAdvisorBanner p {
+  margin: 0;
+}
+
+.aiAdvisorBanner--error {
+  border-color: color-mix(in srgb, var(--ai-error) 40%, var(--ai-border));
+}
+
+.aiAdvisorComposerShell {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: auto;
+  padding: 0.75rem 0 0.35rem;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--color-canvas, var(--color-surface)) 92%, transparent) 22%
+  );
+}
+
+.aiTipStrip {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.85rem 1rem;
+  border-radius: var(--ai-radius-md);
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--color-heading) 5%, transparent);
+  animation: aiFadeUp 0.45s ease both;
+}
+
+.aiTipIcon {
+  flex: none;
+  margin-top: 0.15rem;
+  color: var(--ai-accent);
+}
+
+.aiTipCopy {
+  flex: 1;
+  min-width: 0;
+}
+
+.aiTipTitle {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ai-heading);
+}
+
+.aiTipBody {
+  margin: 0.2rem 0 0.55rem;
+  font-size: 0.82rem;
+  color: var(--ai-muted);
+}
+
+.aiTipActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.85rem;
+}
+
+.aiTipLink {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: var(--ai-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.aiTipDismiss {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ai-muted);
+  cursor: pointer;
+}
+
+.aiTipDismiss:hover,
+.aiTipDismiss:focus-visible {
+  background: var(--ai-accent-bg);
+  color: var(--ai-heading);
+  outline: none;
+}
+
+.aiAdvisorComposer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.35rem;
+  padding: 0.45rem 0.5rem 0.45rem 0.35rem;
+  border-radius: 1.75rem;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--color-heading) 8%, transparent);
+}
+
+.aiAdvisorComposer:focus-within {
+  border-color: var(--ai-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ai-accent) 22%, transparent);
+}
+
+.aiAdvisorTextarea {
+  flex: 1 1 10rem;
+  width: auto;
+  min-width: 0;
+  min-height: 2.5rem;
+  max-height: 7rem;
+  resize: none;
+  border: 0;
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  padding: 0.45rem 0.35rem;
+}
+
+.aiAdvisorTextarea:focus {
+  outline: none;
+}
+
+.aiComposerTools,
+.aiComposerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.aiComposerTool {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ai-muted);
+  cursor: pointer;
+}
+
+.aiComposerTool:hover,
+.aiComposerTool:focus-visible {
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+  outline: none;
+}
+
+.aiComposerTool:focus-visible {
+  outline: 2px solid var(--ai-accent);
+  outline-offset: 2px;
+}
+
+.aiComposerTool--live {
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+}
+
+.aiComposerTool:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.aiComposerFileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.aiComposerAttachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.15rem 0.4rem 0.2rem;
+  list-style: none;
+}
+
+.aiComposerChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 100%;
+  min-height: 2rem;
+  padding: 0.15rem 0.2rem 0.15rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--ai-border);
+  background: var(--color-canvas);
+  color: var(--ai-heading);
+  font-size: 0.75rem;
+}
+
+.aiComposerChip img {
+  width: 1.45rem;
+  height: 1.45rem;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.aiComposerChip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 12rem;
+}
+
+.aiComposerChip button {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ai-muted);
+  cursor: pointer;
+}
+
+.aiComposerNote {
+  width: 100%;
+  margin: 0;
+  padding: 0 0.55rem 0.2rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--ai-muted);
+}
+
+.aiFollowUps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--ai-radius-md);
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+}
+
+.aiFollowUpsTitle {
+  margin: 0;
+  width: 100%;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--ai-heading);
+}
+
+.aiDock {
+  position: sticky;
+  top: 0;
+  align-self: stretch;
+  flex: 1 1 50%;
+  width: auto;
+  max-width: 52rem;
+  min-width: 22rem;
+  height: 100dvh;
+  margin: 0;
+  padding: 5.35rem 1.15rem 1.5rem;
+  overflow: auto;
+  border: 0;
+  border-left: 1px solid var(--ai-border);
+  border-radius: 0;
+  background: var(--ai-panel);
+  box-shadow: none;
+}
+
+.aiDockHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.aiDockTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--ai-heading);
+}
+
+.aiDockTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--ai-heading);
+}
+
+.aiDockSub {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ai-muted);
+}
+
+.aiTermToggle {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0.85rem 0;
+}
+
+.aiTermBtn {
+  min-height: 2rem;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--ai-border);
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.aiTermBtn--on {
+  background: var(--ai-accent);
+  border-color: var(--ai-accent);
+  color: var(--color-brand-contrast, #fff);
+}
+
+.aiDockPlans {
+  margin-top: 0.85rem;
+}
+
+.aiDock .vpsPlanCardGrid {
+  margin-top: 0;
+  --vps-card-cols: 1;
+}
+
+@media (min-width: 1100px) {
+  .aiDock .vpsPlanCardGrid {
+    --vps-card-cols: 2;
+  }
+}
+
+.aiDock .vpsShowAllWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.9rem;
+}
+
+.aiDock .vpsShowAllBtn {
+  min-height: 2.25rem;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--ai-border);
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.aiDock .vpsShowAllBtn:hover,
+.aiDock .vpsShowAllBtn:focus-visible {
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+  outline: none;
+}
+
+.aiPlanCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: stretch;
+}
+
+.aiPlanQuote {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  height: 100%;
+  padding: 0.9rem;
+  border-radius: 14px;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+}
+
+.aiPlanQuoteBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.aiPlanQuoteBadge {
+  align-self: flex-start;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.aiPlanQuote h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--ai-heading);
+}
+
+.aiPlanQuoteTag,
+.aiPlanQuoteBilling {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ai-muted);
+}
+
+.aiPlanQuoteCompare {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ai-muted);
+  text-decoration: line-through;
+}
+
+.aiPlanQuoteSpecs,
+.aiPlanFlags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aiPlanQuoteSpecs {
+  display: grid;
+  gap: 0.28rem;
+  font-size: 0.8rem;
+  color: var(--ai-heading);
+}
+
+.aiPlanQuoteSpecs li,
+.aiPlanFlags li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.aiPlanQuoteCheck {
+  flex: none;
+  color: var(--ai-accent);
+}
+
+.aiPlanFlags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+}
+
+.aiPlanFlags li {
+  font-size: 0.72rem;
+  color: var(--ai-muted);
+}
+
+.aiPlanFlag {
+  width: 1.15rem;
+  height: 0.8rem;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.aiPlanQuote .aiPlanPrimary,
+.aiPlanQuote .aiPlanSecondary {
+  width: 100%;
+  justify-content: center;
+}
+
+.aiPlanQuotePrice {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ai-heading);
+}
+
+.aiPlanQuotePrice span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ai-muted);
+}
+
+.aiDomainForm {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.aiDomainInput {
+  flex: 1;
+  min-width: 0;
+  min-height: 2.85rem;
+  padding: 0 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--ai-border);
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+}
+
+.aiDomainForm .aiPlanPrimary {
+  flex: none;
+}
+
+
+.aiRegionCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aiRegionCard {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid var(--ai-border);
+  text-decoration: none;
+  color: var(--ai-heading);
+}
+
+.aiRegionCardCopy {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.aiRegionCard strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--ai-heading);
+}
+
+.aiRegionCard span {
+  font-size: 0.75rem;
+  color: var(--ai-muted);
+}
+
+@media (max-width: 1099px) {
+  .aiAdvisorShell--split .aiDock {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 35;
+    width: min(100%, 40rem);
+    max-width: none;
+    height: auto;
+    border-left: 1px solid var(--ai-border);
+  }
+}
+
+@media (max-width: 720px) {
+  .aiPlanCards,
+  .aiRegionCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aiAdvisorSend {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ai-accent);
+  color: var(--color-brand-contrast, #fff);
+  cursor: pointer;
+  transition: background 150ms ease, opacity 150ms ease;
+}
+
+.aiAdvisorSend:hover:not(:disabled),
+.aiAdvisorSend:focus-visible:not(:disabled) {
+  background: var(--ai-accent-hover);
+  outline: none;
+}
+
+.aiAdvisorSend:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.aiAdvisorComposerHint {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0 0.65rem 0.15rem;
+  font-size: 0.72rem;
+  color: var(--ai-muted);
+}
+
+.aiAdvisorDisclaimer {
+  margin: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ai-muted);
+}
+
+.aiAdvisorHandoff {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.85rem;
+}
+
+.aiAdvisorHandoff a {
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: var(--ai-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Dialog */
+.aiDialogBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--color-heading) 42%, transparent);
+}
+
+.aiDialogPanel {
+  width: min(100%, 34rem);
+  max-height: min(90dvh, 40rem);
+  overflow: auto;
+  border-radius: 1.15rem;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  color: var(--ai-heading);
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--color-heading) 22%, transparent);
+}
+
+.aiDialogPanel--lg {
+  width: min(100%, 42rem);
+}
+
+.aiDialogHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem 0.35rem;
+}
+
+.aiDialogTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.aiDialogClose {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ai-muted);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.aiDialogClose:hover,
+.aiDialogClose:focus-visible {
+  background: var(--ai-accent-bg);
+  color: var(--ai-heading);
+  outline: none;
+}
+
+.aiDialogBody {
+  padding: 0.5rem 1.15rem 1.15rem;
+}
+
+.aiPlanStepMeta {
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: var(--ai-muted);
+}
+
+.aiPlanProgress {
+  display: block;
+  height: 4px;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  background: var(--ai-border);
+  overflow: hidden;
+}
+
+.aiPlanProgressFill {
+  display: block;
+  height: 100%;
+  background: var(--ai-accent);
+}
+
+.aiPlanFieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.aiPlanLegend {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--ai-heading);
+}
+
+.aiPlanGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+@media (min-width: 720px) {
+  .aiPlanGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .aiPlanGrid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.aiPlanCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  min-height: 5.5rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.aiPlanCard--icon {
+  align-items: center;
+  text-align: center;
+  min-height: 8.25rem;
+}
+
+.aiPlanCardIcon {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 10px;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+}
+
+.aiPlanCard strong {
+  font-size: 0.92rem;
+  color: var(--ai-heading);
+}
+
+.aiPlanCard span {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ai-muted);
+}
+
+.aiPlanCard--selected,
+.aiPlanCard:hover,
+.aiPlanCard:focus-visible {
+  border-color: var(--ai-accent);
+  background: var(--ai-accent-bg);
+  outline: none;
+}
+
+.aiPlanResultTitle {
+  margin: 0 0 0.45rem;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.aiPlanResultWhy {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ai-muted);
+}
+
+.aiPlanResultActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.aiPlanPrimary,
+.aiPlanNext {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.6rem;
+  padding: 0 1.1rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--ai-accent);
+  color: var(--color-brand-contrast, #fff);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.aiPlanPrimary:hover,
+.aiPlanNext:hover:not(:disabled) {
+  background: var(--ai-accent-hover);
+}
+
+.aiPlanSecondary,
+.aiPlanBack {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.6rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--ai-border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.aiPlanNav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
+
+.aiPlanBack:disabled,
+.aiPlanNext:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Regions panel */
+.aiRegionsPanel {
+  position: fixed;
+  top: 4.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 30;
+  width: min(100% - 1.5rem, 26rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1.15rem;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  box-shadow: 0 18px 48px color-mix(in srgb, var(--color-heading) 14%, transparent);
+  overflow: auto;
+}
+
+@media (min-width: 1100px) {
+  .aiRegionsPanel {
+    position: sticky;
+    top: 5.25rem;
+    right: auto;
+    bottom: auto;
+    width: min(100%, 24rem);
+    max-height: calc(100dvh - 6.5rem);
+    margin: 5.25rem 1rem 1rem 0;
+  }
+
+  .aiAdvisorShell {
+    align-items: flex-start;
+  }
+}
+
+.aiRegionsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.aiRegionsTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.aiRegionsNote {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ai-muted);
+}
+
+.aiRegionsMap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--ai-border);
+}
+
+.aiRegionsLinks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.9rem;
+}
+
+@keyframes aiFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aiAdvisorHeader--hero,
+  .aiAdvisorChips,
+  .aiTipStrip {
+    animation: none;
+  }
+
+  .aiAdvisorChip {
+    transition: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .aiAdvisorMain {
+    width: min(100% - 1rem, var(--ai-max));
+  }
+
+  .aiPlanGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aiAdvisorComposer {
+    border-radius: 18px;
+  }
+}

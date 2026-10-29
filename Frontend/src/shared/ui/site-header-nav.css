@@ -1,0 +1,189 @@
+.siteHeaderNav {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+}
+
+@media (min-width: 1100px) {
+  .siteHeaderNav {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .siteHeader--pill .siteHeaderNav {
+    gap: 0.15rem 1rem;
+  }
+}
+
+.siteHeaderLink,
+.siteHeaderDropTrigger {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-heading);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.35rem 0.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.siteHeaderLink:hover,
+.siteHeaderDropTrigger:hover {
+  color: var(--color-brand);
+}
+
+.siteHeaderLink:focus-visible,
+.siteHeaderDropTrigger:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.siteHeaderDrop {
+  position: relative;
+}
+
+.siteHeaderMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  min-width: 11rem;
+  padding: 0.4rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: 0 12px 32px
+    color-mix(in srgb, var(--color-heading) 14%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 20;
+}
+
+.siteHeaderMenu a {
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.5rem;
+  color: var(--color-body);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.siteHeaderMenu a:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-heading);
+}
+
+.siteHeaderMenu a:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 1px;
+}
+
+.siteHeaderActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.siteHeader--pill .siteHeaderActions {
+  gap: 0.4rem;
+}
+
+.siteHeaderAi {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.4rem;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: var(--color-brand-contrast);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 200ms var(--header-ease),
+    min-height var(--header-duration) var(--header-ease),
+    padding var(--header-duration) var(--header-ease);
+}
+
+@media (min-width: 768px) {
+  .siteHeaderAi {
+    display: inline-flex;
+  }
+
+  .siteHeader--pill .siteHeaderAi {
+    min-height: 2.2rem;
+    padding: 0 0.85rem;
+    font-size: 0.8125rem;
+  }
+}
+
+.siteHeaderAi:hover {
+  background: var(--color-brand-hover);
+}
+
+.siteHeaderAi:focus-visible {
+  outline: 2px solid var(--color-heading);
+  outline-offset: 2px;
+}
+
+.siteHeaderIconBtn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-heading);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 200ms var(--header-ease),
+    width var(--header-duration) var(--header-ease),
+    height var(--header-duration) var(--header-ease);
+}
+
+.siteHeader--pill .siteHeaderIconBtn {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.siteHeaderIconBtn:hover {
+  background: var(--color-accent-soft);
+}
+
+.siteHeaderIconBtn:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.siteHeaderMenuToggle {
+  display: inline-flex;
+}
+
+@media (min-width: 1100px) {
+  .siteHeaderMenuToggle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .siteHeader,
+  .siteHeaderInner,
+  .siteHeaderBrand,
+  .siteHeaderAi,
+  .siteHeaderIconBtn {
+    transition: none;
+  }
+}

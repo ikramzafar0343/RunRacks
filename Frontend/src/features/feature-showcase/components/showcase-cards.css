@@ -1,0 +1,211 @@
+/*
+ * Feature showcase cards — equal 1:1 tiles with full-bleed covers.
+ */
+
+.fsCard {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 24px;
+  isolation: isolate;
+  transition:
+    box-shadow 300ms ease,
+    transform 400ms var(--fs-ease);
+}
+
+.fsCard[data-active="true"] {
+  box-shadow: var(--showcase-shadow);
+}
+
+.fsCardBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--color-inverse);
+}
+
+.fsCard[data-theme="red"] .fsCardBg {
+  background: var(--color-inverse);
+}
+
+.fsCard[data-theme="violet"] .fsCardBg {
+  background: var(--color-inverse);
+}
+.fsCard[data-theme="slate"] .fsCardBg {
+  background: var(--color-inverse);
+}
+.fsCard[data-theme="night"] .fsCardBg {
+  background: var(--color-inverse);
+}
+
+.fsMediaWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.fsMedia {
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 650ms var(--fs-ease);
+}
+
+.fsCard[data-active="true"] .fsMedia {
+  transform: scale(1.02);
+}
+
+.fsVignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 38, 21, 0.06) 0%,
+    transparent 42%,
+    rgba(8, 38, 21, 0.5) 100%
+  );
+}
+
+.fsBadge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 4;
+  border-radius: 999px;
+  padding: 8px 13px;
+  color: var(--showcase-white);
+  background: var(--showcase-brand);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.fsSelect {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.fsSelect:focus-visible {
+  outline: 2px solid var(--showcase-brand);
+  outline-offset: -3px;
+}
+
+.fsContent {
+  position: absolute;
+  z-index: 4;
+  inset-inline: 24px;
+  bottom: 24px;
+  color: var(--showcase-white);
+  pointer-events: none;
+}
+
+.fsTitleSr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fsTeaser {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.fsCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  background: var(--showcase-brand);
+  color: var(--showcase-white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: background 150ms ease;
+}
+
+.fsCta:is(:hover, :active) {
+  background: var(--color-lime);
+  color: var(--color-on-lime);
+}
+
+.fsCta:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 3px;
+}
+
+.fsArrow {
+  flex-shrink: 0;
+}
+
+.fsCard[data-reveal="true"] .fsCta {
+  animation: fsReveal 280ms var(--fs-ease) 120ms both;
+}
+
+@keyframes fsReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .fsCard {
+    flex: 0 0 min(300px, 84vw);
+    width: min(300px, 84vw);
+    max-width: none;
+    border-radius: 20px;
+    scroll-snap-align: start;
+  }
+
+  .fsBadge {
+    top: 18px;
+    left: 18px;
+  }
+  .fsContent {
+    inset-inline: 18px;
+    bottom: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fsCard,
+  .fsMedia {
+    transition: none !important;
+  }
+
+  .fsCard[data-reveal="true"] .fsCta {
+    animation: none;
+  }
+
+  .fsCard[data-active="true"] .fsMedia {
+    transform: none;
+  }
+}

@@ -1,0 +1,210 @@
+﻿/* About — hero, strip, intro, features, timeline, grids, panels */
+
+.aboutHero {
+  position: relative;
+  padding-top: clamp(5.75rem, 12vw, 9rem);
+  padding-bottom: clamp(5.5rem, 10vw, 7.5rem);
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      70% 55% at 88% 8%,
+      color-mix(in srgb, var(--color-accent-soft) 70%, transparent),
+      transparent 60%
+    ),
+    var(--color-canvas);
+}
+
+.aboutHeroInner {
+  width: min(100% - (var(--about-pad) * 2), 65rem);
+  margin-inline: auto;
+}
+
+.aboutHeroTitle {
+  margin: 0 0 var(--space-4);
+  font-size: clamp(2.5rem, 5.3vw, 5.5rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1.06;
+  color: var(--color-heading);
+}
+
+.aboutHeroTitle span {
+  display: block;
+}
+
+.aboutHeroLead {
+  margin: 0 auto;
+  max-width: 40rem;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--color-muted);
+}
+
+.aboutScrollCue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: var(--space-5);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+.aboutScrollCue svg {
+  animation: aboutCueBob 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutScrollCue svg {
+    animation: none;
+  }
+}
+
+@keyframes aboutCueBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+.aboutStrip {
+  background: transparent;
+  border-block: 1px solid var(--color-border);
+  padding-block: clamp(2.5rem, 4vw, 3.25rem);
+}
+
+.aboutStripGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .aboutStripGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .aboutStripGrid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+  }
+
+  .aboutStripCell {
+    padding-inline: 1rem;
+    border-right: 1px solid var(--color-border);
+  }
+
+  .aboutStripCell:last-child {
+    border-right: none;
+  }
+}
+
+.aboutStripValue {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--color-heading);
+}
+
+.aboutStripLabel {
+  margin: 0.4rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+}
+
+.aboutIntroGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .aboutIntroGrid {
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(3rem, 6vw, 5rem);
+    align-items: start;
+  }
+}
+
+.aboutIntroCopy p {
+  margin: 0 0 1.15em;
+  max-width: 38rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-body);
+}
+
+.aboutIntroSig {
+  margin: 1.5rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.aboutFeatureRow {
+  display: grid;
+  gap: 2rem;
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+@media (min-width: 960px) {
+  .aboutFeatureRow {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3.5rem, 6vw, 5.5rem);
+    align-items: center;
+  }
+
+  .aboutFeatureRow--mediaRight .aboutFeatureMedia {
+    order: 2;
+  }
+
+  .aboutFeatureRow--mediaRight .aboutFeatureCopy {
+    order: 1;
+  }
+}
+
+.aboutFeatureIndex {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+
+.aboutFeatureTitle {
+  margin: 0 0 1rem;
+  max-width: 18ch;
+  font-size: clamp(1.85rem, 2.8vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+  color: var(--color-heading);
+}
+
+.aboutFeatureLead {
+  margin: 0 0 0.85rem;
+  max-width: 32rem;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--color-heading);
+}
+
+.aboutFeatureBody {
+  margin: 0;
+  max-width: 32rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-muted);
+}

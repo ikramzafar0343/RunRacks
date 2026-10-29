@@ -1,0 +1,14 @@
+---
+description: Core RunRacks frontend production MUST/STOP rules
+alwaysApply: true
+---
+
+# Frontend production core
+
+Source of truth: `Rules/FRONTEND_PRODUCTION_ENGINEERING_RULES.md`.
+
+- Implement real end-to-end behavior. No dummy data, fake API success, fabricated counters, TODO branches, or dead buttons.
+- If contracts, credentials, backend, or DB are missing: **STOP** that slice; document the blocker; do not invent success.
+- Inspect existing routes, styles, fonts, and configs before editing.
+- Prefer the smallest complete vertical slice. No speculative scaffolding.
+- Report only verified results from actual checks. Never claim production-ready without evidence.

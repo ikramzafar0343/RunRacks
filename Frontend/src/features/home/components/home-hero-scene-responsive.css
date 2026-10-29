@@ -1,0 +1,148 @@
+/* Portrait scene — breakpoint orbit + float bob */
+
+@media (min-width: 480px) {
+  .homeHeroSceneStage {
+    width: min(100%, 400px);
+    min-height: 520px;
+  }
+  .homeHeroScenePortrait {
+    width: 70%;
+    max-width: 280px;
+  }
+  .homeHeroVisualImg {
+    max-height: min(54vh, 480px);
+  }
+  .homeHeroFloatTerminal {
+    width: 168px;
+    max-width: 48%;
+  }
+  .homeHeroFloatOs {
+    width: 148px;
+    max-width: 46%;
+  }
+  .homeHeroFloatRoot {
+    font-size: 12.5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .homeHeroScene {
+    padding-inline: clamp(12px, 2vw, 20px);
+  }
+  .homeHeroSceneStage {
+    width: min(100%, 520px);
+    min-height: 600px;
+  }
+  .homeHeroScenePortrait {
+    width: 72%;
+    max-width: 400px;
+  }
+  .homeHeroVisualImg {
+    max-height: min(58vh, 620px);
+  }
+  .homeHeroFloat {
+    border-radius: 14px;
+    max-width: none;
+  }
+  .homeHeroFloatTerminal {
+    top: 11%;
+    left: 2%;
+    width: 210px;
+    max-width: none;
+    padding: 11px 13px 12px;
+  }
+  .homeHeroFloatCpu {
+    top: 24%;
+    right: 2%;
+    gap: 11px;
+    padding: 11px 13px;
+    max-width: none;
+  }
+  .homeHeroFloatOs {
+    bottom: 18%;
+    left: 3%;
+    width: 172px;
+    max-width: none;
+    padding: 13px 14px;
+  }
+  .homeHeroFloatRoot {
+    bottom: 13%;
+    right: 3%;
+    padding: 11px 13px;
+    font-size: 13px;
+    max-width: none;
+  }
+  .homeHeroFloatChrome {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .homeHeroFloatCode {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .homeHeroFloatCpu strong {
+    font-size: 1.3rem;
+  }
+  .homeHeroFloatCpu span {
+    font-size: 12px;
+  }
+  .homeHeroFloatRing {
+    width: 42px;
+    height: 42px;
+  }
+  .homeHeroFloatOs h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .homeHeroFloatOs li {
+    font-size: 13px;
+    gap: 10px;
+  }
+  .homeHeroFloatOs li svg {
+    width: 18px;
+    height: 18px;
+  }
+  .homeHeroFloatRoot svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .homeHeroSceneStage {
+    width: min(100%, 580px);
+    min-height: 640px;
+  }
+  .homeHeroScenePortrait {
+    max-width: 440px;
+  }
+  .homeHeroFloatTerminal {
+    left: 4%;
+    width: 228px;
+  }
+  .homeHeroFloatCpu {
+    right: 4%;
+  }
+  .homeHeroFloatOs {
+    left: 5%;
+  }
+  .homeHeroFloatRoot {
+    right: 5%;
+  }
+}
+
+@keyframes homeHeroFloatBob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homeHeroFloat {
+    animation: none;
+  }
+}

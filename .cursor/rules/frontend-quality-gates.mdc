@@ -1,0 +1,18 @@
+---
+description: Lint, lines, typecheck, build, verify contracts
+globs: Frontend/**
+alwaysApply: false
+---
+
+# Frontend quality gates
+
+Source: `Rules/FRONTEND_PRODUCTION_ENGINEERING_RULES.md` §§23–24.
+
+Required scripts in `Frontend/`:
+- `lint` — ESLint with zero warnings; `max-lines` 300
+- `check:lines` — portable ≤300 physical-line check
+- `typecheck` — TypeScript (`tsc --noEmit`, generate types if needed)
+- `build` — production Next.js build
+- `verify` — run applicable checks and fail fast
+
+Do not disable type/lint/security checks to force green. Do not claim verify passed unless commands actually ran.

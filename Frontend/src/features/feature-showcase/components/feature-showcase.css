@@ -1,0 +1,237 @@
+/*
+ * Feature showcase — section chrome (scoped tokens, Nourd inherits).
+ */
+
+.featureShowcase {
+  /* Theme-aware ink; section is transparent so body mint wash shows */
+  --showcase-bg: transparent;
+  --showcase-ink: var(--color-heading);
+  --showcase-muted: var(--color-muted);
+  --showcase-brand: var(--color-brand);
+  --showcase-brand-hover: var(--color-brand-hover);
+  --showcase-brand-soft: var(--color-accent-soft);
+  --showcase-body: var(--color-body);
+  --showcase-heading-black: var(--color-heading);
+  --showcase-heading-black-soft: color-mix(
+    in srgb,
+    var(--color-heading) 42%,
+    transparent
+  );
+  --showcase-brand-soft-mix: color-mix(
+    in srgb,
+    var(--color-brand) 45%,
+    transparent
+  );
+  --showcase-violet-900: #180b3d;
+  --showcase-red: #ff454b;
+  --showcase-lime: var(--color-lime);
+  --showcase-white: #ffffff;
+  --showcase-border: var(--color-border);
+  --showcase-shadow: 0 16px 45px
+    color-mix(in srgb, var(--color-heading) 14%, transparent);
+  --fs-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding: 110px 0 105px;
+  background: transparent;
+  color: var(--showcase-ink);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 960px;
+}
+
+.fsContainer {
+  width: calc(100% - 96px);
+  max-width: 1416px;
+  margin-inline: auto;
+}
+
+.fsHeader {
+  --fs-ink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: min(100%, 720px);
+  margin: 0 auto 58px;
+}
+
+.fsEyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--showcase-heading-black);
+}
+
+.fsSparkle {
+  width: 11px;
+  height: 11px;
+  flex: none;
+  fill: currentColor;
+}
+
+.fsHeading {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+}
+
+.fsHeadingLine {
+  display: block;
+}
+
+.fsHeadingLinePrimary {
+  color: color-mix(
+    in srgb,
+    var(--showcase-heading-black) calc(var(--fs-ink) * 100%),
+    var(--showcase-brand)
+  );
+  transition: color 80ms linear;
+}
+
+.fsHeadingLineSecondary {
+  color: color-mix(
+    in srgb,
+    var(--showcase-heading-black-soft) calc(var(--fs-ink) * 100%),
+    var(--showcase-brand-soft-mix)
+  );
+  transition: color 80ms linear;
+}
+
+.fsSupporting {
+  margin: 1.1rem 0 0;
+  max-width: 34rem;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--showcase-muted);
+}
+
+.fsExploreCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.35rem;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1.5px solid var(--showcase-brand);
+  border-radius: 999px;
+  background: var(--showcase-brand);
+  color: var(--showcase-white);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 180ms var(--fs-ease);
+}
+
+.fsExploreCta:is(:hover, :active) {
+  background: var(--color-lime);
+  border-color: var(--color-lime);
+  color: var(--color-on-lime);
+  transform: translateY(-1px);
+}
+
+.fsExploreCta:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 3px;
+}
+
+/* Equal 1:1 tiles — export covers at 1200×1200 for a perfect fill */
+.fsDeck {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  height: auto;
+}
+
+@media (max-width: 1199px) {
+  .featureShowcase {
+    padding: 88px 0 92px;
+  }
+
+  .fsContainer {
+    width: calc(100% - 64px);
+  }
+
+  .fsHeader {
+    margin-bottom: 40px;
+  }
+
+  .fsDeck {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .featureShowcase {
+    padding: 70px 0;
+  }
+
+  .fsContainer {
+    width: 100%;
+  }
+
+  .fsHeader {
+    margin-bottom: 34px;
+    padding-inline: 20px;
+  }
+
+  .fsHeading {
+    font-size: clamp(28px, 7vw, 38px);
+  }
+
+  .fsSupporting {
+    font-size: 15px;
+  }
+
+  .fsDeck {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 14px;
+    padding-inline: 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .fsDeck::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .fsHeader {
+    padding-inline: 16px;
+  }
+
+  .fsDeck {
+    padding-inline: 16px;
+    scroll-padding-inline: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fsExploreCta,
+  .fsHeadingLinePrimary,
+  .fsHeadingLineSecondary {
+    transition: none;
+  }
+
+  .fsExploreCta:hover {
+    transform: none;
+  }
+}

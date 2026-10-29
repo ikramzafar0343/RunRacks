@@ -1,0 +1,100 @@
+/* —— Network map theme, glow, header, map wrap —— */
+.phNetwork {
+  --net-bg: transparent;
+  --net-fg: var(--color-heading);
+  --net-muted: var(--color-muted);
+  --net-row: var(--color-body);
+  --net-chip: var(--color-muted);
+  --net-row-hover: color-mix(in srgb, var(--color-brand) 12%, transparent);
+  --net-metric-icon-bg: color-mix(
+    in srgb,
+    var(--color-surface) 70%,
+    var(--color-brand) 8%
+  );
+  --net-metric-icon-border: color-mix(
+    in srgb,
+    var(--color-brand) 22%,
+    transparent
+  );
+  --net-glow: color-mix(in srgb, var(--color-brand) 16%, transparent);
+  --net-status: var(--color-success);
+  --net-accent: var(--color-brand);
+
+  position: relative;
+  background: var(--net-bg);
+  color: var(--net-fg);
+  overflow: hidden;
+  scroll-margin-top: 6rem;
+}
+
+.phNetworkGlow {
+  position: absolute;
+  inset: 8% 10% auto;
+  height: 55%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    var(--net-glow),
+    transparent 65%
+  );
+  opacity: 0.28;
+}
+
+html.dark .phNetworkGlow {
+  opacity: 0.65;
+}
+
+.phNetworkInner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.phNetworkHeader {
+  max-width: 48rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.phNetworkEyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--net-accent);
+}
+
+.phNetworkHeading {
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--net-fg);
+  text-wrap: balance;
+}
+
+.phNetworkHeadingAccent {
+  color: var(--net-accent);
+}
+
+.phNetworkIntro {
+  margin: 1.15rem auto 0;
+  max-width: 36rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--net-muted);
+}
+
+.phNetworkMapWrap {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.phNetworkWorldMap {
+  max-width: 100%;
+  background: transparent;
+}

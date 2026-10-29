@@ -1,0 +1,276 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="windowTitle windowDesc">
+  <title id="windowTitle">Animated Windows hosting infrastructure illustration</title>
+  <desc id="windowDesc">A premium minimal dark-emerald illustration of a luminous Windows virtual desktop connected to a dedicated server, cloud infrastructure, and security badge. All graphics are editable vectors. No visible lettering.</desc>
+  <defs>
+    <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#087956"/><stop offset=".45" stop-color="#055e4a"/><stop offset="1" stop-color="#06382f"/>
+    </linearGradient>
+    <radialGradient id="aurora" cx="53%" cy="43%" r="61%">
+      <stop offset="0" stop-color="#3eea9c" stop-opacity=".43"/>
+      <stop offset=".45" stop-color="#0cba82" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#1ac68e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bottomLight" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#a3f7c0" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#a3f7c0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blueBloom" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#42dfff" stop-opacity=".45"/>
+      <stop offset=".5" stop-color="#21a7fb" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#0da4fd" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glassRim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#caffde" stop-opacity=".88"/><stop offset=".37" stop-color="#4adba8" stop-opacity=".46"/><stop offset=".77" stop-color="#119e7e" stop-opacity=".52"/><stop offset="1" stop-color="#b3ffdf" stop-opacity=".93"/>
+    </linearGradient>
+    <linearGradient id="screenGlass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b564f"/><stop offset=".44" stop-color="#093c43"/><stop offset="1" stop-color="#042c39"/>
+    </linearGradient>
+    <linearGradient id="screenHighlight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d5fff0" stop-opacity=".17"/><stop offset=".5" stop-color="#d5fff0" stop-opacity="0"/><stop offset="1" stop-color="#3aeac7" stop-opacity=".07"/>
+    </linearGradient>
+    <linearGradient id="desktopTop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#135e55"/><stop offset=".5" stop-color="#0a756b"/><stop offset="1" stop-color="#073746"/>
+    </linearGradient>
+    <linearGradient id="winA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#76e7ff"/><stop offset=".56" stop-color="#12baf6"/><stop offset="1" stop-color="#1182ec"/>
+    </linearGradient>
+    <linearGradient id="winB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#19c7fe"/><stop offset="1" stop-color="#066bdd"/>
+    </linearGradient>
+    <linearGradient id="winC" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b87eb"/><stop offset="1" stop-color="#10d4f9"/>
+    </linearGradient>
+    <linearGradient id="winD" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d8cf0"/><stop offset="1" stop-color="#34dcff"/>
+    </linearGradient>
+    <linearGradient id="sideMetal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#087e67"/><stop offset="1" stop-color="#00392f"/>
+    </linearGradient>
+    <linearGradient id="topMetal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7df8bf"/><stop offset=".42" stop-color="#1eab80"/><stop offset="1" stop-color="#06664f"/>
+    </linearGradient>
+    <linearGradient id="serverFront" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#094d44"/><stop offset="1" stop-color="#012f2f"/>
+    </linearGradient>
+    <linearGradient id="serverBay" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b5147"/><stop offset="1" stop-color="#072d31"/>
+    </linearGradient>
+    <linearGradient id="cloudSurface" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3fff4"/><stop offset="1" stop-color="#acedd0"/>
+    </linearGradient>
+    <linearGradient id="chipGlass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#edfff4" stop-opacity=".98"/><stop offset="1" stop-color="#c3f1d9" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="stand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#71ebb2"/><stop offset="1" stop-color="#169567"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset=".45" stop-color="#ffffff" stop-opacity=".045"/><stop offset=".51" stop-color="#ffffff" stop-opacity=".18"/><stop offset=".57" stop-color="#ffffff" stop-opacity=".04"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="dotPattern" x="0" y="0" width="49" height="49" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#8efbc6" opacity=".17"/>
+    </pattern>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="220%">
+      <feDropShadow dx="0" dy="24" stdDeviation="27" flood-color="#002b24" flood-opacity=".42"/>
+    </filter>
+    <filter id="glassShadow" x="-70%" y="-70%" width="240%" height="240%">
+      <feDropShadow dx="0" dy="16" stdDeviation="19" flood-color="#002b24" flood-opacity=".32"/>
+    </filter>
+    <filter id="softBlur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+    <filter id="blueGlow" x="-45%" y="-45%" width="190%" height="190%">
+      <feDropShadow dx="0" dy="0" stdDeviation="13" flood-color="#26d6ff" flood-opacity=".39"/>
+    </filter>
+    <filter id="greenGlow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="cardClip"><rect x="38" y="38" width="1124" height="1124" rx="75"/></clipPath>
+    <clipPath id="desktopClip"><rect x="300" y="322" width="634" height="430" rx="27"/></clipPath>
+  </defs>
+  <style><![CDATA[
+    .desktop-float { animation: desktopBob 7s ease-in-out infinite; }
+    .hardware-float { animation: hardwareBob 6.4s ease-in-out infinite -1.4s; }
+    .cloud-float { animation: cardBob 6.7s ease-in-out infinite -1.2s; }
+    .security-float { animation: cardBob 7.8s ease-in-out infinite -3.2s; }
+    .windows-breathe { animation: glowPulse 5.2s ease-in-out infinite; }
+    .status { animation: statusPulse 3.1s ease-in-out infinite; }
+    .status.alt { animation-delay: -1.5s; }
+    .packet { animation: packetMove 3.2s linear infinite; }
+    .orbit { animation: orbitPulse 6s ease-in-out infinite; transform-origin: 635px 558px; }
+    .sweep { animation: sweep 9s ease-in-out infinite; }
+    @keyframes desktopBob {0%,100%{transform:translateY(0)} 50%{transform:translateY(-11px)}}
+    @keyframes hardwareBob {0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}}
+    @keyframes cardBob {0%,100%{transform:translateY(0)} 50%{transform:translateY(-13px)}}
+    @keyframes glowPulse {0%,100%{opacity:.90} 50%{opacity:1}}
+    @keyframes statusPulse {0%,100%{opacity:.65} 45%{opacity:1} 75%{opacity:.4}}
+    @keyframes packetMove {to{stroke-dashoffset:-80}}
+    @keyframes orbitPulse {0%,100%{opacity:.31;transform:scale(1)}50%{opacity:.53;transform:scale(1.025)}}
+    @keyframes sweep {0%,25%,100%{transform:translateX(-760px)} 60%,80%{transform:translateX(780px)}}
+    @media(prefers-reduced-motion:reduce){.desktop-float,.hardware-float,.cloud-float,.security-float,.windows-breathe,.status,.packet,.orbit,.sweep{animation:none!important}}
+  ]]></style>
+  <!-- Premium dark-emerald rounded tile: independent from light VPS artwork. -->
+  <rect width="1200" height="1200" fill="#eff2e9"/>
+  <rect x="38" y="38" width="1124" height="1124" rx="75" fill="url(#canvas)"/>
+  <g clip-path="url(#cardClip)">
+    <!-- Quiet geometry and atmospheric depth. -->
+    <rect x="38" y="38" width="1124" height="1124" fill="url(#aurora)"/>
+    <ellipse cx="663" cy="549" rx="420" ry="460" fill="url(#aurora)"/>
+    <ellipse cx="630" cy="985" rx="450" ry="188" fill="url(#bottomLight)"/>
+    <path d="M38 185C232 24 435 71 536 38H38Z" fill="#53e7ad" opacity=".075"/>
+    <path d="M1162 76C980 202 1116 356 1162 390V76Z" fill="#acffd4" opacity=".055"/>
+    <circle cx="658" cy="535" r="386" fill="none" stroke="#b8ffdc" stroke-width="1.7" opacity=".11"/>
+    <circle cx="658" cy="535" r="329" fill="none" stroke="#8cf7c5" stroke-width="2.5" opacity=".12" stroke-dasharray="4 20"/>
+    <circle class="orbit" cx="658" cy="535" r="278" fill="none" stroke="#a7ffdd" stroke-width="2.5" opacity=".26" stroke-dasharray="90 105 40 130"/>
+    <rect x="85" y="126" width="1029" height="914" fill="url(#dotPattern)"/>
+    <g fill="#aaffd2" opacity=".5"><circle cx="140" cy="150" r="5"/><circle cx="163" cy="150" r="5" opacity=".56"/><circle cx="186" cy="150" r="5" opacity=".34"/></g>
+    <path d="M964 141h105" stroke="#adfbd2" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+    <path d="M1008 159h61" stroke="#adfbd2" stroke-width="5" stroke-linecap="round" opacity=".13"/>
+    <!-- Recessed floor: never obscures the feature objects. -->
+    <ellipse cx="632" cy="991" rx="443" ry="94" fill="#002e27" opacity=".31" filter="url(#softBlur)"/>
+    <ellipse cx="634" cy="989" rx="419" ry="82" fill="#c7ffdb" opacity=".095"/>
+    <ellipse cx="634" cy="992" rx="387" ry="67" fill="none" stroke="#a0ffd2" stroke-width="2.3" opacity=".32"/>
+    <path d="M38 1031C294 966 448 1133 704 1050S981 970 1162 1006V1162H38Z" fill="#0ea475" opacity=".22"/>
+    <path d="M38 1090C283 1018 469 1183 717 1094S1004 1018 1162 1065" fill="none" stroke="#baffd5" stroke-width="2" opacity=".26"/>
+    <!-- Atmospheric connection lines run behind objects. -->
+    <g fill="none" stroke="#a4ffd0" stroke-width="2.8" stroke-linecap="round" opacity=".24">
+      <path d="M306 361C367 361 385 405 431 430"/>
+      <path d="M832 352C891 322 903 316 931 321"/>
+      <path d="M467 806C552 775 592 769 649 755"/>
+    </g>
+    <g fill="none" stroke="#9bfac7" stroke-width="3.5" stroke-dasharray="7 18" stroke-linecap="round" class="packet" opacity=".64">
+      <path d="M306 361C367 361 385 405 431 430"/>
+      <path d="M832 352C891 322 903 316 931 321"/>
+      <path d="M467 806C552 775 592 769 649 755"/>
+    </g>
+    <!-- Floating cloud tile, left: friendly rounded sculpted vector cloud. -->
+    <g class="cloud-float" filter="url(#glassShadow)">
+      <rect x="126" y="265" width="188" height="183" rx="34" fill="url(#chipGlass)" stroke="#ffffff" stroke-width="3.3"/>
+      <rect x="143" y="282" width="154" height="149" rx="25" fill="#c9f3df" opacity=".52"/>
+      <path d="M178 371c-21 0-37-16-37-36s16-36 37-36c8-25 30-42 57-42 27 0 48 16 56 40 22 0 40 17 40 38s-18 36-40 36Z" transform="translate(4 16) scale(.76) translate(50 76)" fill="url(#cloudSurface)" stroke="#27a980" stroke-width="5.4" stroke-linejoin="round"/>
+      <path d="M192 354l19 19 34-37" fill="none" stroke="#06875e" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Small upper-right security card, balanced against the cloud. -->
+    <g class="security-float" filter="url(#glassShadow)">
+      <rect x="925" y="203" width="150" height="150" rx="31" fill="url(#chipGlass)" stroke="#ffffff" stroke-width="3"/>
+      <circle cx="1000" cy="277" r="51" fill="#acedd0" opacity=".67"/>
+      <path d="M1000 236l36 15v27c0 27-14 44-36 56-22-12-36-29-36-56v-27Z" fill="#087f5e" stroke="#a2ffcf" stroke-width="3"/>
+      <path d="M983 278l11 11 23-25" fill="none" stroke="#d8ffc5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- The hero: a floating Windows desktop pane; separate from physical rack below. -->
+    <g class="desktop-float" filter="url(#shadow)">
+      <!-- Offset glass backplate adds volume without clutter. -->
+      <rect x="311" y="268" width="657" height="478" rx="42" fill="#009c77" opacity=".24"/>
+      <rect x="304" y="284" width="657" height="478" rx="42" fill="#0c866d" stroke="#9afbd1" stroke-opacity=".36" stroke-width="3"/>
+      <!-- Main metal bezel and dark readable glass. -->
+      <rect x="283" y="305" width="674" height="468" rx="39" fill="#07372f" stroke="url(#glassRim)" stroke-width="5"/>
+      <rect x="300" y="322" width="634" height="430" rx="27" fill="url(#screenGlass)" stroke="#6cf6c2" stroke-width="1.8" stroke-opacity=".34"/>
+      <g clip-path="url(#desktopClip)">
+        <rect x="300" y="322" width="634" height="430" fill="url(#screenHighlight)"/>
+        <ellipse cx="680" cy="537" rx="257" ry="225" fill="url(#blueBloom)"/>
+        <path d="M319 416C441 372 517 374 589 395" fill="none" stroke="#92fce2" stroke-width="2" opacity=".09"/>
+        <path d="M310 715C454 646 685 792 920 645" fill="none" stroke="#b9fff0" stroke-width="2" opacity=".13"/>
+        <!-- Abstract side controls (icons, no words or fake text). -->
+        <rect x="325" y="365" width="55" height="338" rx="19" fill="#b0ffde" opacity=".065"/>
+        <g stroke="#8dfbe1" fill="none" stroke-width="3.5" opacity=".59" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M344 399l9-10 9 10-9 10Z"/>
+          <circle cx="353" cy="465" r="10"/>
+          <path d="M344 538v-13h18v26h-18Z"/>
+          <path d="M344 614h18m-18 9h18"/>
+        </g>
+        <path d="M396 358v363" fill="none" stroke="#b1ffe3" stroke-width="1.8" opacity=".1"/>
+        <!-- The four distinct vector window panels are the visual focal point. -->
+        <g class="windows-breathe" filter="url(#blueGlow)">
+          <path d="M543 436L655 418V530L543 531Z" fill="url(#winA)"/>
+          <path d="M669 415L802 394V526L669 528Z" fill="url(#winB)"/>
+          <path d="M543 545L655 542V654L543 636Z" fill="url(#winC)"/>
+          <path d="M669 542L802 538V677L669 657Z" fill="url(#winD)"/>
+          <path d="M558 445l89-14M685 429l104-17" stroke="#f4ffff" stroke-opacity=".27" stroke-width="4" stroke-linecap="round"/>
+          <path d="M557 556l88-2M685 552l103-2" stroke="#d5ffff" stroke-opacity=".14" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <!-- Ultra-subtle dotted OS field, no visible typography. -->
+        <path d="M833 409h37M833 424h20" stroke="#93fde7" opacity=".3" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="862" cy="663" r="5" fill="#6af7ca" opacity=".7"/>
+        <circle cx="882" cy="663" r="5" fill="#6af7ca" opacity=".3"/>
+        <rect x="0" y="322" width="180" height="430" fill="url(#sheen)" class="sweep"/>
+      </g>
+      <!-- A careful lower bezel and minimal system controls. -->
+      <path d="M327 759h582" stroke="#82ffd1" opacity=".33" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="617" cy="765" r="4" fill="#a5ffd9" opacity=".8"/>
+      <path d="M572 776L555 828L682 828L670 776" fill="url(#stand)" opacity=".9"/>
+      <path d="M555 828l-54 21c-15 6-11 13 8 13h208c20 0 24-7 9-13l-44-21Z" fill="#0a8d6b" stroke="#68e8b0" stroke-width="2"/>
+      <path d="M567 827h106" stroke="#bbffda" stroke-width="3" opacity=".59" stroke-linecap="round"/>
+    </g>
+    <!-- Physical rack at lower left: 3D construction with independent details. -->
+    <g class="hardware-float" filter="url(#shadow)">
+      <!-- Base platform and tower depth. -->
+      <path d="M171 966L389 910L520 981L303 1039Z" fill="#74efaa" opacity=".24"/>
+      <path d="M179 965L394 909L520 975L520 1001L303 1065L179 997Z" fill="#0c9166"/>
+      <path d="M179 965L394 909L520 975L303 1039Z" fill="#90efba"/>
+      <path d="M303 1039l217-64v26l-217 64Z" fill="#0a785a"/>
+      <path d="M179 965l124 74v26l-124-68Z" fill="#3ac185"/>
+      <!-- Actual cabinet top/front/side. -->
+      <path d="M199 779L390 727L485 779L292 833Z" fill="url(#topMetal)" stroke="#8dffd0" stroke-width="2.8"/>
+      <path d="M199 779L292 833V1027L199 975Z" fill="url(#sideMetal)" stroke="#1caa7f" stroke-width="3"/>
+      <path d="M292 833L485 779V972L292 1027Z" fill="url(#serverFront)" stroke="#3abf92" stroke-width="3"/>
+      <path d="M210 796v165" stroke="#a3ffcb" stroke-width="2" opacity=".4"/>
+      <path d="M299 841v176" stroke="#90ffcf" stroke-width="2" opacity=".24"/>
+      <path d="M473 797v168" stroke="#c7ffdb" stroke-width="2" opacity=".13"/>
+      <!-- Sculpted cabinet ventilation. -->
+      <g stroke="#85f5ba" stroke-width="3.5" stroke-linecap="round" opacity=".48">
+        <path d="M219 848l50 28M219 860l50 28M219 872l50 28"/>
+        <path d="M220 942l50 29M220 954l50 29"/>
+      </g>
+      <!-- Bays are deliberately separated and not visually merged. -->
+      <g>
+        <path d="M307 845L470 800V849L307 895Z" fill="url(#serverBay)" stroke="#26856e" stroke-width="2"/>
+        <path d="M315 858L460 818" stroke="#c5ffe5" stroke-width="2.4" opacity=".13"/>
+        <circle cx="332" cy="871" r="7" fill="#aaffb3" class="status"/>
+        <circle cx="332" cy="871" r="14" fill="none" stroke="#75fab4" stroke-width="2" opacity=".2"/>
+        <path d="M362 861L421 845" stroke="#8eeab7" stroke-width="5" opacity=".78" stroke-linecap="round"/>
+        <path d="M362 874l39-11" stroke="#77bb9e" stroke-width="4" opacity=".46" stroke-linecap="round"/>
+        <path d="M446 824l12-3" stroke="#e0ffb5" stroke-width="6" stroke-linecap="round" class="status alt"/>
+      </g>
+      <g>
+        <path d="M307 908L470 862V911L307 956Z" fill="url(#serverBay)" stroke="#26856e" stroke-width="2"/>
+        <path d="M315 920L460 880" stroke="#c5ffe5" stroke-width="2.4" opacity=".13"/>
+        <circle cx="332" cy="932" r="7" fill="#aaffb3" class="status alt"/>
+        <circle cx="332" cy="932" r="14" fill="none" stroke="#75fab4" stroke-width="2" opacity=".2"/>
+        <path d="M362 922l59-16" stroke="#8eeab7" stroke-width="5" opacity=".78" stroke-linecap="round"/>
+        <path d="M362 935l39-11" stroke="#77bb9e" stroke-width="4" opacity=".46" stroke-linecap="round"/>
+        <path d="M446 887l12-3" stroke="#e0ffb5" stroke-width="6" stroke-linecap="round" class="status"/>
+      </g>
+      <g>
+        <path d="M307 969L470 923V964L307 1010Z" fill="url(#serverBay)" stroke="#26856e" stroke-width="2"/>
+        <circle cx="332" cy="987" r="6.5" fill="#aaffb3" class="status"/>
+        <path d="M363 981l58-16" stroke="#8eeab7" stroke-width="5" opacity=".75" stroke-linecap="round"/>
+        <path d="M446 950l12-3" stroke="#e0ffb5" stroke-width="6" stroke-linecap="round" class="status alt"/>
+      </g>
+      <path d="M230 784l153-42" stroke="#d1ffe2" stroke-width="3" opacity=".44" stroke-linecap="round"/>
+    </g>
+    <!-- Bottom-right minimal availability / analytics chip. -->
+    <g class="security-float" filter="url(#glassShadow)">
+      <rect x="777" y="811" width="277" height="166" rx="29" fill="url(#chipGlass)" stroke="#ffffff" stroke-width="3"/>
+      <circle cx="831" cy="864" r="19" fill="#ccfbe1"/>
+      <path d="M819 864l8 8 16-18" fill="none" stroke="#058a65" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M871 850h131" stroke="#1a9e73" stroke-width="8" opacity=".28" stroke-linecap="round"/>
+      <path d="M871 870h87" stroke="#1a9e73" stroke-width="6" opacity=".18" stroke-linecap="round"/>
+      <path d="M810 927h215" stroke="#16956d" stroke-width="2" opacity=".16"/>
+      <path d="M811 939l35-20 31 10 36-27 34 15 35-36 42 13" stroke="#08a16f" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M811 946l35-20 31 10 36-27 34 15 35-36 42 13v44H811Z" fill="#32d18d" opacity=".13"/>
+    </g>
+    <!-- Separate small connection termini. -->
+    <g fill="#dcfff0" stroke="#40c997" stroke-width="3">
+      <circle cx="340" cy="381" r="10"/>
+      <circle cx="896" cy="337" r="10"/>
+      <circle cx="491" cy="793" r="10"/>
+    </g>
+    <g fill="#0b9d72"><circle cx="340" cy="381" r="3.7"/><circle cx="896" cy="337" r="3.7"/><circle cx="491" cy="793" r="3.7"/></g>
+    <!-- Restrained final ticks for a polished card aesthetic. -->
+    <g fill="#baffd7" opacity=".56"><circle cx="157" cy="1077" r="5"/><circle cx="180" cy="1077" r="5"/><circle cx="203" cy="1077" r="5"/></g>
+    <path d="M953 1070h102" stroke="#b8ffda" stroke-width="6" stroke-linecap="round" opacity=".15"/>
+    <path d="M993 1089h62" stroke="#b8ffda" stroke-width="6" stroke-linecap="round" opacity=".1"/>
+  </g>
+  <rect x="38.7" y="38.7" width="1122.6" height="1122.6" rx="74.3" fill="none" stroke="#d1ffe1" stroke-opacity=".19" stroke-width="1.4"/>
+</svg>

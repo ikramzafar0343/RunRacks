@@ -1,0 +1,12 @@
+@media (prefers-reduced-motion: reduce) {
+  .phWorkloadRow,
+  .phWorkloadCard,
+  .phWorkloadCardDetail,
+  .phWorkloadCta {
+    transition: none;
+  }
+
+  .phWorkloadCardDetail {
+    transform: none;
+  }
+}

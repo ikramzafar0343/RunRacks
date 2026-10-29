@@ -1,0 +1,127 @@
+/**
+ * Responsive layouts for Admin RDP benefits (<=1279px, <=1023px, <=767px, <=479px).
+ */
+
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .ardpBenefits__container {
+    width: calc(100% - 64px);
+  }
+
+  .ardpBenefits__title {
+    font-size: 33px;
+  }
+
+  .ardpBenefits__tabs {
+    gap: 22px;
+  }
+
+  .ardpBenefits__tab {
+    font-size: 15px;
+  }
+
+  .ardpBenefits__panel {
+    margin-top: 52px;
+  }
+
+  .ardpBenefits__grid {
+    grid-template-columns: minmax(310px, 0.9fr) minmax(0, 1.25fr);
+    column-gap: 40px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .ardpBenefits__title {
+    max-width: 660px;
+    font-size: 31px;
+  }
+
+  .ardpBenefits__tabs {
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    width: 100%;
+  }
+
+  .ardpBenefits__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .ardpBenefits__content {
+    max-width: 650px;
+  }
+
+  .ardpBenefits__description {
+    max-width: 620px;
+    font-size: 13px;
+  }
+
+  .ardpBenefits__illustrationFrame {
+    aspect-ratio: auto;
+  }
+
+  .ardpBenefits__illustration {
+    max-width: 620px;
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .ardpBenefits {
+    padding: 56px 20px 32px;
+  }
+
+  .ardpBenefits__title {
+    font-size: clamp(25px, 5.5vw, 30px);
+    line-height: 1.24;
+  }
+
+  .ardpBenefits__tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+    margin-top: 36px;
+    width: 100%;
+  }
+
+  .ardpBenefits__tab {
+    min-height: 44px;
+    width: fit-content;
+    max-width: 100%;
+    justify-self: center;
+    white-space: normal;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .ardpBenefits__panel {
+    margin-top: 40px;
+  }
+
+  .ardpBenefits__panelTitle {
+    font-size: 22px;
+  }
+
+  .ardpBenefits__textBlockTitle {
+    font-size: 15px;
+  }
+
+  .ardpBenefits__description {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 479px) {
+  .ardpBenefits__title {
+    font-size: clamp(24px, 6vw, 27px);
+  }
+
+  .ardpBenefits__panelTitle {
+    font-size: 21px;
+  }
+
+  .ardpBenefits__illustration {
+    max-width: 340px;
+  }
+}

@@ -1,0 +1,253 @@
+/**
+ * Admin RDP USA compare — featured plan vs piecemeal stack (Sage / Nourd).
+ */
+
+.ardpCompare {
+  --cmp-heading: var(--color-heading);
+  --cmp-muted: var(--color-muted);
+  --cmp-surface: var(--color-surface);
+  --cmp-brand: var(--color-brand);
+  --cmp-brand-deep: var(--color-inverse);
+  --cmp-lime: var(--color-lime);
+  --cmp-on-lime: var(--color-on-lime);
+  --cmp-border: var(--color-border);
+  --cmp-check: var(--color-success);
+
+  padding: clamp(3.25rem, 7vw, 5.5rem) 0;
+  background: transparent;
+  color: var(--cmp-heading);
+  font-family: var(--font-sans);
+}
+
+.ardpCompareInner {
+  width: min(1120px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.ardpCompareHeader {
+  max-width: 40rem;
+  margin: 0 auto clamp(2.25rem, 4.5vw, 3rem);
+  text-align: center;
+}
+
+.ardpCompareHeading {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.65rem, 3.2vw, 2.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+
+.ardpCompareLead {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--cmp-muted);
+}
+
+.ardpCompareLayout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  align-items: start;
+}
+
+.ardpCompareFeaturedWrap {
+  position: relative;
+  min-height: 100%;
+  /* drop-shadow follows mask silhouette (box-shadow would square off) */
+  filter: drop-shadow(
+    0 22px 40px color-mix(in srgb, var(--color-heading) 16%, transparent)
+  );
+}
+
+.ardpCompareFeatured {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  min-height: 100%;
+  /* Extra bottom pad — slope rises left→right; deepest cut on the right */
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem)
+    clamp(3.75rem, 7vw, 5rem);
+  color: var(--color-on-inverse);
+  background: linear-gradient(
+    165deg,
+    var(--cmp-brand) 0%,
+    var(--cmp-brand-deep) 100%
+  );
+  border-radius: 0;
+  /*
+   * ChemiCloud direction: sharp bottom-left (lowest) → long diagonal
+   * rising left-to-right → large rounded bottom-right (higher).
+   * Normalized path 0–1, preserveAspectRatio=none.
+   */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M0.07 0 H0.93 C0.975 0 1 0.025 1 0.07 V0.72 C1 0.84 0.94 0.90 0.82 0.90 L0 1 V0.07 C0 0.025 0.025 0 0.07 0 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M0.07 0 H0.93 C0.975 0 1 0.025 1 0.07 V0.72 C1 0.84 0.94 0.90 0.82 0.90 L0 1 V0.07 C0 0.025 0.025 0 0.07 0 Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* VS sits on featured card’s right edge / gutter — ChemiCloud placement */
+.ardpCompareVs {
+  position: absolute;
+  z-index: 3;
+  top: 32%;
+  right: -1.45rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.7rem;
+  background: var(--cmp-lime);
+  color: var(--cmp-on-lime);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: 0 10px 24px
+    color-mix(in srgb, var(--color-heading) 12%, transparent);
+  pointer-events: none;
+}
+
+.ardpCompareBrand {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ardpCompareEyebrow {
+  margin: -0.35rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.ardpCompareSummary {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+
+.ardpComparePlanName {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.55rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.ardpCompareFeatures {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ardpCompareFeatures li {
+  display: grid;
+  grid-template-columns: 1.15rem 1fr;
+  gap: 0.55rem;
+  align-items: start;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.ardpCompareCheck {
+  margin-top: 0.15rem;
+  color: var(--cmp-lime);
+}
+
+.ardpComparePriceBlock {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-inverse-border);
+}
+
+.ardpComparePriceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.85rem;
+}
+
+.ardpComparePriceLabel {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ardpCompareBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: var(--cmp-lime);
+  color: var(--cmp-on-lime);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ardpComparePriceNote {
+  margin: 0.45rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  opacity: 0.82;
+}
+
+.ardpCompareActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.ardpCompareBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.65rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 180ms var(--ease-standard, ease),
+    color 180ms var(--ease-standard, ease),
+    border-color 180ms var(--ease-standard, ease);
+}
+
+.ardpCompareBtn--primary {
+  background: var(--cmp-lime);
+  color: var(--cmp-on-lime);
+}
+
+.ardpCompareBtn--primary:hover {
+  background: color-mix(in srgb, var(--cmp-lime) 88%, var(--color-on-inverse));
+}
+
+.ardpCompareBtn--ghost {
+  border: 1.5px solid var(--color-inverse-border);
+  color: var(--color-on-inverse);
+  background: transparent;
+}
+
+.ardpCompareBtn--ghost:hover {
+  border-color: var(--color-on-inverse);
+  background: color-mix(in srgb, var(--color-on-inverse) 10%, transparent);
+}

@@ -1,0 +1,13 @@
+.node_modules
+.next
+out
+build
+coverage
+test-results
+playwright-report
+blob-report
+package-lock.json
+next-env.d.ts
+public
+*.optmeta
+PERFORMANCE_BUDGETS.md

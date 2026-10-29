@@ -1,0 +1,83 @@
+/**
+ * Admin RDP editorial page — Sage & Ink tokens (light + dark via html class).
+ */
+
+.ardpPage {
+  --ardp-bg: transparent;
+  --ardp-fg: var(--color-heading);
+  --ardp-body: var(--color-body);
+  --ardp-muted: var(--color-muted);
+  --ardp-accent: var(--color-lime);
+  --ardp-on-accent: var(--color-on-lime);
+  --ardp-brand: var(--color-brand);
+  --ardp-border: var(--color-border);
+  --ardp-surface: var(--color-surface);
+  --ardp-glow: color-mix(in srgb, var(--color-brand) 28%, transparent);
+  --ardp-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --ardp-max: 72rem;
+  font-family: var(--font-nourd), system-ui, sans-serif;
+  color: var(--ardp-fg);
+  background: transparent;
+}
+
+.ardpInner {
+  width: min(100% - 2 * var(--ardp-gutter), var(--ardp-max));
+  margin-inline: auto;
+}
+
+.ardpEyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ardp-muted);
+}
+
+.ardpSection {
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+.ardpLead,
+.ardpBody {
+  margin: 0;
+  max-width: 38rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--ardp-body);
+  font-weight: 400;
+}
+
+.ardpBody + .ardpBody {
+  margin-top: 1.25rem;
+}
+
+.ardpMedia {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.ardpMediaFrame {
+  overflow: hidden;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--ardp-brand) 14%, var(--ardp-surface));
+}
+
+.ardpPage .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ardpPage * {
+    scroll-behavior: auto !important;
+  }
+}

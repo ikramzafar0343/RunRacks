@@ -1,0 +1,62 @@
+.vpsProductHero {
+  width: 100%;
+  padding: clamp(6.75rem, 12vw, 8.75rem)
+    var(--vp-gutter, clamp(1.25rem, 3vw, 4rem)) clamp(3rem, 6vw, 5.5rem);
+  text-align: center;
+  background-color: var(--color-canvas);
+  background-image: var(--gradient-hero);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.vpsProductHeroInner {
+  width: min(100%, 1120px);
+  margin-inline: auto;
+}
+
+.vpsProductHeroTitle {
+  margin: 0;
+  font-size: clamp(2.15rem, 5.8vw, 4.75rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--color-heading);
+}
+
+.vpsProductHeroLineMask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.vpsProductHeroLine {
+  display: block;
+}
+
+.vpsProductHeroSupport {
+  margin: clamp(1.75rem, 3vw, 2.25rem) auto 0;
+  max-width: 36rem;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--color-body);
+}
+
+.vpsProductHeroSupportLine {
+  display: block;
+}
+
+/* Text stays visible before GSAP; motion only enhances after hydrate */
+.vpsProductHero[data-motion="ready"] .vpsProductHeroLine,
+.vpsProductHero[data-motion="ready"] .vpsProductHeroSupport {
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vpsProductHeroLine,
+  .vpsProductHeroSupport {
+    will-change: auto;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

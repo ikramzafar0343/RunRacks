@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">Scaling together — RunRacks VPS</title><desc id="desc">Two sculptural figures connect across elevated server platforms, symbolizing support, smooth deployment, and growth.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#003F31"/><stop offset="0.43" stop-color="#007B54"/><stop offset="1" stop-color="#033B32"/>
+    </linearGradient>
+    <radialGradient id="ambient" cx="48%" cy="38%" r="66%">
+      <stop offset="0" stop-color="#73FBC2" stop-opacity=".82"/>
+      <stop offset=".33" stop-color="#25D99B" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#00B779" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="highlight" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#DEFFE0"/><stop offset=".32" stop-color="#91FFC0"/><stop offset=".7" stop-color="#29CA80"/><stop offset="1" stop-color="#07875D"/>
+    </linearGradient>
+    <linearGradient id="highlightDark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#A8FFBF"/><stop offset=".45" stop-color="#2CD883"/><stop offset="1" stop-color="#005C43"/>
+    </linearGradient>
+    <linearGradient id="pearl" x1=".13" y1=".06" x2=".85" y2="1">
+      <stop stop-color="#FFFFFF"/><stop offset=".38" stop-color="#E9FFF6"/><stop offset=".74" stop-color="#B5DDD2"/><stop offset="1" stop-color="#739F94"/>
+    </linearGradient>
+    <linearGradient id="pearlDark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#D7F8E9"/><stop offset=".48" stop-color="#9AC3B9"/><stop offset="1" stop-color="#4B8A7A"/>
+    </linearGradient>
+    <linearGradient id="topFace" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#168A62"/><stop offset=".43" stop-color="#2DC68A"/><stop offset="1" stop-color="#03543F"/>
+    </linearGradient>
+    <linearGradient id="frontFace" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#0A8058"/><stop offset=".43" stop-color="#05654B"/><stop offset="1" stop-color="#002B27"/>
+    </linearGradient>
+    <linearGradient id="sideFace" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#004F3D"/><stop offset=".7" stop-color="#003D34"/><stop offset="1" stop-color="#002A29"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#54ED9C" stop-opacity="0"/><stop offset=".55" stop-color="#B5FFC0"/><stop offset="1" stop-color="#44EBA3" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="stream" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#7CFFAE" stop-opacity="0"/><stop offset=".5" stop-color="#D6FFD4"/><stop offset="1" stop-color="#7CFFAE" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="sphere" cx="30%" cy="19%" r="80%">
+      <stop stop-color="#F1FFF0"/><stop offset=".25" stop-color="#AAFFBD"/><stop offset=".61" stop-color="#3CDB85"/><stop offset="1" stop-color="#006849"/>
+    </radialGradient>
+    <radialGradient id="whiteSphere" cx="28%" cy="22%" r="79%">
+      <stop stop-color="#FFFFFF"/><stop offset=".43" stop-color="#F2FFF8"/><stop offset=".79" stop-color="#B8DDD3"/><stop offset="1" stop-color="#6D9E92"/>
+    </radialGradient>
+    <filter id="blur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="smallBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#001E1D" flood-opacity=".35"/>
+    </filter>
+    <clipPath id="rounded"><rect width="600" height="900" rx="28"/></clipPath>
+  </defs>
+  <style>
+    .rise{animation:rise 6.8s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+    .hover{animation:hover 5.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+    .hover-slow{animation:hover 7.6s ease-in-out -2s infinite;transform-origin:center;transform-box:fill-box}
+    .pulse{animation:pulse 3.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+    .twinkle{animation:twinkle 4s ease-in-out infinite}
+    .trail{stroke-dasharray:15 27;animation:trail 9s linear infinite}
+    .trace{stroke-dasharray:5 11;animation:trail 7s linear infinite}
+    .grip{animation:grip 6s ease-in-out infinite;transform-origin:360px 342px}
+    @keyframes rise{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes pulse{0%,100%{opacity:.45;transform:scale(.94)}50%{opacity:1;transform:scale(1.07)}}
+    @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.86}}
+    @keyframes trail{to{stroke-dashoffset:-252}}
+    @keyframes grip{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-2deg)}}
+    @media(prefers-reduced-motion:reduce){.rise,.hover,.hover-slow,.pulse,.twinkle,.trail,.trace,.grip{animation:none!important}}
+  </style>
+
+<g clip-path="url(#rounded)">
+  <rect width="600" height="900" fill="url(#bg)"/>
+  <rect width="600" height="900" fill="url(#ambient)"/>
+  <ellipse cx="300" cy="803" rx="295" ry="130" fill="#002D27" opacity=".36" filter="url(#blur)"/>
+  <path d="M-110 147 C42 172 110 130 194 64 S393 -25 584 -82" stroke="#C9FFD6" stroke-opacity=".14" stroke-width="22" filter="url(#smallBlur)"/>
+  <path d="M-100 144 C53 175 121 117 194 61 S385 -22 587 -80" stroke="url(#stream)" stroke-opacity=".73" stroke-width="2.7"/>
+  <path d="M610 121 C519 229 491 289 547 385 S643 491 643 527" stroke="#A2FFBE" stroke-opacity=".22" stroke-width="2"/>
+  <path d="M-83 696 C57 622 91 597 118 525" stroke="#6FFFAF" stroke-opacity=".22" stroke-width="2"/>
+  <g fill="#C7FFE2"><circle cx="80" cy="260" r="2.1" opacity=".53"/><circle cx="511" cy="190" r="2.4" opacity=".38"/><circle cx="467" cy="358" r="1.8" opacity=".43"/><circle cx="103" cy="437" r="1.5" opacity=".48"/></g>
+
+  <!-- Distant light rings create depth without distracting from the subject. -->
+  <ellipse cx="340" cy="395" rx="184" ry="174" stroke="#B6FFD5" stroke-opacity=".17" stroke-width="1.7"/>
+  <ellipse cx="340" cy="395" rx="135" ry="129" stroke="#CBFFE0" stroke-opacity=".14" stroke-width="1.3" stroke-dasharray="4 13"/>
+  <circle cx="340" cy="395" r="102" fill="#A4FFC7" opacity=".17" filter="url(#blur)"/>
+
+  <!-- Floor planes and atmospheric reflections. -->
+  <path d="M0 772 211 692 600 762 600 900 0 900Z" fill="#073F34" opacity=".38"/>
+  <path d="M-40 854 302 708 634 813" stroke="#B3FFD0" stroke-opacity=".13"/>
+  <path d="M-40 892 302 746 634 851" stroke="#B3FFD0" stroke-opacity=".09"/>
+
+  <!-- Back raised server terrace: a single readable isometric mass. -->
+  <g filter="url(#shadow)">
+    <path d="M219 506 388 453 559 537 387 593Z" fill="url(#topFace)"/>
+    <path d="M219 506 387 593 387 787 219 700Z" fill="url(#sideFace)"/>
+    <path d="M387 593 559 537 559 730 387 787Z" fill="url(#frontFace)"/>
+    <path d="M226 508 389 459 553 538" stroke="#91F8B3" stroke-opacity=".67" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M390 597 553 543" stroke="#A4FFBF" stroke-opacity=".46" stroke-width="2"/>
+    <path d="M424 682 521 651" stroke="#00CE8D" stroke-opacity=".52" stroke-width="3" stroke-linecap="round"/>
+    <path d="M424 708 498 685" stroke="#00CE8D" stroke-opacity=".33" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#9DFEB8"><circle cx="523" cy="668" r="3"/><circle cx="510" cy="698" r="3" opacity=".6"/></g>
+  </g>
+  <!-- Lower approaching terrace with deliberate negative space. -->
+  <g filter="url(#shadow)">
+    <path d="M48 679 210 629 348 702 184 756Z" fill="#159264"/>
+    <path d="M48 679 184 756 184 914 48 836Z" fill="#003F35"/>
+    <path d="M184 756 348 702 348 863 184 914Z" fill="url(#frontFace)"/>
+    <path d="M54 681 209 635 341 704" stroke="#82EDAB" stroke-opacity=".7" stroke-width="2.5"/>
+    <path d="M194 784 334 740" stroke="#9CFFBA" stroke-opacity=".18" stroke-width="1.5"/>
+  </g>
+
+  <!-- Glow at the helpful hand-off; no typography or confusing UI. -->
+  <circle cx="292" cy="492" r="38" fill="#D8FFCB" opacity=".26" filter="url(#smallBlur)" class="pulse"/>
+  <circle cx="292" cy="492" r="17" stroke="#EAFFE6" stroke-opacity=".55" stroke-width="1.7" class="pulse"/>
+
+  <!-- Upper green figure. Rounded sculptural tubes with subtle depth strokes. -->
+  <g class="rise" filter="url(#shadow)">
+    <!-- Rear legs and feet -->
+    <path d="M355 443 Q409 470 430 494 Q440 508 465 502" stroke="#025C41" stroke-width="41" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M354 439 Q411 468 428 492 Q438 506 461 498" stroke="url(#highlightDark)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M353 451 Q314 479 299 523 L277 554" stroke="#00513C" stroke-width="39" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M352 447 Q314 478 300 520 L280 550" stroke="url(#highlightDark)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M269 555 Q281 562 297 555" stroke="#61ED93" stroke-width="16" stroke-linecap="round"/>
+    <!-- Torso and shoulder highlight -->
+    <path d="M367 352 Q392 365 379 401 L356 457 Q348 473 329 467 L310 456 Q301 449 310 431 L340 368 Q348 352 367 352Z" fill="url(#highlightDark)" stroke="#8AFFAA" stroke-opacity=".39" stroke-width="1.3"/>
+    <path d="M354 375 Q344 405 329 437" stroke="#D1FFBE" stroke-opacity=".38" stroke-width="10" stroke-linecap="round"/>
+    <!-- Reach-down arm at front -->
+    <path d="M339 386 Q324 424 314 442 L291 490" stroke="#004F3A" stroke-width="33" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M338 383 Q325 423 315 442 L293 489" stroke="url(#highlight)" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="291" cy="490" r="12" fill="url(#sphere)"/>
+    <!-- Balancing arm -->
+    <path d="M380 386 Q417 395 439 388 L463 376" stroke="#00513A" stroke-width="31" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M380 384 Q416 393 439 386 L461 373" stroke="url(#highlight)" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="463" cy="373" r="10" fill="#A4FFAF"/>
+    <!-- Neck and iconic reflective head -->
+    <path d="M359 362 357 341" stroke="url(#highlightDark)" stroke-width="19" stroke-linecap="round"/>
+    <circle cx="360" cy="313" r="38" fill="url(#sphere)"/>
+    <path d="M339 297 Q348 279 363 277" stroke="#EDFFE4" stroke-opacity=".62" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Lower pearly climber, deliberately separated in tone and silhouette. -->
+  <g filter="url(#shadow)">
+    <!-- Supporting leg behind torso -->
+    <path d="M177 673 Q141 729 129 772 L116 791" stroke="#52897D" stroke-width="41" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M178 668 Q141 725 127 768 L116 788" stroke="url(#pearlDark)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M111 793 Q129 807 145 796" stroke="#DDFBF0" stroke-width="18" stroke-linecap="round"/>
+    <!-- Stepping foot -->
+    <path d="M170 672 Q220 684 238 648 L257 626" stroke="#548F80" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M170 671 Q219 682 239 646 L256 622" stroke="url(#pearl)" stroke-width="31" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M245 621 Q265 620 268 635" stroke="#E9FFF2" stroke-width="16" stroke-linecap="round"/>
+    <!-- Compact trunk -->
+    <path d="M171 576 Q190 577 193 597 L191 658 Q188 681 172 684 L154 682 Q143 678 145 659 L146 599 Q148 577 171 576Z" fill="url(#pearl)"/>
+    <path d="M153 601 Q150 634 153 651" stroke="#FFFFFF" stroke-opacity=".58" stroke-width="8" stroke-linecap="round"/>
+    <!-- Arm anchoring onto near block -->
+    <path d="M169 598 Q129 639 126 660 L124 686" stroke="#629E90" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M170 596 Q130 637 127 657 L127 685" stroke="url(#pearl)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="128" cy="685" r="9" fill="#F6FFF8"/>
+    <!-- Main reaching arm, meeting upper figure at x292/y492 -->
+    <path d="M183 600 Q221 565 244 530 L293 491" stroke="#4D907E" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M182 597 Q219 563 244 529 L292 491" stroke="url(#pearl)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="292" cy="492" r="11" fill="#F3FFF5"/>
+    <!-- Head -->
+    <path d="M165 585 164 561" stroke="url(#pearlDark)" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="161" cy="536" r="36" fill="url(#whiteSphere)"/>
+    <path d="M143 522 Q149 508 163 503" stroke="#FFFFFF" stroke-opacity=".78" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Tiny supporting sparks, purposely sparse. -->
+  <g class="twinkle" opacity=".5" stroke="#C6FFCB" stroke-linecap="round" stroke-width="2"><path d="M479 296v16m-8-8h16"/><path d="M89 384v10m-5-5h10"/></g>
+  <path d="M0 893 H600" stroke="#9CFFB8" stroke-opacity=".15"/>
+</g></svg>

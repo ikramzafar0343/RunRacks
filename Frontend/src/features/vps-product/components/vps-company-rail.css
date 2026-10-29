@@ -1,0 +1,248 @@
+/*
+ * Company card marquee — Atmosphere band into FAQ Deep.
+ */
+
+.vpsCompanyRail {
+  --rail-ink: var(--color-heading);
+  --rail-surface: var(--vp-band-elevated, var(--color-surface));
+  --rail-border: var(--color-border);
+  --rail-accent-fg: #f3f6f0;
+  --rail-glow: color-mix(in srgb, var(--color-brand) 28%, transparent);
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(3.5rem, 7vw, 6rem);
+  color: var(--rail-ink);
+  overflow: clip;
+  background: transparent;
+}
+
+.vpsCompanyRailViewport {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 4%,
+    #000 96%,
+    transparent
+  );
+}
+
+.vpsCompanyRailTrack {
+  display: flex;
+  align-items: stretch;
+  gap: 1.1rem;
+  width: max-content;
+  padding-block: 0.15rem;
+  will-change: transform;
+  animation: vpsCompanyRailMarquee 56s linear infinite;
+}
+
+.vpsCompanyRailViewport[data-paused="true"] .vpsCompanyRailTrack,
+.vpsCompanyRailViewport:hover .vpsCompanyRailTrack,
+.vpsCompanyRailViewport:focus-within .vpsCompanyRailTrack {
+  animation-play-state: paused;
+}
+
+.vpsRailCard {
+  position: relative;
+  flex: none;
+  width: min(400px, 82vw);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--rail-surface);
+  border: 1px solid var(--rail-border);
+  color: var(--rail-ink);
+  box-shadow: 0 12px 28px
+    color-mix(in srgb, var(--color-heading) 8%, transparent);
+}
+
+.vpsRailCard[data-type="message"] {
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-brand) 16%, var(--rail-surface));
+  border-color: color-mix(in srgb, var(--color-brand) 28%, var(--rail-border));
+}
+
+.vpsRailCard[data-height="short"] {
+  min-height: 260px;
+}
+.vpsRailCard[data-height="medium"] {
+  min-height: 340px;
+}
+.vpsRailCard[data-height="tall"] {
+  min-height: 480px;
+}
+
+.vpsRailCard[data-accent="true"] {
+  border-color: transparent;
+  color: var(--rail-accent-fg);
+  background:
+    radial-gradient(
+      ellipse 60% 70% at 20% 30%,
+      color-mix(in srgb, #8dd1ac 28%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(155deg, #1a4030 0%, #2a5c45 42%, #34745a 78%, #285b46 100%);
+  box-shadow: 0 14px 32px color-mix(in srgb, #082615 22%, transparent);
+}
+
+.vpsRailCardPreview {
+  position: absolute;
+  z-index: 1;
+  /* Square preview lower on the right — Hostinger tilt (CCW) */
+  top: auto;
+  bottom: 8%;
+  right: 6%;
+  width: min(46%, 200px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow: 0 16px 36px color-mix(in srgb, #082615 28%, transparent);
+  opacity: 0;
+  transform: translate3d(0, 70%, 0) rotate(-8deg);
+  transition:
+    opacity 400ms var(--vp-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 400ms var(--vp-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.vpsRailCardPreviewFrame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.vpsRailCardPreview img {
+  object-fit: cover;
+}
+
+.vpsRailCard[data-accent="true"] .vpsRailCardPreview {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #f3f6f0 22%, transparent),
+    0 16px 36px color-mix(in srgb, #000 35%, transparent);
+}
+
+.vpsRailCard[data-type="message"]:hover .vpsRailCardPreview,
+.vpsRailCard[data-type="message"]:focus-within .vpsRailCardPreview {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(-8deg);
+}
+
+.vpsRailCard[data-type="message"]:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.vpsRailCardMedia {
+  position: relative;
+  width: 100%;
+  min-height: inherit;
+  height: 100%;
+  display: block;
+}
+
+.vpsRailCardMedia img {
+  object-fit: cover;
+}
+
+.vpsRailCardCaption {
+  position: absolute;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 1rem 1.15rem;
+  font-size: 0.9375rem;
+  background: linear-gradient(
+    transparent,
+    color-mix(in srgb, #082615 72%, transparent)
+  );
+  color: #f3f6f0;
+}
+
+.vpsRailCardBody {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  height: 100%;
+  min-height: inherit;
+}
+
+.vpsRailCard[data-type="message"] .vpsRailCardBody {
+  width: min(100%, 48%);
+  max-width: 15rem;
+}
+
+.vpsRailCardTitle {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.vpsRailCardText {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: inherit;
+  opacity: 0.9;
+}
+
+@keyframes vpsCompanyRailMarquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-50% - 0.55rem), 0, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .vpsRailCard[data-height="tall"] {
+    min-height: 400px;
+  }
+
+  .vpsCompanyRailTrack {
+    animation-duration: 42s;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .vpsRailCardPreview {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-8deg);
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vpsCompanyRailTrack {
+    animation: none;
+    flex-wrap: wrap;
+    width: var(--vp-editorial, min(100% - 2.5rem, 1100px));
+    margin-inline: auto;
+    justify-content: flex-start;
+  }
+
+  .vpsCompanyRailViewport {
+    mask-image: none;
+    overflow: visible;
+  }
+
+  .vpsCompanyRailTrack .vpsRailCard[aria-hidden="true"] {
+    display: none;
+  }
+
+  .vpsRailCardPreview {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-8deg);
+    transition: none;
+  }
+}

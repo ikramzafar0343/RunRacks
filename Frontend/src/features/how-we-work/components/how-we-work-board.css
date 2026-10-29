@@ -1,0 +1,270 @@
+/*
+ * How We Work — board, cards, connectors, responsive reflow.
+ */
+
+.processBoardWrapper {
+  width: 100%;
+  margin-top: 74px;
+}
+
+.processBoard {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.processConnectors {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  color: var(--process-connector);
+}
+
+.processConnectorPath {
+  stroke: currentColor;
+}
+
+.processNode {
+  z-index: 2;
+  will-change: transform;
+}
+
+.processNode[data-dragging="true"] {
+  z-index: 5;
+}
+
+.processNodeLabel {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 13px);
+  width: 100%;
+  text-align: center;
+  color: var(--process-label);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.processCard {
+  position: relative;
+  min-height: 171px;
+  padding: 15px 16px 14px;
+  border-radius: 11px;
+  background: var(--process-lime);
+  color: var(--process-lime-text);
+  box-shadow: 0 2px 5px color-mix(in srgb, var(--color-heading) 4%, transparent);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s;
+}
+
+.processCard--ink {
+  background: var(--process-ink-card);
+  color: var(--process-ink-text);
+}
+
+.processCard--tall {
+  min-height: 190px;
+}
+
+.processCard[data-draggable="true"] {
+  cursor: grab;
+  touch-action: none;
+}
+
+.processCard[data-draggable="true"]:active,
+.processNode[data-dragging="true"] .processCard {
+  cursor: grabbing;
+}
+
+.processCardTitle {
+  margin: 0 18px 6px 0;
+  font-size: 22px;
+  line-height: 1.17;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.processCardDetails {
+  padding-left: 15px;
+  font-size: 13.5px;
+  line-height: 1.67;
+}
+
+.processCardDetails p {
+  margin: 0;
+}
+
+.processCardOutcome {
+  margin-top: 8px;
+  border-top: 1px solid var(--process-light-divider);
+  padding-top: 7px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.processCard--ink .processCardOutcome {
+  border-top-color: var(--process-dark-divider);
+}
+
+.processCardDrag {
+  position: absolute;
+  top: 7px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: currentColor;
+  opacity: 0.7;
+  cursor: grab;
+  touch-action: none;
+}
+
+.processCardDrag:active {
+  cursor: grabbing;
+}
+
+.processCardDrag:focus-visible {
+  outline: 2px solid var(--process-focus);
+  outline-offset: 3px;
+  opacity: 1;
+}
+
+.processBoardActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.processBoardActions button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--process-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.processBoardActions button:hover {
+  color: var(--process-ink);
+}
+
+.processBoardActions button:focus-visible {
+  outline: 2px solid var(--process-focus);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .processCard:hover {
+    transform: translateY(-6px) scale(1.012);
+    box-shadow: 0 12px 26px
+      color-mix(in srgb, var(--color-heading) 12%, transparent);
+    z-index: 4;
+  }
+
+  .processCard--lime:hover,
+  .processCard:not(.processCard--ink):hover {
+    background: var(--process-lime-hover);
+  }
+
+  .processCard--ink:hover {
+    background: var(--process-ink-hover);
+  }
+
+  .processCard:hover .processCardDrag {
+    opacity: 1;
+  }
+
+  .processNode[data-dragging="true"] .processCard {
+    transform: scale(1.025);
+    box-shadow: 0 14px 28px
+      color-mix(in srgb, var(--color-heading) 16%, transparent);
+  }
+}
+
+/* Tablet / touch: 2×3 flow when not freeform */
+@media (max-width: 1023px) {
+  .processBoardWrapper {
+    margin-top: 64px;
+  }
+
+  .processBoardWrapper[data-board-mode="tablet"] .processBoard,
+  .processBoardWrapper[data-board-mode="mobile"] .processBoard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 56px 28px;
+    height: auto !important;
+    aspect-ratio: auto !important;
+  }
+
+  .processBoardWrapper[data-board-mode="tablet"] .processNode,
+  .processBoardWrapper[data-board-mode="mobile"] .processNode {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 320px;
+    margin-inline: auto;
+    transform: none !important;
+  }
+
+  .processBoardWrapper[data-board-mode="tablet"] .processConnectors,
+  .processBoardWrapper[data-board-mode="mobile"] .processConnectors,
+  .processBoardWrapper[data-board-mode="tablet"] .processCardDrag,
+  .processBoardWrapper[data-board-mode="mobile"] .processCardDrag,
+  .processBoardWrapper[data-board-mode="tablet"] .processBoardActions,
+  .processBoardWrapper[data-board-mode="mobile"] .processBoardActions {
+    display: none;
+  }
+
+  .processCard {
+    min-height: 178px;
+  }
+}
+
+@media (max-width: 767px) {
+  .processBoardWrapper[data-board-mode="mobile"] .processBoard {
+    display: flex;
+    flex-direction: column;
+    gap: 58px;
+    width: 100%;
+  }
+
+  .processBoardWrapper[data-board-mode="mobile"] .processNode {
+    max-width: 430px;
+  }
+
+  .processCardTitle {
+    font-size: 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .processCard {
+    transition: none !important;
+  }
+
+  .processCard:hover {
+    transform: none !important;
+  }
+}

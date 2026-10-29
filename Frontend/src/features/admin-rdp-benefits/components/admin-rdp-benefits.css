@@ -1,0 +1,196 @@
+/**
+ * Admin RDP benefits — interactive tabs (Sage / Nourd).
+ * Layout geometry adapted from the VPS benefits desktop reference.
+ */
+
+.ardpBenefits {
+  --ardp-heading: var(--color-heading);
+  --ardp-primary-text: var(--color-heading);
+  --ardp-paragraph: var(--color-muted);
+  --ardp-tab-active: var(--color-brand);
+  --ardp-tab-hover: var(--color-brand-hover);
+  --ardp-focus: var(--color-brand);
+
+  overflow: hidden;
+  padding: 78px 24px 40px;
+  /* Transparent — page shell carries the mint wash */
+  background: transparent;
+  color: var(--ardp-primary-text);
+}
+
+.ardpBenefits__container {
+  width: 100%;
+  max-width: 1112px;
+  margin: 0 auto;
+}
+
+.ardpBenefits__title {
+  max-width: 710px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.28;
+  letter-spacing: -0.6px;
+  color: var(--ardp-heading);
+  white-space: pre-line;
+}
+
+.ardpBenefits__tabs {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 34px;
+  margin: 64px auto 0;
+  width: max-content;
+  max-width: 100%;
+}
+
+.ardpBenefits__tab {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 35px;
+  padding: 0 3px 9px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ardp-heading);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 220ms var(--ease-standard, ease);
+}
+
+.ardpBenefits__tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ardp-tab-active);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ardpBenefits__tab[aria-selected="true"] {
+  color: var(--ardp-tab-active);
+}
+
+.ardpBenefits__tab[aria-selected="true"]::after,
+.ardpBenefits__tab:hover::after {
+  transform: scaleX(1);
+}
+
+.ardpBenefits__tab:hover {
+  color: var(--ardp-tab-hover);
+}
+
+.ardpBenefits__tab[aria-selected="true"]:hover {
+  color: var(--ardp-tab-active);
+}
+
+.ardpBenefits__tab:focus-visible {
+  outline: 3px solid var(--ardp-focus);
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+.ardpBenefits__panel {
+  margin-top: 58px;
+}
+
+.ardpBenefits__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 370px) minmax(0, 650px);
+  column-gap: 72px;
+  align-items: start;
+}
+
+.ardpBenefits__content {
+  width: 100%;
+  max-width: 370px;
+  padding-top: 4px;
+}
+
+.ardpBenefits__panelTitle {
+  margin: 0 0 22px;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  color: var(--ardp-primary-text);
+}
+
+.ardpBenefits__textBlock + .ardpBenefits__textBlock {
+  margin-top: 24px;
+}
+
+.ardpBenefits__textBlockTitle {
+  margin: 0 0 12px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ardp-primary-text);
+}
+
+.ardpBenefits__description {
+  margin: 0;
+  max-width: 350px;
+  color: var(--ardp-paragraph);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.9;
+  letter-spacing: 0.05px;
+}
+
+.ardpBenefits__illustrationFrame {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  aspect-ratio: 650 / 480;
+}
+
+.ardpBenefits__illustration {
+  display: block;
+  width: min(100%, 650px);
+  height: auto;
+  margin-top: -24px;
+  margin-left: 16px;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 350ms var(--ease-standard, ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ardpBenefits__illustrationFrame:hover .ardpBenefits__illustration {
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ardpBenefits__tab,
+  .ardpBenefits__tab::after,
+  .ardpBenefits__illustration {
+    transition: none;
+  }
+
+  .ardpBenefits__illustrationFrame:hover .ardpBenefits__illustration {
+    transform: none;
+  }
+}

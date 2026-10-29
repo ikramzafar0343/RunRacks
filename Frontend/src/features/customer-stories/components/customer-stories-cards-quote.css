@@ -1,0 +1,179 @@
+/*
+ * Customer stories — quote card, media card, play control.
+ */
+
+.csQuote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 416px;
+  padding: 54px 54px 58px;
+  border-radius: var(--cs-radius);
+  border: 1px solid var(--cs-card-border);
+  background: var(--cs-card);
+  box-shadow: 0 18px 40px
+    color-mix(in srgb, var(--cs-ink-deep) 10%, transparent);
+  text-align: center;
+}
+
+.csLogoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 150px;
+  max-height: 70px;
+}
+
+.csLogo {
+  width: auto;
+  max-width: 150px;
+  height: auto;
+  max-height: 70px;
+  object-fit: contain;
+}
+
+.csQuoteText {
+  margin: 0;
+  max-width: 515px;
+}
+
+.csQuoteText p {
+  margin: 0;
+  font-size: clamp(21px, 2vw, 27px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--cs-fg);
+  text-wrap: balance;
+}
+
+.csAttribution {
+  margin-top: 2.5rem;
+}
+
+.csName {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--cs-fg);
+}
+
+.csMeta {
+  margin: 0.35rem 0 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--cs-meta);
+}
+
+.csMedia {
+  position: relative;
+  min-height: 416px;
+  border-radius: var(--cs-radius);
+  overflow: hidden;
+  background: var(--color-inverse);
+}
+
+.csMediaImage,
+.csMediaVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms var(--cs-ease);
+}
+
+.csMedia:hover .csMediaImage {
+  transform: scale(1.03);
+}
+
+.csPlay {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--cs-ink-deep) 72%, transparent);
+  color: var(--color-on-inverse);
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.csPlay:is(:hover, :active, :focus-visible) {
+  background: var(--color-lime);
+  color: var(--color-on-lime);
+  transform: scale(1.05);
+}
+
+.csPlay:active {
+  transform: scale(0.97);
+}
+
+.csPlay:focus-visible {
+  outline: 2px solid var(--cs-lime);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  .csQuote {
+    min-height: 380px;
+    padding: 34px;
+  }
+
+  .csQuoteText p {
+    font-size: clamp(22px, 2.4vw, 24px);
+  }
+
+  .csMedia {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 767px) {
+  .csQuote {
+    min-height: 330px;
+    padding: 28px;
+  }
+
+  .csQuoteText p {
+    font-size: clamp(21px, 5.5vw, 23px);
+  }
+
+  .csName,
+  .csMeta {
+    font-size: 14px;
+  }
+
+  .csAttribution {
+    margin-top: 1.75rem;
+  }
+
+  .csMedia {
+    min-height: 300px;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 359px) {
+  .csQuote {
+    padding: 22px;
+  }
+
+  .csQuoteText p {
+    font-size: 20px;
+  }
+
+  .csLogo {
+    max-width: 120px;
+  }
+}

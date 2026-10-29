@@ -1,0 +1,208 @@
+/*
+ * Windows USA showcase — controls + responsive (same editorial style).
+ */
+
+.winShowcaseFooter {
+  position: relative;
+  margin-top: 34px;
+  text-align: center;
+}
+
+.winShowcaseNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.winShowcaseNavBtn {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border: 1px solid var(--ws-control-stroke);
+  border-radius: 50%;
+  background: var(--ws-control-fill);
+  color: var(--ws-main);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.2s;
+}
+
+.winShowcaseNavBtn:hover {
+  border-color: color-mix(in srgb, var(--ws-lime) 72%, transparent);
+  background: color-mix(in srgb, var(--ws-lime) 12%, transparent);
+  transform: translateY(-2px);
+}
+
+.winShowcaseCounter {
+  min-width: 40px;
+  font-size: 13px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--ws-main);
+}
+
+.winShowcaseProgress {
+  position: relative;
+  width: min(640px, 100%);
+  height: 8px;
+  margin: 14px auto 0;
+  background: var(--ws-track);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.winShowcaseProgressFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--ws-lime);
+  box-shadow: 0 0 7px color-mix(in srgb, var(--ws-lime) 14%, transparent);
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 1199px) and (min-width: 1024px) {
+  .winShowcaseStage {
+    width: min(100%, 920px);
+    grid-template-columns: minmax(200px, 1fr) minmax(320px, 380px) minmax(
+        180px,
+        1fr
+      );
+    gap: 28px;
+  }
+
+  .winShowcaseMedia {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 400 / 450;
+  }
+}
+
+@media (max-width: 1023px) {
+  .winShowcaseStage {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    gap: 28px 24px;
+  }
+
+  .winShowcaseFeatures {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-left: 0;
+    gap: 14px 15px;
+  }
+
+  .winShowcaseMedia {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    aspect-ratio: 400 / 450;
+    justify-self: center;
+  }
+
+  .winShowcaseWatermark {
+    font-size: clamp(88px, 16vw, 140px);
+    bottom: -36px;
+  }
+}
+
+@media (max-width: 767px) {
+  .winShowcase {
+    min-height: 0;
+    padding: 64px 20px 72px;
+  }
+
+  .winShowcaseHeading {
+    font-size: clamp(32px, 8vw, 40px);
+  }
+
+  .winShowcaseStage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-top: 36px;
+    text-align: center;
+  }
+
+  .winShowcaseMedia {
+    order: 0;
+    width: min(100%, 360px);
+    height: auto;
+    aspect-ratio: 400 / 450;
+    align-self: center;
+  }
+
+  .winShowcaseCopy {
+    order: 1;
+    max-width: 100%;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .winShowcaseTitle {
+    font-size: 26px;
+    max-width: none;
+  }
+
+  .winShowcaseDesc {
+    max-width: 36rem;
+    margin-inline: auto;
+    font-size: 14px;
+    line-height: 23px;
+  }
+
+  .winShowcaseFeatures {
+    order: 2;
+    width: 100%;
+    max-width: 36rem;
+    margin-inline: auto;
+    grid-template-columns: 1fr;
+    text-align: left;
+    justify-items: start;
+  }
+
+  .winShowcaseWatermark {
+    top: auto;
+    bottom: 28%;
+    left: 50%;
+    font-size: clamp(96px, 28vw, 148px);
+    opacity: 0.9;
+  }
+
+  .winShowcaseProgress {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .winShowcaseNav {
+    gap: 14px;
+  }
+
+  .winShowcaseMedia {
+    width: min(100%, 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .winShowcaseCta,
+  .winShowcaseNavBtn,
+  .winShowcaseMedia,
+  .winShowcaseProgressFill {
+    transition: none !important;
+  }
+
+  .winShowcaseCta:hover,
+  .winShowcaseNavBtn:hover,
+  .winShowcaseMedia:hover {
+    transform: none !important;
+  }
+}

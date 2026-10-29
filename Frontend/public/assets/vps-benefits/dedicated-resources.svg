@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 480" fill="none" role="img" aria-label="Dedicated Resources Enterprise Server Chassis and Isolated Hardware">
+  <defs>
+    <!-- Background Canvas Gradients -->
+    <linearGradient id="drBaseGrad" x1="40" y1="20" x2="610" y2="460" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#EAF2ED" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#F6F9F7" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="drChassisBezel" x1="140" y1="80" x2="480" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#285644"/>
+      <stop offset="40%" stop-color="#1B3D30"/>
+      <stop offset="100%" stop-color="#0F241C"/>
+    </linearGradient>
+    <linearGradient id="drDriveBayGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#163026"/>
+      <stop offset="100%" stop-color="#1E4033"/>
+    </linearGradient>
+    <linearGradient id="drLimeGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4FF66"/>
+      <stop offset="100%" stop-color="#AEE82C"/>
+    </linearGradient>
+    <linearGradient id="drGoldPin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="100%" stop-color="#CCA038"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="drShadowSm" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#152B23" flood-opacity="0.08"/>
+    </filter>
+    <filter id="drShadowMd" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#152B23" flood-opacity="0.14"/>
+    </filter>
+    <filter id="drShadowLg" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#0E2019" flood-opacity="0.22"/>
+    </filter>
+    <filter id="drNeonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop Panel -->
+  <g filter="url(#drShadowSm)">
+    <rect x="44" y="24" width="562" height="236" rx="20" fill="url(#drBaseGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <!-- Dashboard Window Controls -->
+    <circle cx="74" cy="48" r="5" fill="#E26D5C" opacity="0.85"/>
+    <circle cx="92" cy="48" r="5" fill="#E8B949" opacity="0.85"/>
+    <circle cx="110" cy="48" r="5" fill="#52B788" opacity="0.85"/>
+    <text x="130" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#20372F" opacity="0.75">bare-metal-isolation / dedicated-host-node-01</text>
+    <!-- Grid -->
+    <path d="M44 70h562" stroke="#D3E2D8" stroke-width="1" stroke-opacity="0.6"/>
+  </g>
+
+  <!-- Enterprise 2U Rackmount Server Chassis -->
+  <g transform="translate(130, 88)" filter="url(#drShadowLg)">
+    <!-- Chassis Main Housing -->
+    <rect width="364" height="276" rx="18" fill="url(#drChassisBezel)" stroke="#3E755F" stroke-width="1.5"/>
+
+    <!-- Left Rackmount Ear -->
+    <path d="M0 24 h-18 v228 h18" fill="#132720" stroke="#2D5A48" stroke-width="1.2"/>
+    <circle cx="-9" cy="46" r="4.5" fill="#0E1B16" stroke="#487864" stroke-width="1"/>
+    <circle cx="-9" cy="230" r="4.5" fill="#0E1B16" stroke="#487864" stroke-width="1"/>
+
+    <!-- Right Rackmount Ear -->
+    <path d="M364 24 h18 v228 h-18" fill="#132720" stroke="#2D5A48" stroke-width="1.2"/>
+    <circle cx="373" cy="46" r="4.5" fill="#0E1B16" stroke="#487864" stroke-width="1"/>
+    <circle cx="373" cy="230" r="4.5" fill="#0E1B16" stroke="#487864" stroke-width="1"/>
+
+    <!-- Top Chassis Ventilation Hex Grille -->
+    <g opacity="0.45">
+      <line x1="24" y1="18" x2="340" y2="18" stroke="#52A582" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <line x1="24" y1="24" x2="340" y2="24" stroke="#52A582" stroke-width="1.5" stroke-dasharray="3 3"/>
+    </g>
+
+    <!-- Hot-Swap Drive Bays (3 Vertical Bays) -->
+    <!-- Bay 1 -->
+    <g transform="translate(20, 36)">
+      <rect width="324" height="64" rx="8" fill="url(#drDriveBayGrad)" stroke="#27503F" stroke-width="1"/>
+      <!-- Ejector Lever -->
+      <rect x="12" y="14" width="14" height="36" rx="3" fill="#0C1B14" stroke="#3A6C56" stroke-width="1"/>
+      <circle cx="19" cy="24" r="2.5" fill="#C9FB50" filter="url(#drNeonGlow)"/>
+      <circle cx="19" cy="38" r="2.5" fill="#3D8567"/>
+      <!-- Drive Bay Label -->
+      <text x="38" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.5" fill="#FFFFFF">BAY 01 — NVME ENTERPRISE U.2</text>
+      <!-- Activity Visualizer Line -->
+      <rect x="38" y="38" width="180" height="7" rx="3.5" fill="#11241C"/>
+      <rect x="38" y="38" width="145" height="7" rx="3.5" fill="url(#drLimeGlow)"/>
+      <!-- Honeycomb Vents -->
+      <circle cx="270" cy="32" r="2" fill="#3E755F"/>
+      <circle cx="280" cy="32" r="2" fill="#3E755F"/>
+      <circle cx="290" cy="32" r="2" fill="#3E755F"/>
+      <circle cx="300" cy="32" r="2" fill="#3E755F"/>
+      <circle cx="275" cy="40" r="2" fill="#3E755F"/>
+      <circle cx="285" cy="40" r="2" fill="#3E755F"/>
+      <circle cx="295" cy="40" r="2" fill="#3E755F"/>
+      <circle cx="305" cy="40" r="2" fill="#3E755F"/>
+    </g>
+
+    <!-- Bay 2 -->
+    <g transform="translate(20, 108)">
+      <rect width="324" height="64" rx="8" fill="url(#drDriveBayGrad)" stroke="#27503F" stroke-width="1"/>
+      <rect x="12" y="14" width="14" height="36" rx="3" fill="#0C1B14" stroke="#3A6C56" stroke-width="1"/>
+      <circle cx="19" cy="24" r="2.5" fill="#C9FB50" filter="url(#drNeonGlow)"/>
+      <circle cx="19" cy="38" r="2.5" fill="#3D8567"/>
+      <text x="38" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.5" fill="#FFFFFF">BAY 02 — NVME ENTERPRISE U.2</text>
+      <rect x="38" y="38" width="180" height="7" rx="3.5" fill="#11241C"/>
+      <rect x="38" y="38" width="162" height="7" rx="3.5" fill="url(#drLimeGlow)"/>
+      <circle cx="270" cy="32" r="2" fill="#3E755F"/>
+      <circle cx="280" cy="32" r="2" fill="#3E755F"/>
+      <circle cx="290" cy="32" r="2" fill="#3E755F"/>
+      <circle cx="300" cy="32" r="2" fill="#3E755F"/>
+      <circle cx="275" cy="40" r="2" fill="#3E755F"/>
+      <circle cx="285" cy="40" r="2" fill="#3E755F"/>
+      <circle cx="295" cy="40" r="2" fill="#3E755F"/>
+      <circle cx="305" cy="40" r="2" fill="#3E755F"/>
+    </g>
+
+    <!-- Bay 3 / Management Module -->
+    <g transform="translate(20, 180)">
+      <rect width="324" height="64" rx="8" fill="url(#drDriveBayGrad)" stroke="#27503F" stroke-width="1"/>
+      <rect x="12" y="14" width="14" height="36" rx="3" fill="#0C1B14" stroke="#3A6C56" stroke-width="1"/>
+      <circle cx="19" cy="24" r="2.5" fill="#C9FB50" filter="url(#drNeonGlow)"/>
+      <circle cx="19" cy="38" r="2.5" fill="#3D8567"/>
+      <text x="38" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.5" fill="#FFFFFF">IPMI / REDUNDANT POWER / BMC</text>
+      <rect x="38" y="38" width="180" height="7" rx="3.5" fill="#11241C"/>
+      <rect x="38" y="38" width="110" height="7" rx="3.5" fill="#52B788"/>
+      <!-- Status Beacon -->
+      <rect x="260" y="22" width="52" height="20" rx="4" fill="#193B2E" stroke="#3E755F" stroke-width="1"/>
+      <text x="286" y="35" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="800" fill="#C9FB50">ACTIVE</text>
+    </g>
+
+    <!-- Bottom Status Bar -->
+    <line x1="20" y1="256" x2="344" y2="256" stroke="#25473B" stroke-width="1"/>
+    <text x="30" y="268" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#7FA995">RUNRACKS R-SERIES · GENUINE ISOLATION</text>
+  </g>
+
+  <!-- Right Floating Silicon CPU Die Card -->
+  <g transform="translate(470, 110)" filter="url(#drShadowMd)">
+    <rect width="124" height="114" rx="16" fill="#152B23" stroke="#2D5A48" stroke-width="1.5"/>
+    <!-- Outer Contact Array -->
+    <rect x="12" y="12" width="100" height="90" rx="10" fill="#0F221B" stroke="#244537" stroke-width="1"/>
+    <rect x="22" y="20" width="80" height="54" rx="6" fill="#1E4334" stroke="#487864" stroke-width="1"/>
+    <text x="62" y="44" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#C9FB50">DEDICATED</text>
+    <text x="62" y="58" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" letter-spacing="1" fill="#E0EDE5">CPU CORES</text>
+    <!-- Traces -->
+    <line x1="32" y1="84" x2="92" y2="84" stroke="#3E755F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="42" y1="90" x2="82" y2="90" stroke="#C9FB50" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Right Floating RAM Module Card -->
+  <g transform="translate(478, 246)" filter="url(#drShadowMd)">
+    <rect width="120" height="92" rx="14" fill="#FFFFFF" stroke="#DCE8E0" stroke-width="1.5"/>
+    <rect x="12" y="14" width="96" height="32" rx="6" fill="#163026"/>
+    <text x="60" y="34" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#C9FB50">DDR5 ECC</text>
+    <text x="14" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#3D8567">UNSHARED MEMORY</text>
+    <text x="14" y="76" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" font-weight="600" fill="#6A857A">Zero Cache Contention</text>
+  </g>
+
+  <!-- Left Floating 100% Isolation Badge -->
+  <g transform="translate(56, 310)" filter="url(#drShadowMd)">
+    <rect width="186" height="104" rx="16" fill="#FFFFFF" stroke="#DCE8E0" stroke-width="1.5"/>
+    <!-- Padlock Shield Icon -->
+    <g transform="translate(18, 16)">
+      <rect width="36" height="36" rx="10" fill="#1B3D30"/>
+      <!-- Lock Shackle -->
+      <path d="M14 18v-4a4 4 0 0 1 8 0v4" stroke="#C9FB50" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- Lock Body -->
+      <rect x="11" y="17" width="14" height="11" rx="2.5" fill="#C9FB50"/>
+      <circle cx="18" cy="22.5" r="1.5" fill="#1B3D30"/>
+    </g>
+    <text x="62" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800" fill="#20372F">100% Dedicated</text>
+    <text x="62" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#5F7A6E">Guaranteed Hardware</text>
+
+    <line x1="18" y1="64" x2="168" y2="64" stroke="#EBF2ED" stroke-width="1"/>
+
+    <text x="18" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#3D8567">✓ NO OVERCOMMITMENT</text>
+    <text x="18" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#3D8567">✓ DEDICATED NVME I/O</text>
+  </g>
+</svg>

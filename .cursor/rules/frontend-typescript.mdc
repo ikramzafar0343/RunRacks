@@ -1,0 +1,15 @@
+---
+description: Strict TypeScript and trust-boundary validation
+globs: Frontend/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Frontend TypeScript
+
+Source: `Rules/FRONTEND_PRODUCTION_ENGINEERING_RULES.md` §6.
+
+- Keep `strict`, `noUncheckedIndexedAccess`, and `exactOptionalPropertyTypes` clean. Zero TS/lint diagnostics.
+- No `any`, cast chains, `@ts-ignore`, or broad non-null assertions to hide bad types.
+- Treat untrusted input as `unknown` until validated (env, params, forms, JSON, upstream).
+- Export explicit types at public boundaries; use discriminated unions for exclusive states.
+- Do not hide required-field defects with `?.`, `?? ''`, or fabricated defaults.

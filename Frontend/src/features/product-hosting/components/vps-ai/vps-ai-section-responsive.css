@@ -1,0 +1,78 @@
+@media (max-width: 1199px) {
+  .vpsAiCard {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 28rem);
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    min-height: 0;
+  }
+
+  .vpsAiCopy {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .vpsAiCard {
+    grid-template-columns: 1fr;
+    padding: 1.15rem;
+    border-radius: 1.25rem;
+  }
+
+  .vpsAiCopyColumn {
+    padding-top: 0.25rem;
+  }
+
+  .vpsAiCopy {
+    margin-top: 1.5rem;
+    max-width: none;
+  }
+
+  .vpsAiDemo {
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .vpsAiSection {
+    padding: 1rem;
+  }
+
+  .vpsAiCard {
+    padding: 1.125rem;
+    border-radius: 1.25rem;
+  }
+
+  .vpsAiCopy h2 {
+    font-size: 1.75rem;
+  }
+
+  .vpsAiCopy p {
+    font-size: 0.9375rem;
+  }
+
+  .vpsAiTerminalBody {
+    font-size: 0.5625rem;
+  }
+
+  .vpsAiBubble {
+    font-size: 0.625rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vpsAiTab,
+  .vpsAiBubble {
+    transition: none;
+  }
+
+  .vpsAiTerminalCursor,
+  .vpsAiAgentCursor {
+    animation: none;
+    opacity: 1;
+  }
+
+  .vpsAiTypingDots span {
+    animation: none;
+    opacity: 0.7;
+  }
+}

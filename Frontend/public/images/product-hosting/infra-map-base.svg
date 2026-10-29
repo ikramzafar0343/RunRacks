@@ -1,0 +1,42 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" fill="none" aria-hidden="true">
+  <!-- Simplified equirectangular landmasses for Sage network map (project-owned). -->
+  <defs>
+    <linearGradient id="infraLandFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a3d32" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0c1a14" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+  <!-- North America -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.35" stroke-width="1.2" d="M95 95 L140 70 L210 55 L280 70 L320 95 L340 130 L310 175 L280 200 L250 220 L200 230 L160 210 L120 180 L100 140 Z"/>
+  <!-- Greenland -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.35" stroke-width="1" d="M380 45 L420 40 L445 55 L430 85 L395 90 L370 70 Z"/>
+  <!-- South America -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.35" stroke-width="1.2" d="M250 245 L290 240 L310 280 L300 340 L280 400 L255 430 L235 400 L240 330 L230 280 Z"/>
+  <!-- Europe -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.35" stroke-width="1.2" d="M470 85 L510 75 L545 80 L565 100 L555 130 L530 145 L495 140 L475 120 Z"/>
+  <!-- Africa -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.35" stroke-width="1.2" d="M490 155 L545 145 L575 180 L580 250 L555 320 L520 340 L490 300 L485 220 Z"/>
+  <!-- Middle East / Arabia -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.3" stroke-width="1" d="M580 160 L620 155 L640 185 L625 210 L590 200 Z"/>
+  <!-- Asia -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.35" stroke-width="1.2" d="M560 70 L640 55 L740 60 L820 80 L880 110 L900 150 L870 190 L820 210 L760 220 L700 200 L650 180 L600 150 L575 110 Z"/>
+  <!-- SE Asia / Indonesia hint -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.3" stroke-width="1" d="M760 240 L800 235 L830 250 L810 270 L770 265 Z"/>
+  <!-- Japan -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.35" stroke-width="1" d="M860 145 L880 140 L890 165 L875 175 L855 160 Z"/>
+  <!-- Australia -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.35" stroke-width="1.2" d="M820 320 L880 310 L920 330 L930 370 L890 395 L840 385 L815 350 Z"/>
+  <!-- Antarctica -->
+  <path fill="url(#infraLandFill)" stroke="#6fbf8a" stroke-opacity="0.25" stroke-width="1" d="M80 455 L250 445 L500 450 L750 445 L920 455 L920 490 L80 490 Z"/>
+  <!-- Light triangulation strokes (decorative, inside land) -->
+  <g stroke="#8fd4a4" stroke-opacity="0.18" stroke-width="0.7">
+    <path d="M140 90 L220 100 L180 150 Z"/>
+    <path d="M220 100 L280 90 L260 150 Z"/>
+    <path d="M260 150 L300 180 L240 200 Z"/>
+    <path d="M500 95 L540 100 L520 130 Z"/>
+    <path d="M520 160 L560 180 L530 220 Z"/>
+    <path d="M650 90 L720 100 L680 140 Z"/>
+    <path d="M720 100 L800 120 L760 160 Z"/>
+    <path d="M840 330 L900 340 L870 375 Z"/>
+  </g>
+</svg>

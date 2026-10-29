@@ -1,0 +1,15 @@
+---
+description: Nourd-only fonts and Tailwind styling
+globs: Frontend/**
+alwaysApply: false
+---
+
+# Fonts and styling
+
+Source: `Rules/FRONTEND_PRODUCTION_ENGINEERING_RULES.md` §§18, 21 + `Rules/` font files.
+
+- Single styling strategy: Tailwind + CSS tokens in `Frontend/src/styles/`.
+- Load **Nourd only** with `next/font/local` from `Frontend/src/styles/fonts/` (`font-sans` / `--font-nourd`). Use Nourd for all UI and headings.
+- Do not introduce Bael, Inter, Geist, Roboto, Arial, or system stacks as primary type.
+- Prefer CSS for simple motion; use GSAP (`gsap` + `@gsap/react`) for orchestration. Clean up on unmount. Respect `prefers-reduced-motion`.
+- Color theme is **Sage & Ink** in `Frontend/src/styles/tokens.css` (light + `prefers-color-scheme: dark`). Use semantic tokens (`canvas`, `surface`, `heading`, `brand`, `brand-hover`, `brand-contrast`, `accent-soft`, `body`, `muted`, `border`, `input`, `selected`, `success`, `error`) — do not invent alternate brand palettes.

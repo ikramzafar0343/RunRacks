@@ -1,0 +1,217 @@
+/* Article detail — shell, grid, cover, TOC rail, end modules */
+
+.articlePage {
+  --article-max: 77.5rem; /* 1240px */
+  --article-gutter: clamp(1rem, 3.5vw, 3rem);
+  --article-header-max: 61.25rem; /* 980px */
+  --article-cover-max: 70rem; /* 1120px */
+  --article-read: 45rem; /* 720px */
+  --article-toc: 13.5rem; /* 216px */
+  --article-header-offset: 6.5rem;
+  width: 100%;
+  background: transparent;
+  color: var(--color-body);
+}
+
+.articleInner {
+  width: min(100% - (var(--article-gutter) * 2), var(--article-max));
+  margin-inline: auto;
+  padding-block: 0 clamp(3rem, 6vw, 5rem);
+}
+
+.articleBreadcrumbs {
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 2.5rem) 0 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-muted);
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.45rem;
+}
+
+.articleBreadcrumbs a {
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.articleBreadcrumbs a:hover,
+.articleBreadcrumbs a:focus-visible {
+  color: var(--color-brand);
+  outline: none;
+  text-decoration: underline;
+}
+
+.articleBreadcrumbs [aria-current="page"] {
+  color: var(--color-body);
+  max-width: 28ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.articleBreadcrumbs .articleCrumbSep {
+  color: var(--color-border);
+  user-select: none;
+}
+
+.articleHeaderBand {
+  width: min(100%, var(--article-header-max));
+  margin-inline: auto;
+  padding-block: clamp(2rem, 4vw, 3.75rem) clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+.articleCoverBand {
+  width: min(100%, var(--article-cover-max));
+  margin-inline: auto;
+  margin-bottom: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.articleCover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: var(--color-accent-soft);
+}
+
+.articleCover img {
+  object-fit: cover;
+}
+
+.articleCoverCaption {
+  margin: 0.5rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.articleReadingGrid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.articleTocAside {
+  display: none;
+}
+
+.articleTocMobile {
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 1100px) {
+  .articleReadingGrid {
+    grid-template-columns: minmax(12.5rem, var(--article-toc)) minmax(
+        0,
+        var(--article-read)
+      );
+    column-gap: clamp(3rem, 5vw, 4.5rem);
+    justify-content: center;
+  }
+
+  .articleTocMobile {
+    display: none;
+  }
+
+  .articleTocAside {
+    display: block;
+    position: sticky;
+    top: calc(var(--article-header-offset) + 1.5rem);
+    max-height: calc(100dvh - var(--article-header-offset) - 3rem);
+    overflow-y: auto;
+  }
+
+  .articleMainColumn {
+    min-width: 0;
+  }
+}
+
+.articleEnd {
+  width: min(100%, var(--article-read));
+  margin-inline: auto;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.articleBackLink {
+  display: inline-block;
+  margin-top: var(--space-4);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+.articleBackLink:hover,
+.articleBackLink:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.articleRelated {
+  width: 100%;
+  margin-top: clamp(3rem, 6vw, 5.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.articleRelatedHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.articleRelatedHead h2 {
+  margin: 0;
+  font-size: clamp(1.625rem, 3vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.articleRelatedHead a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+.articleRelatedHead a:hover,
+.articleRelatedHead a:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.articleTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.625rem;
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.articleTags li {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-body);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .articlePage {
+    scroll-behavior: auto;
+  }
+}

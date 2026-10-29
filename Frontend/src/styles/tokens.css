@@ -1,0 +1,158 @@
+/*
+ * Design tokens — Sage & Ink
+ * Light: warm paper. Dark: ink forest.
+ * Lime is the action color. It does not flood the page.
+ */
+
+:root {
+  color-scheme: light;
+
+  --color-canvas: #f3f1ea;
+  --color-surface: #fbfaf6;
+  --color-input: #ffffff;
+  --color-heading: #1c332b;
+  --color-body: #3a4a42;
+  --color-muted: #5e6d65;
+  --color-brand: #2c6a52;
+  --color-brand-hover: #245844;
+  --color-brand-contrast: #ffffff;
+  --color-accent-soft: #e6eee8;
+  --color-lime: #c6f24c;
+  --color-on-lime: #0b1a12;
+  --color-selected: #2c6a52;
+  --color-border: #d7e0d8;
+  --color-success: #1f6b48;
+  --color-error: #b42318;
+
+  /* Featured / product panels — deep forest on paper */
+  --color-inverse: #101c17;
+  --color-on-inverse: #f2f6f1;
+  --color-inverse-muted: color-mix(in srgb, #f2f6f1 68%, transparent);
+  --color-inverse-accent: #8fceb0;
+  --color-inverse-border: color-mix(in srgb, #f2f6f1 12%, transparent);
+
+  /* Faint edge glow — the page stays paper */
+  --gradient-canvas-glow:
+    radial-gradient(
+      ellipse 42% 32% at 0% 0%,
+      color-mix(in srgb, var(--color-brand) 9%, transparent) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 36% 28% at 100% 12%,
+      color-mix(in srgb, var(--color-lime) 12%, transparent) 0%,
+      transparent 68%
+    );
+  --gradient-canvas:
+    var(--gradient-canvas-glow),
+    linear-gradient(var(--color-canvas), var(--color-canvas));
+
+  /* Hero only — same family, a little stronger */
+  --gradient-hero:
+    radial-gradient(
+      ellipse 70% 50% at 50% 18%,
+      color-mix(in srgb, var(--color-brand) 10%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-canvas) 0%,
+      color-mix(in srgb, var(--color-brand) 6%, var(--color-canvas)) 55%,
+      color-mix(in srgb, var(--color-lime) 14%, var(--color-canvas)) 100%
+    );
+
+  /* Near-solid surface, small sage corner */
+  --gradient-card:
+    radial-gradient(
+      ellipse 55% 45% at 0% 0%,
+      color-mix(in srgb, var(--color-accent-soft) 90%, var(--color-surface)) 0%,
+      transparent 64%
+    ),
+    var(--color-surface);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+  --radius-sm: 0.25rem;
+  --motion-fast: 150ms;
+  --motion-base: 280ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --color-canvas: #0c1411;
+  --color-surface: #16211c;
+  --color-heading: #f2f6f1;
+  --color-brand: #8fceb0;
+  --color-brand-hover: #b7e6cf;
+  --color-brand-contrast: #0c1411;
+  --color-accent-soft: #24352c;
+  --color-lime: #c6f24c;
+  --color-on-lime: #0b1a12;
+  --color-body: #d5e2da;
+  --color-muted: #b7c8bc;
+  --color-border: #2a3d34;
+  --color-input: #121c18;
+  --color-selected: #8fceb0;
+  --color-success: #9ed9bc;
+  --color-error: #ff8b83;
+
+  /* Lifted panel + lime hairline so featured still reads on ink */
+  --color-inverse: #1c2e26;
+  --color-on-inverse: #f2f6f1;
+  --color-inverse-muted: color-mix(in srgb, #f2f6f1 68%, transparent);
+  --color-inverse-accent: #c6f24c;
+  --color-inverse-border: color-mix(
+    in srgb,
+    var(--color-lime) 55%,
+    transparent
+  );
+
+  --gradient-canvas-glow:
+    radial-gradient(
+      ellipse 40% 30% at 8% 0%,
+      color-mix(in srgb, var(--color-brand) 12%, transparent) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 32% 26% at 100% 20%,
+      color-mix(in srgb, var(--color-lime) 6%, transparent) 0%,
+      transparent 68%
+    );
+  --gradient-canvas:
+    var(--gradient-canvas-glow),
+    linear-gradient(var(--color-canvas), var(--color-canvas));
+
+  --gradient-hero:
+    radial-gradient(
+      ellipse 60% 45% at 50% 12%,
+      color-mix(in srgb, var(--color-brand) 14%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-canvas) 0%,
+      color-mix(in srgb, var(--color-brand) 10%, var(--color-canvas)) 60%,
+      color-mix(in srgb, var(--color-lime) 6%, var(--color-canvas)) 100%
+    );
+
+  --gradient-card:
+    radial-gradient(
+      ellipse 50% 40% at 0% 0%,
+      color-mix(in srgb, var(--color-brand) 16%, transparent) 0%,
+      transparent 62%
+    ),
+    var(--color-surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+  }
+}

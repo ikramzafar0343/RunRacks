@@ -1,0 +1,241 @@
+/*
+ * Trust timeline — avatars + soft rings on a single connector (ref match).
+ */
+
+.trustTimeline {
+  position: relative;
+  border-top: 1px solid var(--trust-line);
+  min-height: 150px;
+  padding-bottom: 48px;
+}
+
+.trustDots {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  width: min(calc(100% - 40px), 1100px);
+  height: 0;
+  pointer-events: none;
+}
+
+.trustDot {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid
+    color-mix(in srgb, var(--trust-line) 90%, var(--trust-muted));
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px var(--color-canvas);
+}
+
+html.dark .trustDot {
+  background: var(--color-surface);
+  box-shadow: 0 0 0 2px var(--color-canvas);
+}
+
+/* Midpoints between the 4 metric columns */
+.trustDot:nth-child(1) {
+  left: 25%;
+}
+.trustDot:nth-child(2) {
+  left: 50%;
+}
+.trustDot:nth-child(3) {
+  left: 75%;
+}
+
+.trustMetricsGrid {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 40px), 1100px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.trustMetric {
+  position: relative;
+  padding: 52px 8px 12px;
+  text-align: center;
+}
+
+.trustMarker {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+}
+
+.trustMetric:not(:first-child) .trustMarker {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--trust-ring);
+  background: color-mix(in srgb, var(--trust-icon-bg) 70%, #fff);
+  box-shadow:
+    0 0 0 3px var(--trust-bg),
+    inset 0 0 0 1px color-mix(in srgb, #fff 70%, transparent);
+}
+
+html.dark .trustMetric:not(:first-child) .trustMarker {
+  background: color-mix(
+    in srgb,
+    var(--trust-icon-bg) 88%,
+    var(--color-surface)
+  );
+  box-shadow:
+    0 0 0 3px var(--trust-bg),
+    inset 0 0 0 1px color-mix(in srgb, var(--color-surface) 40%, transparent);
+}
+
+.trustMetric:first-child .trustMarker {
+  width: auto;
+  height: auto;
+  border: 0;
+  background: transparent;
+  padding-inline: 2px;
+}
+
+.trustMetric:hover .trustMarker,
+.trustMetric:focus-within .trustMarker {
+  transform: translate(-50%, calc(-50% - 2px));
+}
+
+.trustIconDisk {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--trust-accent);
+}
+
+.trustIconDisk svg {
+  width: 22px;
+  height: 22px;
+}
+
+.trustAvatars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trustAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  object-fit: cover;
+  object-position: center 22%;
+  margin-left: -12px;
+  background: var(--trust-icon-bg);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--trust-line) 55%, transparent);
+}
+
+html.dark .trustAvatar {
+  border-color: var(--color-surface);
+}
+
+.trustAvatar:first-child {
+  margin-left: 0;
+}
+
+.trustAvatar:nth-child(1) {
+  z-index: 3;
+}
+.trustAvatar:nth-child(2) {
+  z-index: 2;
+}
+.trustAvatar:nth-child(3) {
+  z-index: 1;
+}
+
+.trustAvatarInitials {
+  display: grid;
+  place-items: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--trust-accent);
+  letter-spacing: -0.02em;
+}
+
+.trustValue {
+  margin: 0;
+  color: var(--trust-ink);
+  font-size: 1.5625rem;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.trustCaption {
+  margin: 5px 0 0;
+  color: var(--trust-text-secondary);
+  font-size: 0.78125rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 767px) {
+  .trustTimeline {
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+
+  .trustDots {
+    display: none;
+  }
+
+  .trustMetricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 32px;
+    width: min(calc(100% - 32px), 1100px);
+  }
+
+  .trustMetric {
+    padding-top: 44px;
+  }
+
+  .trustAvatar {
+    width: 34px;
+    height: 34px;
+    margin-left: -10px;
+  }
+
+  .trustMetric:not(:first-child) .trustMarker {
+    width: 48px;
+    height: 48px;
+  }
+
+  .trustValue {
+    font-size: 1.375rem;
+  }
+
+  .trustCaption {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .trustMetricsGrid {
+    gap: 16px;
+  }
+
+  .trustValue {
+    font-size: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trustMetric:hover .trustMarker,
+  .trustMetric:focus-within .trustMarker {
+    transform: translate(-50%, -50%);
+  }
+}

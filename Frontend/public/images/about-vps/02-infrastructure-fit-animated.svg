@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">Infrastructure in sync — RunRacks VPS</title><desc id="desc">An elegant articulated robotic arm aligns a luminous connector piece above modular server infrastructure.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#003F31"/><stop offset="0.43" stop-color="#007B54"/><stop offset="1" stop-color="#033B32"/>
+    </linearGradient>
+    <radialGradient id="ambient" cx="48%" cy="38%" r="66%">
+      <stop offset="0" stop-color="#73FBC2" stop-opacity=".82"/>
+      <stop offset=".33" stop-color="#25D99B" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#00B779" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="highlight" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#DEFFE0"/><stop offset=".32" stop-color="#91FFC0"/><stop offset=".7" stop-color="#29CA80"/><stop offset="1" stop-color="#07875D"/>
+    </linearGradient>
+    <linearGradient id="highlightDark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#A8FFBF"/><stop offset=".45" stop-color="#2CD883"/><stop offset="1" stop-color="#005C43"/>
+    </linearGradient>
+    <linearGradient id="pearl" x1=".13" y1=".06" x2=".85" y2="1">
+      <stop stop-color="#FFFFFF"/><stop offset=".38" stop-color="#E9FFF6"/><stop offset=".74" stop-color="#B5DDD2"/><stop offset="1" stop-color="#739F94"/>
+    </linearGradient>
+    <linearGradient id="pearlDark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#D7F8E9"/><stop offset=".48" stop-color="#9AC3B9"/><stop offset="1" stop-color="#4B8A7A"/>
+    </linearGradient>
+    <linearGradient id="topFace" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#168A62"/><stop offset=".43" stop-color="#2DC68A"/><stop offset="1" stop-color="#03543F"/>
+    </linearGradient>
+    <linearGradient id="frontFace" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#0A8058"/><stop offset=".43" stop-color="#05654B"/><stop offset="1" stop-color="#002B27"/>
+    </linearGradient>
+    <linearGradient id="sideFace" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#004F3D"/><stop offset=".7" stop-color="#003D34"/><stop offset="1" stop-color="#002A29"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#54ED9C" stop-opacity="0"/><stop offset=".55" stop-color="#B5FFC0"/><stop offset="1" stop-color="#44EBA3" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="stream" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#7CFFAE" stop-opacity="0"/><stop offset=".5" stop-color="#D6FFD4"/><stop offset="1" stop-color="#7CFFAE" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="sphere" cx="30%" cy="19%" r="80%">
+      <stop stop-color="#F1FFF0"/><stop offset=".25" stop-color="#AAFFBD"/><stop offset=".61" stop-color="#3CDB85"/><stop offset="1" stop-color="#006849"/>
+    </radialGradient>
+    <radialGradient id="whiteSphere" cx="28%" cy="22%" r="79%">
+      <stop stop-color="#FFFFFF"/><stop offset=".43" stop-color="#F2FFF8"/><stop offset=".79" stop-color="#B8DDD3"/><stop offset="1" stop-color="#6D9E92"/>
+    </radialGradient>
+    <filter id="blur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="smallBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#001E1D" flood-opacity=".35"/>
+    </filter>
+    <clipPath id="rounded"><rect width="600" height="900" rx="28"/></clipPath>
+  </defs>
+  <style>
+    .rise{animation:rise 6.8s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+    .hover{animation:hover 5.2s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+    .hover-slow{animation:hover 7.6s ease-in-out -2s infinite;transform-origin:center;transform-box:fill-box}
+    .pulse{animation:pulse 3.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+    .twinkle{animation:twinkle 4s ease-in-out infinite}
+    .trail{stroke-dasharray:15 27;animation:trail 9s linear infinite}
+    .trace{stroke-dasharray:5 11;animation:trail 7s linear infinite}
+    .grip{animation:grip 6s ease-in-out infinite;transform-origin:360px 342px}
+    @keyframes rise{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes pulse{0%,100%{opacity:.45;transform:scale(.94)}50%{opacity:1;transform:scale(1.07)}}
+    @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.86}}
+    @keyframes trail{to{stroke-dashoffset:-252}}
+    @keyframes grip{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-2deg)}}
+    @media(prefers-reduced-motion:reduce){.rise,.hover,.hover-slow,.pulse,.twinkle,.trail,.trace,.grip{animation:none!important}}
+  </style>
+
+<g clip-path="url(#rounded)">
+  <rect width="600" height="900" fill="url(#bg)"/>
+  <rect width="600" height="900" fill="url(#ambient)"/>
+  <ellipse cx="300" cy="803" rx="295" ry="130" fill="#002D27" opacity=".36" filter="url(#blur)"/>
+  <path d="M-110 147 C42 172 110 130 194 64 S393 -25 584 -82" stroke="#C9FFD6" stroke-opacity=".14" stroke-width="22" filter="url(#smallBlur)"/>
+  <path d="M-100 144 C53 175 121 117 194 61 S385 -22 587 -80" stroke="url(#stream)" stroke-opacity=".73" stroke-width="2.7"/>
+  <path d="M610 121 C519 229 491 289 547 385 S643 491 643 527" stroke="#A2FFBE" stroke-opacity=".22" stroke-width="2"/>
+  <path d="M-83 696 C57 622 91 597 118 525" stroke="#6FFFAF" stroke-opacity=".22" stroke-width="2"/>
+  <g fill="#C7FFE2"><circle cx="80" cy="260" r="2.1" opacity=".53"/><circle cx="511" cy="190" r="2.4" opacity=".38"/><circle cx="467" cy="358" r="1.8" opacity=".43"/><circle cx="103" cy="437" r="1.5" opacity=".48"/></g>
+
+  <!-- Architectural guide-lines and atmospheric radial halo. -->
+  <ellipse cx="317" cy="490" rx="217" ry="196" stroke="#B4FFD1" stroke-opacity=".13" stroke-width="1.7"/>
+  <ellipse cx="317" cy="490" rx="163" ry="147" stroke="#B4FFD1" stroke-opacity=".13" stroke-width="1.2" stroke-dasharray="4 13"/>
+  <path d="M37 335 C155 284 219 271 336 252" stroke="#C3FFD6" stroke-opacity=".08" stroke-width="2"/>
+  <path d="M485 115 C508 155 540 190 594 201" stroke="#99FFC4" stroke-opacity=".24"/>
+  <ellipse cx="317" cy="791" rx="260" ry="69" fill="#001E1D" opacity=".55" filter="url(#blur)"/>
+
+  <!-- Enclosed modular server cubes; engineering reference, not UI text. -->
+  <g filter="url(#shadow)">
+    <!-- left module -->
+    <path d="M28 648 156 601 276 666 149 714Z" fill="url(#topFace)"/>
+    <path d="M28 648 149 714 149 894 28 826Z" fill="url(#sideFace)"/>
+    <path d="M149 714 276 666 276 844 149 894Z" fill="url(#frontFace)"/>
+    <path d="M35 648 156 605 268 668" stroke="#ADFFC7" stroke-opacity=".62" stroke-width="2.4"/>
+    <path d="M178 766 235 745" stroke="#1AC587" stroke-width="5" opacity=".53" stroke-linecap="round"/>
+    <path d="M178 787 218 773" stroke="#3CE7A4" stroke-width="5" opacity=".45" stroke-linecap="round"/>
+    <circle cx="248" cy="749" r="4" fill="#B0FFBD"/>
+    <!-- right module -->
+    <path d="M322 636 452 593 585 659 454 705Z" fill="url(#topFace)"/>
+    <path d="M322 636 454 705 454 892 322 824Z" fill="url(#sideFace)"/>
+    <path d="M454 705 585 659 585 842 454 892Z" fill="url(#frontFace)"/>
+    <path d="M328 637 452 598 578 661" stroke="#ADFFC7" stroke-opacity=".62" stroke-width="2.4"/>
+    <path d="M479 763 551 739" stroke="#1AC587" stroke-width="5" opacity=".53" stroke-linecap="round"/>
+    <path d="M479 787 534 767" stroke="#3CE7A4" stroke-width="5" opacity=".45" stroke-linecap="round"/>
+    <circle cx="562" cy="747" r="4" fill="#B0FFBD"/>
+    <!-- back connector port, floating between modules -->
+    <path d="M202 642 303 606 409 662 307 700Z" fill="#002C2A" stroke="#8FFFB3" stroke-opacity=".4" stroke-width="2"/>
+    <path d="M229 647 302 623 381 662 307 686Z" fill="#07553E" stroke="#5CFA9C" stroke-opacity=".6" stroke-width="1.8"/>
+    <path d="M303 629 374 664 307 682 235 650Z" fill="#002C2C"/>
+    <path d="M250 651 306 634 361 662 306 678Z" stroke="#8BFAB7" stroke-opacity=".47" stroke-width="2" stroke-dasharray="4 8"/>
+  </g>
+
+  <!-- Network pulses across architecture. -->
+  <path d="M63 776 135 811 212 782" stroke="#ADFFD0" stroke-opacity=".28" stroke-width="2"/>
+  <path d="M364 801 445 838 544 805" stroke="#ADFFD0" stroke-opacity=".26" stroke-width="2"/>
+  <path class="trace" d="M72 777 135 808 211 780" stroke="#84FFD2" stroke-opacity=".6" stroke-width="2"/>
+  <path class="trace" d="M363 800 445 837 542 805" stroke="#84FFD2" stroke-opacity=".6" stroke-width="2"/>
+
+  <!-- Floating mint connector, a readable precision-fit puzzle silhouette. -->
+  <ellipse cx="305" cy="615" rx="84" ry="22" fill="#A7FFC5" opacity=".3" filter="url(#smallBlur)" class="pulse"/>
+  <g class="hover" filter="url(#shadow)">
+    <path d="M238 433 H277 C271 421 280 409 295 409 C311 409 318 422 313 433 H369 V476 C380 469 394 476 395 490 C396 506 381 514 369 507 V559 H323 C329 572 318 584 303 583 C286 582 280 570 285 559 H238 V507 C226 515 210 505 210 490 C210 474 226 468 238 476Z" fill="#05583E" stroke="#002F2C" stroke-width="9" stroke-linejoin="round" transform="translate(0 14)"/>
+    <path d="M238 433 H277 C271 421 280 409 295 409 C311 409 318 422 313 433 H369 V476 C380 469 394 476 395 490 C396 506 381 514 369 507 V559 H323 C329 572 318 584 303 583 C286 582 280 570 285 559 H238 V507 C226 515 210 505 210 490 C210 474 226 468 238 476Z" fill="url(#highlight)" stroke="#D8FFD6" stroke-opacity=".77" stroke-width="3.2" stroke-linejoin="round"/>
+    <path d="M246 445 H277 M321 445 H356" stroke="#E8FFF1" opacity=".43" stroke-width="4" stroke-linecap="round"/>
+    <!-- Abstract concentric alignment symbol instead of text. -->
+    <circle cx="303" cy="502" r="30" stroke="#096C4F" stroke-opacity=".9" stroke-width="5"/>
+    <circle cx="303" cy="502" r="19" stroke="#08694D" stroke-opacity=".73" stroke-width="4"/>
+    <circle cx="303" cy="502" r="7" fill="#05714E"/>
+    <path d="M325 477 339 463" stroke="#E8FFDE" stroke-width="5" stroke-linecap="round"/>
+    <path d="M333 462 H342 V470" stroke="#E8FFDE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Industrial articulated placement arm, minimal and purposeful. -->
+  <g class="grip" filter="url(#shadow)">
+    <!-- Structural support, two joined machined sections -->
+    <path d="M598 166 484 233" stroke="#003E36" stroke-width="75" stroke-linecap="round"/>
+    <path d="M598 161 484 228" stroke="url(#pearlDark)" stroke-width="59" stroke-linecap="round"/>
+    <path d="M571 178 498 222" stroke="#FFFFFF" stroke-opacity=".34" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="477" cy="237" r="49" fill="#004B3A" stroke="#73EEAD" stroke-opacity=".57" stroke-width="3"/>
+    <circle cx="477" cy="237" r="32" fill="url(#pearl)"/>
+    <circle cx="477" cy="237" r="13" fill="#0A7553"/>
+    <path d="M461 267 392 344" stroke="#003B33" stroke-width="62" stroke-linecap="round"/>
+    <path d="M461 264 392 339" stroke="url(#pearl)" stroke-width="48" stroke-linecap="round"/>
+    <path d="M453 272 404 326" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="389" cy="344" r="34" fill="#005A45" stroke="#C8FFDC" stroke-opacity=".45" stroke-width="2.5"/>
+    <circle cx="389" cy="344" r="19" fill="url(#pearl)"/>
+    <!-- End effector rails; holding the connector without blending into it -->
+    <path d="M376 365 365 396" stroke="#D0F9E9" stroke-width="20" stroke-linecap="round"/>
+    <path d="M401 363 417 404" stroke="#D0F9E9" stroke-width="20" stroke-linecap="round"/>
+    <path d="M365 396 353 418" stroke="#A5D8C8" stroke-width="13" stroke-linecap="round"/>
+    <path d="M417 404 389 427" stroke="#A5D8C8" stroke-width="13" stroke-linecap="round"/>
+    <circle cx="353" cy="417" r="7" fill="#F1FFF2"/><circle cx="390" cy="426" r="7" fill="#F1FFF2"/>
+  </g>
+
+  <!-- Guided alignment beneath the piece -->
+  <path d="M307 590 V618" stroke="#DBFFCF" stroke-opacity=".55" stroke-width="2" stroke-dasharray="4 8" class="trail"/>
+  <circle cx="307" cy="611" r="7" fill="#C5FFC8" class="pulse"/>
+  <g class="twinkle" stroke="#BBFFD0" stroke-width="2" stroke-linecap="round"><path d="M93 439v15m-7-8h14"/><path d="M491 487v13m-6-6h12"/></g>
+</g></svg>

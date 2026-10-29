@@ -1,0 +1,63 @@
+.vpsProductStory {
+  --story-word-dim: color-mix(in srgb, var(--color-brand) 52%, #c8d9cc);
+  width: 100%;
+  padding: var(--vp-section-y, clamp(4.5rem, 10vw, 11rem)) 0;
+  background: var(--vp-band-canvas, var(--color-canvas));
+  color: var(--color-heading);
+}
+
+.vpsProductStoryInner {
+  width: var(--vp-editorial, min(100% - 2.5rem, 1100px));
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.75rem, 3.5vw, 2.75rem);
+  text-align: center;
+}
+
+.vpsProductStoryLabel {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-heading);
+}
+
+.vpsProductStoryCopy {
+  width: min(100%, 42rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.65rem;
+}
+
+.vpsProductStoryFill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.65rem;
+  width: 100%;
+}
+
+.vpsProductStoryFillPara {
+  margin: 0;
+  font-size: clamp(1.0625rem, 1.7vw, 1.4rem);
+  line-height: 1.5;
+  max-width: 40ch;
+  text-align: center;
+  color: var(--story-word-dim);
+}
+
+.vpsProductStoryWord {
+  display: inline;
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vpsProductStoryFillPara,
+  .vpsProductStoryWord {
+    color: var(--color-heading) !important;
+  }
+}

@@ -1,0 +1,67 @@
+name: Frontend CI
+
+on:
+  push:
+    paths:
+      - "Frontend/**"
+      - ".github/workflows/frontend-ci.yml"
+  pull_request:
+    paths:
+      - "Frontend/**"
+      - ".github/workflows/frontend-ci.yml"
+
+defaults:
+  run:
+    working-directory: Frontend
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: Frontend/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Line limit
+        run: npm run check:lines
+
+      - name: Boundaries
+        run: npm run check:boundaries
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit / seam tests
+        run: npm run test
+
+      - name: Production build
+        run: npm run build
+
+      - name: Start server
+        run: |
+          npm run start -- --hostname 127.0.0.1 --port 3000 &
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:3000/api/health >/dev/null; then
+              echo "server up"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "server failed to become ready"
+          exit 1
+
+      - name: API smoke
+        run: npm run test:smoke
+        env:
+          BASE_URL: http://127.0.0.1:3000

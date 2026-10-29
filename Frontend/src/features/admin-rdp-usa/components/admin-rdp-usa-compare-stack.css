@@ -1,0 +1,168 @@
+/**
+ * Admin RDP USA compare — piecemeal stack breakdown & responsive styles.
+ */
+
+.ardpCompareStackCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ardpCompareStack {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ardpCompareStackItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: var(--gradient-card);
+  border: 1px solid var(--cmp-border);
+  box-shadow: 0 8px 22px
+    color-mix(in srgb, var(--color-heading) 6%, transparent);
+}
+
+.ardpCompareStackItem + .ardpCompareStackItem {
+  margin-top: 1.15rem;
+}
+
+.ardpCompareStackItem + .ardpCompareStackItem::before {
+  content: "";
+  position: absolute;
+  top: -1.15rem;
+  left: 1.85rem;
+  width: 2px;
+  height: 1.15rem;
+  background: color-mix(in srgb, var(--cmp-border) 85%, var(--cmp-muted));
+}
+
+.ardpComparePlus {
+  position: absolute;
+  top: -0.85rem;
+  left: 1.45rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 0.35rem;
+  background: var(--cmp-surface);
+  border: 1px solid var(--cmp-border);
+  color: var(--cmp-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ardpCompareIcon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: var(--color-accent-soft);
+  color: var(--cmp-brand);
+}
+
+.ardpCompareStackCopy {
+  min-width: 0;
+}
+
+.ardpCompareStackTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ardpCompareStackBody {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--cmp-muted);
+}
+
+.ardpCompareTag {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--cmp-heading);
+}
+
+.ardpCompareStackFoot {
+  margin-top: 1.35rem;
+  padding-left: 0.25rem;
+}
+
+.ardpCompareStackTotal {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ardpCompareStackNote {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--cmp-muted);
+}
+
+.ardpCompareDisclaimer {
+  margin: 1.5rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--cmp-muted);
+  text-align: center;
+}
+
+@media (max-width: 1023px) {
+  .ardpCompareLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ardpCompareVs {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 0.35rem auto 0.15rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .ardpCompareStackItem {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "icon copy"
+      "icon tag";
+  }
+
+  .ardpCompareIcon {
+    grid-area: icon;
+  }
+
+  .ardpCompareStackCopy {
+    grid-area: copy;
+  }
+
+  .ardpCompareTag {
+    grid-area: tag;
+    justify-self: start;
+    margin-top: 0.15rem;
+  }
+}

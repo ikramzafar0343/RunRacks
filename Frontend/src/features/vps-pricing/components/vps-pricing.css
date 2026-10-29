@@ -1,0 +1,257 @@
+/* VPS pricing shell — theme-aware atmosphere into Story canvas. */
+
+.vpsPricingSection {
+  --vps-glow: color-mix(in srgb, var(--color-brand) 38%, transparent);
+  --vps-surface: var(--color-surface);
+  --vps-text: var(--color-heading);
+  --vps-secondary: var(--color-body);
+  --vps-muted: var(--color-muted);
+  --vps-price-note: var(--color-muted);
+  --vps-sage: var(--color-brand);
+  --vps-sage-strong: var(--color-brand-hover);
+  --vps-sage-soft: var(--color-accent-soft);
+  --vps-on-sage: var(--color-brand-contrast);
+  --vps-control-border: var(--color-border);
+  --vps-card-border: color-mix(
+    in srgb,
+    var(--color-brand) 55%,
+    var(--color-border)
+  );
+  --vps-card-radius: 12px;
+  --vps-location-bg: var(--color-accent-soft);
+  --vps-segment-fg: var(--color-heading);
+  --vps-skeleton-a: color-mix(
+    in srgb,
+    var(--color-border) 70%,
+    var(--color-surface)
+  );
+  --vps-skeleton-b: color-mix(
+    in srgb,
+    var(--color-accent-soft) 80%,
+    var(--color-border)
+  );
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding: 6.5rem 0 2.125rem;
+  color: var(--vps-text);
+  /* Transparent — body soft-mint wash; cards stay elevated */
+  background: transparent;
+}
+
+.vpsPricingSection[data-variant="embedded"] {
+  padding: 5rem 0 3.25rem;
+}
+
+.vpsPricingContainer {
+  width: min(80%, 1160px);
+  margin-inline: auto;
+  padding-inline: clamp(12px, 2vw, 0px);
+}
+
+.vpsPricingHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.vpsTitle {
+  margin: 0;
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--vps-text);
+}
+
+.vpsSubtitle {
+  margin: 1.1rem auto 0;
+  max-width: 36rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--vps-secondary);
+}
+
+.vpsDemoNotice {
+  margin: 0.65rem 0 0;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--vps-muted);
+}
+
+.vpsFilterTop {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0.6rem;
+}
+
+.vpsFamilyScroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.vpsFamilySegmented {
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: max-content;
+  min-width: 100%;
+  margin-inline: auto;
+}
+
+/* Filter track chrome — options carry their own left rails */
+.vpsFamilyScroll,
+.vpsLocationScroll,
+.vpsBillingSegmented {
+  position: relative;
+  border: 1px solid var(--vps-control-border);
+  border-radius: 10px;
+  background: var(--vps-surface);
+}
+
+.vpsFilterBottom {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 1.35rem;
+}
+
+.vpsSegmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--vps-control-border);
+  border-radius: 10px;
+  background: var(--vps-surface);
+}
+
+.vpsFamilyScroll .vpsSegmented,
+.vpsLocationScroll .vpsSegmented {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.vpsSegment {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0.45rem 0.7rem;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--vps-segment-fg);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.vpsSegment[data-active="true"] {
+  background: var(--vps-sage);
+  color: var(--vps-on-sage);
+  font-weight: 600;
+}
+
+.vpsSegment:focus-visible {
+  outline: 2px solid var(--vps-sage);
+  outline-offset: 2px;
+}
+
+.vpsBillingSegmented .vpsSegment {
+  min-width: 4.5rem;
+}
+
+.vpsSrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vpsEmpty,
+.vpsError {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--vps-secondary);
+}
+
+.vpsError {
+  color: var(--color-error, #b42318);
+}
+
+.vpsSkeletonStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.vpsSkeletonRow {
+  height: 4.9rem;
+  border-radius: var(--vps-card-radius);
+  border: 1px dashed var(--vps-card-border);
+  background: linear-gradient(
+    90deg,
+    var(--vps-skeleton-a) 0%,
+    var(--vps-skeleton-b) 45%,
+    var(--vps-skeleton-a) 100%
+  );
+  background-size: 200% 100%;
+  animation: vpsSkeletonPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes vpsSkeletonPulse {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vpsSegment,
+  .vpsSkeletonRow {
+    transition: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .vpsPricingSection:not([data-variant="embedded"]) {
+    padding-top: 5.5rem;
+  }
+
+  .vpsPricingSection[data-variant="embedded"] {
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .vpsPricingContainer {
+    width: min(94%, 1160px);
+  }
+
+  .vpsBillingSegmented {
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+}

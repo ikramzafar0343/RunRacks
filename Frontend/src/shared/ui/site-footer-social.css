@@ -1,0 +1,97 @@
+/*
+ * Footer social row — icons + flanking fade rails.
+ */
+
+.siteFooterSocialWrap {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15rem;
+  width: min(100%, 36rem);
+  margin-inline: auto;
+  margin-top: 0.35rem;
+  white-space: nowrap;
+}
+
+.siteFooterSocialRail {
+  flex: 1 1 3rem;
+  height: 1px;
+  min-width: 1.5rem;
+  max-width: 7rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--sf-rule) 22%,
+    var(--sf-rule) 78%,
+    transparent 100%
+  );
+}
+
+.siteFooterSocial {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 0 0 auto;
+}
+
+.siteFooterSocial > li {
+  flex: 0 0 auto;
+  display: inline-flex;
+}
+
+.siteFooterSocialLink {
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: none;
+  color: var(--sf-ink);
+  opacity: 0.88;
+  text-decoration: none;
+  transition:
+    opacity var(--motion-fast) var(--sf-ease),
+    color var(--motion-fast) var(--sf-ease),
+    transform 160ms var(--sf-ease);
+}
+
+.siteFooterSocialLink svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.siteFooterSocialLink:hover {
+  opacity: 1;
+  color: var(--color-brand);
+  transform: translateY(-1px);
+}
+
+.siteFooterSocialLink:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.siteFooterSocialLinkMuted {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+}
+
+.siteFooterSocialLinkMuted:hover {
+  opacity: 0.45;
+  color: var(--sf-ink);
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .siteFooterSocialLink:hover {
+    transform: none;
+  }
+}

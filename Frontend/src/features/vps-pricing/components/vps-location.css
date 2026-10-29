@@ -1,0 +1,157 @@
+/*
+ * VPS location segmented buttons + country flags — single row.
+ */
+
+.vpsLocationScroll {
+  width: 100%;
+  max-width: min(100%, 72rem);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.vpsLocationSegmented {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: max-content;
+  min-width: 100%;
+  margin-inline: auto;
+}
+
+.vpsLocationSegment {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.55rem 0.4rem 0.72rem;
+  white-space: nowrap;
+}
+
+/* Per-country left rail — greenish brand gradients */
+.vpsLocationSegment::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 3px;
+  border-radius: 999px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--vps-sage-strong) 0%,
+    var(--vps-sage) 50%,
+    #7ec8a3 100%
+  );
+}
+
+.vpsLocationSegment[data-country="us"]::before {
+  background: linear-gradient(
+    180deg,
+    #1f4d3a 0%,
+    var(--vps-sage) 50%,
+    #c9fb50 100%
+  );
+}
+
+.vpsLocationSegment[data-country="gb"]::before {
+  background: linear-gradient(180deg, #285b46 0%, #4a8f72 50%, #9fd9b8 100%);
+}
+
+.vpsLocationSegment[data-country="ca"]::before {
+  background: linear-gradient(
+    180deg,
+    var(--vps-sage-strong) 0%,
+    var(--vps-sage) 48%,
+    #6fbf95 100%
+  );
+}
+
+.vpsLocationSegment[data-country="nl"]::before {
+  background: linear-gradient(180deg, #173f30 0%, #34745a 52%, #a8e0c2 100%);
+}
+
+.vpsLocationSegment[data-country="de"]::before {
+  background: linear-gradient(180deg, #245844 0%, #5fa887 50%, #c9fb50 100%);
+}
+
+.vpsLocationSegment[data-country="sg"]::before {
+  background: linear-gradient(
+    180deg,
+    var(--vps-sage) 0%,
+    #7ec8a3 55%,
+    #d4f5a8 100%
+  );
+}
+
+.vpsLocationSegment[data-country="au"]::before {
+  background: linear-gradient(180deg, #1a4030 0%, #3d8a6a 48%, #8fd4ad 100%);
+}
+
+.vpsLocationSegment[data-country="jp"]::before {
+  background: linear-gradient(180deg, #2f6b52 0%, #6fbf95 50%, #e8f9c8 100%);
+}
+
+.vpsLocationSegment[data-active="true"]::before {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--vps-on-sage) 28%, transparent);
+}
+
+.vpsLocationFlag {
+  flex: none;
+  width: 1.125rem;
+  height: 0.75rem;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, #000 12%, transparent);
+}
+
+.vpsLocationSegment[data-active="true"] .vpsLocationFlag {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--vps-on-sage) 35%, transparent);
+}
+
+/*
+ * Mobile: ~⅓ slide width → half | full | full | half peek
+ * (two countries centered, neighbors clipped on each edge)
+ */
+@media (max-width: 560px) {
+  .vpsLocationScroll {
+    container-type: inline-size;
+    container-name: vps-location;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: calc(100cqi / 6);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vpsLocationScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vpsLocationSegmented {
+    justify-content: flex-start;
+    width: max-content;
+    min-width: 0;
+    gap: 0;
+  }
+
+  .vpsLocationSegment {
+    flex: 0 0 calc(100cqi / 3);
+    width: calc(100cqi / 3);
+    max-width: calc(100cqi / 3);
+    box-sizing: border-box;
+    justify-content: center;
+    scroll-snap-align: start;
+    padding-inline: 0.45rem 0.35rem;
+    overflow: hidden;
+  }
+
+  .vpsLocationSegment span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

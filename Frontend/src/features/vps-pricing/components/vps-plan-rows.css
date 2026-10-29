@@ -1,0 +1,226 @@
+/*
+ * VPS plan rows, details, show-all, mobile card layout.
+ */
+
+.vpsPlanStack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.vpsPlanCard {
+  border: 1px dashed var(--vps-card-border);
+  border-radius: var(--vps-card-radius);
+  background: var(--vps-surface);
+}
+
+.vpsPlanSummary {
+  display: grid;
+  grid-template-columns:
+    auto minmax(4.5rem, 1fr) repeat(3, minmax(3.5rem, auto))
+    minmax(7rem, auto) auto;
+  align-items: center;
+  gap: 0.65rem 0.85rem;
+  min-height: 4.9rem;
+  padding: 0.7rem 0.85rem;
+}
+
+.vpsExpandBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--vps-control-border);
+  border-radius: 6px;
+  background: var(--vps-surface);
+  color: var(--vps-sage);
+  cursor: pointer;
+}
+
+.vpsExpandBtn:focus-visible {
+  outline: 2px solid var(--vps-sage);
+  outline-offset: 2px;
+}
+
+.vpsPlanName {
+  margin: 0;
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: var(--vps-text);
+}
+
+.vpsPlanStat {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--vps-text);
+}
+
+.vpsPlanStat span {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--vps-muted);
+}
+
+.vpsPlanPrice {
+  text-align: right;
+}
+
+.vpsPriceFrom {
+  display: block;
+  font-size: 0.625rem;
+  color: var(--vps-price-note);
+}
+
+.vpsPriceAmount {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--vps-text);
+  white-space: nowrap;
+}
+
+.vpsPricePeriod {
+  margin-left: 0.1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--vps-price-note);
+}
+
+.vpsPriceNote,
+.vpsPriceTotal {
+  margin: 0.15rem 0 0;
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: var(--vps-price-note);
+}
+
+.vpsCartButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  height: 2rem;
+  padding: 0 0.7rem;
+  border: 1px solid var(--vps-sage);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--vps-sage-strong);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.vpsCartButton:not(:disabled) {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.vpsCartButton:not(:disabled):is(:hover, :active) {
+  background: var(--color-lime);
+  border-color: var(--color-lime);
+  color: var(--color-on-lime);
+}
+
+.vpsPlanDetails {
+  border-top: 1px dashed var(--vps-card-border);
+  padding: 0.85rem 1rem 1rem;
+}
+
+.vpsPlanDetailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.65rem 1.25rem;
+  margin: 0;
+}
+
+.vpsPlanDetailItem {
+  margin: 0;
+}
+
+.vpsPlanDetailItem dt {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--vps-muted);
+}
+
+.vpsPlanDetailItem dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--vps-text);
+}
+
+.vpsShowAllWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.9rem;
+}
+
+.vpsShowAllBtn {
+  appearance: none;
+  height: 2rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--vps-control-border);
+  border-radius: 8px;
+  background: var(--vps-surface);
+  color: var(--vps-text);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.vpsShowAllBtn:is(:hover, :active) {
+  background: var(--color-lime);
+  border-color: var(--color-lime);
+  color: var(--color-on-lime);
+}
+
+.vpsShowAllBtn:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .vpsPlanSummary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    min-height: 0;
+    padding: 0.85rem;
+  }
+
+  .vpsPlanStat {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+
+  .vpsPlanPrice {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .vpsCartButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .vpsPriceAmount {
+    font-size: 1.25rem;
+  }
+}

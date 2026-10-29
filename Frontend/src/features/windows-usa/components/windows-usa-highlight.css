@@ -1,0 +1,184 @@
+/*
+ * Windows USA highlight — split media + copy, Sage light/dark.
+ */
+
+.winHighlight {
+  --wh-bg: transparent;
+  --wh-heading: var(--color-heading);
+  --wh-body: var(--color-muted);
+  --wh-lime: var(--color-lime);
+  --wh-on-lime: var(--color-on-lime);
+  --wh-brand: var(--color-brand);
+  --wh-toast-bg: color-mix(in srgb, var(--color-lime) 88%, #fff);
+  --wh-toast-card: color-mix(in srgb, var(--color-brand) 92%, #000);
+  --wh-toast-card-fg: #f3f6f0;
+  --wh-dot: color-mix(in srgb, var(--color-brand) 18%, transparent);
+
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  background: transparent;
+  color: var(--wh-heading);
+  font-family: var(--font-sans);
+}
+
+html.dark .winHighlight {
+  --wh-bg: transparent;
+  --wh-heading: #f3f6f0;
+  --wh-body: color-mix(in srgb, var(--color-muted) 70%, #f3f6f0);
+  --wh-toast-bg: var(--color-lime);
+  --wh-toast-card: color-mix(in srgb, var(--color-brand) 55%, #0a1510);
+  --wh-dot: color-mix(in srgb, var(--color-lime) 16%, transparent);
+}
+
+.winHighlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    var(--wh-dot) 0.85px,
+    transparent 1.05px
+  );
+  background-size: 26px 26px;
+  opacity: 0.55;
+  mask-image: radial-gradient(
+    ellipse 70% 80% at 22% 50%,
+    #000 0%,
+    transparent 72%
+  );
+}
+
+.winHighlightInner {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, calc(100% - 2.5rem));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.winHighlightMedia {
+  min-width: 0;
+}
+
+.winHighlightFrame {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--wh-heading) 8%, transparent);
+  box-shadow: 0 18px 48px
+    color-mix(in srgb, var(--color-heading) 12%, transparent);
+}
+
+.winHighlightImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: center;
+}
+
+.winHighlightToasts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.winHighlightToast {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  box-shadow: 0 8px 24px color-mix(in srgb, #000 18%, transparent);
+}
+
+.winHighlightToast--pill {
+  top: 12%;
+  left: 8%;
+  max-width: min(90%, 17rem);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: var(--wh-toast-bg);
+  color: var(--wh-on-lime);
+}
+
+.winHighlightToast--card {
+  bottom: 10%;
+  left: 8%;
+  max-width: min(88%, 14rem);
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--wh-toast-card);
+  color: var(--wh-toast-card-fg);
+}
+
+.winHighlightToastIcon {
+  flex: none;
+  color: var(--wh-brand);
+}
+
+html.dark .winHighlightToastIcon {
+  color: var(--wh-on-lime);
+}
+
+.winHighlightCopy {
+  min-width: 0;
+  max-width: 32rem;
+}
+
+.winHighlightHeading {
+  margin: 0;
+  font-size: clamp(1.85rem, 3.4vw, 2.65rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: var(--wh-heading);
+}
+
+.winHighlightBody {
+  margin: 1.15rem 0 0;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--wh-body);
+}
+
+@media (max-width: 1023px) {
+  .winHighlightInner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .winHighlightCopy {
+    max-width: none;
+  }
+
+  .winHighlightFrame {
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .winHighlightInner {
+    width: min(100% - 2rem, 560px);
+  }
+
+  .winHighlightToast--pill,
+  .winHighlightToast--card {
+    font-size: 0.75rem;
+  }
+}

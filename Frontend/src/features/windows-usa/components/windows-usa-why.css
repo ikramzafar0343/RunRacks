@@ -1,0 +1,210 @@
+/*
+ * Windows USA Why — Sage feature grid (light + html.dark).
+ */
+
+.winWhy {
+  --wy-bg: transparent;
+  --wy-heading: var(--color-heading);
+  --wy-muted: var(--color-muted);
+  --wy-lime: var(--color-lime);
+  --wy-on-lime: var(--color-on-lime);
+  --wy-brand: var(--color-brand);
+  --wy-icon-bg: color-mix(in srgb, var(--color-brand) 12%, var(--color-canvas));
+  --wy-decor: color-mix(in srgb, var(--color-brand) 14%, transparent);
+
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: clamp(4rem, 8vw, 5.75rem) 0;
+  background:
+    radial-gradient(
+      ellipse 40% 55% at 0% 50%,
+      var(--wy-decor),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 55% at 100% 50%,
+      var(--wy-decor),
+      transparent 70%
+    );
+  color: var(--wy-heading);
+  font-family: var(--font-sans);
+}
+
+html.dark .winWhy {
+  --wy-bg: transparent;
+  --wy-heading: #f3f6f0;
+  --wy-muted: color-mix(in srgb, var(--color-muted) 75%, #f3f6f0);
+  --wy-icon-bg: color-mix(in srgb, var(--color-lime) 14%, #15251f);
+  --wy-decor: color-mix(in srgb, var(--color-lime) 10%, transparent);
+}
+
+.winWhyDecor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--wy-brand) 22%, transparent) 0.9px,
+    transparent 1.1px
+  );
+  background-size: 28px 28px;
+  opacity: 0.35;
+  mask-image: linear-gradient(
+    90deg,
+    #000 0%,
+    transparent 18%,
+    transparent 82%,
+    #000 100%
+  );
+}
+
+.winWhyInner {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.winWhyHeader {
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.winWhyHeading {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: var(--wy-heading);
+}
+
+.winWhyLead {
+  margin: 1rem auto 0;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--wy-muted);
+}
+
+.winWhyGrid {
+  list-style: none;
+  margin: clamp(2.5rem, 5vw, 3.25rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 3vw, 2.5rem) clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.winWhyItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.winWhyIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: var(--wy-icon-bg);
+  color: var(--wy-brand);
+}
+
+html.dark .winWhyIcon {
+  color: var(--wy-lime);
+}
+
+.winWhyCopy {
+  min-width: 0;
+}
+
+.winWhyTitle {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--wy-heading);
+}
+
+.winWhyBody {
+  margin: 0.4rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--wy-muted);
+}
+
+.winWhyCtaWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.25rem, 4vw, 3rem);
+}
+
+.winWhyCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.75rem;
+  border-radius: 999px;
+  background: var(--wy-lime);
+  color: var(--wy-on-lime);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.winWhyCta:hover {
+  background: color-mix(in srgb, var(--wy-lime) 88%, #fff);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--wy-lime) 22%, transparent);
+}
+
+.winWhyCta:focus-visible {
+  outline: 2px solid var(--wy-brand);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  .winWhyGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .winWhyInner {
+    width: min(100% - 2rem, 560px);
+  }
+
+  .winWhyGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .winWhyItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .winWhyCta {
+    transition: none;
+  }
+
+  .winWhyCta:hover {
+    transform: none;
+  }
+}

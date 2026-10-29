@@ -1,0 +1,176 @@
+/*
+ * Global styles entry (imported once from layout.tsx).
+ *
+ * Flow:
+ * 1. Tailwind engine
+ * 2. Our design tokens (tokens.css)
+ * 3. @theme inline → exposes tokens as Tailwind utilities
+ *    e.g. --color-brand → class bg-brand / text-brand
+ * 4. body defaults so every page starts with canvas + Nourd
+ */
+
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root,
+html.light,
+html.dark {
+  /* Re-bound so body + Tailwind track theme class flips */
+  --background: var(--color-canvas);
+  --foreground: var(--color-body);
+  /* shadcn/Systaliko aliases (Sage & Ink — no purple theme) */
+  --primary: var(--color-brand);
+  --primary-foreground: var(--color-brand-contrast);
+  --secondary: var(--color-surface);
+  --secondary-foreground: var(--color-heading);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-body);
+  --muted: var(--color-accent-soft);
+  --muted-foreground: var(--color-muted);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-body);
+  --border: var(--color-border);
+  --input: var(--color-input);
+  --ring: var(--color-brand);
+  --destructive: var(--color-error);
+  --destructive-foreground: #ffffff;
+}
+
+/*
+ * Tailwind v4 theme bridge:
+ * --color-* becomes color utilities; --font-* becomes font-* utilities.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-canvas: var(--color-canvas);
+  --color-surface: var(--color-surface);
+  --color-heading: var(--color-heading);
+  --color-brand: var(--color-brand);
+  --color-brand-hover: var(--color-brand-hover);
+  --color-brand-contrast: var(--color-brand-contrast);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-body: var(--color-body);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-selected: var(--color-selected);
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-destructive: var(--destructive);
+  --color-ring: var(--ring);
+  --color-lime: var(--color-lime);
+  --color-on-lime: var(--color-on-lime);
+  /* --font-nourd is set on <html> by next/font in layout.tsx */
+  --font-sans: var(--font-nourd), ui-sans-serif, sans-serif;
+  --font-heading:
+    var(--font-nourd-heading), var(--font-nourd), ui-sans-serif, sans-serif;
+  --font-display:
+    var(--font-nourd-heading), var(--font-nourd), ui-sans-serif, sans-serif;
+}
+
+@keyframes heroFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: heroFadeSlide 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.logoCloudImg {
+  transition:
+    opacity 200ms ease,
+    filter 200ms ease;
+}
+
+html.dark .logoCloudImg {
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+}
+
+html.dark .logoCloudImg:hover {
+  opacity: 1;
+}
+
+body {
+  /* Paper / ink wash — faint edge glow from --gradient-canvas */
+  background-color: var(--color-canvas);
+  background-image: var(--gradient-canvas);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: scroll;
+  color: var(--foreground);
+  font-family: var(--font-nourd), ui-sans-serif, sans-serif;
+}
+
+@media (min-width: 1024px) {
+  body {
+    background-attachment: fixed;
+  }
+}
+
+/*
+ * Shared lime hover/press for primary marketing CTAs and controls.
+ * Feature CSS can add motion; color interaction stays consistent site-wide.
+ */
+:where(
+  .homeHeroCta,
+  .fsExploreCta,
+  .fsCta,
+  .howWeWorkCta,
+  .csCta,
+  .csArrow,
+  .csPlay,
+  .vpsShowAllBtn,
+  .vpsCartButton:not(:disabled)
+):is(:hover, :active) {
+  background: var(--color-lime);
+  border-color: var(--color-lime);
+  color: var(--color-on-lime);
+}
+
+:where(.csCta):is(:hover, :active) .csCtaTile {
+  background: var(--color-on-lime);
+  color: var(--color-lime);
+}
+
+:where(
+  .homeHeroCta,
+  .fsExploreCta,
+  .fsCta,
+  .howWeWorkCta,
+  .csCta,
+  .csArrow,
+  .csPlay,
+  .vpsShowAllBtn,
+  .vpsCartButton:not(:disabled)
+):focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 3px;
+}

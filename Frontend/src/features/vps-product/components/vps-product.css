@@ -1,0 +1,35 @@
+/*
+ * Shared geometry + 4-band choreography for VPS product page.
+ * Canvas / Elevated / Atmosphere / Deep — remap under html.dark.
+ */
+
+.vpsProductPage {
+  --vp-gutter: clamp(1.25rem, 3vw, 4rem);
+  --vp-wide: min(100% - var(--vp-gutter) * 2, 1600px);
+  --vp-editorial: min(100% - var(--vp-gutter) * 2, 1100px);
+  --vp-section-y: clamp(4.5rem, 10vw, 11rem);
+  --vp-ease: var(--ease-standard, cubic-bezier(0.22, 1, 0.36, 1));
+
+  /* Bands — transparent canvas so body mint wash shows; elevated stays solid */
+  --vp-band-canvas: transparent;
+  --vp-band-elevated: var(--color-surface);
+  --vp-band-deep: transparent;
+  --vp-band-mid: transparent;
+  --vp-band-wash: transparent;
+
+  width: 100%;
+  color: var(--color-heading);
+  background: transparent;
+}
+
+html.dark .vpsProductPage {
+  --vp-band-canvas: transparent;
+  --vp-band-elevated: var(--color-surface);
+  --vp-band-deep: transparent;
+  --vp-band-mid: transparent;
+  --vp-band-wash: transparent;
+}
+
+.vpsProductPricing {
+  width: 100%;
+}

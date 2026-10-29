@@ -1,0 +1,121 @@
+.siteHeader {
+  /* Soft ease-in-out: less snappy than expo-out */
+  --header-ease: cubic-bezier(0.45, 0.05, 0.2, 1);
+  --header-duration: 720ms;
+  --header-duration-shape: 820ms;
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 1200;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  pointer-events: none;
+  color: var(--color-heading);
+  transition: padding var(--header-duration) var(--header-ease);
+}
+
+.siteHeaderInner {
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+  border-radius: 0;
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  border-bottom-width: 1px;
+  background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 0 transparent;
+  transition:
+    width var(--header-duration) var(--header-ease),
+    max-width var(--header-duration) var(--header-ease),
+    height var(--header-duration) var(--header-ease),
+    margin var(--header-duration) var(--header-ease),
+    padding var(--header-duration) var(--header-ease),
+    border-radius var(--header-duration-shape) var(--header-ease),
+    border-color var(--header-duration) var(--header-ease),
+    background var(--header-duration) var(--header-ease),
+    box-shadow var(--header-duration-shape) var(--header-ease);
+}
+
+/* Solid fill on narrow / touch / reduced-motion — skip expensive blur paint */
+@media (max-width: 899px), (hover: none), (prefers-reduced-motion: reduce) {
+  .siteHeaderInner {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+  }
+}
+
+@media (min-width: 768px) {
+  .siteHeaderInner {
+    height: 4.8rem;
+  }
+}
+
+.siteHeader--pill {
+  padding: 0.7rem 0.85rem 0;
+}
+
+.siteHeader--pill .siteHeaderInner {
+  width: min(90rem, calc(100% - 1.5rem));
+  height: 3.65rem;
+  padding-inline: 1.35rem;
+  border-radius: 999px;
+  border-color: color-mix(in srgb, var(--color-border) 90%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+  box-shadow:
+    0 14px 40px color-mix(in srgb, var(--color-heading) 16%, transparent),
+    0 2px 0 color-mix(in srgb, var(--color-heading) 4%, transparent);
+}
+
+@media (min-width: 768px) {
+  .siteHeader--pill {
+    padding: 0.85rem 1.5rem 0;
+  }
+  .siteHeader--pill .siteHeaderInner {
+    width: min(90rem, calc(100% - 3rem));
+    height: 4.1rem;
+    padding-inline: 1.75rem;
+  }
+}
+@media (min-width: 1280px) {
+  .siteHeader--pill {
+    padding: 0.9rem 2rem 0;
+  }
+  .siteHeader--pill .siteHeaderInner {
+    width: min(92rem, calc(100% - 4rem));
+    padding-inline: 2rem;
+  }
+}
+
+.siteHeaderBrand {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: font-size var(--header-duration) var(--header-ease);
+}
+
+@media (min-width: 768px) {
+  .siteHeaderBrand {
+    font-size: 1.5rem;
+  }
+
+  .siteHeader--pill .siteHeaderBrand {
+    font-size: 1.3rem;
+  }
+}
+
+.siteHeaderBrand:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

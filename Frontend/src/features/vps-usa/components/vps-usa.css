@@ -1,0 +1,278 @@
+/*
+ * VPS USA product landing — map-first Sage & Ink / Nourd.
+ * Scoped under .usaPage; distinct from /products/vps editorial CSS.
+ */
+
+.usaPage {
+  --usa-pad: clamp(1.25rem, 4vw, 2.5rem);
+  --usa-max: 72rem;
+  --usa-ease: var(--ease-standard);
+  background: transparent;
+  color: var(--color-body);
+}
+
+.usaInner {
+  width: min(calc(100% - 2 * var(--usa-pad)), var(--usa-max));
+  margin-inline: auto;
+}
+
+.usaEyebrow {
+  margin: 0 0 0.65rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.usaHeading {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.usaLead {
+  margin: 0;
+  max-width: 38rem;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--color-body);
+}
+
+.usaLead + .usaLead {
+  margin-top: 1rem;
+}
+
+.usaLead--tight {
+  max-width: 28rem;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.usaSectionHead {
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.usaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: 0.35rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background var(--motion-base) var(--usa-ease),
+    color var(--motion-base) var(--usa-ease),
+    border-color var(--motion-base) var(--usa-ease),
+    transform var(--motion-fast) var(--usa-ease);
+}
+
+.usaBtn:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.usaBtn--primary {
+  background: var(--color-lime);
+  color: var(--color-on-lime);
+}
+
+.usaBtn--primary:hover {
+  background: color-mix(in srgb, var(--color-lime) 88%, #fff);
+}
+
+.usaBtn--ghost {
+  border: 1px solid color-mix(in srgb, var(--color-heading) 22%, transparent);
+  color: var(--color-heading);
+  background: color-mix(in srgb, var(--color-surface) 55%, transparent);
+}
+
+.usaBtn--ghost:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+/* —— Hero (PulseFit shell; chrome lives in SiteHeader) —— */
+.usaHero {
+  isolation: isolate;
+}
+
+.usaHero .usaHeroWorldMap,
+.usaHero .usaMapFallback {
+  height: 100% !important;
+  max-height: none;
+  min-height: 100%;
+  aspect-ratio: auto !important;
+}
+
+.usaHero .usaHeroWorldMap img,
+.usaHero .usaMapFallbackImg {
+  object-fit: cover;
+  object-position: 28% 42%;
+}
+
+/* —— Why (interactive cards) —— */
+.usaWhy {
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+  perspective: 1200px;
+}
+
+.usaWhyList {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  perspective: 1000px;
+}
+
+@media (min-width: 768px) {
+  .usaWhyList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.usaWhyItem {
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.usaWhyCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  padding: clamp(1.25rem, 2.5vw, 1.65rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--gradient-card);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--color-heading) 4%, transparent),
+    0 10px 28px color-mix(in srgb, var(--color-heading) 6%, transparent);
+  transition:
+    border-color var(--motion-base) var(--usa-ease),
+    box-shadow var(--motion-base) var(--usa-ease),
+    transform var(--motion-fast) var(--usa-ease);
+}
+
+.usaWhyCard:hover {
+  border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-border));
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--color-heading) 4%, transparent),
+    0 14px 32px color-mix(in srgb, var(--color-heading) 10%, transparent);
+}
+
+.usaWhyCard:focus-within {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.usaWhyIndex {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--color-lime) 85%, transparent);
+  color: var(--color-on-lime);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+.usaWhyTitle {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.usaWhyBody {
+  margin: 0;
+  font-size: 0.975rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .usaWhyItem {
+    will-change: auto;
+  }
+
+  .usaWhyCard:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* —— Coverage —— */
+.usaCoverage {
+  padding: clamp(2.5rem, 6vw, 4rem) 0;
+  border-block: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 70%, var(--color-canvas));
+}
+
+.usaCoverageInner {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .usaCoverageInner {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  }
+}
+
+.usaRegionChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.35rem;
+  background: var(--color-surface);
+  color: var(--color-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition:
+    border-color var(--motion-base) var(--usa-ease),
+    transform var(--motion-fast) var(--usa-ease);
+}
+
+.usaRegionChip:hover {
+  border-color: var(--color-brand);
+  transform: translateY(-1px);
+}
+
+.usaRegionChip:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.usaRegionFlag {
+  display: block;
+  width: 1.35rem;
+  height: auto;
+  border-radius: 2px;
+}
+
+.usaCoverageMap {
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.usaCoverageWorldMap {
+  width: 100%;
+}

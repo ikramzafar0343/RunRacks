@@ -1,0 +1,105 @@
+/**
+ * OS logos + region flags inside expanded plan details.
+ */
+
+.vpsPlanDetailValue {
+  margin: 0.15rem 0 0;
+}
+
+.vpsPlanDetailText {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--vps-text);
+}
+
+.vpsPlanDetailIcon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--color-brand);
+}
+
+.vpsPlanDetailMarks,
+.vpsPlanDetailFlags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.5rem;
+}
+
+.vpsPlanDetailMark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--vps-text);
+}
+
+.vpsPlanDetailMark svg {
+  flex-shrink: 0;
+}
+
+.vpsPlanDetailFlag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.vpsPlanDetailFlagImg {
+  display: block;
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px
+    color-mix(in srgb, var(--vps-card-border) 80%, transparent);
+}
+
+.vpsPlanDetailFlagName {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--vps-text);
+  white-space: nowrap;
+}
+
+.vpsPlanTileFeatureDetail {
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.vpsPlanTileDetailLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
+}
+
+/* Ensure strong, crystal-clear visibility on featured dark cards */
+.vpsPlanTile[data-featured="true"] .vpsPlanTileDetailLabel {
+  color: var(--color-inverse-muted);
+}
+
+.vpsPlanTile[data-featured="true"] .vpsPlanDetailText {
+  color: var(--color-on-inverse);
+}
+
+.vpsPlanTile[data-featured="true"] .vpsPlanDetailIcon {
+  color: var(--color-lime);
+}
+
+.vpsPlanTile[data-featured="true"] .vpsPlanDetailMark {
+  color: var(--color-on-inverse);
+}
+
+.vpsPlanTile[data-featured="true"] .vpsPlanDetailFlagName {
+  color: var(--color-on-inverse);
+}
+
+.vpsPlanTileFeatureDetail .vpsPlanDetailFlags {
+  gap: 0.35rem;
+}

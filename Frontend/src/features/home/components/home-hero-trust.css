@@ -1,0 +1,170 @@
+/* Trustpilot-style strip under hero portrait */
+
+.homeHeroTrustBand {
+  --tp-green: #00b67a;
+  --tp-empty: color-mix(in srgb, var(--color-heading) 18%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding-inline: 4px;
+  width: 100%;
+  max-width: 100%;
+  color: var(--color-heading);
+}
+
+.homeHeroTrustNotice {
+  flex: 1 0 100%;
+  margin: 0 0 2px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(
+    --color-muted,
+    color-mix(in srgb, var(--color-heading) 62%, transparent)
+  );
+  white-space: normal;
+}
+
+.homeHeroTrustLabel {
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+.homeHeroTrustStars {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.homeHeroTrustStar {
+  --fill: 1;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    90deg,
+    var(--tp-green) calc(var(--fill) * 100%),
+    var(--tp-empty) 0
+  );
+}
+
+.homeHeroTrustStar svg {
+  width: 10px;
+  height: 10px;
+  fill: #ffffff;
+}
+
+.homeHeroTrustLink {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 11px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.homeHeroTrustLink:not(.homeHeroTrustLinkStatic):hover .homeHeroTrustReviews {
+  opacity: 0.85;
+}
+
+.homeHeroTrustLink:not(.homeHeroTrustLinkStatic):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.homeHeroTrustReviews {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.homeHeroTrustBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.homeHeroTrustBrand svg {
+  color: var(--tp-green);
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+@media (min-width: 400px) {
+  .homeHeroTrustBand {
+    gap: 8px;
+  }
+  .homeHeroTrustLabel {
+    font-size: 13px;
+  }
+  .homeHeroTrustStar {
+    width: 18px;
+    height: 18px;
+  }
+  .homeHeroTrustStar svg {
+    width: 11px;
+    height: 11px;
+  }
+  .homeHeroTrustLink {
+    font-size: 12px;
+    gap: 6px;
+  }
+  .homeHeroTrustBrand svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .homeHeroTrustBand {
+    gap: 12px 14px;
+    margin-top: 22px;
+    padding-inline: 8px;
+  }
+
+  .homeHeroTrustLabel {
+    font-size: 16px;
+  }
+
+  .homeHeroTrustStar {
+    width: 24px;
+    height: 24px;
+  }
+
+  .homeHeroTrustStar svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .homeHeroTrustLink {
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .homeHeroTrustBrand {
+    gap: 6px;
+  }
+
+  .homeHeroTrustBrand svg {
+    width: 18px;
+    height: 18px;
+  }
+}

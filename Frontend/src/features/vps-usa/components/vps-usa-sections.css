@@ -1,0 +1,201 @@
+/*
+ * VPS USA — story, audience, pricing frame, inclusions, shared wrappers.
+ */
+
+.usaMapFallback {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 12rem;
+}
+
+.usaMapFallbackImg {
+  object-fit: cover;
+  object-position: 28% 42%;
+}
+
+/* —— Story (asymmetric bands) —— */
+.usaStory {
+  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(3rem, 7vw, 5rem);
+}
+
+.usaStoryBand {
+  display: grid;
+  gap: 0;
+  align-items: stretch;
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+@media (min-width: 900px) {
+  .usaStoryBand {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .usaStoryBand--wideCopy {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+}
+
+.usaStoryMedia {
+  position: relative;
+  min-height: clamp(16rem, 38vw, 26rem);
+  overflow: hidden;
+  background: var(--color-accent-soft);
+}
+
+.usaStoryImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s var(--ease-standard);
+}
+
+.usaStoryMedia:hover .usaStoryImg {
+  transform: scale(1.035);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .usaStoryMedia:hover .usaStoryImg {
+    transform: none;
+  }
+}
+
+.usaStoryCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.75rem, 4vw, 3rem) var(--usa-pad);
+  background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+}
+
+.usaStoryCopy--accent {
+  background: color-mix(in srgb, var(--color-brand) 10%, var(--color-canvas));
+}
+
+/* —— Audience —— */
+.usaAudience {
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+  background: transparent;
+}
+
+.usaAudienceGrid {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .usaAudienceGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.usaAudienceCol {
+  padding-top: 1rem;
+  border-top: 2px solid var(--color-brand);
+}
+
+.usaAudienceTitle {
+  margin: 0 0 0.55rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.usaAudienceBody {
+  margin: 0;
+  font-size: 0.975rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+/* —— Pricing frame —— */
+.usaPricing {
+  padding: clamp(2.5rem, 6vw, 4rem) 0 0;
+  scroll-margin-top: 5rem;
+}
+
+.usaPricingIntro {
+  width: min(calc(100% - 2 * var(--usa-pad)), var(--usa-max));
+  margin: 0 auto clamp(1.25rem, 3vw, 2rem);
+}
+
+.usaPricingIntro .usaLead {
+  max-width: 42rem;
+}
+
+.usaPage .vpsPricingSection {
+  padding-top: 0.5rem;
+}
+
+/* —— Inclusions —— */
+.usaInclusions {
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+  background: color-mix(in srgb, var(--color-surface) 65%, var(--color-canvas));
+  border-top: 1px solid var(--color-border);
+}
+
+.usaCheckList {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .usaCheckList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 2rem;
+  }
+}
+
+.usaCheckItem {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.usaCheckMark {
+  margin-top: 0.35rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 2px;
+  background: var(--color-lime);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--color-on-lime) 18%, transparent);
+}
+
+.usaCheckTitle {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.usaCheckBody {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+/* —— FAQ / CTA denser framing on this page only —— */
+.usaPage .vpsFaq {
+  padding-top: clamp(3rem, 6vw, 4.25rem);
+  padding-bottom: clamp(3rem, 6vw, 4.25rem);
+}
+
+.usaPage .supportCta {
+  padding-top: clamp(2.75rem, 5.5vw, 4rem);
+  padding-bottom: clamp(2.75rem, 5.5vw, 4rem);
+}
+
+.usaPage .vpsFaqHeading {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}

@@ -1,0 +1,16 @@
+---
+description: Server/Client Component boundaries and secrets
+globs: Frontend/**
+alwaysApply: false
+---
+
+# Server and client boundaries
+
+Source: `Rules/FRONTEND_PRODUCTION_ENGINEERING_RULES.md` §§7–8.
+
+- Default to Server Components. Add `'use client'` only at the smallest interactivity boundary.
+- Mark privileged modules with `import 'server-only'`. Filename suffixes alone do not protect imports.
+- Never expose secrets, private credentials, or unrestricted SDKs to browser code.
+- Values returned to the client are public: return minimal allowlisted DTOs.
+- Prefer Server Actions for first-party UI writes; Route Handlers for HTTP/API/webhooks.
+- Authorization belongs in data access / operations, not only UI or Proxy guards.

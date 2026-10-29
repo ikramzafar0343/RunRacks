@@ -1,0 +1,248 @@
+/*
+ * Plain CSS (not CSS Modules) so @tailwindcss/turbopack keeps class names.
+ * Scoped under .homeHero to avoid collisions.
+ */
+
+.homeHero {
+  /* Theme-aware: follows html.dark / light tokens */
+  --hero-fg: var(--color-heading);
+  --hero-copy: var(--color-body);
+  --hero-muted: var(--color-muted);
+  --hero-cta-text: var(--color-brand-contrast);
+  --hero-cta-surface: var(--color-brand);
+  --hero-cta-hover: var(--color-brand-hover);
+  --hero-card-radius: 22px;
+  --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow-x: visible;
+  color: var(--hero-fg);
+  background: var(--gradient-hero);
+}
+
+.homeHeroIntro {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  padding-top: clamp(56px, 5.5vw, 88px);
+  padding-bottom: clamp(20px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.homeHeroHeadline {
+  max-width: 930px;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  color: var(--hero-fg);
+  font-size: clamp(35px, 9.2vw, 40px);
+}
+
+@media (min-width: 375px) {
+  .homeHeroHeadline {
+    font-size: clamp(40px, 9.2vw, 56px);
+  }
+}
+
+@media (min-width: 768px) {
+  .homeHeroHeadline {
+    font-size: clamp(48px, 6.2vw, 62px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .homeHeroHeadline {
+    font-size: clamp(60px, 5vw, 70px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .homeHeroHeadline {
+    font-size: clamp(64px, 5.7vw, 82px);
+  }
+}
+
+.homeHeroHeadlineBreak {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .homeHeroHeadlineBreak {
+    display: block;
+  }
+}
+
+.homeHeroDescription {
+  margin: 18px 0 0;
+  max-width: 560px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--hero-copy);
+}
+
+@media (min-width: 768px) {
+  .homeHeroDescription {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 767px) {
+  .homeHeroDescription {
+    max-width: 38ch;
+  }
+}
+
+.homeHeroEnterCta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.homeHeroCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 158px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: var(--hero-cta-surface);
+  color: var(--hero-cta-text);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 200ms var(--hero-ease),
+    transform 200ms var(--hero-ease),
+    box-shadow 200ms var(--hero-ease);
+}
+
+.homeHeroCta:is(:hover, :active) {
+  background: var(--color-lime);
+  color: var(--color-on-lime);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px
+    color-mix(in srgb, var(--color-heading) 18%, transparent);
+}
+
+.homeHeroCta:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.homeHeroCta:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 3px;
+}
+
+.homeHeroTrust {
+  margin: 14px 0 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--hero-muted);
+}
+
+.homeHeroTrustIcon {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.homeHeroEnterHeadline,
+.homeHeroEnterDescription,
+.homeHeroEnterCta,
+.homeHeroEnterVisual {
+  animation-fill-mode: both;
+  animation-timing-function: var(--hero-ease);
+}
+
+.homeHeroEnterHeadline {
+  animation: homeHeroFadeUpHeadline 650ms both;
+}
+
+.homeHeroEnterDescription {
+  animation: homeHeroFadeUpDesc 550ms 180ms both;
+}
+
+.homeHeroEnterCta {
+  animation: homeHeroFadeUp 500ms 260ms both;
+}
+
+.homeHeroEnterVisual {
+  animation: homeHeroFadeUpVisual 700ms 320ms both;
+}
+
+@keyframes homeHeroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes homeHeroFadeUpHeadline {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes homeHeroFadeUpDesc {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes homeHeroFadeUpVisual {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homeHeroEnterHeadline,
+  .homeHeroEnterDescription,
+  .homeHeroEnterCta,
+  .homeHeroEnterVisual {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .homeHeroCta {
+    transition: none;
+  }
+
+  .homeHeroCta:hover {
+    transform: none;
+  }
+}

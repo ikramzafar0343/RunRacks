@@ -1,0 +1,110 @@
+/*
+ * Windows USA — hero map floor, marquee, page spacing.
+ */
+
+@keyframes windowsUsaLogoMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.heroWithLogos .heroLogosTrack {
+  animation: windowsUsaLogoMarquee 48s linear infinite;
+}
+
+.heroWithLogos .heroLogoMark {
+  filter: brightness(0) saturate(100%) opacity(0.78);
+}
+
+html.dark .heroWithLogos .heroLogoMark {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* Large horizon globe — top hemisphere visible, bottom half fades out */
+.heroWithLogos .heroMapFloor {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  /* Show roughly the upper half of the oversized globe */
+  height: clamp(14rem, 38vw, 26rem);
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.heroWithLogos .heroMapFloorInner {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(160vw, 72rem);
+  /* Wider-than-viewport child must use translate to stay centered */
+  transform: translateX(-50%);
+  overflow: visible;
+  /* Soft dissolve through the lower half into the section */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 42%,
+    rgba(0, 0, 0, 0.55) 62%,
+    rgba(0, 0, 0, 0.18) 78%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 42%,
+    rgba(0, 0, 0, 0.55) 62%,
+    rgba(0, 0, 0, 0.18) 78%,
+    transparent 100%
+  );
+}
+
+.heroWithLogos .heroCobeGlobe {
+  width: 100%;
+  margin-inline: auto;
+  /* Pull the sphere down so only the crest sits in the crop */
+  transform: translateY(-8%);
+  filter: drop-shadow(
+    0 22px 48px color-mix(in srgb, var(--color-heading) 16%, transparent)
+  );
+}
+
+@media (min-width: 768px) {
+  .heroWithLogos .heroMapFloor {
+    height: clamp(18rem, 32vw, 30rem);
+  }
+
+  .heroWithLogos .heroMapFloorInner {
+    width: min(120vw, 80rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroWithLogos .heroMapFloor {
+    height: clamp(20rem, 28vw, 34rem);
+  }
+
+  .heroWithLogos .heroMapFloorInner {
+    width: min(110vw, 88rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroWithLogos .heroLogosTrack {
+    animation: none;
+  }
+}
+
+.winUsaPage {
+  background: transparent;
+  color: var(--color-body);
+}
+
+.winUsaPricing {
+  padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(3.5rem, 8vw, 5.5rem);
+  background: transparent;
+}

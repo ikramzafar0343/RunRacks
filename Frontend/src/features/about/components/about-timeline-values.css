@@ -1,0 +1,230 @@
+﻿/* About — timeline + culture values */
+
+.aboutTimeline {
+  position: relative;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.aboutTimelineTrack {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .aboutTimelineTrack {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: var(--color-border);
+  }
+
+  .aboutTimelineProgress {
+    position: absolute;
+    inset: 0;
+    background: var(--color-brand);
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+}
+
+.aboutTimelineItem {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  padding-block: 1.75rem;
+  padding-left: 2rem;
+  border-left: 2px solid var(--color-border);
+  margin-left: 0.35rem;
+}
+
+@media (min-width: 960px) {
+  .aboutTimelineItem {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-left: none;
+    margin-left: 0;
+    align-items: center;
+  }
+
+  .aboutTimelineItem::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 999px;
+    border: 2px solid var(--color-brand);
+    background: var(--color-surface);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .aboutTimelineItem.is-active::before {
+    background: var(--color-brand);
+    transform: translate(-50%, -50%) scale(1.18);
+  }
+
+  .aboutTimelineItem--flip .aboutTimelineCopy {
+    order: 2;
+  }
+
+  .aboutTimelineItem--flip .aboutTimelineMedia {
+    order: 1;
+  }
+}
+
+.aboutTimelinePhase {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.aboutTimelineTitle {
+  margin: 0 0 0.65rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+}
+
+.aboutTimelineBody {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.aboutTimelineMedia {
+  aspect-ratio: 5 / 4;
+}
+
+.aboutValuesGrid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .aboutValuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .aboutValuesGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.aboutValueCard {
+  display: flex;
+  flex-direction: column;
+  background: var(--gradient-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition:
+    transform 300ms var(--ease-standard),
+    box-shadow 300ms var(--ease-standard),
+    border-color 300ms var(--ease-standard);
+}
+
+.aboutValueCard:nth-child(even) {
+  background: color-mix(
+    in srgb,
+    var(--color-accent-soft) 35%,
+    var(--color-surface)
+  );
+}
+
+.aboutValueMedia {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.aboutValueMedia img {
+  object-fit: cover;
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.aboutValueBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.4rem 1.5rem 1.5rem;
+  min-height: 8.5rem;
+}
+
+.aboutValueTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--color-heading);
+  transition: color 250ms var(--ease-standard);
+}
+
+.aboutValueText {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-muted);
+}
+
+.aboutValueAccent {
+  display: block;
+  width: 2.25rem;
+  height: 2px;
+  margin-top: auto;
+  padding-top: 1rem;
+  background: var(--color-brand);
+  transition: width 350ms var(--ease-standard);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .aboutValueCard:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(
+      in srgb,
+      var(--color-brand) 35%,
+      var(--color-border)
+    );
+    box-shadow: 0 18px 55px rgba(21, 37, 31, 0.08);
+  }
+
+  .aboutValueCard:hover .aboutValueMedia img {
+    transform: scale(1.055);
+  }
+
+  .aboutValueCard:hover .aboutValueTitle {
+    color: var(--color-brand);
+  }
+
+  .aboutValueCard:hover .aboutValueAccent {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutValueCard,
+  .aboutValueMedia img,
+  .aboutValueAccent,
+  .aboutValueTitle {
+    transition: none;
+  }
+
+  .aboutValueCard:hover {
+    transform: none;
+  }
+}

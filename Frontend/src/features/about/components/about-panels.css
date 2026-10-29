@@ -1,0 +1,255 @@
+/* About — dark tech panel, team grid, principles carousel, closing CTA */
+
+.aboutTechPanel {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background: var(--color-inverse);
+  color: var(--color-on-inverse);
+  border: 1px solid var(--color-inverse-border);
+  min-height: 28rem;
+}
+
+@media (min-width: 900px) {
+  .aboutTechPanel {
+    grid-template-columns: 54fr 46fr;
+  }
+}
+
+.aboutTechCopy {
+  padding: clamp(1.6rem, 4vw, 5rem);
+}
+
+.aboutTechCopy .aboutH2 {
+  color: var(--color-on-inverse);
+  max-width: 14ch;
+}
+
+.aboutTechCopy p {
+  margin: 0 0 1em;
+  max-width: 36rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-inverse-muted);
+}
+
+.aboutTechLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-inverse-accent);
+  text-decoration: none;
+}
+
+.aboutTechLink:hover,
+.aboutTechLink:focus-visible {
+  color: color-mix(
+    in srgb,
+    var(--color-inverse-accent) 78%,
+    var(--color-on-inverse)
+  );
+  outline: none;
+}
+
+.aboutTechLink:hover svg,
+.aboutTechLink:focus-visible svg {
+  transform: translateX(4px);
+}
+
+.aboutTechLink svg {
+  transition: transform 250ms var(--ease-standard);
+}
+
+.aboutTechMedia {
+  position: relative;
+  min-height: 16rem;
+  aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 900px) {
+  .aboutTechMedia {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+}
+
+.aboutTechMedia img {
+  object-fit: cover;
+}
+
+.aboutTeamGrid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .aboutTeamGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.aboutTeamCard {
+  background: var(--gradient-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition:
+    transform 280ms var(--ease-standard),
+    box-shadow 280ms var(--ease-standard),
+    border-color 280ms var(--ease-standard);
+}
+
+.aboutTeamMedia {
+  position: relative;
+  height: clamp(12rem, 28vw, 20rem);
+  overflow: hidden;
+}
+
+.aboutTeamMedia img {
+  object-fit: cover;
+  transition:
+    transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 650ms ease;
+}
+
+.aboutTeamBody {
+  padding: 1.35rem 1.5rem 1.6rem;
+}
+
+.aboutTeamCat {
+  margin: 0 0 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.aboutTeamTitle {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+}
+
+.aboutTeamText {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-muted);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .aboutTeamCard:hover {
+    transform: translateY(-5px);
+    border-color: color-mix(
+      in srgb,
+      var(--color-brand) 30%,
+      var(--color-border)
+    );
+    box-shadow: 0 18px 55px rgba(21, 37, 31, 0.07);
+  }
+
+  .aboutTeamCard:hover .aboutTeamMedia img {
+    transform: scale(1.04);
+    filter: brightness(0.97);
+  }
+}
+
+.aboutStoriesPanel {
+  max-width: 55rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.aboutStoriesQuote {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.48;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.aboutStoriesLabel {
+  margin: 0 0 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.aboutStoriesControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+}
+
+.aboutStoriesBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+.aboutStoriesBtn:hover,
+.aboutStoriesBtn:focus-visible {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+  outline: none;
+}
+
+.aboutStoriesBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.aboutStoriesMeta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.aboutStoriesBars {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.aboutStoriesBars span {
+  display: block;
+  width: 2rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-border);
+}
+
+.aboutStoriesBars span.is-active {
+  background: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutTeamCard,
+  .aboutTeamMedia img,
+  .aboutTechLink svg {
+    transition: none;
+  }
+
+  .aboutTeamCard:hover {
+    transform: none;
+  }
+}

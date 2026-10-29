@@ -1,0 +1,62 @@
+/*
+ * Site footer responsive breakpoints + mobile accordion layout.
+ */
+
+@media (max-width: 1023px) {
+  .siteFooterGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .siteFooterContact {
+    grid-column: 1 / -1;
+  }
+
+  .siteFooterBlurb {
+    max-width: 42ch;
+  }
+}
+
+@media (max-width: 639px) {
+  .siteFooterInner {
+    width: min(calc(100% - 32px), 1160px);
+  }
+
+  .siteFooterBrandBlock {
+    gap: 1.1rem;
+  }
+
+  .siteFooterGrid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .siteFooterContact {
+    grid-column: auto;
+    padding-bottom: 1.35rem;
+  }
+
+  .siteFooterBlurb {
+    max-width: none;
+  }
+
+  .siteFooterMain {
+    padding: 1.5rem 0 2.75rem;
+    min-height: 0;
+  }
+
+  .siteFooterBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .siteFooterCopy {
+    width: 100%;
+  }
+
+  .siteFooterWatermark {
+    font-size: clamp(2.75rem, 18vw, 4.5rem);
+    opacity: 0.85;
+    bottom: 1.5rem;
+  }
+}

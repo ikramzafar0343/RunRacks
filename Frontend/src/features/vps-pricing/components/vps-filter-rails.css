@@ -1,0 +1,123 @@
+/*
+ * Per-option left rails — greenish brand gradients (family + billing).
+ */
+
+.vpsFamilySegment,
+.vpsBillingSegment {
+  position: relative;
+  padding-left: 0.72rem;
+}
+
+.vpsFamilySegment::before,
+.vpsBillingSegment::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 3px;
+  border-radius: 999px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--vps-sage-strong) 0%,
+    var(--vps-sage) 50%,
+    #7ec8a3 100%
+  );
+}
+
+.vpsFamilySegment[data-family="linux"]::before {
+  background: linear-gradient(
+    180deg,
+    #1f4d3a 0%,
+    var(--vps-sage) 48%,
+    #c9fb50 100%
+  );
+}
+
+.vpsFamilySegment[data-family="windows"]::before {
+  background: linear-gradient(
+    180deg,
+    var(--vps-sage-strong) 0%,
+    #4a8f72 50%,
+    #9fd9b8 100%
+  );
+}
+
+.vpsFamilySegment[data-family="windows-admin-rdp"]::before {
+  background: linear-gradient(
+    180deg,
+    #285b46 0%,
+    var(--vps-sage) 42%,
+    #6fbf95 100%
+  );
+}
+
+.vpsBillingSegment[data-term="1"]::before {
+  background: linear-gradient(
+    180deg,
+    var(--vps-sage) 0%,
+    #5fa887 55%,
+    #a8e0c2 100%
+  );
+}
+
+.vpsBillingSegment[data-term="3"]::before {
+  background: linear-gradient(
+    180deg,
+    var(--vps-sage-strong) 0%,
+    var(--vps-sage) 50%,
+    #7ec8a3 100%
+  );
+}
+
+.vpsBillingSegment[data-term="6"]::before {
+  background: linear-gradient(
+    180deg,
+    #246348 0%,
+    var(--vps-sage) 48%,
+    #9ad4b3 100%
+  );
+}
+
+.vpsBillingSegment[data-term="12"]::before {
+  background: linear-gradient(
+    180deg,
+    #1f4d3a 0%,
+    var(--vps-sage) 45%,
+    #c9fb50 100%
+  );
+}
+
+.vpsFamilySegment[data-active="true"]::before,
+.vpsBillingSegment[data-active="true"]::before {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--vps-on-sage) 28%, transparent);
+}
+
+@media (max-width: 560px) {
+  .vpsFamilyScroll {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vpsFamilyScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vpsFamilySegmented {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: max-content;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .vpsFamilySegmented .vpsSegment {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+}

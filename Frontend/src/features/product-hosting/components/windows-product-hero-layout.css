@@ -1,0 +1,185 @@
+/**
+ * Windows product hero — clean two-column layout, Sage & Ink.
+ */
+
+.winHero {
+  --win-hero-fg: var(--color-heading);
+  --win-hero-copy: var(--color-body);
+  --win-hero-muted: var(--color-muted);
+  --win-hero-glow: color-mix(in srgb, var(--color-brand) 12%, transparent);
+  /* Clear fixed site header (4rem / 4.8rem) so title never sits underneath */
+  --win-hero-header-clearance: 4rem;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-top: var(--win-hero-header-clearance);
+  color: var(--win-hero-fg);
+  font-family: var(--font-nourd), system-ui, sans-serif;
+  background:
+    radial-gradient(
+      ellipse 50% 48% at 12% 30%,
+      var(--win-hero-glow),
+      transparent 70%
+    ),
+    var(--gradient-hero);
+}
+
+@media (min-width: 768px) {
+  .winHero {
+    --win-hero-header-clearance: 4.8rem;
+  }
+}
+
+.winHeroInner {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 2.75rem);
+  align-items: start;
+  width: min(100% - 1.25rem, 72rem);
+  margin-inline: auto;
+  padding-block: clamp(1.25rem, 3vw, 2.5rem) clamp(1.5rem, 3.5vw, 3.25rem);
+}
+
+@media (min-width: 960px) {
+  .winHeroInner {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
+    gap: clamp(1.5rem, 3vw, 2.75rem);
+    align-items: center;
+  }
+}
+
+.winHeroCopy {
+  max-width: 30rem;
+}
+
+.winHeroH1 {
+  margin: 0;
+  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.winHeroLineMask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.winHeroLine {
+  display: block;
+}
+
+/* Text stays visible before GSAP; motion only enhances after hydrate */
+.winHeroH1[data-motion="ready"] .winHeroLine {
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .winHeroLine {
+    will-change: auto;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.winHeroFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.15rem;
+  margin-top: 1.5rem;
+}
+
+.winHeroPrice {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--win-hero-fg);
+}
+
+.winHeroPriceLead {
+  font-weight: 500;
+  color: var(--win-hero-muted);
+}
+
+.winHeroPrice strong {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.winHeroPrice s {
+  margin-inline-start: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--win-hero-muted);
+}
+
+.winHeroPriceUnit {
+  margin-inline-start: 0.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--win-hero-muted);
+}
+
+.winHeroCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 2.6rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 0.5rem;
+  background: var(--color-brand);
+  color: var(--color-brand-contrast, #fff);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.winHeroCta:hover,
+.winHeroCta:active {
+  background: var(--color-lime);
+  color: var(--color-on-lime);
+}
+
+.winHeroCta:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.winHeroNote {
+  margin: 0.65rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--win-hero-muted);
+}
+
+.winHeroVisual {
+  justify-self: center;
+  width: 100%;
+  max-width: min(100%, 480px);
+  overflow: visible;
+}
+
+@media (min-width: 480px) {
+  .winHeroVisual {
+    max-width: min(100%, 520px);
+  }
+}
+
+@media (min-width: 960px) {
+  .winHeroVisual {
+    max-width: 600px;
+    justify-self: end;
+  }
+}
+
+@media (min-width: 1100px) {
+  .winHeroVisual {
+    max-width: 680px;
+  }
+}

@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="artTitle artDesc">
+  <title id="artTitle">Premium VPS hosting illustration</title>
+  <desc id="artDesc">A minimal animated isometric hosting infrastructure with a floating emerald server rack, connected cloud, secure network nodes, and subtle status lights. No visible text.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4fcf7"/><stop offset=".5" stop-color="#e2f5e9"/><stop offset="1" stop-color="#c7ebd6"/>
+    </linearGradient>
+    <radialGradient id="halo"><stop offset="0" stop-color="#bcf7d2" stop-opacity=".92"/><stop offset=".55" stop-color="#dbf8e4" stop-opacity=".43"/><stop offset="1" stop-color="#cdebdc" stop-opacity="0"/></radialGradient>
+    <linearGradient id="rackFace" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#115a47"/><stop offset=".52" stop-color="#074637"/><stop offset="1" stop-color="#003528"/></linearGradient>
+    <linearGradient id="rackSide" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#087f59"/><stop offset=".55" stop-color="#075b44"/><stop offset="1" stop-color="#013d2c"/></linearGradient>
+    <linearGradient id="rackTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#72f0aa"/><stop offset=".42" stop-color="#20b97d"/><stop offset="1" stop-color="#066a4d"/></linearGradient>
+    <linearGradient id="slot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#174d43"/><stop offset="1" stop-color="#062f2a"/></linearGradient>
+    <linearGradient id="topGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7fff9" stop-opacity=".94"/><stop offset="1" stop-color="#d0f6e0" stop-opacity=".73"/></linearGradient>
+    <linearGradient id="plinth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#83e4ad"/><stop offset="1" stop-color="#118254"/></linearGradient>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d8ffa2"/><stop offset="1" stop-color="#5beba5"/></linearGradient>
+    <linearGradient id="cloudFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b4efcd"/></linearGradient>
+    <linearGradient id="thinGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".98"/><stop offset="1" stop-color="#d3f1e2" stop-opacity=".86"/></linearGradient>
+    <filter id="softShadow" x="-45%" y="-45%" width="190%" height="190%"><feGaussianBlur stdDeviation="24"/></filter>
+    <filter id="cardShadow" x="-45%" y="-45%" width="190%" height="190%"><feDropShadow dx="0" dy="15" stdDeviation="18" flood-color="#10563a" flood-opacity=".16"/></filter>
+    <filter id="rackShadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="12" dy="28" stdDeviation="22" flood-color="#03482e" flood-opacity=".26"/></filter>
+    <filter id="statusGlow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse"><path d="M54 0H0V54" fill="none" stroke="#18825a" stroke-width="1" opacity=".085"/></pattern>
+    <clipPath id="roundClip"><rect x="38" y="38" width="1124" height="1124" rx="76"/></clipPath>
+  </defs>
+  <style><![CDATA[
+    .hover-main {animation: drift 7.2s ease-in-out infinite;transform-origin: 600px 600px;}
+    .hover-cloud {animation: bob 5.8s ease-in-out infinite;transform-origin: 865px 250px;}
+    .hover-card {animation: bob 6.5s ease-in-out infinite -2.5s;transform-origin: 250px 520px;}
+    .hover-shield {animation: bob 6s ease-in-out infinite -1s;transform-origin: 934px 640px;}
+    .ring-pulse{animation:ring 5.2s ease-in-out infinite;transform-origin:730px 555px;}
+    .flow-line {stroke-dasharray:8 18;animation: march 3s linear infinite;}
+    .led {animation: heartbeat 3s ease-in-out infinite;}
+    .led-delay {animation-delay:-1.4s;}
+    .spin-icon {animation:spin 16s linear infinite;transform-origin:948px 638px;}
+    @keyframes drift {0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+    @keyframes bob {0%,100%{transform:translateY(0)}50%{transform:translateY(-17px)}}
+    @keyframes ring {0%,100%{opacity:.46;transform:scale(1)}50%{opacity:.76;transform:scale(1.015)}}
+    @keyframes march {to{stroke-dashoffset:-52}}
+    @keyframes heartbeat {0%,100%{opacity:.68}40%{opacity:1}65%{opacity:.36}}
+    @keyframes spin {to{transform:rotate(360deg)}}
+    @media (prefers-reduced-motion: reduce){.hover-main,.hover-cloud,.hover-card,.hover-shield,.ring-pulse,.flow-line,.led,.spin-icon{animation:none!important}}
+  ]]></style>
+  <!-- Clean framing, warm light, and fine technical grid. -->
+  <rect width="1200" height="1200" fill="#f0f3ea"/>
+  <rect x="38" y="38" width="1124" height="1124" rx="76" fill="url(#bg)"/>
+  <g clip-path="url(#roundClip)">
+    <ellipse cx="840" cy="450" rx="600" ry="620" fill="url(#halo)"/>
+    <path d="M39 999C280 900 470 1030 680 919S1040 767 1163 841V1163H38Z" fill="#bde8cb" opacity=".55"/>
+    <path d="M38 1074C277 951 526 1110 759 970S1002 889 1162 910" fill="none" stroke="#effff2" stroke-width="2.5" opacity=".7"/>
+    <path d="M38 1118C277 995 542 1170 769 1032S1030 950 1163 963" fill="none" stroke="#75cda2" stroke-width="2" opacity=".24"/>
+    <rect x="85" y="112" width="1030" height="945" fill="url(#grid)" opacity=".75" mask="none"/>
+    <circle cx="714" cy="530" r="320" fill="none" stroke="#83cfa6" stroke-width="2" opacity=".36"/>
+    <circle cx="714" cy="530" r="369" fill="none" stroke="#ffffff" stroke-width="2" opacity=".43" stroke-dasharray="3 20"/>
+    <g class="ring-pulse"><circle cx="714" cy="530" r="268" fill="none" stroke="#ffffff" stroke-opacity=".54" stroke-width="3" stroke-dasharray="140 38 24 42"/></g>
+    <!-- Micro decorations (no displayed text). -->
+    <g opacity=".7" fill="#087e57">
+      <circle cx="132" cy="151" r="6"/><circle cx="154" cy="151" r="6" opacity=".45"/><circle cx="176" cy="151" r="6" opacity=".24"/>
+    </g>
+    <path d="M920 136h155" stroke="#5eae84" stroke-width="5" stroke-linecap="round" opacity=".2"/>
+    <path d="M1000 155h75" stroke="#5eae84" stroke-width="5" stroke-linecap="round" opacity=".2"/>
+    <!-- Perspective stage and diffused grounding shadow. -->
+    <ellipse cx="637" cy="950" rx="352" ry="79" fill="#0f764f" opacity=".17" filter="url(#softShadow)"/>
+    <ellipse cx="634" cy="927" rx="310" ry="65" fill="#f5fff6" opacity=".70"/>
+    <ellipse cx="634" cy="933" rx="255" ry="52" fill="none" stroke="#fff" stroke-width="2.5" opacity=".9"/>
+    <path d="M302 919q333 137 657-6" fill="none" stroke="#32b87b" stroke-width="2" opacity=".22"/>
+    <!-- Actual communications paths routed behind all cards. -->
+    <g fill="none" stroke="#209869" stroke-width="3.4" opacity=".35">
+      <path d="M282 515C324 517 337 481 398 471"/>
+      <path d="M691 334C786 307 775 277 832 278"/>
+      <path d="M789 638C854 655 859 642 920 640"/>
+    </g>
+    <g fill="none" stroke="#009d61" stroke-width="4" class="flow-line" stroke-linecap="round">
+      <path d="M282 515C324 517 337 481 398 471"/>
+      <path d="M691 334C786 307 775 277 832 278"/>
+      <path d="M789 638C854 655 859 642 920 640"/>
+    </g>
+    <!-- Floating cloud: pale sculpted layers, not a picture or emoji. -->
+    <g class="hover-cloud" filter="url(#cardShadow)">
+      <path d="M818 308c-31 0-56-24-56-55s25-55 57-55c8-44 46-75 92-75 42 0 76 26 89 64 8-3 17-5 25-5 36 0 66 29 66 66 0 33-25 60-58 60Z" fill="url(#cloudFill)" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M821 301c-26 0-48-21-48-48" fill="none" stroke="#9eddba" stroke-width="4" opacity=".4"/>
+      <path d="M844 249l30 31 54-61" fill="none" stroke="#088658" stroke-width="11" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M940 224h56" stroke="#8ed6b0" stroke-width="5" stroke-linecap="round" opacity=".34"/>
+    </g>
+    <!-- Floating performance card: abstract graphs, zero legible text. -->
+    <g class="hover-card" filter="url(#cardShadow)">
+      <rect x="119" y="407" width="254" height="195" rx="32" fill="url(#thinGlass)" stroke="#ffffff" stroke-width="3"/>
+      <rect x="143" y="434" width="56" height="8" rx="4" fill="#086b4e" opacity=".65"/>
+      <rect x="143" y="453" width="88" height="6" rx="3" fill="#2cae75" opacity=".26"/>
+      <circle cx="328" cy="447" r="10" fill="#12ad6e"/>
+      <circle cx="328" cy="447" r="18" fill="none" stroke="#12ad6e" opacity=".22" stroke-width="4"/>
+      <path d="M147 542L190 512L227 530L267 481L309 497L347 463" stroke="#00a366" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M147 560H347" stroke="#0c694c" stroke-width="2" opacity=".14"/>
+      <path d="M147 548L190 519L227 536L267 487L309 503L347 470V563H147Z" fill="#6fdeb0" opacity=".15"/>
+      <g fill="#0c9765"><circle cx="190" cy="512" r="7"/><circle cx="267" cy="481" r="7"/><circle cx="347" cy="463" r="7"/></g>
+    </g>
+    <!-- Hero server: single isolated animated assembly. -->
+    <g class="hover-main" filter="url(#rackShadow)">
+      <!-- Platform feet, floating foundation and careful face separation. -->
+      <path d="M371 853L695 773L810 838L490 925Z" fill="#a1f3b5" opacity=".70"/>
+      <path d="M372 865L696 781L813 843L813 873L494 964L372 896Z" fill="url(#plinth)"/>
+      <path d="M372 865L493 931L813 843L696 781Z" fill="#b5f6c5"/>
+      <path d="M493 931v33L813 873v-30" fill="#0e8a5b"/>
+      <path d="M372 865v31l121 68v-33" fill="#36c57d"/>
+      <!-- Tower body is one coherent 3D solid. -->
+      <path d="M362 356L687 275L687 785L362 873Z" fill="url(#rackFace)" stroke="#003c2d" stroke-width="4"/>
+      <path d="M687 275L796 338L796 850L687 785Z" fill="url(#rackSide)" stroke="#024832" stroke-width="4"/>
+      <path d="M362 356L468 295L796 338L687 275Z" fill="url(#rackTop)" stroke="#b0ffc0" stroke-width="3"/>
+      <!-- Top face circuit engraving. -->
+      <path d="M425 349L490 317L654 326L692 310" fill="none" stroke="#cbffdb" stroke-width="3.5" opacity=".58"/>
+      <path d="M506 342L566 316L723 340" fill="none" stroke="#055f44" stroke-width="3" opacity=".4"/>
+      <circle cx="488" cy="326" r="6" fill="#d6ffb9"/>
+      <circle cx="653" cy="328" r="5" fill="#d6ffb9"/>
+      <!-- Edge highlights and precise structural detail. -->
+      <path d="M373 361V857" stroke="#81dab3" stroke-width="2" opacity=".3"/>
+      <path d="M696 287V778" stroke="#39cf8e" stroke-width="3" opacity=".36"/>
+      <path d="M783 348V824" stroke="#8de8ae" stroke-width="4" opacity=".21"/>
+      <path d="M706 358L768 394" stroke="#97eac2" stroke-width="3" opacity=".35"/>
+      <path d="M706 389L768 425" stroke="#97eac2" stroke-width="3" opacity=".19"/>
+      <path d="M706 794L768 828" stroke="#a2f7bf" stroke-width="3" opacity=".23"/>
+      <circle cx="742" cy="548" r="6" fill="#91ffc1" opacity=".74"/>
+      <circle cx="754" cy="557" r="4" fill="#91ffc1" opacity=".4"/>
+      <path d="M722 565l43 24M722 585l43 24M722 605l43 24" stroke="#7ee6b2" stroke-width="4" opacity=".25" stroke-linecap="round"/>
+      <!-- Slot wells generated below. -->
+      <g>
+        <path d="M389 407L660 339L660 412L389 480Z" fill="url(#slot)" stroke="#2a8a6b" stroke-width="2.5"/>
+        <path d="M401 418L648 356" stroke="#e8ffe9" stroke-width="2" opacity=".10" stroke-linecap="round"/>
+        <circle cx="417" cy="445" r="9" fill="#a8ffd1" opacity=".94" class="led "/>
+        <circle cx="417" cy="445" r="16" fill="none" stroke="#66fab6" stroke-width="2" opacity=".18"/>
+        <circle cx="452" cy="436" r="4" fill="#3ad994" opacity=".55"/>
+        <path d="M493 426L590 401" fill="none" stroke="#8ee9be" stroke-width="6" stroke-linecap="round" opacity=".66"/>
+        <path d="M493 441L553 426" fill="none" stroke="#8ee9be" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+        <path d="M621 392l23-6" fill="none" stroke="url(#neon)" stroke-width="7" stroke-linecap="round" class="led "/>
+      </g>
+      <g>
+        <path d="M389 503L660 435L660 508L389 576Z" fill="url(#slot)" stroke="#2a8a6b" stroke-width="2.5"/>
+        <path d="M401 514L648 452" stroke="#e8ffe9" stroke-width="2" opacity=".10" stroke-linecap="round"/>
+        <circle cx="417" cy="541" r="9" fill="#a8ffd1" opacity=".94" class="led led-delay"/>
+        <circle cx="417" cy="541" r="16" fill="none" stroke="#66fab6" stroke-width="2" opacity=".18"/>
+        <circle cx="452" cy="532" r="4" fill="#3ad994" opacity=".55"/>
+        <path d="M493 522L590 497" fill="none" stroke="#8ee9be" stroke-width="6" stroke-linecap="round" opacity=".66"/>
+        <path d="M493 537L553 522" fill="none" stroke="#8ee9be" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+        <path d="M621 488l23-6" fill="none" stroke="url(#neon)" stroke-width="7" stroke-linecap="round" class="led led-delay"/>
+      </g>
+      <g>
+        <path d="M389 599L660 531L660 604L389 672Z" fill="url(#slot)" stroke="#2a8a6b" stroke-width="2.5"/>
+        <path d="M401 610L648 548" stroke="#e8ffe9" stroke-width="2" opacity=".10" stroke-linecap="round"/>
+        <circle cx="417" cy="637" r="9" fill="#a8ffd1" opacity=".94" class="led "/>
+        <circle cx="417" cy="637" r="16" fill="none" stroke="#66fab6" stroke-width="2" opacity=".18"/>
+        <circle cx="452" cy="628" r="4" fill="#3ad994" opacity=".55"/>
+        <path d="M493 618L590 593" fill="none" stroke="#8ee9be" stroke-width="6" stroke-linecap="round" opacity=".66"/>
+        <path d="M493 633L553 618" fill="none" stroke="#8ee9be" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+        <path d="M621 584l23-6" fill="none" stroke="url(#neon)" stroke-width="7" stroke-linecap="round" class="led "/>
+      </g>
+      <g>
+        <path d="M389 695L660 627L660 700L389 768Z" fill="url(#slot)" stroke="#2a8a6b" stroke-width="2.5"/>
+        <path d="M401 706L648 644" stroke="#e8ffe9" stroke-width="2" opacity=".10" stroke-linecap="round"/>
+        <circle cx="417" cy="733" r="9" fill="#a8ffd1" opacity=".94" class="led led-delay"/>
+        <circle cx="417" cy="733" r="16" fill="none" stroke="#66fab6" stroke-width="2" opacity=".18"/>
+        <circle cx="452" cy="724" r="4" fill="#3ad994" opacity=".55"/>
+        <path d="M493 714L590 689" fill="none" stroke="#8ee9be" stroke-width="6" stroke-linecap="round" opacity=".66"/>
+        <path d="M493 729L553 714" fill="none" stroke="#8ee9be" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+        <path d="M621 680l23-6" fill="none" stroke="url(#neon)" stroke-width="7" stroke-linecap="round" class="led led-delay"/>
+      </g>
+      <g>
+        <path d="M389 791L660 723L660 796L389 864Z" fill="url(#slot)" stroke="#2a8a6b" stroke-width="2.5"/>
+        <path d="M401 802L648 740" stroke="#e8ffe9" stroke-width="2" opacity=".10" stroke-linecap="round"/>
+        <circle cx="417" cy="829" r="9" fill="#a8ffd1" opacity=".94" class="led "/>
+        <circle cx="417" cy="829" r="16" fill="none" stroke="#66fab6" stroke-width="2" opacity=".18"/>
+        <circle cx="452" cy="820" r="4" fill="#3ad994" opacity=".55"/>
+        <path d="M493 810L590 785" fill="none" stroke="#8ee9be" stroke-width="6" stroke-linecap="round" opacity=".66"/>
+        <path d="M493 825L553 810" fill="none" stroke="#8ee9be" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+        <path d="M621 776l23-6" fill="none" stroke="url(#neon)" stroke-width="7" stroke-linecap="round" class="led "/>
+      </g>
+      <!-- Small bottom device seams for a crafted hardware finish. -->
+      <path d="M398 862L652 797" fill="none" stroke="#8ce5b4" stroke-width="3" opacity=".34"/>
+    </g>
+    <!-- Minimal interactive-looking nodes remain independent of server silhouette. -->
+    <g class="hover-shield" filter="url(#cardShadow)">
+      <rect x="848" y="545" width="204" height="188" rx="36" fill="url(#topGlass)" stroke="#ffffff" stroke-width="4"/>
+      <circle cx="949" cy="634" r="66" fill="#d3f5df" opacity=".8"/>
+      <circle cx="949" cy="634" r="58" fill="none" stroke="#54b98b" stroke-width="2" opacity=".30" stroke-dasharray="4 12" class="spin-icon"/>
+      <path d="M949 584L989 601V631C989 662 972 681 949 695C926 681 909 662 909 631V601Z" fill="#007b55" stroke="#b0f7c5" stroke-width="4"/>
+      <path d="M926 635l16 16 29-34" fill="none" stroke="#d6ffbc" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Floating link nodes double as spatial depth cues. -->
+    <g fill="#fafffa" stroke="#75cba0" stroke-width="4">
+      <circle cx="304" cy="516" r="11"/><circle cx="821" cy="311" r="11"/><circle cx="833" cy="649" r="11"/>
+    </g>
+    <g fill="#12b777"><circle cx="304" cy="516" r="4"/><circle cx="821" cy="311" r="4"/><circle cx="833" cy="649" r="4"/></g>
+    <!-- Bottom detail: simple three-dot system / accent balance. -->
+    <g opacity=".57" fill="#0b8b61"><circle cx="180" cy="996" r="7"/><circle cx="205" cy="996" r="7"/><circle cx="230" cy="996" r="7"/></g>
+    <path d="M896 1010H1029" stroke="#0a8258" stroke-linecap="round" stroke-width="8" opacity=".21"/>
+    <path d="M954 1030H1029" stroke="#0a8258" stroke-linecap="round" stroke-width="7" opacity=".12"/>
+  </g>
+  <rect x="38.5" y="38.5" width="1123" height="1123" rx="75.5" fill="none" stroke="#ffffff" stroke-opacity=".8"/>
+</svg>

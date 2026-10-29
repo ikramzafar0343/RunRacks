@@ -1,0 +1,17 @@
+/**
+ * Allow indexing of public marketing routes; block API seams.
+ */
+import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/shared/config/site";
+
+export default function robots(): MetadataRoute.Robots {
+  const base = getSiteUrl();
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/profile"],
+    },
+    sitemap: `${base}/sitemap.xml`,
+  };
+}

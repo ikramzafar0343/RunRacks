@@ -1,0 +1,182 @@
+/**
+ * VPS AI assistance — Sage & Ink (light default; html.dark overrides).
+ */
+
+.vpsAiSection {
+  --vps-page-bg: transparent;
+  --vps-card-bg: var(--gradient-card);
+  --vps-card-border: var(--color-border);
+  --vps-text-primary: var(--color-heading);
+  --vps-text-secondary: var(--color-body);
+  --vps-text-muted: var(--color-muted);
+  --vps-tab-bg: var(--color-accent-soft);
+  --vps-tab-fg: var(--color-heading);
+  --vps-tab-active-bg: var(--color-surface);
+  --vps-tab-active-border: var(--color-brand);
+  --vps-accent: var(--color-brand);
+  --vps-accent-soft: color-mix(in srgb, var(--color-brand) 18%, transparent);
+  --vps-on-accent: var(--color-brand-contrast);
+  --vps-demo-glow-a: color-mix(in srgb, var(--color-brand) 28%, transparent);
+  --vps-demo-glow-b: color-mix(in srgb, var(--color-lime) 14%, transparent);
+  --vps-demo-base-0: var(--color-accent-soft);
+  --vps-demo-base-1: color-mix(
+    in srgb,
+    var(--color-brand) 16%,
+    var(--color-accent-soft)
+  );
+  --vps-demo-base-2: color-mix(
+    in srgb,
+    var(--color-brand) 28%,
+    var(--color-accent-soft)
+  );
+  --vps-demo-terminal-bg: var(--color-inverse);
+  --vps-demo-terminal-bar: color-mix(
+    in srgb,
+    var(--color-on-inverse) 8%,
+    var(--color-inverse)
+  );
+  --vps-demo-terminal-fg: var(--color-inverse-muted);
+  --vps-demo-terminal-prompt: var(--color-inverse-accent);
+  --vps-demo-terminal-ok: var(--color-lime);
+  --vps-demo-agent-bg: var(--color-inverse);
+  --vps-demo-agent-message: color-mix(
+    in srgb,
+    var(--color-on-inverse) 8%,
+    var(--color-inverse)
+  );
+  --vps-demo-input-bg: color-mix(
+    in srgb,
+    var(--color-canvas) 35%,
+    var(--color-inverse)
+  );
+  --vps-demo-input-border: var(--color-inverse-border);
+  --vps-section-radius: 24px;
+  --vps-demo-radius: 18px;
+  --vps-pill-radius: 999px;
+  --vps-ease: 160ms ease;
+
+  background: var(--vps-page-bg);
+  color: var(--vps-text-primary);
+  padding: clamp(1.5rem, 3.5vw, 2.25rem) clamp(1rem, 2.5vw, 2.25rem);
+  scroll-margin-top: 5rem;
+}
+
+.vpsAiCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 36rem);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  align-items: start;
+  max-width: 90rem;
+  margin-inline: auto;
+  min-height: 30rem;
+  padding: 1.5rem 1.5rem 1.5rem 3rem;
+  background: var(--vps-card-bg);
+  border: 1px solid var(--vps-card-border);
+  border-radius: var(--vps-section-radius);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--vps-text-primary) 4%, transparent),
+    0 18px 40px color-mix(in srgb, var(--vps-text-primary) 6%, transparent);
+}
+
+.vpsAiCopyColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-top: 0.75rem;
+}
+
+.vpsAiTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vpsAiTab {
+  appearance: none;
+  margin: 0;
+  padding: 0 1rem;
+  height: 2.625rem;
+  border: 1px solid transparent;
+  border-radius: var(--vps-pill-radius);
+  background: var(--vps-tab-bg);
+  color: var(--vps-tab-fg);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background var(--vps-ease),
+    border-color var(--vps-ease),
+    color var(--vps-ease);
+}
+
+.vpsAiTab:hover {
+  background: color-mix(in srgb, var(--vps-tab-bg) 82%, var(--vps-accent));
+}
+
+.vpsAiTab[aria-selected="true"] {
+  background: var(--vps-tab-active-bg);
+  border-color: var(--vps-tab-active-border);
+  color: var(--vps-accent);
+}
+
+.vpsAiTab:focus-visible {
+  outline: 2px solid var(--vps-accent);
+  outline-offset: 2px;
+}
+
+.vpsAiCopy {
+  margin-top: 3.25rem;
+  max-width: 28rem;
+}
+
+.vpsAiCopy h2 {
+  margin: 0;
+  font-size: clamp(1.6875rem, 2.4vw, 2.1875rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  color: var(--vps-text-primary);
+  text-wrap: balance;
+}
+
+.vpsAiCopy p {
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--vps-text-muted);
+}
+
+.vpsAiDemo {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+  margin-left: auto;
+  aspect-ratio: 4 / 3;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--vps-demo-radius);
+  background:
+    radial-gradient(
+      ellipse 80% 70% at 72% 8%,
+      var(--vps-demo-glow-a),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 78% 68% at 18% 82%,
+      var(--vps-demo-glow-b),
+      transparent 70%
+    ),
+    linear-gradient(
+      145deg,
+      var(--vps-demo-base-0) 0%,
+      var(--vps-demo-base-1) 48%,
+      var(--vps-demo-base-2) 100%
+    );
+}

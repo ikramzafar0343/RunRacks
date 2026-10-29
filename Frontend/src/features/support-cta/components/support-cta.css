@@ -1,0 +1,189 @@
+/*
+ * Support + migration dual CTA — calm Sage cards, light/dark.
+ */
+
+.supportCta {
+  /* Transparent band + elevated cards (theme-aware). */
+  --sc-band: transparent;
+  --sc-ink: var(--color-heading);
+  --sc-muted: var(--color-body);
+  --sc-btn: var(--color-inverse);
+  --sc-btn-hover: color-mix(
+    in srgb,
+    var(--color-inverse) 82%,
+    var(--color-brand)
+  );
+  --sc-btn-fg: var(--color-on-inverse);
+  --sc-lime: var(--color-lime);
+  --sc-lime-hover: color-mix(
+    in srgb,
+    var(--color-lime) 88%,
+    var(--color-on-inverse)
+  );
+  --sc-on-lime: var(--color-on-lime);
+  --sc-ease: var(--ease-standard);
+  --sc-media-bg: var(--color-accent-soft);
+  --sc-card-border: var(--color-border);
+  --sc-card-shadow:
+    0 1px 0 color-mix(in srgb, var(--color-heading) 4%, transparent),
+    0 10px 28px color-mix(in srgb, var(--color-heading) 6%, transparent);
+  --sc-card-bg: var(--gradient-card);
+
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  width: 100%;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  background: transparent;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 520px;
+}
+
+.supportCtaInner {
+  width: min(calc(100% - 48px), 1160px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.supportCtaCard {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+  gap: 1.75rem;
+  align-items: center;
+  min-height: 240px;
+  padding: 1.65rem 1.5rem 1.65rem 1.75rem;
+  border-radius: 16px;
+  border: 1px solid var(--sc-card-border);
+  background: var(--sc-card-bg);
+  color: var(--sc-ink);
+  box-shadow: var(--sc-card-shadow);
+}
+
+.supportCtaCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.supportCtaHeading {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.65vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--sc-ink);
+  text-wrap: balance;
+}
+
+.supportCtaBody {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--sc-muted);
+  max-width: 34ch;
+}
+
+.supportCtaBody strong {
+  font-weight: 600;
+  color: var(--sc-ink);
+}
+
+.supportCtaBtn {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+  min-height: 44px;
+  padding: 0 0.3rem 0 1.1rem;
+  border: 0;
+  border-radius: 8px;
+  background-color: var(--sc-btn);
+  background-image: none;
+  color: var(--sc-btn-fg);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translateZ(0);
+  transition:
+    transform 180ms var(--sc-ease),
+    background-color 180ms var(--sc-ease),
+    box-shadow 180ms var(--sc-ease);
+}
+
+.supportCtaBtn:hover {
+  transform: translateY(-1px) translateZ(0);
+  background-color: var(--sc-btn-hover);
+  box-shadow: 0 6px 14px color-mix(in srgb, #000 14%, transparent);
+}
+
+.supportCtaBtn:hover .supportCtaBtnIcon {
+  background-color: var(--sc-lime-hover);
+}
+
+.supportCtaBtn:active {
+  transform: translateY(0) translateZ(0);
+  box-shadow: none;
+}
+
+.supportCtaBtn:focus-visible {
+  outline: 2px solid var(--sc-lime);
+  outline-offset: 3px;
+}
+
+.supportCtaBtnIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 6px;
+  background-color: var(--sc-lime);
+  color: var(--sc-on-lime);
+  pointer-events: none;
+  transition: background-color 180ms var(--sc-ease);
+}
+
+.supportCtaBtnIcon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  display: block;
+}
+
+.supportCtaMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--sc-media-bg);
+  border: 1px solid color-mix(in srgb, var(--sc-card-border) 70%, transparent);
+}
+
+.supportCtaMediaImg {
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .supportCtaBtn,
+  .supportCtaBtnIcon {
+    transition: none;
+  }
+
+  .supportCtaBtn:hover,
+  .supportCtaBtn:active {
+    transform: none;
+  }
+}

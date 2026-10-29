@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="40" viewBox="0 0 150 40" role="img" aria-label="Demo mark">
+  <rect width="150" height="40" rx="8" fill="#e0ede5"/>
+  <rect x="14" y="12" width="16" height="16" rx="3" fill="#34745a"/>
+  <text x="38" y="26" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#20372f">Fieldstack</text>
+</svg>

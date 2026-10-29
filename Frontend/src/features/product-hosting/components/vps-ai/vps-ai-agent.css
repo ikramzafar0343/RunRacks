@@ -1,0 +1,168 @@
+.vpsAiAgent {
+  position: absolute;
+  top: 18%;
+  right: 4.5%;
+  width: 48.3%;
+  max-width: 17.4rem;
+  height: 76%;
+  max-height: 20.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--color-inverse-border);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--vps-demo-agent-bg) 88%, var(--color-on-inverse)) 0%,
+    var(--vps-demo-agent-bg) 32%,
+    var(--color-canvas) 100%
+  );
+  box-shadow: 0 16px 40px color-mix(in srgb, #000 32%, transparent);
+  z-index: 2;
+}
+
+.vpsAiAgentHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  height: 2.7rem;
+  padding: 0 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-on-inverse);
+}
+
+.vpsAiAgentSparkle {
+  flex-shrink: 0;
+  color: var(--color-lime);
+}
+
+.vpsAiAgentMessages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 0;
+  padding: 0 0.75rem 0.5rem;
+  overflow: hidden;
+}
+
+.vpsAiBubble {
+  max-width: 92%;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  background: var(--vps-demo-agent-message);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--color-on-inverse) 92%, transparent);
+}
+
+.vpsAiBubble--user {
+  align-self: flex-end;
+}
+
+.vpsAiBubble--agent {
+  align-self: flex-start;
+}
+
+.vpsAiBubble--typing {
+  display: inline-flex;
+  align-items: center;
+  min-width: 3.25rem;
+  padding-block: 0.7rem;
+}
+
+.vpsAiTypingDots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+}
+
+.vpsAiTypingDots span {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: color-mix(
+    in srgb,
+    var(--color-on-inverse) 55%,
+    var(--color-lime)
+  );
+  animation: vpsAiTypingDot 1.05s ease-in-out infinite;
+}
+
+.vpsAiTypingDots span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.vpsAiTypingDots span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+@keyframes vpsAiTypingDot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+.vpsAiConfirm {
+  margin: 0.15rem 0 0;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-lime);
+}
+
+.vpsAiAgentCursor {
+  display: inline-block;
+  width: 0.4em;
+  height: 0.95em;
+  margin-left: 1px;
+  vertical-align: -0.1em;
+  background: var(--color-lime);
+  animation: vpsAiCursorBlink 1s steps(1, end) infinite;
+}
+
+.vpsAiAgentInput {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  margin: 0 0.75rem 0.75rem;
+  padding: 0.35rem 0.4rem 0.35rem 0.55rem;
+  border: 1px solid var(--vps-demo-input-border);
+  border-radius: 14px;
+  background: var(--vps-demo-input-bg);
+  pointer-events: none;
+  user-select: none;
+}
+
+.vpsAiAgentInputPlus {
+  flex-shrink: 0;
+  color: color-mix(in srgb, var(--color-on-inverse) 45%, transparent);
+}
+
+.vpsAiAgentInputFake {
+  flex: 1;
+  min-width: 0;
+  height: 1.35rem;
+  font-size: 0.6875rem;
+  color: color-mix(in srgb, var(--color-on-inverse) 28%, transparent);
+}
+
+.vpsAiAgentSend {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: var(--vps-accent);
+  color: var(--vps-on-accent);
+}
