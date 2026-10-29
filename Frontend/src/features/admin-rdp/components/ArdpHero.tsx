@@ -100,7 +100,6 @@ export function ArdpHero() {
           </div>
         </div>
       </div>
-      <div className="ardpHeroRule" aria-hidden />
     </section>
   );
 }
