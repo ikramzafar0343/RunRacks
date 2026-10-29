@@ -77,12 +77,13 @@ export function ChatComposer({
         message = AI_COPY.fileTooBig;
         continue;
       }
-      next.push({
+      const item: ComposerAttachment = {
         id: crypto.randomUUID(),
         name: file.name || (kind === "image" ? "Photo" : "File"),
         kind,
-        previewUrl: kind === "image" ? URL.createObjectURL(file) : undefined,
-      });
+      };
+      if (kind === "image") item.previewUrl = URL.createObjectURL(file);
+      next.push(item);
     }
     if (next.length === 0) {
       setNote(message);
@@ -125,8 +126,10 @@ export function ChatComposer({
       let finalText = "";
       let interim = "";
       for (let index = 0; index < event.results.length; index += 1) {
-        const chunk = event.results[index][0]?.transcript ?? "";
-        if (event.results[index].isFinal) finalText += chunk;
+        const result = event.results[index];
+        if (!result) continue;
+        const chunk = result[0]?.transcript ?? "";
+        if (result.isFinal) finalText += chunk;
         else interim += chunk;
       }
       const spoken = `${finalText}${interim}`.trim();

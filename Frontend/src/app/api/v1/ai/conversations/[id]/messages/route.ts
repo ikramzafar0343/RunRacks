@@ -3,7 +3,10 @@
  * Validates body; returns 503 NOT_CONFIGURED — never streams fake answers.
  */
 import { NextResponse } from "next/server";
-import { AI_MAX_INPUT_CHARS } from "@/features/ai-advisor/model/aiContent";
+import {
+  AI_MAX_INPUT_CHARS,
+  isAiMessageTopic,
+} from "@/features/ai-advisor/model/aiContent";
 import { aiNotConfiguredResponse } from "@/features/ai-advisor/server/aiNotConfigured";
 import type { AiMessageRequest, ApiErrorBody } from "@/shared/lib/apiContracts";
 
@@ -55,10 +58,14 @@ function validate(
       return { ok: false, message: "context must be an object." };
     }
     const topicRaw = body.context.topic;
-    if (typeof topicRaw === "string" && topicRaw.length > 0) {
-      data.context = {
-        topic: topicRaw as NonNullable<AiMessageRequest["context"]>["topic"],
-      };
+    if (topicRaw !== undefined) {
+      if (!isAiMessageTopic(topicRaw)) {
+        return {
+          ok: false,
+          message: "context.topic must be vps, windows, pricing, contact, or setup.",
+        };
+      }
+      data.context = { topic: topicRaw };
     }
   }
 

@@ -34,7 +34,7 @@ export function AiAdvisor({ topicParam = null }: AiAdvisorProps) {
   const topic: AiTopic | null = isAiTopic(topicParam) ? topicParam : null;
   const [starters, setStarters] =
     useState<readonly AiStarterWithIcon[]>(AI_STARTERS);
-  const [disclaimer, setDisclaimer] = useState(AI_COPY.disclaimer);
+  const [disclaimer, setDisclaimer] = useState<string>(AI_COPY.disclaimer);
   const [planOpen, setPlanOpen] = useState(false);
   const [plansOpen, setPlansOpen] = useState(false);
   const [planFamily, setPlanFamily] = useState<VpsFamily | null>(null);

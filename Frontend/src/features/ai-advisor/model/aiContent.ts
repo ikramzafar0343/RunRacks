@@ -93,6 +93,12 @@ export function isAiTopic(value: string | null | undefined): value is AiTopic {
   );
 }
 
+/** Message context topic, including the setup starter. */
+export function isAiMessageTopic(value: unknown): value is AiTopic | "setup" {
+  if (value === "setup") return true;
+  return isAiTopic(typeof value === "string" ? value : undefined);
+}
+
 export function startersForTopic(
   topic: AiTopic | null,
 ): readonly AiStarterWithIcon[] {
