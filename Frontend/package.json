@@ -57,5 +57,10 @@
     "tailwindcss": "^4",
     "ttf2woff2": "^8.0.1",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "onnxruntime-node@1.17.3": true,
+    "sharp@0.32.6": true,
+    "sharp@0.35.5": true
   }
 }

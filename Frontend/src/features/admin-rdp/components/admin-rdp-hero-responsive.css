@@ -42,7 +42,7 @@
     margin: 0.5rem calc(var(--ardp-gutter, 1.75rem) * -1) 0;
   }
 
-  .ardpHeroImage {
+  .ardpHeroPlate {
     left: 2%;
     width: 95%;
     bottom: 0;
@@ -72,7 +72,7 @@
     margin-inline: -1.05rem;
   }
 
-  .ardpHeroImage {
+  .ardpHeroPlate {
     width: 110%;
     left: -5%;
   }

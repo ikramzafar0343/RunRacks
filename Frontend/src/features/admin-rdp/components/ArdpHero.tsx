@@ -66,15 +66,18 @@ export function ArdpHero() {
             unoptimized
             aria-hidden
           />
-          <Image
-            className="ardpHeroImage"
-            src={hero.visual.src}
-            alt={hero.visual.alt}
-            width={960}
-            height={472}
-            sizes="(max-width: 700px) 100vw, (max-width: 1100px) 90vw, 55vw"
-            preload
-          />
+          <div className="ardpHeroPlate">
+            <Image
+              className="ardpHeroImage"
+              src={hero.visual.src}
+              alt={hero.visual.alt}
+              width={960}
+              height={472}
+              sizes="(max-width: 700px) 100vw, (max-width: 1100px) 90vw, 55vw"
+              preload
+              unoptimized
+            />
+          </div>
           <div
             className="ardpHeroFloat ardpHeroFloat--connection"
             aria-label={`${hero.cards.connection.title}: ${hero.cards.connection.detail}`}

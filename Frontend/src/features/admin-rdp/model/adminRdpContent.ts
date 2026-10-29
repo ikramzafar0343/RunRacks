@@ -29,11 +29,11 @@ export const ADMIN_RDP = {
       href: "/pricing" as Route,
     },
     visual: {
-      src: "/images/admin-rdp/hero-workstation-transparent.webp",
+      src: "/images/admin-rdp/hero-workstation-cut.webp",
       alt: "Illustrative workstation with monitor, PC tower, keyboard, mouse, and plant",
     },
     visualMobile: {
-      src: "/images/admin-rdp/hero-workstation-mobile.webp",
+      src: "/images/admin-rdp/hero-workstation-cut.webp",
       alt: "Illustrative workstation with monitor, PC tower, keyboard, mouse, and plant",
     },
     cards: {

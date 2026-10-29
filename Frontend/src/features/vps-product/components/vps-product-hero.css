@@ -16,10 +16,10 @@
 
 .vpsProductHeroInner {
   width: min(100%, 91.875rem);
-  min-height: clamp(28rem, 55vw, 39.375rem);
+  min-height: clamp(22rem, 42vw, 30rem);
   margin-inline: auto;
   display: grid;
-  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   align-items: center;
   gap: clamp(1rem, 3vw, 2rem);
   position: relative;
