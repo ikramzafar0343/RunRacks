@@ -1,22 +1,23 @@
 /**
- * Product hosting page — shared inclusions, workloads, and capabilities.
+ * Product hosting page — Linux inclusions and workloads.
+ * Windows uses windowsHostingContent.ts (do not reuse this pack there).
  */
-import type { Capability, WorkloadItem } from "./productHostingTypes";
+import type { WorkloadItem } from "./productHostingTypes";
 
 /** Short checklist lines for the inclusions panel (honest catalog features only). */
-export const SHARED_INCLUSIONS = [
-  "Full root / administrator access",
+export const LINUX_INCLUSIONS = [
+  "Full root access on Linux guests",
   "NVMe SSD storage",
   "Regions across the catalog",
   "Dedicated IPv4 address",
-  "Documented plan specs before you continue",
-  "OS images selected when ordering is connected",
-  "Listed vCPU and RAM per tier",
-  "Family and billing-term filters",
+  "Documented Linux plan specs before you continue",
+  "Linux images selected when ordering is connected",
+  "Listed vCPU and RAM per Linux tier",
+  "Linux family and billing-term filters",
   "Demo pricing labeled until checkout is live",
 ] as const;
 
-export const SHARED_WORKLOADS: readonly WorkloadItem[] = [
+export const LINUX_WORKLOADS: readonly WorkloadItem[] = [
   {
     id: "automation",
     label: "Automation",
@@ -106,50 +107,5 @@ export const SHARED_WORKLOADS: readonly WorkloadItem[] = [
       src: "/images/showcase/rail-photo-cloud.jpg",
       objectPosition: "50% 40%",
     },
-  },
-];
-
-export const SHARED_CAPS: readonly Capability[] = [
-  {
-    id: "root",
-    number: "01",
-    icon: "root",
-    title: "Full root access",
-    body: "Administer the guest OS with the same privileges you expect on a dedicated machine.",
-  },
-  {
-    id: "admin",
-    number: "02",
-    icon: "admin",
-    title: "Administrative control",
-    body: "Install packages, configure services, and shape firewall rules inside your VPS.",
-  },
-  {
-    id: "network",
-    number: "03",
-    icon: "network",
-    title: "Dedicated IPv4",
-    body: "Each plan includes addressing you can point DNS and TLS certificates at.",
-  },
-  {
-    id: "storage",
-    number: "04",
-    icon: "storage",
-    title: "NVMe storage",
-    body: "Local NVMe volumes sized per plan so disk-bound workloads stay on fast media.",
-  },
-  {
-    id: "images",
-    number: "05",
-    icon: "images",
-    title: "OS images at order",
-    body: "Select a supported Linux or Windows image when you provision—subject to family.",
-  },
-  {
-    id: "clarity",
-    number: "06",
-    icon: "clarity",
-    title: "Readable plans",
-    body: "Compare vCPU, RAM, storage, and regions before you commit—no hidden marketing tiers.",
   },
 ];

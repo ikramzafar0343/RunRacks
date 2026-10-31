@@ -1,0 +1,35 @@
+/* Admin RDP use cases — motion + breakpoints */
+
+@keyframes ardpUseCasesFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .ardpUseCasesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ardpUseCasesDetail {
+    padding: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ardpUseCasesDetailBody {
+    animation: none;
+  }
+
+  .ardpUseCasesItem,
+  .ardpUseCasesItem:hover,
+  .ardpUseCasesCta svg {
+    transition: none;
+    transform: none;
+  }
+}

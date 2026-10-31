@@ -10,8 +10,8 @@ import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
 import { WindowsUsaHero } from "@/features/windows-usa/components/WindowsUsaHero";
 import { WindowsUsaHighlight } from "@/features/windows-usa/components/WindowsUsaHighlight";
 import { WindowsUsaShowcase } from "@/features/windows-usa/components/WindowsUsaShowcase";
-import { WindowsUsaWhy } from "@/features/windows-usa/components/WindowsUsaWhy";
 import { WINDOWS_USA } from "@/features/windows-usa/model/windowsUsaContent";
+import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
 import "@/features/windows-usa/components/windows-usa.css";
 
 export type WindowsUsaPageProps = {
@@ -36,7 +36,7 @@ export function WindowsUsaPage({ initialCatalog }: WindowsUsaPageProps) {
           />
         </Suspense>
       </section>
-      <WindowsUsaWhy />
+      <WhyChooseUs variant="windows-usa" sectionId="windows-usa-why" />
       <WindowsUsaHighlight />
       <FaqSection
         content={{

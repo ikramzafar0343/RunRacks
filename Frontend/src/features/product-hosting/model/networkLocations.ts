@@ -180,6 +180,7 @@ export function buildNetworkDots(regions: readonly VpsRegion[]): WorldMapDot[] {
         lat: startMeta.lat,
         lng: startMeta.lng,
         label: startRegion.name,
+        flagCode: startRegion.countryCode,
         ...(startOffset
           ? { labelDx: startOffset.dx, labelDy: startOffset.dy }
           : {}),
@@ -188,6 +189,7 @@ export function buildNetworkDots(regions: readonly VpsRegion[]): WorldMapDot[] {
         lat: endMeta.lat,
         lng: endMeta.lng,
         label: endRegion.name,
+        flagCode: endRegion.countryCode,
         ...(endOffset ? { labelDx: endOffset.dx, labelDy: endOffset.dy } : {}),
       },
     });

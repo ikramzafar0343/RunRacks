@@ -10,7 +10,37 @@ export type FaqItem = {
   answer: string;
 };
 
-/** Home, /pricing, and /faq — Linux/VPS education. */
+/** Homepage — cross-product starter questions (not the /faq Linux set). */
+export const HOME_FAQ = {
+  heading: "Quick answers",
+  items: [
+    {
+      id: "home-families",
+      question: "What can I host on RunRacks?",
+      answer:
+        "Three catalog families: Linux VPS with root access, Windows VPS for server workloads, and Admin RDP for administrator Windows desktops. Compare them on Pricing with the same demo-labeled specs.",
+    },
+    {
+      id: "home-demo",
+      question: "Are the prices on the homepage live?",
+      answer: DEMO_PRICING_ANSWER,
+    },
+    {
+      id: "home-region",
+      question: "Can I pick a region?",
+      answer:
+        "Yes. Plan filters and product pages use the same catalog regions. Open a family page or Pricing, then select the location that fits your users.",
+    },
+    {
+      id: "home-next",
+      question: "Where should I go next?",
+      answer:
+        "Use Pricing to compare tiers, product pages for family-specific context, Customize for a rough capacity build, or Contact when you want a human.",
+    },
+  ] satisfies readonly FaqItem[],
+} as const;
+
+/** /faq and Linux VPS product — Linux/VPS education. */
 export const VPS_FAQ = {
   heading: "VPS hosting FAQs",
   items: [
@@ -101,38 +131,38 @@ export const WINDOWS_FAQ = {
   ] satisfies readonly FaqItem[],
 } as const;
 
-/** Admin RDP product page — remote desktop focus (page may override with ADMIN_RDP.faq). */
-export const ADMIN_RDP_FAQ = {
-  heading: "Admin RDP FAQs",
+/** /pricing — catalog comparison (not the home Linux education set). */
+export const PRICING_FAQ = {
+  heading: "Pricing & catalog FAQs",
   items: [
     {
-      id: "rdp-what",
-      question: "What is Admin RDP hosting?",
-      answer:
-        "Admin RDP plans deliver a Windows remote desktop with administrator rights so operators can run tools, browsers, and workflows from a controlled environment—not a locked-down shared desktop.",
-    },
-    {
-      id: "rdp-access",
-      question: "Who should use Admin RDP?",
-      answer:
-        "Teams that need a persistent Windows workspace with admin control—agencies, operators, and support staff who outgrow consumer remote-desktop limits.",
-    },
-    {
-      id: "rdp-regions",
-      question: "Can I choose a region?",
-      answer:
-        "Yes. Plan filters use the same catalog regions as Pricing. Pick a location that matches latency needs for the people who will connect.",
-    },
-    {
-      id: "rdp-pricing",
-      question: "Are plan prices final?",
+      id: "price-demo",
+      question: "Are these catalog prices live checkout?",
       answer: DEMO_PRICING_ANSWER,
     },
     {
-      id: "rdp-start",
-      question: "How do I move forward?",
+      id: "price-families",
+      question: "What do the family filters mean?",
       answer:
-        "Compare Admin RDP tiers on this page, then continue on Pricing or Contact. Deploy steps remain unavailable until billing is configured.",
+        "Linux VPS, Windows VPS, and Admin RDP are separate catalog families. Filter by family so you compare tiers that match the job—server Linux, Windows Server, or an administrator desktop.",
+    },
+    {
+      id: "price-region",
+      question: "How do regions affect what I see?",
+      answer:
+        "Location filters the plans shown for that catalog region. Specs stay on the cards; we do not invent latency SLAs or city-level marketing claims on this page.",
+    },
+    {
+      id: "price-term",
+      question: "What do billing terms change?",
+      answer:
+        "Term controls how the demo total is framed for comparison. Monthly figures divide the term total by months when shown that way—labels stay demo until checkout is connected.",
+    },
+    {
+      id: "price-next",
+      question: "How do I continue after comparing?",
+      answer:
+        "Use Contact for a human handoff, Customize for a rough capacity build, or product pages when you want family-specific editorial context alongside the same catalog.",
     },
   ] satisfies readonly FaqItem[],
 } as const;

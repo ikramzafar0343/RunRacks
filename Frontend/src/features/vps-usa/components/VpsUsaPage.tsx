@@ -13,8 +13,8 @@ import { VpsUsaCoverage } from "@/features/vps-usa/components/VpsUsaCoverage";
 import { VpsUsaHero } from "@/features/vps-usa/components/VpsUsaHero";
 import { VpsUsaInclusions } from "@/features/vps-usa/components/VpsUsaInclusions";
 import { VpsUsaStory } from "@/features/vps-usa/components/VpsUsaStory";
-import { VpsUsaWhy } from "@/features/vps-usa/components/VpsUsaWhy";
 import { VPS_USA } from "@/features/vps-usa/model/vpsUsaContent";
+import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
 import "@/features/vps-usa/components/vps-usa.css";
 import "@/features/vps-usa/components/vps-usa-sections.css";
 
@@ -26,7 +26,7 @@ export function VpsUsaPage({ initialCatalog }: VpsUsaPageProps) {
   return (
     <main className="usaPage rrDenseSpacing flex flex-1 flex-col">
       <VpsUsaHero />
-      <VpsUsaWhy />
+      <WhyChooseUs variant="linux-usa" sectionId="usa-why" />
       <VpsUsaCoverage />
       <VpsUsaStory />
       <VpsUsaAudience />

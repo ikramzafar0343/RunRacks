@@ -97,8 +97,8 @@ export const WINDOWS_USA = {
       },
       {
         id: "migrate",
-        heading: "Moving Windows workloads to the US?",
-        body: "We can walk you through plan choices and admin access so your move onto RunRacks stays clear—from demo tiers to Pricing.",
+        heading: "Moving Windows Server workloads to the US?",
+        body: "Map IIS roles, vendor installers, and USA region choice before you switch families—then continue on Pricing with Windows tiers in focus.",
         ctaLabel: "Chat with us",
         href: "/ai" as Route,
         imageSrc: "/media/customer-stories/demo-02/portrait.jpg",

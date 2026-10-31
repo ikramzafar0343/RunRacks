@@ -12,6 +12,7 @@ import { AdminRdpUsaClarity } from "@/features/admin-rdp-usa/components/AdminRdp
 import { AdminRdpUsaCompare } from "@/features/admin-rdp-usa/components/AdminRdpUsaCompare";
 import { AdminRdpUsaHero } from "@/features/admin-rdp-usa/components/AdminRdpUsaHero";
 import { ADMIN_RDP_USA } from "@/features/admin-rdp-usa/model/adminRdpUsaContent";
+import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
 import "@/features/windows-usa/components/windows-usa.css";
 import "@/features/admin-rdp-usa/components/admin-rdp-usa.css";
 
@@ -37,6 +38,7 @@ export function AdminRdpUsaPage({ initialCatalog }: AdminRdpUsaPageProps) {
           />
         </Suspense>
       </section>
+      <WhyChooseUs variant="admin-rdp-usa" sectionId="admin-rdp-usa-why" />
       <AdminRdpUsaClarity />
       <AdminRdpUsaCompare />
       <FaqSection

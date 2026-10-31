@@ -1,4 +1,5 @@
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
+import { SUPPORT_CTA_BLOG } from "@/features/support-cta/model/supportCtaContent";
 import type {
   BlogArticleListItem,
   BlogCategory,
@@ -115,7 +116,7 @@ export function BlogLandingView({
         )}
       </div>
       <div className="blogSupportWrap blogInner">
-        <SupportCtaSection />
+        <SupportCtaSection content={SUPPORT_CTA_BLOG} />
       </div>
     </div>
   );

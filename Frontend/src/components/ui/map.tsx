@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useId, useMemo, useRef, useState } from "react";
 import { useDocumentTheme } from "@/shared/lib/useDocumentTheme";
+import { MapFlag } from "./mapFlag";
 import { createCurvedPath, projectPoint } from "./mapGeometry";
 import {
   SAGE_BRAND,
@@ -37,7 +38,10 @@ export function WorldMap({
   const reactId = useId().replace(/:/g, "");
   const pathGradientId = `path-gradient-${reactId}`;
   const glowId = `glow-${reactId}`;
-  const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
+  const [hoveredLocation, setHoveredLocation] = useState<{
+    label: string;
+    flagCode?: string;
+  } | null>(null);
   const theme = useDocumentTheme();
   const reducedMotion = usePrefersReducedMotion();
   const shouldLoop = loop && !reducedMotion;
@@ -174,16 +178,20 @@ export function WorldMap({
 
         {uniquePoints.map((point, i) => {
           const { x, y } = projectPoint(point.lat, point.lng);
-          const labelW = 120;
+          const labelW = point.flagCode ? 156 : 128;
           const labelH = 28;
           const dx = point.labelDx ?? 0;
           const dy = point.labelDy ?? 0;
+          const hoverLabel = point.label || `Location ${i}`;
 
           return (
             <g key={`point-${point.lat}-${point.lng}-${i}`}>
               <motion.g
                 onHoverStart={() =>
-                  setHoveredLocation(point.label || `Location ${i}`)
+                  setHoveredLocation({
+                    label: hoverLabel,
+                    ...(point.flagCode ? { flagCode: point.flagCode } : {}),
+                  })
                 }
                 onHoverEnd={() => setHoveredLocation(null)}
                 className="cursor-pointer"
@@ -239,8 +247,11 @@ export function WorldMap({
                   >
                     <div className="flex h-full items-center justify-center">
                       <span
-                        className={`${labelClassName} ${labelClass} whitespace-nowrap rounded-md border px-2 py-0.5 font-medium shadow-sm`}
+                        className={`${labelClassName} ${labelClass} inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border px-2 py-0.5 font-medium shadow-sm`}
                       >
+                        {point.flagCode ? (
+                          <MapFlag code={point.flagCode} />
+                        ) : null}
                         {point.label}
                       </span>
                     </div>
@@ -258,9 +269,12 @@ export function WorldMap({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className={`absolute bottom-4 left-4 rounded-lg border px-3 py-2 text-sm font-medium backdrop-blur-sm sm:hidden ${tipClass}`}
+            className={`absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium backdrop-blur-sm sm:hidden ${tipClass}`}
           >
-            {hoveredLocation}
+            {hoveredLocation.flagCode ? (
+              <MapFlag code={hoveredLocation.flagCode} size="md" />
+            ) : null}
+            {hoveredLocation.label}
           </motion.div>
         ) : null}
       </AnimatePresence>

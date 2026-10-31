@@ -25,7 +25,14 @@ export const VPS_USA_MAP_DOTS: readonly WorldMapDot[] = ARC_ENDS.map(
     start: {
       lat: US_PIN.lat,
       lng: US_PIN.lng,
-      ...(i === 0 ? { label: "United States", labelDx: 8, labelDy: -28 } : {}),
+      ...(i === 0
+        ? {
+            label: "United States",
+            flagCode: "us",
+            labelDx: 8,
+            labelDy: -28,
+          }
+        : {}),
     },
     end: { lat: end.lat, lng: end.lng },
   }),
@@ -72,28 +79,6 @@ export const VPS_USA = {
         category: "Root access",
         title: "Administrator control when you launch",
         href: "#usa-plans" as Route,
-      },
-    ],
-  },
-  why: {
-    eyebrow: "Why start in the US",
-    heading: "Same catalog language, US filters preselected",
-    lead: "United States is a first-class catalog location—identical plan framing to every other region, with location already set on this page.",
-    reasons: [
-      {
-        id: "access",
-        title: "Full root access",
-        body: "Install the stack your app actually runs. You manage the guest OS, packages, and access keys.",
-      },
-      {
-        id: "nvme",
-        title: "NVMe on every card",
-        body: "Local NVMe, vCPU, and RAM are listed per tier so you can shortlist without hidden marketing units.",
-      },
-      {
-        id: "pricing",
-        title: "Labeled demo pricing",
-        body: "Amounts are demo until checkout is connected. Billing terms and regions stay readable while you compare.",
       },
     ],
   },
@@ -233,8 +218,8 @@ export const VPS_USA = {
       },
       {
         id: "migrate",
-        heading: "Migrating into the US region?",
-        body: "We can walk you through plan choices and admin access so your move onto RunRacks stays clear—from demo tiers to Pricing.",
+        heading: "Migrating Linux VPS into the US region?",
+        body: "Size root-access Linux tiers for United States locations, confirm NVMe and vCPU fit, then continue on Pricing with USA already in focus.",
         ctaLabel: "Chat with us",
         href: "/ai" as Route,
         imageSrc: "/media/customer-stories/demo-02/portrait.jpg",

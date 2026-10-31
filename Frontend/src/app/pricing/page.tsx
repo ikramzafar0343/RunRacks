@@ -10,7 +10,9 @@ import { HeroSection } from "@/components/ui/hero-1";
 import { BrandsSection } from "@/features/home/components/BrandsSection";
 import { VpsPlanComparison } from "@/features/vps-pricing/components/VpsPlanComparison";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
+import { PRICING_FAQ } from "@/features/vps-faq/model/faqContent";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
+import { SUPPORT_CTA_PRICING } from "@/features/support-cta/model/supportCtaContent";
 
 export const metadata: Metadata = {
   title: "Hosting Plans & Pricing | RunRacks",
@@ -31,8 +33,8 @@ export default function PricingPage() {
         </Suspense>
       </div>
       <VpsPlanComparison />
-      <FaqSection />
-      <SupportCtaSection />
+      <FaqSection content={PRICING_FAQ} />
+      <SupportCtaSection content={SUPPORT_CTA_PRICING} />
     </main>
   );
 }

@@ -3,18 +3,19 @@
  */
 export type {
   BenefitCard,
-  Capability,
-  CapabilityIcon,
   ProductHostingContent,
   ProductHostingKey,
   WorkloadItem,
 } from "./productHostingTypes";
 
 import {
-  SHARED_CAPS,
-  SHARED_INCLUSIONS,
-  SHARED_WORKLOADS,
+  LINUX_INCLUSIONS,
+  LINUX_WORKLOADS,
 } from "./productHostingShared";
+import {
+  WINDOWS_INCLUSIONS,
+  WINDOWS_WORKLOADS,
+} from "./windowsHostingContent";
 import type {
   ProductHostingContent,
   ProductHostingKey,
@@ -57,17 +58,14 @@ export const PRODUCT_HOSTING: Record<ProductHostingKey, ProductHostingContent> =
       ],
       inclusionsHeading: "Every Linux plan includes",
       inclusionsAccent: "the essentials",
-      inclusions: SHARED_INCLUSIONS,
+      inclusions: LINUX_INCLUSIONS,
       billingDisclosure:
         "Plans are billed for the selected term. Monthly figures divide the term total by months. Demo amounts are labeled until live checkout is configured.",
       workloadsHeading: "Built for real workloads",
       workloadsIntro:
         "Choose a use case to see how Linux VPS fits—then jump to matching plans.",
-      workloads: SHARED_WORKLOADS,
+      workloads: LINUX_WORKLOADS,
       infraHeading: "Regions in the catalog",
-      capsHeading: "Linux VPS capabilities",
-      capsSubheading: "What you work with on RunRacks Linux VPS",
-      capabilities: SHARED_CAPS,
       convertHeading: "Find a Linux VPS that fits",
       convertSupport:
         "Compare Linux tiers with Windows and Admin RDP using the same catalog filters.",
@@ -109,17 +107,14 @@ export const PRODUCT_HOSTING: Record<ProductHostingKey, ProductHostingContent> =
       ],
       inclusionsHeading: "Every Windows plan includes",
       inclusionsAccent: "the essentials",
-      inclusions: SHARED_INCLUSIONS,
+      inclusions: WINDOWS_INCLUSIONS,
       billingDisclosure:
         "Plans are billed for the selected term. Monthly figures divide the term total by months. Demo amounts are labeled until live checkout is configured.",
       workloadsHeading: "Windows-friendly workloads",
       workloadsIntro:
-        "From app servers to admin tools—filter the catalog to Windows when you compare.",
-      workloads: SHARED_WORKLOADS,
+        "From IIS app hosts to vendor tools—filter the catalog to Windows when you compare.",
+      workloads: WINDOWS_WORKLOADS,
       infraHeading: "Regions in the catalog",
-      capsHeading: "Windows VPS capabilities",
-      capsSubheading: "Control and clarity for Microsoft-oriented stacks",
-      capabilities: SHARED_CAPS,
       convertHeading: "Find a Windows plan that fits",
       convertSupport:
         "Compare Windows VPS and Admin RDP tiers with the same honest demo labels.",

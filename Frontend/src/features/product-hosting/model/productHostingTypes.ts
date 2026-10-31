@@ -29,18 +29,6 @@ export type WorkloadItem = {
   };
 };
 
-export type CapabilityIcon =
-  "root" | "admin" | "network" | "storage" | "images" | "clarity";
-
-export type Capability = {
-  id: string;
-  /** Display index, e.g. "01" — matches VPS principles section. */
-  number: string;
-  title: string;
-  body: string;
-  icon: CapabilityIcon;
-};
-
 export type ProductHostingContent = {
   key: ProductHostingKey;
   metaTitle: string;
@@ -67,9 +55,6 @@ export type ProductHostingContent = {
   workloadsIntro: string;
   workloads: readonly WorkloadItem[];
   infraHeading: string;
-  capsHeading: string;
-  capsSubheading: string;
-  capabilities: readonly Capability[];
   convertHeading: string;
   convertSupport: string;
   convertCta: string;

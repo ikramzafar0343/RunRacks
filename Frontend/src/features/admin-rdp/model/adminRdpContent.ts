@@ -3,10 +3,8 @@
  * Demo/illustrative labels where claims are not production-verified.
  */
 import type { Route } from "next";
-import {
-  DEMO_PRICING_ANSWER,
-  catalogRegionsIntro,
-} from "@/shared/content/demoPricingCopy";
+import { ADMIN_RDP_USE_CASES } from "@/features/admin-rdp/model/adminRdpUseCases";
+import { DEMO_PRICING_ANSWER } from "@/shared/content/demoPricingCopy";
 
 export type ArdpStat = { value: string; caption: string };
 export type ArdpTestimonial = {
@@ -15,6 +13,10 @@ export type ArdpTestimonial = {
   role: string;
 };
 export type ArdpFaqItem = { id: string; question: string; answer: string };
+export type {
+  ArdpUseCase,
+  ArdpUseCaseIcon,
+} from "@/features/admin-rdp/model/adminRdpUseCases";
 
 export const ADMIN_RDP = {
   metaTitle: "Admin RDP — Windows remote desktop | RunRacks",
@@ -47,41 +49,8 @@ export const ADMIN_RDP = {
       "Admin RDP is for teams that need a real Windows desktop remotely—full administrator access with documented demo specs for vCPU, RAM, and storage before checkout is connected.",
     ] as const,
   },
-  storyIdeas: {
-    eyebrow: "+ ( Built for operator workflows )",
-    body: "Support desks, finance tools, legacy apps, and day-to-day admin all need a proper Windows session. Match those needs to an Admin RDP tier so remote work feels like a machine you control—not a locked guest account.",
-    portrait: {
-      src: "/images/admin-rdp/story-portrait.jpg",
-      alt: "Operator in a beanbag with a laptop under a WORK headline",
-    },
-    pair: [
-      {
-        src: "/images/admin-rdp/story-desk.jpg",
-        alt: "Operator carrying an overloaded folder of messy data papers",
-      },
-      {
-        src: "/images/admin-rdp/story-detail.jpg",
-        alt: "Operator checking a phone surrounded by social media icons",
-      },
-    ] as const,
-  },
-  storyDesign: {
-    eyebrow: "+ ( Specs and a usable desktop )",
-    primary:
-      "Install software, manage services, and work through a familiar Windows desktop. Plan cards stay honest about capacity; Pricing is the next step when you are ready to continue.",
-    secondary:
-      "Specs without a usable desktop fail operators; a desktop without clear capacity fails planning. Admin RDP pairs labeled demo tiers with full administrator sessions.",
-    image: {
-      src: "/images/admin-rdp/team.jpg",
-      alt: "Team working with remote Windows tools — placeholder for Admin RDP team slot",
-    },
-  },
-  /** Locations / globe — same catalog regions as pricing filters */
-  network: {
-    eyebrow: "Catalog regions",
-    headingAfter: "locations. Pick a region, open Admin RDP plans.",
-    intro: catalogRegionsIntro("Admin RDP plans"),
-  },
+  useCases: ADMIN_RDP_USE_CASES,
+  /** Demo catalog figures — labeled illustrative, not live SLAs */
   stats: {
     eyebrow: "( Demo figures )",
     items: [

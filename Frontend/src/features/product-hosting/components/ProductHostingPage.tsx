@@ -4,7 +4,6 @@
 import { Suspense } from "react";
 import { CustomerStoriesSection } from "@/features/customer-stories/components/CustomerStoriesSection";
 import { PhBenefits } from "@/features/product-hosting/components/PhBenefits";
-import { PhCapabilities } from "@/features/product-hosting/components/PhCapabilities";
 import { PhConversion } from "@/features/product-hosting/components/PhConversion";
 import { PhHero } from "@/features/product-hosting/components/PhHero";
 import { PhInclusions } from "@/features/product-hosting/components/PhInclusions";
@@ -24,6 +23,7 @@ import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
 import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
 import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
+import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
 import "@/features/product-hosting/components/product-hosting.css";
 
 export type ProductHostingPageProps = {
@@ -87,19 +87,22 @@ export function ProductHostingPage({
       <PhInfra
         heading={content.infraHeading}
         regions={catalog.regions}
-        intro={catalogRegionsIntro("Windows plans")}
+        intro={catalogRegionsIntro(
+          product === "windows" ? "Windows plans" : "VPS plans",
+        )}
         pricingAnchor="#vps-pricing"
       />
 
       <VpsAiSection />
 
-      <PhCapabilities
-        heading={content.capsHeading}
-        subheading={content.capsSubheading}
-        items={content.capabilities}
+      <WhyChooseUs
+        variant={product === "windows" ? "windows" : "linux"}
       />
 
-      <CustomerStoriesSection />
+      <CustomerStoriesSection
+        heading="How teams use Windows VPS"
+        intro="Illustrative stories about Windows Server workloads with administrator access—labeled demo until verified case studies ship."
+      />
 
       <PhConversion
         heading={content.convertHeading}

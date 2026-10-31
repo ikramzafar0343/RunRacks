@@ -92,8 +92,8 @@ export const ADMIN_RDP_USA = {
       },
       {
         id: "migrate",
-        heading: "Moving Admin RDP workloads to the US?",
-        body: "We can walk you through plan choices and admin access so your move onto RunRacks stays clear—from demo tiers to Pricing.",
+        heading: "Moving operator desktops to USA Admin RDP?",
+        body: "Size Admin RDP tiers for support desks or agency sessions in the United States region, then continue on Pricing without mixing in Windows VPS server plans.",
         ctaLabel: "Chat with us",
         href: "/ai" as Route,
         imageSrc: "/media/customer-stories/demo-02/portrait.jpg",

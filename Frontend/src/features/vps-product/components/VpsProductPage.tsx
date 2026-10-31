@@ -10,9 +10,10 @@ import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import { VPS_FAQ } from "@/features/vps-faq/model/faqContent";
 import { catalogRegionsIntro } from "@/shared/content/demoPricingCopy";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
+import { SUPPORT_CTA_LINUX_VPS } from "@/features/support-cta/model/supportCtaContent";
 import { VpsCompanyRail } from "@/features/vps-product/components/VpsCompanyRail";
+
 import { VpsCompetitorCompare } from "@/features/vps-product/components/VpsCompetitorCompare";
-import { VpsPrinciples } from "@/features/vps-product/components/VpsPrinciples";
 import { VpsProductFeatures } from "@/features/vps-product/components/VpsProductFeatures";
 import { VpsProductHero } from "@/features/vps-product/components/VpsProductHero";
 import { getStartingPrice } from "@/features/product-hosting/model/startingPrice";
@@ -21,6 +22,7 @@ import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricing
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
 import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
 import { VPS_CUSTOMIZE_TRUST } from "@/features/vps-product/model/vpsCustomizeTrust";
+import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
 import "@/features/vps-product/components/vps-product.css";
 
 export type VpsProductPageProps = {
@@ -72,11 +74,11 @@ export function VpsProductPage({
         pricingAnchor="#vps-plans"
       />
       <VpsCompetitorCompare />
-      <VpsPrinciples />
+      <WhyChooseUs variant="linux" />
       <BrandsSection />
       <VpsCompanyRail />
       <FaqSection content={VPS_FAQ} />
-      <SupportCtaSection />
+      <SupportCtaSection content={SUPPORT_CTA_LINUX_VPS} />
     </main>
   );
 }

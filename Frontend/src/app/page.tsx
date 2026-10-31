@@ -15,6 +15,7 @@ import { HowWeWorkSection } from "@/features/how-we-work/components/HowWeWorkSec
 import { StatisticsSection } from "@/features/statistics/components/StatisticsSection";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
+import { HOME_FAQ } from "@/features/vps-faq/model/faqContent";
 import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
 import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
@@ -47,13 +48,16 @@ export default function Home() {
         <FeatureShowcaseSection />
       </Suspense>
       <Suspense fallback={null}>
-        <CustomerStoriesSection />
+        <CustomerStoriesSection
+          heading="How teams use RunRacks"
+          intro="Illustrative cross-product stories from operators comparing Linux VPS, Windows VPS, and Admin RDP—labeled demo until verified case studies ship."
+        />
       </Suspense>
       <AiCtaSection />
       <Suspense fallback={null}>
         <BrandTrustSection />
       </Suspense>
-      <FaqSection />
+      <FaqSection content={HOME_FAQ} />
       <SupportCtaSection />
     </main>
   );

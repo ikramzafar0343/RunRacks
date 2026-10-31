@@ -2,6 +2,8 @@ export type WorldMapPoint = {
   lat: number;
   lng: number;
   label?: string;
+  /** ISO 3166-1 alpha-2 — renders `/flags/{code}.svg` in the label pill. */
+  flagCode?: string;
   /** Pixel nudge for the label box (viewBox 800×400). */
   labelDx?: number;
   labelDy?: number;

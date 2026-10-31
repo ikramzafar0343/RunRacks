@@ -1,5 +1,6 @@
 /**
  * Get to know our customers — demo-labeled testimonial carousel.
+ * Pages pass heading/intro so product surfaces do not share identical copy.
  */
 import Link from "next/link";
 import type { Route } from "next";
@@ -10,7 +11,15 @@ import "@/features/customer-stories/components/customer-stories-cards.css";
 
 const CASE_STUDIES_HREF = "/resources/case-studies" as Route;
 
-export function CustomerStoriesSection() {
+export type CustomerStoriesSectionProps = {
+  heading?: string;
+  intro?: string;
+};
+
+export function CustomerStoriesSection({
+  heading = "How teams use RunRacks",
+  intro = "Illustrative stories from operators running VPS, Windows, and Admin RDP workloads—labeled demo until verified case studies ship.",
+}: CustomerStoriesSectionProps = {}) {
   const payload = getDemoCustomerStories();
   if (payload.stories.length === 0) return null;
 
@@ -21,12 +30,9 @@ export function CustomerStoriesSection() {
     >
       <header className="csHeader">
         <h2 id="customer-stories-heading" className="csHeading">
-          How teams use RunRacks
+          {heading}
         </h2>
-        <p className="csIntro">
-          Illustrative stories from operators running VPS, Windows, and Admin
-          RDP workloads—labeled demo until verified case studies ship.
-        </p>
+        <p className="csIntro">{intro}</p>
         {payload.source === "demo" && payload.notice ? (
           <p className="csDemoNotice" role="note">
             {payload.notice}

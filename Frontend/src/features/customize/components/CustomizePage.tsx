@@ -5,6 +5,7 @@ import { Hero7 } from "@/components/ui/modern-hero";
 import { CustomizeConfigurator } from "@/features/customize/components/CustomizeConfigurator";
 import { CUSTOMIZE } from "@/features/customize/model/customizeContent";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
+import { SUPPORT_CTA_CUSTOMIZE } from "@/features/support-cta/model/supportCtaContent";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import type { VpsRegion } from "@/features/vps-pricing/model/types";
 import "@/features/customize/components/customize.css";
@@ -39,7 +40,7 @@ export function CustomizePage({ regions }: CustomizePageProps) {
       </section>
 
       <FaqSection content={faq} />
-      <SupportCtaSection />
+      <SupportCtaSection content={SUPPORT_CTA_CUSTOMIZE} />
     </main>
   );
 }
