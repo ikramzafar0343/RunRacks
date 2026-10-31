@@ -2,7 +2,7 @@
  * Catalog region geometry for the Windows network map.
  * IDs must match VpsRegion.id from the VPS catalog.
  */
-import type { WorldMapDot } from "@/components/ui/map";
+import type { WorldMapDot, WorldMapPoint } from "@/components/ui/map";
 import type { VpsRegion } from "@/features/vps-pricing/model/types";
 
 export type NetworkGroupId = "na" | "eu" | "apac";
@@ -129,19 +129,41 @@ export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
 
 /** Hub arcs for WorldMap (decorative; only include endpoints present in catalog). */
 const NETWORK_ARC_PAIRS: readonly [string, string][] = [
+  ["us", "ca"],
   ["us", "nl"],
+  ["gb", "nl"],
+  ["nl", "de"],
   ["gb", "sg"],
   ["sg", "au"],
   ["us", "au"],
   ["nl", "jp"],
+  ["de", "jp"],
 ];
 
-/** Label pixel nudges so close EU hubs don’t stack (viewBox 800×400). */
+/** Label pixel nudges so close hubs don’t stack (viewBox 800×400). */
 const LABEL_OFFSETS: Record<string, { dx: number; dy: number }> = {
-  gb: { dx: -58, dy: -22 },
-  nl: { dx: 52, dy: 28 },
-  de: { dx: 54, dy: -8 },
+  us: { dx: 10, dy: 22 },
+  ca: { dx: -42, dy: -30 },
+  gb: { dx: -62, dy: -24 },
+  nl: { dx: 18, dy: -34 },
+  de: { dx: 58, dy: 18 },
+  sg: { dx: -8, dy: 26 },
+  jp: { dx: 12, dy: -28 },
+  au: { dx: 0, dy: 24 },
 };
+
+function pointForRegion(region: VpsRegion): WorldMapPoint | null {
+  const meta = NETWORK_PIN_META[region.id];
+  if (!meta) return null;
+  const offset = LABEL_OFFSETS[region.id];
+  return {
+    lat: meta.lat,
+    lng: meta.lng,
+    label: region.name,
+    flagCode: region.countryCode,
+    ...(offset ? { labelDx: offset.dx, labelDy: offset.dy } : {}),
+  };
+}
 
 export function pinMetaFor(regionId: string): NetworkPinMeta | undefined {
   return NETWORK_PIN_META[regionId];
@@ -163,6 +185,18 @@ export function groupForCountryCode(countryCode: string): NetworkGroupId {
   return "apac";
 }
 
+/** Every catalog region with pin geometry — drives the 8 labeled map markers. */
+export function buildNetworkPoints(
+  regions: readonly VpsRegion[],
+): WorldMapPoint[] {
+  const points: WorldMapPoint[] = [];
+  for (const region of regions) {
+    const point = pointForRegion(region);
+    if (point) points.push(point);
+  }
+  return points;
+}
+
 export function buildNetworkDots(regions: readonly VpsRegion[]): WorldMapDot[] {
   const byId = new Map(regions.map((r) => [r.id, r]));
   const dots: WorldMapDot[] = [];
@@ -170,29 +204,11 @@ export function buildNetworkDots(regions: readonly VpsRegion[]): WorldMapDot[] {
   for (const [startId, endId] of NETWORK_ARC_PAIRS) {
     const startRegion = byId.get(startId);
     const endRegion = byId.get(endId);
-    const startMeta = NETWORK_PIN_META[startId];
-    const endMeta = NETWORK_PIN_META[endId];
-    if (!startRegion || !endRegion || !startMeta || !endMeta) continue;
-    const startOffset = LABEL_OFFSETS[startId];
-    const endOffset = LABEL_OFFSETS[endId];
-    dots.push({
-      start: {
-        lat: startMeta.lat,
-        lng: startMeta.lng,
-        label: startRegion.name,
-        flagCode: startRegion.countryCode,
-        ...(startOffset
-          ? { labelDx: startOffset.dx, labelDy: startOffset.dy }
-          : {}),
-      },
-      end: {
-        lat: endMeta.lat,
-        lng: endMeta.lng,
-        label: endRegion.name,
-        flagCode: endRegion.countryCode,
-        ...(endOffset ? { labelDx: endOffset.dx, labelDy: endOffset.dy } : {}),
-      },
-    });
+    if (!startRegion || !endRegion) continue;
+    const start = pointForRegion(startRegion);
+    const end = pointForRegion(endRegion);
+    if (!start || !end) continue;
+    dots.push({ start, end });
   }
 
   return dots;

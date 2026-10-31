@@ -59,19 +59,24 @@ html.dark .vpsCmp {
 }
 
 .vpsCmpHeader {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
   max-width: 40rem;
   margin: 0 auto clamp(1.75rem, 3.5vw, 2.5rem);
   text-align: center;
 }
 
 .vpsCmpHeading {
-  margin: 0 0 0.85rem;
+  margin: 0;
+  max-width: 22ch;
   font-family: var(--font-heading);
   font-size: clamp(1.85rem, 4vw, 2.75rem);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.035em;
-  text-wrap: pretty;
+  text-wrap: balance;
+  text-align: center;
   color: var(--vps-cmp-fg);
 }
 
@@ -81,11 +86,13 @@ html.dark .vpsCmp {
 
 .vpsCmpLead {
   margin: 0;
+  max-width: 36rem;
   font-size: clamp(0.95rem, 1.45vw, 1.08rem);
   font-weight: 400;
   line-height: 1.55;
   color: var(--vps-cmp-muted);
   text-wrap: pretty;
+  text-align: center;
 }
 
 .vpsCmpTableWrap {

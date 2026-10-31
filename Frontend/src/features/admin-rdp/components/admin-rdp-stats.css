@@ -5,6 +5,11 @@
   border-top: 1px solid var(--ardp-border);
 }
 
+.ardpStats .ardpEyebrow {
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
 .ardpStatsGrid {
   display: grid;
   gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);

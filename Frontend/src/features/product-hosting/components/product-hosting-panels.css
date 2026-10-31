@@ -58,6 +58,7 @@
 
 /* —— Inclusions (Hostinger-style checklist) —— */
 .phInclusionsTitle {
+  display: block;
   margin: 0 auto;
   max-width: 28ch;
   text-align: center;

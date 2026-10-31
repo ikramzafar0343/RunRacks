@@ -1,5 +1,6 @@
 /**
  * Shared Why Choose Us — left copy + KPIs + feature grid (Sage & Ink / Nourd).
+ * Section title is centered; body layout stays left/right.
  */
 import {
   Cpu,
@@ -39,48 +40,50 @@ export function WhyChooseUs({
   const headingId = `${sectionId}-heading`;
 
   return (
-    <section
-      id={sectionId}
-      className="rrWhy"
-      aria-labelledby={headingId}
-    >
-      <div className="rrWhyInner">
-        <div className="rrWhyCopy">
+    <section id={sectionId} className="rrWhy" aria-labelledby={headingId}>
+      <div className="rrWhyShell">
+        <header className="rrWhyHeader">
+          <p className="rrWhyEyebrow">Why choose us</p>
           <h2 id={headingId} className="rrWhyTitle">
             {content.titleBefore}{" "}
             <span className="rrWhyTitleAccent">{content.titleAccent}</span>
           </h2>
-          <p className="rrWhyLead">{content.lead}</p>
+        </header>
 
-          <p className="rrWhyKpisNotice">{content.kpisNotice}</p>
-          <div className="rrWhyKpis" aria-label="Illustrative service targets">
-            {content.kpis.map((kpi) => (
-              <div key={kpi.caption} className="rrWhyKpi">
-                <strong>{kpi.value}</strong>
-                <span>{kpi.caption}</span>
-              </div>
-            ))}
+        <div className="rrWhyInner">
+          <div className="rrWhyCopy">
+            <p className="rrWhyLead">{content.lead}</p>
+
+            <p className="rrWhyKpisNotice">{content.kpisNotice}</p>
+            <div className="rrWhyKpis" aria-label="Illustrative service targets">
+              {content.kpis.map((kpi) => (
+                <div key={kpi.caption} className="rrWhyKpi">
+                  <strong>{kpi.value}</strong>
+                  <span>{kpi.caption}</span>
+                </div>
+              ))}
+            </div>
+
+            <a className="rrWhyCta" href={content.cta.href}>
+              {content.cta.label}
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
 
-          <a className="rrWhyCta" href={content.cta.href}>
-            {content.cta.label}
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div className="rrWhyFeats">
-          {content.features.map((feature) => {
-            const Icon = ICONS[feature.icon];
-            return (
-              <article key={feature.id} className="rrWhyFeat">
-                <div className="rrWhyFeatIcon" aria-hidden>
-                  <Icon size={20} strokeWidth={2} />
-                </div>
-                <h3 className="rrWhyFeatTitle">{feature.title}</h3>
-                <p className="rrWhyFeatBody">{feature.body}</p>
-              </article>
-            );
-          })}
+          <div className="rrWhyFeats">
+            {content.features.map((feature) => {
+              const Icon = ICONS[feature.icon];
+              return (
+                <article key={feature.id} className="rrWhyFeat">
+                  <div className="rrWhyFeatIcon" aria-hidden>
+                    <Icon size={20} strokeWidth={2} />
+                  </div>
+                  <h3 className="rrWhyFeatTitle">{feature.title}</h3>
+                  <p className="rrWhyFeatBody">{feature.body}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

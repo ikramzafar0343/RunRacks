@@ -12,6 +12,7 @@ import {
   NETWORK_GROUP_LABELS,
   NETWORK_GROUP_ORDER,
   buildNetworkDots,
+  buildNetworkPoints,
   groupForCountryCode,
   pinMetaFor,
   type NetworkGroupId,
@@ -65,6 +66,7 @@ export function PhInfra({
 
   const flatIds = useMemo(() => regions.map((r) => r.id), [regions]);
   const dots = useMemo(() => buildNetworkDots(regions), [regions]);
+  const mapPoints = useMemo(() => buildNetworkPoints(regions), [regions]);
 
   function activate(id: string) {
     setActiveId(id);
@@ -119,6 +121,7 @@ export function PhInfra({
         >
           <WorldMap
             dots={dots}
+            points={mapPoints}
             showLabels
             labelClassName="text-xs"
             className="phNetworkWorldMap"

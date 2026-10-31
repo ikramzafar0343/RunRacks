@@ -16,6 +16,8 @@ export type WorldMapDot = {
 
 export type WorldMapProps = {
   dots?: WorldMapDot[];
+  /** Extra labeled pins (e.g. all catalog regions) merged with arc endpoints. */
+  points?: readonly WorldMapPoint[];
   lineColor?: string;
   showLabels?: boolean;
   labelClassName?: string;

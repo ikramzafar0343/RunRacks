@@ -86,10 +86,14 @@
 .phConvert .phHeading {
   max-width: 20ch;
   margin-inline: auto;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .phConvert .phIntro {
   margin-inline: auto;
+  text-align: center;
+  text-wrap: pretty;
 }
 
 .phConvert .phHeroCtas {

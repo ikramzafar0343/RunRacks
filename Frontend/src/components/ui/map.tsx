@@ -27,6 +27,7 @@ const DOTTED_MAP_SRC = {
 
 export function WorldMap({
   dots = [],
+  points: extraPoints = [],
   lineColor,
   showLabels = true,
   labelClassName = "text-sm",
@@ -61,18 +62,33 @@ export function WorldMap({
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
   const uniquePoints = useMemo(() => {
-    const seen = new Set<string>();
-    const points: WorldMapPoint[] = [];
-    for (const dot of dots) {
-      for (const point of [dot.start, dot.end]) {
-        const key = `${point.lat.toFixed(2)},${point.lng.toFixed(2)}`;
-        if (seen.has(key)) continue;
-        seen.add(key);
-        points.push(point);
+    const byKey = new Map<string, WorldMapPoint>();
+    const merge = (point: WorldMapPoint) => {
+      const key = `${point.lat.toFixed(2)},${point.lng.toFixed(2)}`;
+      const prev = byKey.get(key);
+      if (!prev) {
+        byKey.set(key, point);
+        return;
       }
+      // Prefer labeled / flagged pins when the same hub appears twice.
+      const next: WorldMapPoint = { lat: point.lat, lng: point.lng };
+      const label = point.label ?? prev.label;
+      const flagCode = point.flagCode ?? prev.flagCode;
+      const labelDx = point.labelDx ?? prev.labelDx;
+      const labelDy = point.labelDy ?? prev.labelDy;
+      if (label !== undefined) next.label = label;
+      if (flagCode !== undefined) next.flagCode = flagCode;
+      if (labelDx !== undefined) next.labelDx = labelDx;
+      if (labelDy !== undefined) next.labelDy = labelDy;
+      byKey.set(key, next);
+    };
+    for (const point of extraPoints) merge(point);
+    for (const dot of dots) {
+      merge(dot.start);
+      merge(dot.end);
     }
-    return points;
-  }, [dots]);
+    return [...byKey.values()];
+  }, [dots, extraPoints]);
 
   return (
     <div
