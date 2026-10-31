@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Check, X } from "lucide-react";
+import Image from "next/image";
 import { useRef } from "react";
 import {
   metricValue,
@@ -50,14 +51,13 @@ function BrandMark({
   if (logo) {
     return (
       <span className={rootClass}>
-        {/* SVGs stay as <img> — Next/Image is not configured for local SVG. */}
-        <img
+        <Image
           className={imgClass}
           src={logo.src}
           alt=""
           width={px}
           height={px}
-          decoding="async"
+          unoptimized
           aria-hidden
         />
         <span className="sr-only">{logo.alt}</span>
