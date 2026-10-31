@@ -6,6 +6,8 @@
   --vph-fg: var(--color-heading);
   --vph-muted: var(--color-muted);
   --vph-accent: var(--color-brand);
+  --vph-cta: var(--color-brand);
+  --vph-on-cta: var(--color-brand-contrast);
   --vph-lime: var(--color-lime);
   --vph-on-lime: var(--color-on-lime);
   --vph-line: var(--color-border);
@@ -19,6 +21,12 @@
   color: var(--vph-fg);
   background: var(--color-canvas);
   font-family: var(--font-sans);
+}
+
+html.dark .vpsProductHero {
+  --vph-accent: var(--color-lime);
+  --vph-cta: var(--color-lime);
+  --vph-on-cta: var(--color-on-lime);
 }
 
 .vpsProductHeroGrid {
@@ -168,9 +176,9 @@
 }
 
 .vpsProductHeroCtaPrimary {
-  background: var(--vph-lime);
-  color: var(--vph-on-lime);
-  border: 1px solid var(--vph-lime);
+  background: var(--vph-cta);
+  color: var(--vph-on-cta);
+  border: 1px solid var(--vph-cta);
 }
 
 .vpsProductHeroCtaSecondary {
