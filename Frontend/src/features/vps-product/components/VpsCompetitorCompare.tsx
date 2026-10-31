@@ -17,6 +17,7 @@ import {
   type CompareProvider,
 } from "@/features/vps-product/model/vpsCompetitorCompare";
 import "@/features/vps-product/components/vps-competitor-compare.css";
+import "@/features/vps-product/components/vps-competitor-compare-marks.css";
 
 gsap.registerPlugin(ScrollTrigger);
 

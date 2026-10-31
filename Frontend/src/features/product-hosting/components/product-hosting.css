@@ -1,6 +1,7 @@
 @import "./product-hosting-base.css";
 @import "./product-hosting-panels.css";
 @import "./product-hosting-workloads.css";
+@import "./product-hosting-workloads-detail.css";
 @import "./product-hosting-workloads-motion.css";
 @import "./product-hosting-network.css";
 @import "./product-hosting-caps.css";
