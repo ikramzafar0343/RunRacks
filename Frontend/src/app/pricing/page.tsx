@@ -13,9 +13,9 @@ import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
 
 export const metadata: Metadata = {
-  title: "Pricing | RunRacks",
+  title: "Hosting Plans & Pricing | RunRacks",
   description:
-    "Predictable cloud pricing for high-performance NVMe VPS, Windows Hosting & Admin RDP across 8 global locations.",
+    "Compare Linux VPS, Windows VPS, and Admin RDP plans by region and billing term. Catalog prices are labeled demo until checkout is live.",
 };
 
 export default function PricingPage() {

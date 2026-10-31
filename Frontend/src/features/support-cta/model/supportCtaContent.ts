@@ -18,10 +18,10 @@ export const SUPPORT_CTA = {
   cards: [
     {
       id: "support",
-      heading: "Talk to the engineers who run the fleet",
-      body: "Your questions go to RunRacks engineers — deep technical help without the chatbot maze.",
+      heading: "Talk to RunRacks engineers",
+      body: "Plan fit, migrations, and product questions go to people who know the fleet—not a chatbot loop.",
       emphasis: "engineers",
-      ctaLabel: "Let's talk",
+      ctaLabel: "Contact us",
       href: "/contact" as Route,
       imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
       imageAlt:
@@ -29,9 +29,9 @@ export const SUPPORT_CTA = {
     },
     {
       id: "migrate",
-      heading: "Want to migrate your site?",
-      body: "Our team can walk you through moving workloads onto RunRacks VPS infrastructure—with clear plan choices and admin access when you need it.",
-      ctaLabel: "Chat with us",
+      heading: "Moving an existing workload?",
+      body: "We can walk through family choice, region, and administrator access so your move onto RunRacks stays clear.",
+      ctaLabel: "Try RunRacks AI",
       href: "/ai" as Route,
       imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
       imageAlt: "Demo portrait in a workspace — not a verified staff photo",

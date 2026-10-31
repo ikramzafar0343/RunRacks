@@ -3,6 +3,7 @@
  */
 import Image from "next/image";
 import {
+  HiClock,
   HiGlobeAlt,
   HiLockClosed,
   HiServerStack,
@@ -117,7 +118,9 @@ export function VpsPlanDetailContent({
         ? HiServerStack
         : label === "network"
           ? HiSignal
-          : HiGlobeAlt;
+          : label === "delivery"
+            ? HiClock
+            : HiGlobeAlt;
 
   return (
     <span className="vpsPlanDetailText">

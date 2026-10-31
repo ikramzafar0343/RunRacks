@@ -31,10 +31,10 @@ export const PROCESS_CARD = {
 
 export const PROCESS_INTRO = {
   eyebrow: "HOW WE WORK",
-  titleLine1: "Clear hosting.",
-  titleLine2: "From plan to production.",
+  titleLine1: "Pick a family.",
+  titleLine2: "Size the server.",
   description:
-    "Choose a hosting family, pick a region, and size an NVMe plan with the access you need—then get help from engineers who run the fleet.",
+    "Choose Linux VPS, Windows VPS, or Admin RDP, select a catalog region, and match vCPU, RAM, and NVMe to the workload—then talk to engineers when you need a second opinion.",
   ctaLabel: "View plans",
   ctaHref: "/pricing",
 } as const;

@@ -3,8 +3,8 @@
  */
 
 export const WINDOWS_USA_HIGHLIGHT = {
-  heading: "Clear control after you launch",
-  body: "Windows VPS in the United States with administrator access where the family allows, NVMe plan cards you can compare, and engineers who run the fleet when you need a human—not a maze of chatbots.",
+  heading: "Administrator control on US Windows plans",
+  body: "Compare NVMe-backed Windows VPS tiers with administrator access, then talk to RunRacks engineers when you need a human path forward—not a chatbot maze.",
   image: {
     src: "/images/showcase/rail-photo-operator.jpg",
     alt: "Operator reviewing a hosting workflow on a laptop",

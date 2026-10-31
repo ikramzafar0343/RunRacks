@@ -62,9 +62,14 @@
 }
 
 .vpsRailCard[data-type="message"] {
-  overflow: hidden;
+  overflow: visible;
   background: color-mix(in srgb, var(--color-brand) 16%, var(--rail-surface));
   border-color: color-mix(in srgb, var(--color-brand) 28%, var(--rail-border));
+}
+
+.vpsRailCard[data-type="message"]:hover,
+.vpsRailCard[data-type="message"]:focus-within {
+  z-index: 2;
 }
 
 .vpsRailCard[data-height="short"] {

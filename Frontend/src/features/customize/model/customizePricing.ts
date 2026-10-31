@@ -6,6 +6,7 @@ import type {
   BillingTermMonths,
   VpsFamily,
 } from "@/features/vps-pricing/model/types";
+import { DEMO_PRICING_ANSWER } from "@/shared/content/demoPricingCopy";
 
 export type CustomizeConfig = {
   family: VpsFamily;
@@ -20,8 +21,8 @@ export type CustomizeConfig = {
 };
 
 export type CustomizePriceResult = {
-  currency: "PKR";
-  /** Monthly equivalent in minor units (paisa). */
+  currency: "USD";
+  /** Monthly equivalent in minor units (cents). */
   monthlyMinor: number;
   /** Full term charge in minor units. */
   termTotalMinor: number;
@@ -29,7 +30,7 @@ export type CustomizePriceResult = {
 };
 
 type FamilyRates = {
-  /** Fixed platform major (PKR). */
+  /** Fixed platform major (USD). */
   baseMajor: number;
   vcpuMajor: number;
   ramGbMajor: number;
@@ -38,36 +39,36 @@ type FamilyRates = {
 };
 
 /**
- * Demo rates (PKR majors / month). Tuned so starter configs ≈ seed list prices.
- * Example: linux 1/1/20 + 1 TB ≈ PKR 4,500 vs VPS 1 seed 4,497.
+ * Demo rates (USD majors / month). Tuned so starter configs ≈ seed list prices.
+ * Example: linux 1/1/20 + 1 TB ≈ $4.50 vs VPS 1 seed $4.49.
  */
 const FAMILY_RATES: Record<VpsFamily, FamilyRates> = {
   linux: {
-    baseMajor: 800,
-    vcpuMajor: 1500,
-    ramGbMajor: 1000,
-    nvmeGbMajor: 40,
-    bandwidthTbMajor: 400,
+    baseMajor: 0.8,
+    vcpuMajor: 1.5,
+    ramGbMajor: 1,
+    nvmeGbMajor: 0.04,
+    bandwidthTbMajor: 0.4,
   },
   windows: {
-    baseMajor: 1000,
-    vcpuMajor: 1500,
-    ramGbMajor: 800,
-    nvmeGbMajor: 40,
-    bandwidthTbMajor: 400,
+    baseMajor: 1,
+    vcpuMajor: 1.5,
+    ramGbMajor: 0.8,
+    nvmeGbMajor: 0.04,
+    bandwidthTbMajor: 0.4,
   },
   "windows-admin-rdp": {
-    baseMajor: 1800,
-    vcpuMajor: 1600,
-    ramGbMajor: 850,
-    nvmeGbMajor: 42,
-    bandwidthTbMajor: 450,
+    baseMajor: 1.8,
+    vcpuMajor: 1.6,
+    ramGbMajor: 0.85,
+    nvmeGbMajor: 0.042,
+    bandwidthTbMajor: 0.45,
   },
 };
 
-/** Demo add-on majors (PKR / month). */
-const ADDON_IPV4_MAJOR = 500;
-const ADDON_BACKUPS_MAJOR = 1200;
+/** Demo add-on majors (USD / month). */
+const ADDON_IPV4_MAJOR = 0.5;
+const ADDON_BACKUPS_MAJOR = 1.2;
 
 /**
  * Region coefficients — demo UX only. Catalog seeds use null region;
@@ -84,8 +85,7 @@ const REGION_COEF: Record<string, number> = {
   jp: 1,
 };
 
-export const CUSTOMIZE_DEMO_NOTICE =
-  "Demo pricing — not live checkout. Totals are illustrative until billing is configured.";
+export const CUSTOMIZE_DEMO_NOTICE = DEMO_PRICING_ANSWER;
 
 function toMinor(major: number): number {
   return Math.round(major * 100);
@@ -107,12 +107,12 @@ export function calculateCustomizePrice(
   if (config.dedicatedIpv4) major += ADDON_IPV4_MAJOR;
   if (config.automatedBackups) major += ADDON_BACKUPS_MAJOR;
 
-  major = Math.max(0, Math.round(major * coef));
+  major = Math.max(0, Math.round(major * coef * 100) / 100);
   const monthlyMinor = toMinor(major);
   const termTotalMinor = monthlyMinor * config.billingTermMonths;
 
   return {
-    currency: "PKR",
+    currency: "USD",
     monthlyMinor,
     termTotalMinor,
     notice: CUSTOMIZE_DEMO_NOTICE,

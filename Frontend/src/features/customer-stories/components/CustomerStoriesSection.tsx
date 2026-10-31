@@ -21,11 +21,11 @@ export function CustomerStoriesSection() {
     >
       <header className="csHeader">
         <h2 id="customer-stories-heading" className="csHeading">
-          Get to know our customers
+          How teams use RunRacks
         </h2>
         <p className="csIntro">
-          Discover the people behind the projects. Hear their experiences and
-          see what we built together.
+          Illustrative stories from operators running VPS, Windows, and Admin
+          RDP workloads—labeled demo until verified case studies ship.
         </p>
         {payload.source === "demo" && payload.notice ? (
           <p className="csDemoNotice" role="note">

@@ -11,7 +11,7 @@ export type FeatureRow = {
   adminRdp: PlanSpec[];
 };
 
-const L_NAMES = ["VPS 1", "VPS 3", "VPS 5", "VPS 7"];
+const L_NAMES = ["VPS 1", "VPS 2", "VPS 3", "VPS 4"];
 const W_NAMES = ["Win VPS 1", "Win VPS 3", "Win VPS 5", "Win VPS 7"];
 const R_NAMES = ["Admin RDP 1", "Admin RDP 3", "Admin RDP 5", "Admin RDP 7"];
 
@@ -59,10 +59,10 @@ export const COMPARISON_ROWS: FeatureRow[] = [
   r(
     "vCPU Compute",
     [
-      [true, "1 Core"],
-      [true, "2 Cores"],
       [true, "4 Cores"],
+      [true, "6 Cores"],
       [true, "8 Cores"],
+      [true, "12 Cores"],
     ],
     [
       [true, "2 Cores"],
@@ -80,10 +80,10 @@ export const COMPARISON_ROWS: FeatureRow[] = [
   r(
     "Dedicated RAM",
     [
-      [true, "1 GB"],
-      [true, "2 GB"],
-      [true, "4 GB"],
+      [true, "6 GB"],
       [true, "16 GB"],
+      [true, "24 GB"],
+      [true, "48 GB"],
     ],
     [
       [true, "4 GB"],
@@ -101,10 +101,10 @@ export const COMPARISON_ROWS: FeatureRow[] = [
   r(
     "NVMe Storage",
     [
-      [true, "20 GB"],
-      [true, "40 GB"],
-      [true, "80 GB"],
-      [true, "320 GB"],
+      [true, "100 GB"],
+      [true, "200 GB"],
+      [true, "300 GB"],
+      [true, "400 GB"],
     ],
     [
       [true, "40 GB"],
@@ -185,10 +185,10 @@ export const COMPARISON_ROWS: FeatureRow[] = [
   r(
     "Port & Bandwidth",
     [
-      [true, "1 Gbps"],
-      [true, "1 Gbps"],
-      [true, "1 Gbps"],
-      [true, "Dedicated"],
+      [true, "30 TB"],
+      [true, "30 TB"],
+      [true, "30 TB"],
+      [true, "30 TB"],
     ],
     [
       [true, "1 Gbps"],
@@ -201,6 +201,27 @@ export const COMPARISON_ROWS: FeatureRow[] = [
       [true, "1 Gbps"],
       [true, "1 Gbps"],
       [true, "Dedicated"],
+    ],
+  ),
+  r(
+    "Delivery",
+    [
+      [true, "15 min"],
+      [true, "15 min"],
+      [true, "15 min"],
+      [true, "15 min"],
+    ],
+    [
+      [false, "—"],
+      [false, "—"],
+      [false, "—"],
+      [false, "—"],
+    ],
+    [
+      [false, "—"],
+      [false, "—"],
+      [false, "—"],
+      [false, "—"],
     ],
   ),
   r(

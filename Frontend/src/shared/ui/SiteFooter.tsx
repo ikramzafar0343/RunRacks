@@ -18,7 +18,6 @@ export function SiteFooter() {
         <div className="siteFooterBrandBlock">
           <Link href="/" className="siteFooterBrand" id="site-footer-brand">
             <span className="siteFooterBrandName">{FOOTER.brand}</span>
-            <span className="siteFooterBrandTag">{FOOTER.tagline}</span>
           </Link>
           <FooterSocial items={FOOTER.social} />
         </div>

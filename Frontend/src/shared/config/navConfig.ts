@@ -47,4 +47,10 @@ export const headerActions = {
   home: { label: "RunRacks", href: "/" as Route },
 };
 
+/** Hero CTA shared across home + product pages. */
+export const TRY_AI_CTA = {
+  label: "Try RunRacks AI",
+  href: "/ai" as Route,
+} as const;
+
 export type HeaderActions = typeof headerActions;

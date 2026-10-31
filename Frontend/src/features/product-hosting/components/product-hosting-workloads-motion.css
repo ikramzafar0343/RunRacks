@@ -2,11 +2,27 @@
   .phWorkloadRow,
   .phWorkloadCard,
   .phWorkloadCardDetail,
-  .phWorkloadCta {
+  .phWorkloadCta,
+  .phWorkloadPreview {
     transition: none;
   }
 
   .phWorkloadCardDetail {
     transform: none;
+  }
+
+  .phWorkloadPreview {
+    transform: rotate(-8deg);
+  }
+
+  .phWorkloadCard[data-active="true"] .phWorkloadPreview {
+    opacity: 1;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .phWorkloadCard[data-active="true"] .phWorkloadPreview {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-8deg);
   }
 }

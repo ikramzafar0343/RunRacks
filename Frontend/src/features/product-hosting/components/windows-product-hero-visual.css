@@ -149,7 +149,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .winHeroCta {
+  .winHeroCta,
+  .winHeroCtaSecondary {
     transition: none;
   }
 }

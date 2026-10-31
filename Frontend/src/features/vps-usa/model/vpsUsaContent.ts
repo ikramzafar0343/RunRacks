@@ -6,6 +6,11 @@ import type { Route } from "next";
 import type { WorldMapDot } from "@/components/ui/map";
 import type { SupportCtaCard } from "@/features/support-cta/model/supportCtaContent";
 import type { FaqItem } from "@/features/vps-faq/model/faqContent";
+import {
+  DEMO_PRICING_ANSWER,
+  OTHER_REGIONS_ANSWER,
+  USA_REGION_ANSWER,
+} from "@/shared/content/demoPricingCopy";
 
 /** Catalog pin geometry for United States (same hub as network map). */
 const US_PIN = { lat: 40.7128, lng: -74.006 } as const;
@@ -27,15 +32,15 @@ export const VPS_USA_MAP_DOTS: readonly WorldMapDot[] = ARC_ENDS.map(
 );
 
 export const VPS_USA = {
-  metaTitle: "VPS Hosting in the United States",
+  metaTitle: "Linux VPS in the United States | RunRacks",
   metaDescription:
-    "Run Linux VPS plans in the United States — NVMe storage, root access, and clear demo pricing from RunRacks.",
+    "Linux VPS plans filtered to the United States catalog region—NVMe storage, root access, and labeled demo pricing.",
   hero: {
     brand: "RunRacks",
-    title: "VPS hosting in the United States",
-    lead: "Pick a United States plan, compare honest NVMe specs, and keep full root when you launch.",
+    title: "Linux VPS for the United States region",
+    lead: "Start on the US catalog location, compare NVMe tiers with full root access, and switch regions anytime in the filters.",
     primaryCta: { label: "View USA plans", href: "#usa-plans" as Route },
-    secondaryCta: { label: "View plans", href: "/pricing" as Route },
+    secondaryCta: { label: "All plans", href: "/pricing" as Route },
     disclaimer: "Demo pricing — not live checkout",
     programs: [
       {
@@ -71,31 +76,31 @@ export const VPS_USA = {
     ],
   },
   why: {
-    eyebrow: "Why host in the US",
-    heading: "A clear region choice for production workloads",
-    lead: "United States is a first-class catalog location—same plan language as every other region, with filters already set for you on this page.",
+    eyebrow: "Why start in the US",
+    heading: "Same catalog language, US filters preselected",
+    lead: "United States is a first-class catalog location—identical plan framing to every other region, with location already set on this page.",
     reasons: [
       {
         id: "access",
-        title: "Root when you need it",
-        body: "Linux VPS plans include administrator access so you can install the stack your app actually runs—not a locked shared panel.",
+        title: "Full root access",
+        body: "Install the stack your app actually runs. You manage the guest OS, packages, and access keys.",
       },
       {
         id: "nvme",
-        title: "NVMe on the plan card",
-        body: "Local NVMe storage is listed per tier. Compare vCPU, RAM, and disk before you commit—no hidden marketing units.",
+        title: "NVMe on every card",
+        body: "Local NVMe, vCPU, and RAM are listed per tier so you can shortlist without hidden marketing units.",
       },
       {
         id: "pricing",
-        title: "Predictable plan framing",
-        body: "Demo prices are labeled for comparison. Billing terms and regions stay readable so you can shortlist without guesswork.",
+        title: "Labeled demo pricing",
+        body: "Amounts are demo until checkout is connected. Billing terms and regions stay readable while you compare.",
       },
     ],
   },
   coverage: {
     eyebrow: "Coverage",
-    heading: "United States region",
-    lead: "This page opens plans filtered to the catalog location United States. Switch locations anytime in the plan filters if you need another region.",
+    heading: "United States catalog region",
+    lead: "Plans open filtered to United States. Change location in the filters whenever you need another region.",
     region: {
       id: "us",
       name: "United States",
@@ -104,11 +109,11 @@ export const VPS_USA = {
     },
   },
   story: {
-    eyebrow: "Performance story",
-    heading: "Infrastructure you can operate with confidence",
+    eyebrow: "How we frame US VPS",
+    heading: "Operate from documented specs",
     body: [
-      "US-region VPS starts with the same questions as any RunRacks deployment: what must stay fast, who has root, and which plan size leaves headroom.",
-      "You get dedicated resource slices, clear NVMe tiers, and engineers when you need them—without inventing latency claims or city lists that are not in the catalog.",
+      "Start with what must stay fast, who holds root, and which tier leaves headroom for growth.",
+      "You get documented resource slices and NVMe tiers—without inventing latency claims or city lists that are not in the catalog.",
     ],
     image: {
       src: "/images/showcase/vps-lead.jpg",
@@ -181,8 +186,7 @@ export const VPS_USA = {
       {
         id: "us-region",
         question: "What does “United States” mean on this page?",
-        answer:
-          "United States is the catalog region id `us`. Plans shown here default to that location. Exact facility cities are not listed as marketing claims—use the plan filters and Pricing for the current real options.",
+        answer: USA_REGION_ANSWER,
       },
       {
         id: "family-lock",
@@ -194,25 +198,23 @@ export const VPS_USA = {
         id: "latency",
         question: "Do you publish US latency or uptime SLAs here?",
         answer:
-          "No. This page does not invent latency numbers, compliance badges, or uptime percentages. Compare specs on the plan cards and confirm operational details with the team through Contact or Pricing.",
+          "No. This page does not invent latency numbers, compliance badges, or uptime percentages. Compare specs on the plan cards and confirm operational details through Contact or Pricing.",
       },
       {
         id: "root-access",
         question: "Do USA Linux plans include root access?",
         answer:
-          "Yes—Linux VPS plans are framed with administrator/root access so you can run your own stack. You remain responsible for the guest OS, apps, and access keys.",
+          "Yes—Linux VPS plans include root access so you can run your own stack. You remain responsible for the guest OS, apps, and access keys.",
       },
       {
         id: "pricing-demo",
         question: "Is the pricing live checkout?",
-        answer:
-          "Catalog prices are demo labels for comparison until backend billing is configured. Use Pricing or talk to engineers to continue with the current real flow.",
+        answer: DEMO_PRICING_ANSWER,
       },
       {
         id: "other-regions",
         question: "Can I still choose another region?",
-        answer:
-          "Yes. Location filters on the plans section include every catalog region. This page simply starts you on United States.",
+        answer: OTHER_REGIONS_ANSWER,
       },
     ] satisfies readonly FaqItem[],
   },

@@ -17,7 +17,7 @@ export type VpsPriceRecord = {
   regionId: string | null;
   billingTermMonths: BillingTermMonths;
   currency: string;
-  /** Total charge for the term, minor units (paisa). */
+  /** Total charge for the term, minor units (cents). */
   amountMinor: number;
   monthlyEquivalentMinor?: number;
   /** Demo UI strikethrough monthly (minor units). */
@@ -37,6 +37,10 @@ export type VpsPlan = {
   vcpu: number;
   ramGb: number;
   nvmeGb: number;
+  /** Monthly traffic allowance in TB (when listed on the plan). */
+  trafficTb?: number;
+  /** Typical delivery window in minutes (when listed on the plan). */
+  deliveryMinutes?: number;
   availableRegionIds: string[];
   details: VpsPlanDetail[];
   pricing: VpsPriceRecord[];

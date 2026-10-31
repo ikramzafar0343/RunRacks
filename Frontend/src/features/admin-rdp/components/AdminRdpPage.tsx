@@ -29,7 +29,7 @@ export function AdminRdpPage({ initialCatalog }: AdminRdpPageProps) {
       <section
         id="vps-plans"
         className="ardpPricing"
-        aria-label="Admin RDP hosting plans"
+        aria-label="Admin RDP plans"
       >
         <Suspense fallback={<VpsPricingFallback variant="page" />}>
           <VpsPricingSection variant="page" initialCatalog={initialCatalog} />

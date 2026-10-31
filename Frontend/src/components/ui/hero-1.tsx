@@ -45,15 +45,15 @@ export function HeroSection() {
               "[text-shadow:0_0_40px_color-mix(in_srgb,var(--color-brand)_18%,transparent)]",
             )}
           >
-            Predictable Cloud Pricing <br className="hidden sm:inline" />
-            Built to Scale and Lead
+            Clear plans for VPS, <br className="hidden sm:inline" />
+            Windows, and Admin RDP
           </h1>
 
           {/* Hero Subtitle */}
           <p className="fade-in slide-in-from-bottom-10 mx-auto max-w-2xl animate-in fill-mode-backwards text-center text-base text-body/85 tracking-normal delay-300 duration-500 ease-out sm:text-lg md:text-xl">
-            High-performance NVMe VPS, Windows Hosting & Admin RDP across 8
-            global locations. Full root access, instant provisioning, and 99.9%
-            uptime.
+            Compare NVMe-backed Linux VPS, Windows VPS, and Admin RDP across
+            catalog regions. Full administrator access on every family—demo
+            prices are labeled until checkout is connected.
           </p>
 
           {/* Action Button */}

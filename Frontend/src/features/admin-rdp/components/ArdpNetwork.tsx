@@ -4,7 +4,8 @@
  * Catalog regions + SVG Globe — Admin RDP locations.
  */
 import { useId, useMemo, useState, type KeyboardEvent } from "react";
-import { HiArrowRight, HiMapPin } from "react-icons/hi2";
+import Image from "next/image";
+import { HiArrowRight } from "react-icons/hi2";
 import { Globe, GlobeSvg } from "@/components/ui/globe";
 import { Pulse } from "@/components/ui/globe-utils/pulse";
 import {
@@ -14,6 +15,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/globe-utils/tooltip";
 import { ADMIN_RDP } from "@/features/admin-rdp/model/adminRdpContent";
+import { flagSrc } from "@/features/customize/components/customizeIcons";
 import {
   NETWORK_GROUP_LABELS,
   NETWORK_GROUP_ORDER,
@@ -208,7 +210,14 @@ export function ArdpNetwork({ regions }: ArdpNetworkProps) {
                         onFocus={() => activate(r.id)}
                         onClick={() => activate(r.id)}
                       >
-                        <HiMapPin className="ardpNetworkRowPin" aria-hidden />
+                        <Image
+                          src={flagSrc(r.countryCode)}
+                          alt=""
+                          width={18}
+                          height={14}
+                          className="ardpNetworkRowFlag"
+                          aria-hidden
+                        />
                         <span className="ardpNetworkRowName">{r.name}</span>
                         <span className="ardpNetworkRowStatus" aria-hidden />
                         <span className="ardpNetworkRowChip">In catalog</span>

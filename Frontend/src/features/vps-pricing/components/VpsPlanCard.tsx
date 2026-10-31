@@ -1,7 +1,7 @@
 /**
  * Hostinger-style VPS plan card — demo catalog; checkout stays disabled.
  */
-import { HiCheck } from "react-icons/hi2";
+import { Cpu, HardDrive, MemoryStick, type LucideIcon } from "lucide-react";
 import { VpsPlanDetailContent } from "@/features/vps-pricing/components/VpsPlanDetailValue";
 import { VpsPlanTierArt } from "@/features/vps-pricing/components/VpsPlanTierArt";
 import {
@@ -15,6 +15,12 @@ import type {
   VpsPlan,
 } from "@/features/vps-pricing/model/types";
 import "@/features/vps-pricing/components/vps-plan-detail-icons.css";
+
+const HARDWARE_ICONS = {
+  vcpu: Cpu,
+  ram: MemoryStick,
+  nvme: HardDrive,
+} as const satisfies Record<string, LucideIcon>;
 
 type VpsPlanCardProps = {
   plan: VpsPlan;
@@ -49,10 +55,26 @@ export function VpsPlanCard({
   const compareLabel =
     showCompare && price ? formatMoneyMinor(compareAt, price.currency) : null;
 
-  const hardware = [
-    `${plan.vcpu} vCPU`,
-    `${plan.ramGb} GB RAM`,
-    `${plan.nvmeGb} GB NVMe`,
+  const hardware: Array<{
+    key: keyof typeof HARDWARE_ICONS;
+    label: string;
+    Icon: LucideIcon;
+  }> = [
+    {
+      key: "vcpu",
+      label: `${plan.vcpu} vCPU`,
+      Icon: HARDWARE_ICONS.vcpu,
+    },
+    {
+      key: "ram",
+      label: `${plan.ramGb} GB RAM`,
+      Icon: HARDWARE_ICONS.ram,
+    },
+    {
+      key: "nvme",
+      label: `${plan.nvmeGb} GB NVMe`,
+      Icon: HARDWARE_ICONS.nvme,
+    },
   ];
 
   const canCheckout = checkoutConfigured && plan.purchasable;
@@ -119,10 +141,15 @@ export function VpsPlanCard({
       </p>
 
       <ul className="vpsPlanTileFeatures">
-        {hardware.map((feature) => (
-          <li key={feature} className="vpsPlanTileFeature">
-            <HiCheck className="vpsPlanTileCheck" aria-hidden size={16} />
-            <span>{feature}</span>
+        {hardware.map(({ key, label, Icon }) => (
+          <li key={key} className="vpsPlanTileFeature vpsPlanTileFeatureHardware">
+            <Icon
+              className="vpsPlanTileHardwareIcon"
+              aria-hidden
+              size={18}
+              strokeWidth={2.25}
+            />
+            <span>{label}</span>
           </li>
         ))}
         {plan.details.map((item) => (
@@ -130,15 +157,14 @@ export function VpsPlanCard({
             key={`${plan.id}-${item.label}`}
             className="vpsPlanTileFeature vpsPlanTileFeatureDetail"
           >
-            <span className="vpsPlanTileDetailLabel">
-              {item.label.toLowerCase() === "regions" ? "Region" : item.label}
+            <span className="vpsPlanTileDetailLine">
+              <VpsPlanDetailContent
+                item={item}
+                family={plan.family}
+                availableRegionIds={plan.availableRegionIds}
+                selectedLocationId={locationId}
+              />
             </span>
-            <VpsPlanDetailContent
-              item={item}
-              family={plan.family}
-              availableRegionIds={plan.availableRegionIds}
-              selectedLocationId={locationId}
-            />
           </li>
         ))}
       </ul>

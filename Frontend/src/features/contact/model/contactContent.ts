@@ -8,12 +8,12 @@ import type { FaqItem } from "@/features/vps-faq/model/faqContent";
 export const CONTACT_META = {
   title: "Contact | RunRacks",
   description:
-    "Reach RunRacks engineers, open RunRacks AI, or explore plans. Message intake connects when mail is configured.",
+    "Reach RunRacks about VPS, Windows, or Admin RDP. Message intake connects when mail is configured—AI and Pricing stay available now.",
 } as const;
 
 export const CONTACT_HERO = {
   brand: "Contact RunRacks",
-  lead: "Ask engineers, open RunRacks AI, or pick a plan — real routes, no invented phone lines or offices.",
+  lead: "Ask about plan fit, migrations, or product questions. Real routes only—no invented phone numbers or offices.",
   primary: { label: "Send a message", href: "#contact-form" as const },
   secondary: { label: "View plans", href: "/pricing" as Route },
   image: {
@@ -46,8 +46,8 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
   {
     id: "ai",
     title: "RunRacks AI",
-    body: "Get plan and product answers instantly in chat — available now.",
-    ctaLabel: "Open AI chat",
+    body: "Explore plan and product questions in chat. Live model answers connect when the AI backend is configured.",
+    ctaLabel: "Try RunRacks AI",
     href: "/ai" as Route,
     imageSrc: "/images/showcase/rail-preview-brand.jpg",
     imageAlt: "Product preview imagery for RunRacks AI guidance",

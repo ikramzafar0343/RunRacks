@@ -17,8 +17,8 @@ export type CompareStackItem = {
 
 export const ADMIN_RDP_USA_COMPARE = {
   headingId: "admin-rdp-usa-compare-heading",
-  heading: "One USA Admin RDP plan instead of a stack of pieces",
-  lead: "Desktop-style administrator access, NVMe plan cards, and a United States catalog region—compare clear demo tiers without juggling separate vendors for the basics.",
+  heading: "USA Admin RDP without the vendor stack",
+  lead: "Administrator desktops, NVMe plan cards, and a United States catalog filter—compare labeled demo tiers without piecing together separate tools for the basics.",
   featured: {
     brand: "RunRacks",
     eyebrow: "Admin RDP · United States",

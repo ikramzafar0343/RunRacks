@@ -30,6 +30,8 @@ export type PlanSeed = {
   vcpu: number;
   ramGb: number;
   nvmeGb: number;
+  trafficTb?: number;
+  deliveryMinutes?: number;
   monthlyMajor: number;
   compareAtMajor: number;
   osHint: string;
@@ -54,7 +56,7 @@ function termPrices(
   return terms.map(({ term, months }) => ({
     regionId: null,
     billingTermMonths: term,
-    currency: "PKR",
+    currency: "USD",
     amountMinor: monthlyMinor * months,
     monthlyEquivalentMinor: monthlyMinor,
     compareAtMonthlyMinor,
@@ -68,6 +70,25 @@ function accessDetail(family: VpsFamily): string {
 }
 
 export function buildPlan(seed: PlanSeed): VpsPlan {
+  const details: VpsPlan["details"] = [
+    { label: "Access", value: accessDetail(seed.family) },
+    { label: "Storage", value: "NVMe SSD" },
+    { label: "Network", value: "Dedicated IPv4 address" },
+  ];
+  if (seed.trafficTb != null) {
+    details.push({ label: "Traffic", value: `${seed.trafficTb} TB volume` });
+  }
+  if (seed.deliveryMinutes != null) {
+    details.push({
+      label: "Delivery",
+      value: `${seed.deliveryMinutes} min`,
+    });
+  }
+  details.push(
+    { label: "Operating systems", value: seed.osHint },
+    { label: "Regions", value: REGION_LABEL },
+  );
+
   const plan: VpsPlan = {
     id: seed.id,
     name: seed.name,
@@ -76,18 +97,16 @@ export function buildPlan(seed: PlanSeed): VpsPlan {
     ramGb: seed.ramGb,
     nvmeGb: seed.nvmeGb,
     availableRegionIds: [...REGION_IDS],
-    details: [
-      { label: "Access", value: accessDetail(seed.family) },
-      { label: "Storage", value: "NVMe SSD" },
-      { label: "Network", value: "Dedicated IPv4 address" },
-      { label: "Operating systems", value: seed.osHint },
-      { label: "Regions", value: REGION_LABEL },
-    ],
+    details,
     pricing: termPrices(seed.monthlyMajor, seed.compareAtMajor),
     purchasable: false,
     tagline: seed.tagline,
     badge: seed.badge,
   };
+  if (seed.trafficTb != null) plan.trafficTb = seed.trafficTb;
+  if (seed.deliveryMinutes != null) {
+    plan.deliveryMinutes = seed.deliveryMinutes;
+  }
   if (seed.featured) plan.featured = true;
   if (seed.whyPlan) plan.whyPlan = seed.whyPlan;
   return plan;

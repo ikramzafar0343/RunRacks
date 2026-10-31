@@ -2,6 +2,7 @@
  * Brand promise + trust metrics — demo-labeled marketing UI only.
  * Replace with verified claims before presenting as live social proof.
  */
+import { DEMO_CUSTOMER_AVATARS } from "@/shared/content/demoCustomerAvatars";
 
 export type PromiseItem = {
   id: string;
@@ -51,26 +52,12 @@ export const BRAND_TRUST: BrandTrustContent = {
     { id: "p7", text: "Gives room to grow.", order: 6 },
     { id: "p8", text: "Stays honest about demos.", order: 7 },
   ],
-  avatars: [
-    {
-      id: "a1",
-      kind: "image",
-      src: "/media/customer-stories/demo-01/portrait.jpg",
-      alt: "Demo portrait — not a verified customer photo",
-    },
-    {
-      id: "a2",
-      kind: "image",
-      src: "/media/customer-stories/demo-02/portrait.jpg",
-      alt: "Demo portrait — not a verified customer photo",
-    },
-    {
-      id: "a3",
-      kind: "image",
-      src: "/home/hero-portrait.webp",
-      alt: "Demo portrait — not a verified customer photo",
-    },
-  ],
+  avatars: DEMO_CUSTOMER_AVATARS.slice(0, 3).map((avatar, index) => ({
+    id: `a${index + 1}`,
+    kind: "image" as const,
+    src: avatar.src,
+    alt: avatar.alt,
+  })),
   metrics: [
     {
       id: "websites",

@@ -124,7 +124,8 @@
   color: var(--win-hero-muted);
 }
 
-.winHeroCta {
+.winHeroCta,
+.winHeroCtaSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -132,12 +133,24 @@
   min-height: 2.6rem;
   padding: 0.55rem 1.2rem;
   border-radius: 0.5rem;
-  background: var(--color-brand);
-  color: var(--color-brand-contrast, #fff);
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.winHeroCta {
+  background: var(--color-brand);
+  color: var(--color-brand-contrast, #fff);
+}
+
+.winHeroCtaSecondary {
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  color: var(--win-hero-fg, var(--color-heading));
 }
 
 .winHeroCta:hover,
@@ -146,7 +159,14 @@
   color: var(--color-on-lime);
 }
 
-.winHeroCta:focus-visible {
+.winHeroCtaSecondary:hover,
+.winHeroCtaSecondary:active {
+  background: var(--color-surface);
+  border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-border));
+}
+
+.winHeroCta:focus-visible,
+.winHeroCtaSecondary:focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 3px;
 }

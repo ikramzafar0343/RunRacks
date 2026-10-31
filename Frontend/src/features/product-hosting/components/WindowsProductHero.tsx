@@ -1,11 +1,13 @@
 /**
  * Windows product hero — two title lines + homepage portrait scene + trust band.
  */
+import Link from "next/link";
 import { HeroPortraitScene } from "@/features/home/components/HeroPortraitScene";
 import { heroContent } from "@/features/home/model/heroContent";
 import { WindowsProductHeroTitle } from "@/features/product-hosting/components/WindowsProductHeroTitle";
 import type { ProductHostingContent } from "@/features/product-hosting/model/productHostingContent";
 import type { StartingPrice } from "@/features/product-hosting/model/startingPrice";
+import { TRY_AI_CTA } from "@/shared/config/navConfig";
 import "@/features/home/components/home-hero-scene.css";
 import "@/features/home/components/home-hero-trust.css";
 import "@/features/product-hosting/components/windows-product-hero.css";
@@ -48,6 +50,9 @@ export function WindowsProductHero({
               {hero.ctaLabel}
               <span aria-hidden="true">→</span>
             </a>
+            <Link className="winHeroCtaSecondary" href={TRY_AI_CTA.href}>
+              {TRY_AI_CTA.label}
+            </Link>
           </div>
 
           <p className="winHeroNote">{hero.reassurance}</p>

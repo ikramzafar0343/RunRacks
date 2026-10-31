@@ -1,15 +1,15 @@
 import type { CapabilityItem, FeatureItem } from "./types";
 
 export const ABOUT_META = {
-  title: "About RunRacks | Hosting Built Around You",
+  title: "About RunRacks | NVMe Hosting",
   description:
-    "Meet RunRacks, our approach to reliable hosting, the people behind the platform, and the values that guide how we build and support online experiences.",
+    "RunRacks builds Linux VPS, Windows VPS, and Admin RDP hosting with clear plan specs, administrator access, and engineers when you need them.",
 } as const;
 
 export const ABOUT_HERO = {
   eyebrow: "About RunRacks",
-  lines: ["From your first idea", "to everything", "you build next."],
-  lead: "Hosting should give you the confidence to launch, the performance to grow, and people to turn to when it matters.",
+  lines: ["Infrastructure", "you can operate", "with clarity."],
+  lead: "We publish documented plans for VPS, Windows, and Admin RDP—so teams can size capacity, keep root or admin access, and talk to engineers when decisions get hard.",
   scrollCue: "Scroll to explore",
 } as const;
 
@@ -53,11 +53,11 @@ export const ABOUT_CAPABILITIES: readonly CapabilityItem[] = [
 ];
 
 export const ABOUT_INTRO = {
-  eyebrow: "Built around you",
-  title: "Made for the way you grow.",
-  lead: "A small project and a growing business may need different things. They should both get clarity, confidence, and room to move forward.",
+  eyebrow: "Built for operators",
+  title: "Clarity first. Capacity second.",
+  lead: "A staging box and a production fleet need different sizes—but both deserve readable specs and honest next steps.",
   secondary:
-    "We believe reliable infrastructure matters most when it stays out of your way—so you can focus on your customers, your products, and what comes next.",
+    "Infrastructure should stay out of the way once it is sized correctly. We focus on plan clarity, administrator access, and human help when you need it.",
   signature: "Technology with people in mind",
 } as const;
 

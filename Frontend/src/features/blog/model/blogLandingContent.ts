@@ -1,6 +1,6 @@
 /** Static copy for the journal landing intro. */
 export const BLOG_LANDING = {
   eyebrow: "The Journal",
-  title: "Insights & Resources",
-  lead: "Practical notes on VPS, Windows hosting, security, and operations—written by the RunRacks team for people who run production servers.",
+  title: "Notes for people who run servers",
+  lead: "Practical writing on Linux VPS, Windows hosting, Admin RDP, security, and operations—from the RunRacks team.",
 } as const;

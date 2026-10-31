@@ -11,6 +11,7 @@ import {
   useState,
   type KeyboardEvent,
 } from "react";
+import Image from "next/image";
 import {
   SiDocker,
   SiGithub,
@@ -40,14 +41,11 @@ const TOOL_ICONS: Record<string, { label: string; Icon: typeof SiDocker }> = {
   stripe: { label: "Stripe", Icon: SiStripe },
 };
 
-const HOVER_DELAY_MS = 70;
-
 export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
   const baseId = useId();
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
   const activeIdRef = useRef(activeId);
   const rowRef = useRef<HTMLDivElement>(null);
-  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     activeIdRef.current = activeId;
@@ -70,26 +68,6 @@ export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
     enabled: items.length > 0,
   });
 
-  const scheduleActivate = useCallback(
-    (id: string) => {
-      if (hoverTimer.current) clearTimeout(hoverTimer.current);
-      if (activeIdRef.current === id) return;
-      hoverTimer.current = setTimeout(() => activate(id), HOVER_DELAY_MS);
-    },
-    [activate],
-  );
-
-  const cancelScheduled = useCallback(() => {
-    if (hoverTimer.current) {
-      clearTimeout(hoverTimer.current);
-      hoverTimer.current = null;
-    }
-  }, []);
-
-  useEffect(() => {
-    return () => cancelScheduled();
-  }, [cancelScheduled]);
-
   function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     const index = items.findIndex((w) => w.id === activeId);
     if (index < 0) return;
@@ -111,7 +89,6 @@ export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
     }
     const item = items[next];
     if (!item) return;
-    cancelScheduled();
     activate(item.id);
     document.getElementById(`${baseId}-tab-${item.id}`)?.focus();
   }
@@ -136,7 +113,6 @@ export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
           aria-label="Workload types"
           data-active-index={String(activeIndex)}
           onKeyDown={onKeyDown}
-          onMouseLeave={cancelScheduled}
         >
           {items.map((w, i) => {
             const active = w.id === activeId;
@@ -157,15 +133,9 @@ export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
                 data-workload-id={w.id}
                 data-active={active ? "true" : "false"}
                 data-index={String(i)}
-                onMouseEnter={() => scheduleActivate(w.id)}
-                onFocus={() => {
-                  cancelScheduled();
-                  activate(w.id);
-                }}
-                onClick={() => {
-                  cancelScheduled();
-                  activate(w.id);
-                }}
+                onMouseEnter={() => activate(w.id)}
+                onFocus={() => activate(w.id)}
+                onClick={() => activate(w.id)}
               >
                 <div className="phWorkloadCardInner">
                   <h3 className="phWorkloadCardTitle">
@@ -228,6 +198,23 @@ export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
                       See plans
                     </a>
                   </div>
+                </div>
+
+                <div className="phWorkloadPreview" aria-hidden="true">
+                  <span className="phWorkloadPreviewFrame">
+                    <Image
+                      src={w.preview.src}
+                      alt=""
+                      fill
+                      sizes="220px"
+                      loading="lazy"
+                      quality={75}
+                      style={{
+                        objectFit: "cover",
+                        objectPosition: w.preview.objectPosition ?? "50% 50%",
+                      }}
+                    />
+                  </span>
                 </div>
               </div>
             );

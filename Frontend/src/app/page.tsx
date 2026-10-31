@@ -21,9 +21,9 @@ import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
 import "@/features/home/components/home-page.css";
 
 export const metadata: Metadata = {
-  title: "VPS Hosting & Windows Servers",
+  title: "NVMe VPS, Windows & Admin RDP Hosting",
   description:
-    "Compare clear VPS and Windows plans from RunRacks—NVMe storage, root access, and honest demo pricing until live checkout is configured.",
+    "RunRacks hosting for Linux VPS, Windows VPS, and Admin RDP—documented specs, administrator access, and labeled demo pricing until checkout is connected.",
   alternates: { canonical: "/" },
 };
 

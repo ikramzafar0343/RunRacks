@@ -87,32 +87,6 @@
   }
 }
 
-.aiDock .vpsShowAllWrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.9rem;
-}
-
-.aiDock .vpsShowAllBtn {
-  min-height: 2.25rem;
-  padding: 0 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--ai-border);
-  background: transparent;
-  color: var(--ai-heading);
-  font: inherit;
-  font-size: 0.8rem;
-  font-weight: 650;
-  cursor: pointer;
-}
-
-.aiDock .vpsShowAllBtn:hover,
-.aiDock .vpsShowAllBtn:focus-visible {
-  background: var(--ai-accent-bg);
-  color: var(--ai-accent);
-  outline: none;
-}
-
 .aiPlanCards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

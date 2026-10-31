@@ -9,10 +9,10 @@ export const SHARED_INCLUSIONS = [
   "NVMe SSD storage",
   "Regions across the catalog",
   "Dedicated IPv4 address",
-  "Clear plan specs before you buy",
-  "Supported OS images at order",
-  "Predictable vCPU and RAM sizes",
-  "Compare families and billing terms",
+  "Documented plan specs before you continue",
+  "OS images selected when ordering is connected",
+  "Listed vCPU and RAM per tier",
+  "Family and billing-term filters",
   "Demo pricing labeled until checkout is live",
 ] as const;
 
@@ -30,12 +30,16 @@ export const SHARED_WORKLOADS: readonly WorkloadItem[] = [
       "Scale resources when jobs grow",
     ],
     toolIds: ["github", "gitlab", "docker"],
+    preview: {
+      src: "/images/showcase/rail-preview-stop.jpg",
+      objectPosition: "50% 50%",
+    },
   },
   {
     id: "apps",
     label: "Application hosting",
     idleLines: ["Open-source app", "self-hosting"],
-    title: "Web apps and APIs",
+    title: "Open-source app self-hosting",
     description:
       "Host application stacks that need root-level control beyond shared hosting.",
     benefits: [
@@ -44,6 +48,10 @@ export const SHARED_WORKLOADS: readonly WorkloadItem[] = [
       "Separate staging from production",
     ],
     toolIds: ["wordpress", "docker", "ubuntu"],
+    preview: {
+      src: "/images/showcase/rail-preview-brand.jpg",
+      objectPosition: "50% 50%",
+    },
   },
   {
     id: "apis",
@@ -58,6 +66,10 @@ export const SHARED_WORKLOADS: readonly WorkloadItem[] = [
       "Room to add caches and queues",
     ],
     toolIds: ["docker", "github", "gitlab"],
+    preview: {
+      src: "/images/showcase/rail-preview-leads.jpg",
+      objectPosition: "50% 50%",
+    },
   },
   {
     id: "data",
@@ -72,6 +84,10 @@ export const SHARED_WORKLOADS: readonly WorkloadItem[] = [
       "You control backups and restores",
     ],
     toolIds: ["docker", "ubuntu", "github"],
+    preview: {
+      src: "/images/showcase/rail-preview-grow.jpg",
+      objectPosition: "50% 50%",
+    },
   },
   {
     id: "commerce",
@@ -86,6 +102,10 @@ export const SHARED_WORKLOADS: readonly WorkloadItem[] = [
       "Full control of the guest OS",
     ],
     toolIds: ["shopify", "wordpress", "stripe"],
+    preview: {
+      src: "/images/showcase/rail-photo-cloud.jpg",
+      objectPosition: "50% 40%",
+    },
   },
 ];
 

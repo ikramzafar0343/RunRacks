@@ -41,6 +41,45 @@ type VpsPricingSectionProps = {
   initialTerm?: string | null;
 };
 
+function plansHeadingCopy(
+  family: VpsFamily | null,
+  embedded: boolean,
+): { title: string; subtitle: string } {
+  if (family === "windows") {
+    return {
+      title: "Windows Hosting Plans",
+      subtitle:
+        "Administrator Windows VPS on NVMe. Filter by region and billing term—demo prices stay labeled until checkout.",
+    };
+  }
+  if (family === "windows-admin-rdp") {
+    return {
+      title: "Admin RDP Plans",
+      subtitle:
+        "Windows remote desktops with full administrator rights. Filter by region and billing term to compare tiers.",
+    };
+  }
+  if (family === "linux") {
+    return {
+      title: "VPS Hosting Plans",
+      subtitle:
+        "Linux VPS with full root access on local NVMe. Filter by region and billing term to match your workload.",
+    };
+  }
+  if (embedded) {
+    return {
+      title: "Our Plans",
+      subtitle:
+        "Filter Linux VPS, Windows VPS, and Admin RDP by region and billing cycle. Demo prices are labeled.",
+    };
+  }
+  return {
+    title: "Hosting Plans",
+    subtitle:
+      "Compare Linux VPS, Windows VPS, and Admin RDP. Use family, region, and term filters—catalog amounts are demo until checkout.",
+  };
+}
+
 export function VpsPricingSection({
   variant = "page",
   planLayout,
@@ -60,6 +99,10 @@ export function VpsPricingSection({
   // Product pages lock family; elsewhere prefer URL then server first paint.
   const family =
     lockedFamily ?? parseFamily(searchParams.get("family") ?? initialFamily);
+  const { title: plansTitle, subtitle: plansSubtitle } = plansHeadingCopy(
+    lockedFamily,
+    isEmbedded,
+  );
   const locationId = parseLocation(
     searchParams.get("location") ?? initialLocation,
   );
@@ -101,13 +144,9 @@ export function VpsPricingSection({
       <div className="vpsPricingContainer">
         <header className="vpsPricingHeader">
           <TitleTag id="vps-pricing-title" className="vpsTitle">
-            {isEmbedded ? "Our Plans" : "VPS Hosting Plans"}
+            {plansTitle}
           </TitleTag>
-          <p className="vpsSubtitle">
-            {isEmbedded
-              ? "Pick a VPS that fits your workload. Filter by family, location, and billing cycle."
-              : "NVMe VPS servers with full root access. Choose your server location and operating system when you order."}
-          </p>
+          <p className="vpsSubtitle">{plansSubtitle}</p>
           {catalog.source === "demo" ? (
             <p className="vpsDemoNotice" role="note">
               {catalog.notice}

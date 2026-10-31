@@ -24,14 +24,14 @@ export const PRODUCT_HOSTING: Record<ProductHostingKey, ProductHostingContent> =
   {
     vps: {
       key: "vps",
-      metaTitle: "VPS Hosting",
+      metaTitle: "Linux VPS Hosting | RunRacks",
       metaDescription:
-        "NVMe VPS with full root access, clear plans, and predictable performance from RunRacks.",
+        "Linux VPS on local NVMe with full root access. Compare documented plans—demo prices labeled until checkout.",
       defaultFamily: "linux",
       hero: {
-        h1: "VPS hosting built for your next move",
+        h1: "Linux VPS with full root access",
         support:
-          "Configurable compute, storage, and full root access—compare clear plans before you deploy.",
+          "Documented vCPU, RAM, and NVMe—compare clear Linux plans before you continue to Pricing.",
         ctaLabel: "Explore VPS plans",
         reassurance: "Demo pricing labeled · checkout connects when configured",
       },
@@ -39,45 +39,45 @@ export const PRODUCT_HOSTING: Record<ProductHostingKey, ProductHostingContent> =
         {
           id: "compute",
           title: "Compute you can size",
-          body: "Pick vCPU and RAM that match the workload—illustrative panels show the idea, not live metrics.",
+          body: "Pick vCPU and RAM that match the workload—illustrative panels are not live telemetry.",
           art: "compute",
         },
         {
           id: "backup",
           title: "Recovery you control",
-          body: "You operate backups and restores inside the guest. We keep plan storage and access clear.",
+          body: "You operate backups and restores inside the guest. Storage sizes stay documented per plan.",
           art: "backup",
         },
         {
           id: "manage",
-          title: "Straightforward management",
-          body: "SSH or RDP into a familiar environment and install the stack your team already knows.",
+          title: "Familiar remote access",
+          body: "SSH into a Linux guest and install the stack your team already knows.",
           art: "terminal",
         },
       ],
-      inclusionsHeading: "Every plan has",
-      inclusionsAccent: "everything you need",
+      inclusionsHeading: "Every Linux plan includes",
+      inclusionsAccent: "the essentials",
       inclusions: SHARED_INCLUSIONS,
       billingDisclosure:
-        "All plans are paid for the selected term. The monthly rate reflects the total plan price divided by the number of months. Demo amounts are labeled until live checkout is configured.",
+        "Plans are billed for the selected term. Monthly figures divide the term total by months. Demo amounts are labeled until live checkout is configured.",
       workloadsHeading: "Built for real workloads",
       workloadsIntro:
-        "Choose a use case to see how RunRacks VPS fits—then jump to plans that match.",
+        "Choose a use case to see how Linux VPS fits—then jump to matching plans.",
       workloads: SHARED_WORKLOADS,
       infraHeading: "Regions in the catalog",
-      capsHeading: "Server capabilities",
-      capsSubheading: "What you get to work with on RunRacks VPS",
+      capsHeading: "Linux VPS capabilities",
+      capsSubheading: "What you work with on RunRacks Linux VPS",
       capabilities: SHARED_CAPS,
-      convertHeading: "Build on a VPS that fits your workload",
+      convertHeading: "Find a Linux VPS that fits",
       convertSupport:
-        "Compare Linux, Windows, and Admin RDP plans with the same clear specs.",
+        "Compare Linux tiers with Windows and Admin RDP using the same catalog filters.",
       convertCta: "Compare plans",
     },
     windows: {
       key: "windows",
-      metaTitle: "Windows VPS Hosting",
+      metaTitle: "Windows VPS Hosting | RunRacks",
       metaDescription:
-        "Windows-ready VPS with administrator access, NVMe storage, and clear plan choices from RunRacks.",
+        "Windows VPS with administrator access and NVMe storage. Compare clear plan choices—demo prices labeled until checkout.",
       defaultFamily: "windows",
       hero: {
         h1: "Windows VPS with full administrator access.",
@@ -90,8 +90,8 @@ export const PRODUCT_HOSTING: Record<ProductHostingKey, ProductHostingContent> =
       benefits: [
         {
           id: "compute",
-          title: "Windows-sized compute",
-          body: "Plans list vCPU and RAM for Windows Server workloads—decorative charts are not live telemetry.",
+          title: "Sized for Windows workloads",
+          body: "Plans list vCPU and RAM for Windows Server apps—decorative charts are not live telemetry.",
           art: "compute",
         },
         {
@@ -102,19 +102,19 @@ export const PRODUCT_HOSTING: Record<ProductHostingKey, ProductHostingContent> =
         },
         {
           id: "manage",
-          title: "Administrator RDP when you need it",
-          body: "Windows and Admin RDP families give desktop-style access for the tools your team already uses.",
+          title: "Administrator access",
+          body: "Install roles, runtimes, and tools through administrator access on the Windows guest.",
           art: "terminal",
         },
       ],
-      inclusionsHeading: "Every plan has",
-      inclusionsAccent: "everything you need",
+      inclusionsHeading: "Every Windows plan includes",
+      inclusionsAccent: "the essentials",
       inclusions: SHARED_INCLUSIONS,
       billingDisclosure:
-        "All plans are paid for the selected term. The monthly rate reflects the total plan price divided by the number of months. Demo amounts are labeled until live checkout is configured.",
+        "Plans are billed for the selected term. Monthly figures divide the term total by months. Demo amounts are labeled until live checkout is configured.",
       workloadsHeading: "Windows-friendly workloads",
       workloadsIntro:
-        "From app servers to admin desktops—filter plans to Windows or Admin RDP when you compare.",
+        "From app servers to admin tools—filter the catalog to Windows when you compare.",
       workloads: SHARED_WORKLOADS,
       infraHeading: "Regions in the catalog",
       capsHeading: "Windows VPS capabilities",

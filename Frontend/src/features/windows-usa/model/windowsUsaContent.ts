@@ -7,6 +7,11 @@ import type { GlobeMarker } from "@/components/ui/cobe-globe-analytics";
 import { approvedBrands } from "@/features/home/model/brandsContent";
 import type { SupportCtaCard } from "@/features/support-cta/model/supportCtaContent";
 import type { FaqItem } from "@/features/vps-faq/model/faqContent";
+import {
+  DEMO_PRICING_ANSWER,
+  OTHER_REGIONS_ANSWER,
+  USA_REGION_ANSWER,
+} from "@/shared/content/demoPricingCopy";
 
 /** Catalog hubs for the hero Cobe globe (US focus + peer regions). */
 export const WINDOWS_USA_GLOBE_MARKERS: readonly GlobeMarker[] = [
@@ -17,14 +22,14 @@ export const WINDOWS_USA_GLOBE_MARKERS: readonly GlobeMarker[] = [
 ];
 
 export const WINDOWS_USA = {
-  metaTitle: "Windows VPS Hosting in the United States",
+  metaTitle: "Windows VPS in the United States | RunRacks",
   metaDescription:
-    "Run Windows VPS plans in the United States — administrator access, NVMe storage, and clear demo pricing from RunRacks.",
+    "Windows VPS plans filtered to the United States region—administrator access, NVMe storage, and labeled demo pricing.",
   hero: {
     badge: "Windows VPS · United States",
-    title: "Windows VPS hosting in the United States",
+    title: "Windows VPS for the United States region",
     subtitle:
-      "Administrator access, NVMe plan cards, and a United States catalog region—compare honest demo pricing before you get started.",
+      "Administrator Windows VPS on NVMe, with the catalog already filtered to United States. Demo prices stay labeled until checkout.",
     primaryCta: {
       label: "View USA Windows plans",
       href: "#windows-usa-plans" as Route,
@@ -42,41 +47,38 @@ export const WINDOWS_USA = {
   },
   pricing: {
     eyebrow: "USA Windows plans",
-    heading: "Windows VPS for the United States",
-    lead: "Family is locked to Windows on this page. Location defaults to United States—adjust term or region in the filters below.",
+    heading: "Windows VPS · United States filter",
+    lead: "Family stays locked to Windows. Location defaults to United States—change term or region in the filters below.",
   },
   faq: {
-    heading: "USA Windows VPS questions",
+    heading: "USA Windows VPS FAQs",
     items: [
       {
         id: "us-region",
         question: "What does “United States” mean on this page?",
-        answer:
-          "United States is the catalog region id `us`. Plans shown here default to that location. Exact facility cities are not listed as marketing claims—use the plan filters and Pricing for the current real options.",
+        answer: USA_REGION_ANSWER,
       },
       {
         id: "family-lock",
         question: "Can I order Linux from this page?",
         answer:
-          "This landing locks the Windows VPS family so USA Windows plans stay in focus. Open the Linux VPS or VPS in USA pages, or use Pricing, to compare other families.",
+          "This landing locks the Windows VPS family so USA Windows plans stay in focus. Open Linux VPS or VPS in USA, or use Pricing, to compare other families.",
       },
       {
         id: "admin-access",
         question: "Do USA Windows plans include administrator access?",
         answer:
-          "Windows VPS plans are framed with administrator access so you can install and manage the stack your workload needs. You remain responsible for the guest OS, apps, and access credentials.",
+          "Windows VPS plans include administrator access so you can install and manage the stack your workload needs. You remain responsible for the guest OS, apps, and credentials.",
       },
       {
         id: "pricing-demo",
         question: "Is the pricing live checkout?",
-        answer:
-          "Catalog prices are demo labels for comparison until backend billing is configured. Use Pricing or talk to engineers to continue with the current real flow.",
+        answer: DEMO_PRICING_ANSWER,
       },
       {
         id: "other-regions",
         question: "Can I still choose another region?",
-        answer:
-          "Yes. Location filters on the plans section include every catalog region. This page simply starts you on United States.",
+        answer: OTHER_REGIONS_ANSWER,
       },
     ] satisfies readonly FaqItem[],
   },

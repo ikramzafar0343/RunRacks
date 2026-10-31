@@ -13,8 +13,8 @@ export type WindowsUsaWhyItem = {
 };
 
 export const WINDOWS_USA_WHY = {
-  heading: "Why RunRacks Windows VPS in the USA",
-  lead: "United States region Windows plans with administrator access, clear NVMe specs, and engineers who run the fleet—demo prices labeled until checkout is live.",
+  heading: "Why Windows VPS in the United States",
+  lead: "US-filtered Windows plans with administrator access and documented NVMe specs—demo prices labeled until checkout is live.",
   ctaLabel: "View plans",
   ctaHref: "/pricing" as Route,
   items: [

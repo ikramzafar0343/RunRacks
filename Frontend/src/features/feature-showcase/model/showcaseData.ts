@@ -1,5 +1,5 @@
 /**
- * Hosting-only showcase cards — real routes, project-owned demo imagery.
+ * Hosting showcase cards — real routes, project-owned demo imagery.
  * Cover art export size: 1200×1200 (1:1). Cards are locked to the same ratio.
  */
 import type { Route } from "next";
@@ -12,12 +12,12 @@ import type {
 export const SHOWCASE_COVER_SIZE = { width: 1200, height: 1200 } as const;
 
 export const SHOWCASE_INTRO: ShowcaseIntro = {
-  eyebrow: "What we offer",
-  headingLine1: "Everything to build",
-  headingLine2: "what’s next.",
+  eyebrow: "Hosting products",
+  headingLine1: "Infrastructure",
+  headingLine2: "built to operate.",
   supporting:
-    "Explore the tools, digital solutions, and infrastructure designed to help your next idea go further.",
-  ctaLabel: "Explore solutions",
+    "Compare Linux VPS, Windows VPS, and Admin RDP—clear specs, administrator access, and regions that match your audience.",
+  ctaLabel: "Customize a build",
   ctaHref: "/customize" as Route,
 };
 
@@ -25,9 +25,10 @@ export const FEATURE_CARDS: FeatureCard[] = [
   {
     id: "offers",
     label: "Plans & prices",
-    title: "Find the right plan for your next move.",
+    title: "Compare every hosting family in one catalog.",
     teaser: "Plans & offers",
-    description: "Compare options, features, and pricing in one place.",
+    description:
+      "Filter by family, region, and billing term. Demo prices are labeled until checkout is connected.",
     ctaLabel: "View plans",
     href: "/pricing" as Route,
     imageSrc: "/images/showcase/plans-cover-1200.jpg",
@@ -39,10 +40,10 @@ export const FEATURE_CARDS: FeatureCard[] = [
   {
     id: "vps",
     label: "VPS hosting",
-    title: "More control. Room to scale.",
+    title: "Linux VPS with full root access.",
     teaser: "VPS hosting",
     description:
-      "Flexible hosting for projects that need dependable infrastructure.",
+      "NVMe-backed virtual servers with documented vCPU, RAM, and storage for production and staging.",
     ctaLabel: "View VPS plans",
     href: "/products/vps" as Route,
     imageSrc: "/images/showcase/vps-cover-1200.jpg",
@@ -54,10 +55,10 @@ export const FEATURE_CARDS: FeatureCard[] = [
   {
     id: "windows",
     label: "Windows",
-    title: "Windows servers ready when you are.",
+    title: "Windows VPS for admin workloads.",
     teaser: "Windows hosting",
     description:
-      "Deploy Windows workloads with a familiar desktop environment and clear plan choices.",
+      "Administrator access on Windows Server–ready plans sized for apps, tools, and remote management.",
     ctaLabel: "Explore Windows",
     href: "/products/windows" as Route,
     imageSrc: "/images/showcase/windows-cover-1200.jpg",
@@ -69,10 +70,10 @@ export const FEATURE_CARDS: FeatureCard[] = [
   {
     id: "rdp",
     label: "Admin RDP",
-    title: "Admin access without the guesswork.",
+    title: "Remote desktops with full admin rights.",
     teaser: "Windows Admin RDP",
     description:
-      "Remote desktop admin sessions for teams that need hands-on Windows control.",
+      "Persistent Windows workspaces for operators who need hands-on control—not a locked shared desktop.",
     ctaLabel: "View Admin RDP",
     href: "/products/admin-rdp" as Route,
     imageSrc: "/images/showcase/admin-rdp-cover-1200.jpg",

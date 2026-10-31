@@ -2,9 +2,9 @@ import type { PrincipleItem, TeamItem, TimelineItem, ValueItem } from "./types";
 
 export const ABOUT_TIMELINE_INTRO = {
   eyebrow: "Our journey",
-  title: "Built one step at a time.",
+  title: "Built in deliberate phases.",
   description:
-    "The best foundations are built by learning, listening, and getting better with every new challenge.",
+    "From clearer plan language to operator-first support—each phase sharpens how RunRacks hosting is explained and delivered.",
 } as const;
 
 /** Editorial phases — not dated historical claims. */

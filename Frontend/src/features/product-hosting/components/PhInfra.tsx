@@ -42,7 +42,7 @@ function pricingHref(locationId: string, pricingAnchor: string) {
 export function PhInfra({
   heading,
   regions,
-  intro = "Same catalog regions as pricing filters—select a row, then jump to Windows plans for that location.",
+  intro = "Same catalog regions as pricing filters—select a row, then open plans for that location.",
   pricingAnchor = "#vps-pricing",
 }: PhInfraProps) {
   const baseId = useId();

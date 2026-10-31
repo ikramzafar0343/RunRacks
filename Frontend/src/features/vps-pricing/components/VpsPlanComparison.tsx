@@ -24,17 +24,17 @@ export function VpsPlanComparison() {
       <div className="mx-auto max-w-3xl text-center">
         <p className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand">
           <span>✦</span>
-          <span>Technical Feature Matrix</span>
+          <span>Plan comparison</span>
         </p>
         <h2
           id="compare-plans-title"
           className="mt-2 font-heading text-3xl font-semibold tracking-tight text-heading sm:text-4xl"
         >
-          Compare VPS, Windows & Admin RDP Plans
+          Specs side by side
         </h2>
         <p className="mt-3 text-base text-body/80 sm:text-lg">
-          Detailed side-by-side specifications across compute, NVMe storage,
-          networking, and administrator access.
+          Demo matrix of compute, NVMe, networking, and administrator access
+          across Linux VPS, Windows VPS, and Admin RDP sample tiers.
         </p>
       </div>
 

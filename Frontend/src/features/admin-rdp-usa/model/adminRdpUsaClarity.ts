@@ -16,11 +16,11 @@ export const ADMIN_RDP_USA_CLARITY = {
   headingId: "admin-rdp-usa-clarity-heading",
   /** Segments for accent highlights — keep order for the sentence. */
   heading: {
-    before: "Run ",
+    before: "Operate ",
     accentA: "Admin RDP",
-    mid: " with full control in the United States — clear plans, NVMe storage, and desktop-style tools that simplify your ",
-    accentB: "remote workspace",
-    after: " — all in one catalog.",
+    mid: " in the United States with documented plans, NVMe storage, and a ",
+    accentB: "full administrator desktop",
+    after: " in one catalog.",
   },
   visual: {
     src: "/images/admin-rdp/float-01.webp",

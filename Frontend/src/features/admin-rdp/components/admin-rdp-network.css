@@ -212,6 +212,15 @@ html.dark .ardpNetworkGlow {
   color: var(--net-accent);
 }
 
+.ardpNetworkRowFlag {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 0.875rem;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-heading) 12%, transparent);
+}
+
 .ardpNetworkRowName {
   flex: 1;
   font-size: 0.78125rem;

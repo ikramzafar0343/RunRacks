@@ -23,9 +23,14 @@ export function HeroSection() {
         </p>
 
         <div className="homeHeroEnterCta">
-          <Link href={content.ctaHref} className="homeHeroCta">
-            {content.ctaLabel}
-          </Link>
+          <div className="homeHeroCtaRow">
+            <Link href={content.ctaHref} className="homeHeroCta">
+              {content.ctaLabel}
+            </Link>
+            <Link href={content.aiCta.href} className="homeHeroCtaSecondary">
+              {content.aiCta.label}
+            </Link>
+          </div>
           <p className="homeHeroTrust">
             <HiOutlineShieldCheck
               className="homeHeroTrustIcon"

@@ -11,18 +11,18 @@ export type AiStarterWithIcon = AiStarterPrompt & {
 };
 
 export const AI_META = {
-  title: "Ask RunRacks AI | RunRacks",
+  title: "RunRacks AI | Plan guidance",
   description:
-    "Ask about RunRacks Linux VPS, Windows VPS, and Admin RDP. Live answers connect when the AI backend is configured.",
+    "Ask about Linux VPS, Windows VPS, and Admin RDP on RunRacks. Live answers connect when the AI backend is configured.",
 } as const;
 
 export const AI_COPY = {
   heading: "Ask RunRacks AI",
   headingAccent: "AI",
-  lead: "Linux VPS, Windows VPS, and Admin RDP.",
+  lead: "Guidance for Linux VPS, Windows VPS, and Admin RDP plan fit.",
   placeholder: "Ask about VPS, Windows, or Admin RDP",
-  disclaimer: "Demo catalog prices. Live answers aren’t connected yet.",
-  unavailable: "Not connected yet.",
+  disclaimer: "Demo catalog prices. Live model answers aren’t connected yet.",
+  unavailable: "AI backend not connected yet.",
   sendLabel: "Send",
   stopLabel: "Stop",
   pendingLabel: "Sending…",

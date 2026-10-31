@@ -143,13 +143,16 @@ export function PricingTrustBand({ className }: { className?: string }) {
         className,
       )}
     >
-      {/* Main Trust Statistic Headline */}
+      {/* Main Trust Statistic Headline — demo figures only */}
       <p className="text-center text-xs font-normal text-heading/90 sm:text-sm md:text-[15px] tracking-tight">
         Trusted by over{" "}
         <strong className="font-semibold text-heading">700,000</strong>{" "}
         customers to power{" "}
         <strong className="font-semibold text-heading">3,000,000+</strong>{" "}
         websites!
+      </p>
+      <p className="mt-1.5 text-center text-[11px] text-body/70" role="note">
+        Demo trust metrics — not verified production figures
       </p>
 
       {/* 3 Review & Rating Badges with subtle vertical dividers */}

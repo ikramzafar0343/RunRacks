@@ -23,13 +23,13 @@ export function VpsPricingFallback({
       <div className="vpsPricingContainer">
         {isEmbedded ? (
           <div className="vpsSkeletonStack">
-            {Array.from({ length: 5 }, (_, i) => (
+            {Array.from({ length: 6 }, (_, i) => (
               <div key={i} className="vpsSkeletonRow" />
             ))}
           </div>
         ) : (
           <div className="vpsSkeletonCardGrid">
-            {Array.from({ length: 3 }, (_, i) => (
+            {Array.from({ length: 6 }, (_, i) => (
               <div key={i} className="vpsSkeletonCard" />
             ))}
           </div>

@@ -162,37 +162,6 @@
   color: var(--vps-text);
 }
 
-.vpsShowAllWrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.9rem;
-}
-
-.vpsShowAllBtn {
-  appearance: none;
-  height: 2rem;
-  padding: 0 0.85rem;
-  border: 1px solid var(--vps-control-border);
-  border-radius: 8px;
-  background: var(--vps-surface);
-  color: var(--vps-text);
-  font: inherit;
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.vpsShowAllBtn:is(:hover, :active) {
-  background: var(--color-lime);
-  border-color: var(--color-lime);
-  color: var(--color-on-lime);
-}
-
-.vpsShowAllBtn:focus-visible {
-  outline: 2px solid var(--color-lime);
-  outline-offset: 2px;
-}
-
 @media (max-width: 900px) {
   .vpsPlanSummary {
     display: flex;

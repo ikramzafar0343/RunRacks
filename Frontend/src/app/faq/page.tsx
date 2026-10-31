@@ -1,13 +1,13 @@
 /**
- * FAQ — same questions already used on the home page.
+ * FAQ — canonical VPS hosting education set.
  */
 import type { Metadata } from "next";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
 
 export const metadata: Metadata = {
-  title: "FAQ",
+  title: "VPS Hosting FAQ | RunRacks",
   description:
-    "Answers about RunRacks VPS, Windows, and Admin RDP plans. Demo prices stay labeled until checkout is configured.",
+    "Answers about Linux VPS, KVM isolation, plan sizing, and getting started on RunRacks. Demo prices stay labeled until checkout.",
   alternates: { canonical: "/faq" },
 };
 

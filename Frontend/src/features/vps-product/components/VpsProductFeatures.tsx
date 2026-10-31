@@ -20,7 +20,7 @@ export function VpsProductFeatures() {
           return (
             <li key={feature.id} className="vpsProductFeaturesCard">
               <span className="vpsProductFeaturesIcon" aria-hidden>
-                <Icon size={22} strokeWidth={1.75} />
+                <Icon size={28} strokeWidth={1.6} />
               </span>
               <div className="vpsProductFeaturesCopy">
                 <h3 className="vpsProductFeaturesTitle">{feature.title}</h3>

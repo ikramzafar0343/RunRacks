@@ -7,13 +7,14 @@ import { CustomizeHostingSection } from "@/features/customize/components/Customi
 import { BrandsSection } from "@/features/home/components/BrandsSection";
 import { PhInfra } from "@/features/product-hosting/components/PhInfra";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
+import { VPS_FAQ } from "@/features/vps-faq/model/faqContent";
+import { catalogRegionsIntro } from "@/shared/content/demoPricingCopy";
 import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
 import { VpsCompanyRail } from "@/features/vps-product/components/VpsCompanyRail";
-import { VpsPhotoPair } from "@/features/vps-product/components/VpsPhotoPair";
+import { VpsCompetitorCompare } from "@/features/vps-product/components/VpsCompetitorCompare";
 import { VpsPrinciples } from "@/features/vps-product/components/VpsPrinciples";
 import { VpsProductFeatures } from "@/features/vps-product/components/VpsProductFeatures";
 import { VpsProductHero } from "@/features/vps-product/components/VpsProductHero";
-import { VpsProductStory } from "@/features/vps-product/components/VpsProductStory";
 import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
 import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
@@ -65,15 +66,14 @@ export function VpsProductPage({
       <PhInfra
         heading="Catalog regions"
         regions={catalog.regions}
-        intro="Same catalog regions as pricing filters—select a row, then jump to VPS plans for that location."
+        intro={catalogRegionsIntro("VPS plans")}
         pricingAnchor="#vps-plans"
       />
-      <VpsProductStory />
-      <VpsPhotoPair />
+      <VpsCompetitorCompare />
       <VpsPrinciples />
       <BrandsSection />
       <VpsCompanyRail />
-      <FaqSection />
+      <FaqSection content={VPS_FAQ} />
       <SupportCtaSection />
     </main>
   );

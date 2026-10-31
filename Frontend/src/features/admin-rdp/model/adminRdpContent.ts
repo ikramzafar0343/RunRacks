@@ -3,6 +3,10 @@
  * Demo/illustrative labels where claims are not production-verified.
  */
 import type { Route } from "next";
+import {
+  DEMO_PRICING_ANSWER,
+  catalogRegionsIntro,
+} from "@/shared/content/demoPricingCopy";
 
 export type ArdpStat = { value: string; caption: string };
 export type ArdpTestimonial = {
@@ -15,18 +19,18 @@ export type ArdpFaqItem = { id: string; question: string; answer: string };
 export const ADMIN_RDP = {
   metaTitle: "Admin RDP — Windows remote desktop | RunRacks",
   metaDescription:
-    "Windows Admin RDP with full administrator access. Compare demo plans, see how teams work remotely, and open Pricing when checkout is configured.",
+    "Windows Admin RDP with full administrator access. Compare labeled demo plans and continue on Pricing when checkout is configured.",
   hero: {
-    lines: ["Windows Admin RDP", "with Full Control"] as const,
-    lead: "Access your Windows desktop with full administrator rights — anytime, anywhere.",
-    notes: ["Private remote desktop", "Full admin access"] as const,
+    lines: ["Windows Admin RDP", "for operators"] as const,
+    lead: "A persistent Windows remote desktop with full administrator rights—sized by vCPU, RAM, and NVMe you can compare before checkout.",
+    notes: ["Remote Windows desktop", "Full administrator access"] as const,
     primaryCta: {
       label: "Explore Plans",
       href: "/products/admin-rdp#vps-plans" as Route,
     },
     secondaryCta: {
-      label: "View Pricing",
-      href: "/pricing" as Route,
+      label: "Try RunRacks AI",
+      href: "/ai" as Route,
     },
     visual: {
       src: "/images/admin-rdp/hero-workstation-cut.webp",
@@ -46,12 +50,12 @@ export const ADMIN_RDP = {
   /** Centered scroll word-fill block under the float stage */
   manifesto: {
     paragraphs: [
-      "For teams that need a real Windows desktop remotely, Admin RDP delivers full administrator access with clear demo specs—vCPU, RAM, and storage you can compare before checkout is configured.",
+      "Admin RDP is for teams that need a real Windows desktop remotely—full administrator access with documented demo specs for vCPU, RAM, and storage before checkout is connected.",
     ] as const,
   },
   storyIdeas: {
-    eyebrow: "+ ( Remote desktops that keep up )",
-    body: "We take time to understand how your operators work—support, finance tools, legacy apps, or day-to-day admin. Those needs shape which Admin RDP tier fits, so remote sessions feel like a real Windows machine, not a locked-down guest account.",
+    eyebrow: "+ ( Built for operator workflows )",
+    body: "Support desks, finance tools, legacy apps, and day-to-day admin all need a proper Windows session. Match those needs to an Admin RDP tier so remote work feels like a machine you control—not a locked guest account.",
     portrait: {
       src: "/images/admin-rdp/story-portrait.jpg",
       alt: "Operator in a beanbag with a laptop under a WORK headline",
@@ -68,11 +72,11 @@ export const ADMIN_RDP = {
     ] as const,
   },
   storyDesign: {
-    eyebrow: "+ ( Access built for operators )",
+    eyebrow: "+ ( Specs and a usable desktop )",
     primary:
-      "Admin RDP is for teams that need hands-on Windows control: install software, manage services, and work through a familiar desktop. We keep the story simple—honest plan specs, remote desktop access, and clear next steps on Pricing when you are ready.",
+      "Install software, manage services, and work through a familiar Windows desktop. Plan cards stay honest about capacity; Pricing is the next step when you are ready to continue.",
     secondary:
-      "A strong remote workspace only works when access and execution match. Specs without a usable desktop fail operators; a desktop without clear capacity fails capacity planning. Admin RDP holds both: transparent demo tiers and full administrator sessions.",
+      "Specs without a usable desktop fail operators; a desktop without clear capacity fails planning. Admin RDP pairs labeled demo tiers with full administrator sessions.",
     image: {
       src: "/images/admin-rdp/team.jpg",
       alt: "Team working with remote Windows tools — placeholder for Admin RDP team slot",
@@ -80,13 +84,12 @@ export const ADMIN_RDP = {
   },
   /** Locations / globe — same catalog regions as pricing filters */
   network: {
-    eyebrow: "Global network",
+    eyebrow: "Catalog regions",
     headingAfter: "locations. Pick a region, open Admin RDP plans.",
-    intro:
-      "Same catalog regions as pricing filters—select a row, then jump to Admin RDP plans for that location.",
+    intro: catalogRegionsIntro("Admin RDP plans"),
   },
   stats: {
-    eyebrow: "( No fluff )",
+    eyebrow: "( Demo figures )",
     items: [
       {
         value: "40",
@@ -155,13 +158,13 @@ export const ADMIN_RDP = {
     ] as const satisfies readonly ArdpTestimonial[],
   },
   faq: {
-    heading: "Questions? We got you.",
+    heading: "Admin RDP FAQs",
     items: [
       {
         id: "what-is-admin-rdp",
         question: "What is Windows Admin RDP on RunRacks?",
         answer:
-          "Admin RDP is a Windows remote desktop plan family with full administrator access. You connect with a remote desktop client, manage the machine like a local Windows box, and compare demo tiers by vCPU, RAM, and storage before checkout is configured.",
+          "Admin RDP is a Windows remote desktop family with full administrator access. Connect with a remote desktop client, manage the machine like a local Windows box, and compare demo tiers by vCPU, RAM, and storage before checkout is configured.",
       },
       {
         id: "who-is-admin-rdp-for",
@@ -190,26 +193,25 @@ export const ADMIN_RDP = {
       {
         id: "pricing-live",
         question: "Is pricing live today?",
-        answer:
-          "Catalog prices are demo labels for comparison. Checkout completes when backend and billing are configured. Use Pricing to continue with the current real flow.",
+        answer: DEMO_PRICING_ANSWER,
       },
       {
         id: "regions",
         question: "Which regions can I pick?",
         answer:
-          "Demo regions appear in the pricing filters for the family you select. Availability on a live order depends on capacity when the platform is fully configured—treat region lists as catalog demos until then.",
+          "Regions appear in the pricing filters for Admin RDP. Treat the list as the current catalog until capacity and checkout are fully connected.",
       },
       {
         id: "get-started",
         question: "How do I get started?",
         answer:
-          "Open Pricing to compare Admin RDP tiers in the VPS catalog with the Admin RDP family selected. This page is editorial—no fake order buttons.",
+          "Compare Admin RDP tiers on this page or on Pricing, then Contact the team to continue. Deploy stays unavailable until checkout is configured.",
       },
     ] as const satisfies readonly ArdpFaqItem[],
   },
   bottomCta: {
-    heading: "Ready to run Admin RDP with us?",
-    ctaLabel: "Plan a walkthrough",
+    heading: "Compare Admin RDP tiers",
+    ctaLabel: "View Pricing",
     href: "/pricing" as Route,
   },
 } as const;

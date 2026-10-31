@@ -3,20 +3,20 @@
  */
 import type { LucideIcon } from "lucide-react";
 import {
-  Cpu,
-  Globe,
-  HardDrive,
-  Headphones,
-  KeyRound,
-  Shield,
+  Activity,
+  Focus,
+  Gauge,
+  Settings2,
+  Star,
+  Wallet,
 } from "lucide-react";
 import type { VpsHeroIconId } from "@/features/vps-product/model/vpsProductContent";
 
 export const VPS_HERO_ICONS: Record<VpsHeroIconId, LucideIcon> = {
-  cpu: Cpu,
-  hardDrive: HardDrive,
-  keyRound: KeyRound,
-  globe: Globe,
-  shield: Shield,
-  headphones: Headphones,
+  gauge: Gauge,
+  activity: Activity,
+  star: Star,
+  focus: Focus,
+  settings: Settings2,
+  wallet: Wallet,
 };

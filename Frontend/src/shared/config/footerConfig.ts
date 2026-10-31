@@ -28,7 +28,6 @@ export type FooterSocialLink = {
 
 export const FOOTER = {
   brand: "RunRacks",
-  tagline: "hosting",
   watermark: "RUNRACKS",
   contactBlurb:
     "NVMe VPS hosting — clear plans, admin access, and engineers when you need them.",

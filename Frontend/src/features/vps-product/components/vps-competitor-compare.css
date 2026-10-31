@@ -1,0 +1,413 @@
+/*
+ * VPS competitor comparison — light Sage & Ink band, Nourd type.
+ */
+
+.vpsCmp {
+  --vps-cmp-bg: var(--color-canvas);
+  --vps-cmp-fg: var(--color-heading);
+  --vps-cmp-muted: var(--color-muted);
+  --vps-cmp-accent: var(--color-brand);
+  --vps-cmp-lime: var(--color-lime);
+  --vps-cmp-on-lime: var(--color-on-lime);
+  --vps-cmp-line: var(--color-border);
+  --vps-cmp-surface: var(--color-surface);
+  --vps-cmp-surface-strong: color-mix(
+    in srgb,
+    var(--color-accent-soft) 55%,
+    var(--color-surface)
+  );
+  --vps-cmp-danger: var(--color-error);
+  --vps-cmp-mark-ink: #0b0b0b;
+  --vps-cmp-mark-orange: #de3723;
+
+  padding: var(--vp-section-y, clamp(1.75rem, 3.5vw, 3rem)) 0;
+  background: var(--vps-cmp-bg);
+  color: var(--vps-cmp-fg);
+  font-family: var(--font-sans);
+}
+
+html.dark .vpsCmp {
+  --vps-cmp-bg: var(--color-inverse);
+  --vps-cmp-fg: var(--color-on-inverse);
+  --vps-cmp-muted: var(--color-inverse-muted);
+  --vps-cmp-accent: var(--color-lime);
+  --vps-cmp-line: var(--color-inverse-border);
+  --vps-cmp-surface: color-mix(in srgb, var(--color-on-inverse) 4%, transparent);
+  --vps-cmp-surface-strong: color-mix(
+    in srgb,
+    var(--color-on-inverse) 7%,
+    transparent
+  );
+  --vps-cmp-danger: #f07167;
+}
+
+.vpsCmp .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vpsCmpInner {
+  width: min(1120px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.vpsCmpHeader {
+  max-width: 40rem;
+  margin: 0 auto clamp(1.75rem, 3.5vw, 2.5rem);
+  text-align: center;
+}
+
+.vpsCmpHeading {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  text-wrap: pretty;
+  color: var(--vps-cmp-fg);
+}
+
+.vpsCmpHeadingAccent {
+  color: var(--vps-cmp-accent);
+}
+
+.vpsCmpLead {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.45vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--vps-cmp-muted);
+  text-wrap: pretty;
+}
+
+.vpsCmpTableWrap {
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 1rem;
+  border: 1px solid var(--vps-cmp-line);
+  background: var(--vps-cmp-surface);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--color-heading) 4%, transparent);
+  scrollbar-width: thin;
+}
+
+.vpsCmpTable {
+  width: 100%;
+  min-width: 44rem;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.vpsCmpTable caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vpsCmpTh,
+.vpsCmpTd,
+.vpsCmpMetric {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid var(--vps-cmp-line);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.vpsCmpTable tbody tr:last-child .vpsCmpTd,
+.vpsCmpTable tbody tr:last-child .vpsCmpMetric {
+  border-bottom: 0;
+}
+
+.vpsCmpMetric {
+  width: 9.5rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--vps-cmp-muted);
+}
+
+.vpsCmpCol {
+  width: auto;
+}
+
+.vpsCmpColFeatured {
+  position: relative;
+  background: color-mix(in srgb, var(--vps-cmp-lime) 18%, var(--vps-cmp-surface));
+  box-shadow:
+    inset 2px 0 0 var(--vps-cmp-lime),
+    inset -2px 0 0 var(--vps-cmp-lime);
+}
+
+.vpsCmpTable thead .vpsCmpColFeatured {
+  box-shadow:
+    inset 2px 0 0 var(--vps-cmp-lime),
+    inset -2px 0 0 var(--vps-cmp-lime),
+    inset 0 2px 0 var(--vps-cmp-lime);
+  border-radius: 0.85rem 0.85rem 0 0;
+}
+
+.vpsCmpTable tbody tr:last-child .vpsCmpColFeatured {
+  box-shadow:
+    inset 2px 0 0 var(--vps-cmp-lime),
+    inset -2px 0 0 var(--vps-cmp-lime),
+    inset 0 -2px 0 var(--vps-cmp-lime);
+  border-radius: 0 0 0.85rem 0.85rem;
+}
+
+.vpsCmpBrandHead {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding-top: 0.35rem;
+}
+
+.vpsCmpBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  background: var(--vps-cmp-lime);
+  color: var(--vps-cmp-on-lime);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.vpsCmpBadgeSpacer {
+  height: 1.15rem;
+}
+
+.vpsCmpMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-heading) 8%, transparent);
+  color: var(--vps-cmp-fg);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.vpsCmpMarkFeatured {
+  background: var(--vps-cmp-lime);
+  color: var(--vps-cmp-on-lime);
+}
+
+.vpsCmpMarkTone-orange {
+  background: var(--vps-cmp-mark-orange);
+}
+
+.vpsCmpMarkTone-ink {
+  background: var(--vps-cmp-mark-ink);
+}
+
+.vpsCmpMarkTone-plain {
+  background: transparent;
+  border: 1px solid var(--vps-cmp-line);
+}
+
+.vpsCmpMarkTone-lime {
+  background: var(--vps-cmp-lime);
+  color: var(--vps-cmp-on-lime);
+}
+
+.vpsCmpLogo {
+  display: block;
+  width: 62%;
+  height: 62%;
+  object-fit: contain;
+}
+
+.vpsCmpMarkTone-plain .vpsCmpLogo {
+  width: 100%;
+  height: 100%;
+}
+
+.vpsCmpMarkTone-orange .vpsCmpLogo {
+  /* Namecheap mark is brand-orange; invert to white on orange tile */
+  filter: brightness(0) invert(1);
+  width: 58%;
+  height: 58%;
+}
+
+.vpsCmpBrandName {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--vps-cmp-fg);
+}
+
+.vpsCmpCell {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--vps-cmp-fg);
+  line-height: 1.35;
+}
+
+.vpsCmpCellFeatured {
+  color: var(--vps-cmp-accent);
+  font-weight: 600;
+}
+
+.vpsCmpCheaper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.vpsCmpCheaperYes {
+  color: var(--vps-cmp-accent);
+}
+
+.vpsCmpCheaperNo {
+  color: var(--vps-cmp-danger);
+}
+
+.vpsCmpCheaperIcon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+.vpsCmpSavings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.1rem);
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.vpsCmpSaveCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem 1rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--vps-cmp-line);
+  background: var(--vps-cmp-surface);
+}
+
+.vpsCmpSaveVs {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--vps-cmp-muted);
+}
+
+.vpsCmpSaveMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-heading) 8%, transparent);
+  flex-shrink: 0;
+}
+
+.vpsCmpSaveMark.vpsCmpMarkTone-orange {
+  background: var(--vps-cmp-mark-orange);
+}
+
+.vpsCmpSaveMark.vpsCmpMarkTone-ink {
+  background: var(--vps-cmp-mark-ink);
+}
+
+.vpsCmpSaveMark.vpsCmpMarkTone-plain {
+  background: transparent;
+  border: 1px solid var(--vps-cmp-line);
+}
+
+.vpsCmpSaveLogo {
+  display: block;
+  width: 62%;
+  height: 62%;
+  object-fit: contain;
+}
+
+.vpsCmpSaveMark.vpsCmpMarkTone-plain .vpsCmpSaveLogo {
+  width: 100%;
+  height: 100%;
+}
+
+.vpsCmpSaveMark.vpsCmpMarkTone-orange .vpsCmpSaveLogo {
+  filter: brightness(0) invert(1);
+  width: 58%;
+  height: 58%;
+}
+
+.vpsCmpSaveAmount {
+  font-family: var(--font-heading);
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--vps-cmp-accent);
+}
+
+.vpsCmpSaveNote {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--vps-cmp-muted);
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .vpsCmpSavings {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .vpsCmpInner {
+    width: min(100% - 1.5rem, 1120px);
+  }
+
+  .vpsCmpTh,
+  .vpsCmpTd,
+  .vpsCmpMetric {
+    padding: 0.7rem 0.65rem;
+  }
+
+  .vpsCmpMetric {
+    width: 7.25rem;
+    font-size: 0.74rem;
+  }
+}

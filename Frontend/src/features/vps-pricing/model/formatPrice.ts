@@ -5,7 +5,7 @@
 export function formatMoneyMinor(
   amountMinor: number,
   currency: string,
-  locale = "en-PK",
+  locale = "en-US",
 ): string {
   return new Intl.NumberFormat(locale, {
     style: "currency",

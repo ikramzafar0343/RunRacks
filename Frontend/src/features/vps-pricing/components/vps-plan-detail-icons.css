@@ -3,22 +3,21 @@
  */
 
 .vpsPlanDetailValue {
-  margin: 0.15rem 0 0;
+  margin: 0.05rem 0 0;
 }
 
 .vpsPlanDetailText {
   display: inline-flex;
-  align-items: flex-start;
-  gap: 0.35rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: 1.35;
-  color: var(--vps-text);
+  align-items: center;
+  gap: 0.3rem;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 
 .vpsPlanDetailIcon {
   flex-shrink: 0;
-  margin-top: 0.1rem;
   color: var(--color-brand);
 }
 
@@ -68,23 +67,45 @@
 }
 
 .vpsPlanTileFeatureDetail {
-  flex-direction: column;
-  gap: 0.15rem;
+  align-items: flex-start;
 }
 
-.vpsPlanTileDetailLabel {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--color-muted);
+.vpsPlanTileDetailLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.35rem;
+  min-width: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--color-heading);
 }
 
-/* Ensure strong, crystal-clear visibility on featured dark cards */
-.vpsPlanTile[data-featured="true"] .vpsPlanTileDetailLabel {
-  color: var(--color-inverse-muted);
+.vpsPlanTileDetailLine .vpsPlanDetailText > span:last-child,
+.vpsPlanTileDetailLine .vpsPlanDetailMark > span,
+.vpsPlanTileDetailLine .vpsPlanDetailFlagName {
+  text-decoration: none;
 }
 
-.vpsPlanTile[data-featured="true"] .vpsPlanDetailText {
+.vpsPlanTileFeatureDetail .vpsPlanDetailMarks,
+.vpsPlanTileFeatureDetail .vpsPlanDetailFlags,
+.vpsPlanTileFeatureDetail .vpsPlanDetailText {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.vpsPlanTileFeatureDetail .vpsPlanDetailMark,
+.vpsPlanTileFeatureDetail .vpsPlanDetailFlagName {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+/* Featured dark cards */
+.vpsPlanTile[data-featured="true"] .vpsPlanTileDetailLine {
   color: var(--color-on-inverse);
 }
 

@@ -17,7 +17,10 @@ import { CustomizePriceCard } from "@/features/customize/components/CustomizePri
 import { CustomizeRegionSelect } from "@/features/customize/components/CustomizeRegionSelect";
 import { CustomizeSlider } from "@/features/customize/components/CustomizeSlider";
 import { familyIcon } from "@/features/customize/components/customizeIcons";
-import { CUSTOMIZE } from "@/features/customize/model/customizeContent";
+import {
+  attachedRamGb,
+  CUSTOMIZE,
+} from "@/features/customize/model/customizeContent";
 import { calculateCustomizePrice } from "@/features/customize/model/customizePricing";
 import type {
   BillingTermMonths,
@@ -85,6 +88,17 @@ export function CustomizeConfigurator({
   const familyLabel =
     CUSTOMIZE.families.find((f) => f.id === family)?.label ?? family;
   const s = CUSTOMIZE.sliders;
+  const ramFloor = attachedRamGb(vcpu);
+
+  function handleVcpuChange(next: number) {
+    setVcpu(next);
+    /* Keep RAM attached to cores so the track fill stays proportional. */
+    setRamGb(attachedRamGb(next));
+  }
+
+  function handleRamChange(next: number) {
+    setRamGb(Math.max(next, ramFloor));
+  }
 
   return (
     <div className="czConfigInner">
@@ -165,7 +179,7 @@ export function CustomizeConfigurator({
             step={s.vcpu.step}
             value={vcpu}
             icon={<HiCpuChip size={14} />}
-            onChange={setVcpu}
+            onChange={handleVcpuChange}
           />
           <CustomizeSlider
             id="cz-ram"
@@ -176,7 +190,7 @@ export function CustomizeConfigurator({
             step={s.ramGb.step}
             value={ramGb}
             icon={<HiServer size={14} />}
-            onChange={setRamGb}
+            onChange={handleRamChange}
           />
           <CustomizeSlider
             id="cz-nvme"

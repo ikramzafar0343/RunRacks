@@ -2,17 +2,18 @@
  * Home AI CTA copy — real routes only, no simulated product claims.
  */
 import type { Route } from "next";
+import { TRY_AI_CTA } from "@/shared/config/navConfig";
 
 export const AI_CTA = {
-  heading: "Let AI manage your VPS",
+  heading: "Plan your stack with RunRacks AI",
   supporting:
-    "Use RunRacks AI to plan deploys, choose a stack, and handle routine server tasks with clear prompts — on NVMe infrastructure built for performance.",
+    "Ask for plan fit, OS choices, and routine server tasks in plain language—then open Pricing when you are ready to compare NVMe tiers.",
   primary: {
     label: "View plans",
     href: "/pricing" as Route,
   },
   secondary: {
-    label: "Open RunRacks AI",
-    href: "/ai" as Route,
+    label: TRY_AI_CTA.label,
+    href: TRY_AI_CTA.href,
   },
 } as const;

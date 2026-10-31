@@ -13,12 +13,12 @@ export type EditorialImage = {
 
 /** Lucide icon keys resolved in VpsProductFeatures. */
 export type VpsHeroIconId =
-  | "cpu"
-  | "hardDrive"
-  | "keyRound"
-  | "globe"
-  | "shield"
-  | "headphones";
+  | "gauge"
+  | "activity"
+  | "star"
+  | "focus"
+  | "settings"
+  | "wallet";
 
 export type VpsHeroFeature = {
   id: string;
@@ -53,19 +53,19 @@ export type RailCard =
     };
 
 export const VPS_PRODUCT = {
-  metaTitle: "VPS Hosting",
+  metaTitle: "Linux VPS Hosting | RunRacks",
   metaDescription:
-    "NVMe VPS with full root access, clear plans, and predictable performance from RunRacks.",
+    "Linux VPS on local NVMe with full root access. Compare documented vCPU, RAM, and storage—demo prices labeled until checkout.",
   hero: {
-    titleLine: "Powerful VPS Hosting",
-    accentLine: "for Your Next Project",
+    titleLine: "Linux VPS on NVMe",
+    accentLine: "with full root access",
     highlights: [
-      { id: "speed", icon: "speed", label: "Fast Performance" },
-      { id: "uptime", icon: "shield", label: "Reliable Uptime" },
-      { id: "locations", icon: "globe", label: "Global Locations" },
+      { id: "speed", icon: "speed", label: "Local NVMe storage" },
+      { id: "uptime", icon: "shield", label: "Isolated KVM guests" },
+      { id: "locations", icon: "globe", label: "Catalog regions" },
     ] as const,
     primaryCta: { label: "View Plans", href: "#vps-plans" },
-    secondaryCta: { label: "Learn More", href: "#vps-features" },
+    secondaryCta: { label: "Try RunRacks AI", href: "/ai" },
     visual: {
       src: "/images/vps/hero/server-stack-large.webp",
       alt: "Three dark VPS server units with illuminated green status lights",
@@ -82,55 +82,55 @@ export const VPS_PRODUCT = {
     ] as const,
     features: [
       {
-        id: "dedicated",
-        icon: "cpu",
-        title: "Dedicated resources",
+        id: "speed",
+        icon: "gauge",
+        title: "Fast delivery",
         description:
-          "Clear vCPU and memory on every plan so performance stays predictable after launch.",
+          "Plan cards list a 15 min delivery window so you know what to expect once ordering is connected.",
       },
       {
-        id: "nvme",
-        icon: "hardDrive",
-        title: "NVMe SSD storage",
+        id: "uptime",
+        icon: "activity",
+        title: "Reliable isolation",
         description:
-          "Enterprise NVMe drives for fast I/O on production apps, databases, and builds.",
+          "Each Linux VPS runs as an isolated KVM guest so neighboring tenants do not share your CPU and memory pool.",
       },
       {
-        id: "root",
-        icon: "keyRound",
-        title: "Full root access",
+        id: "performance",
+        icon: "star",
+        title: "Documented performance",
         description:
-          "Complete control over your environment—install software and configure what you need.",
+          "Compare listed vCPU, RAM, and local NVMe on every tier before you choose a plan.",
       },
       {
-        id: "regions",
-        icon: "globe",
-        title: "Clear regions",
+        id: "latency",
+        icon: "focus",
+        title: "Catalog regions",
         description:
-          "Compare locations on the plan cards and pick the region closest to your users.",
+          "Filter by locations such as the United States or Singapore and pick the region nearest your audience.",
       },
       {
-        id: "ddos",
-        icon: "shield",
-        title: "DDoS mitigation",
+        id: "control",
+        icon: "settings",
+        title: "Plan controls",
         description:
-          "Mitigation included across plan tiers so networking stays part of the product.",
+          "Compare specs, filter the catalog, and use Customize to shape a build before checkout is configured.",
       },
       {
-        id: "support",
-        icon: "headphones",
-        title: "Human support",
+        id: "flexibility",
+        icon: "wallet",
+        title: "Flexible billing terms",
         description:
-          "Reach the team through Contact when you need help choosing or running a plan.",
+          "Choose monthly or longer terms on labeled demo pricing until live checkout is connected.",
       },
     ] satisfies readonly VpsHeroFeature[],
   },
   story: {
-    label: "About RunRacks VPS",
+    label: "About RunRacks Linux VPS",
     paragraphs: [
-      "RunRacks VPS brings dedicated compute, storage, and networking together so teams can run production workloads with full root and straightforward plan choices.",
-      "Every deployment starts with the same questions: what must stay fast, who operates it, and what a successful result looks like after launch.",
-      "We focus on clear specs, purposeful defaults, and infrastructure that remains useful as your stack grows.",
+      "RunRacks Linux VPS pairs documented compute, NVMe storage, and catalog regions so teams can run production and staging with full root access.",
+      "Every build starts with the same questions: what must stay fast, who operates the guest, and what success looks like after launch.",
+      "We keep specs readable and defaults purposeful so the infrastructure stays useful as your stack grows.",
     ],
   },
   photoPair: {
@@ -182,9 +182,9 @@ export const VPS_PRODUCT = {
     {
       id: "measure",
       number: "05",
-      title: "Measure what matters",
+      title: "Size from the workload",
       description:
-        "We connect delivery to relevant signals—uptime, latency, and capacity—so improvements follow evidence.",
+        "Match vCPU, RAM, and NVMe to traffic and services—then leave headroom instead of guessing from marketing slogans.",
     },
     {
       id: "improve",
@@ -195,7 +195,7 @@ export const VPS_PRODUCT = {
     },
   ] satisfies readonly Principle[],
   rail: {
-    label: "A closer look at RunRacks",
+    label: "A closer look at RunRacks VPS",
     cards: [
       {
         id: "craft",

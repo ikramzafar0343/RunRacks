@@ -22,6 +22,11 @@ export type WorkloadItem = {
   benefits: readonly string[];
   /** Approved brand ids for illustrative tool marks. */
   toolIds: readonly string[];
+  /** Tilted preview shown when the card is active (company-rail style). */
+  preview: {
+    src: string;
+    objectPosition?: string;
+  };
 };
 
 export type CapabilityIcon =

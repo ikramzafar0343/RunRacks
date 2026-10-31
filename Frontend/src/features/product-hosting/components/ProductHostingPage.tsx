@@ -18,6 +18,8 @@ import {
 } from "@/features/product-hosting/model/productHostingContent";
 import { getStartingPrice } from "@/features/product-hosting/model/startingPrice";
 import { FaqSection } from "@/features/vps-faq/components/FaqSection";
+import { WINDOWS_FAQ } from "@/features/vps-faq/model/faqContent";
+import { catalogRegionsIntro } from "@/shared/content/demoPricingCopy";
 import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
 import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
@@ -85,7 +87,7 @@ export function ProductHostingPage({
       <PhInfra
         heading={content.infraHeading}
         regions={catalog.regions}
-        intro="Same catalog regions as pricing filters—select a row, then jump to Windows plans for that location."
+        intro={catalogRegionsIntro("Windows plans")}
         pricingAnchor="#vps-pricing"
       />
 
@@ -105,7 +107,7 @@ export function ProductHostingPage({
         ctaLabel={content.convertCta}
       />
 
-      <FaqSection />
+      <FaqSection content={WINDOWS_FAQ} />
     </main>
   );
 }

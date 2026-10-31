@@ -147,7 +147,6 @@ body {
   .csCta,
   .csArrow,
   .csPlay,
-  .vpsShowAllBtn,
   .vpsCartButton:not(:disabled)
 ):is(:hover, :active) {
   background: var(--color-lime);
@@ -168,7 +167,6 @@ body {
   .csCta,
   .csArrow,
   .csPlay,
-  .vpsShowAllBtn,
   .vpsCartButton:not(:disabled)
 ):focus-visible {
   outline: 2px solid var(--color-lime);

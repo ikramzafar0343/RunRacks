@@ -1,7 +1,9 @@
 /**
- * Editable homepage hero copy and visual asset.
+ * Homepage hero copy — RunRacks hosting positioning.
  * Keep marketing claims truthful; no invented guarantees or metrics.
  */
+import type { Route } from "next";
+import { TRY_AI_CTA } from "@/shared/config/navConfig";
 
 export type HeroTrustBandContent = {
   label: string;
@@ -22,6 +24,7 @@ export type HeroContent = {
   description: string;
   ctaLabel: string;
   ctaHref: "/pricing";
+  aiCta: { label: string; href: Route };
   trust: string;
   visualSrc: "/home/hero-portrait.webp";
   visualAlt: string;
@@ -29,16 +32,17 @@ export type HeroContent = {
 };
 
 export const heroContent: HeroContent = {
-  headlineLine1: "Your idea, online.",
-  headlineLine2: "Made easy.",
+  headlineLine1: "NVMe hosting.",
+  headlineLine2: "Root when you need it.",
   description:
-    "One platform to build, launch, manage, and grow your presence online — all in one place.",
+    "Linux VPS, Windows VPS, and Admin RDP with clear plan specs, global regions, and administrator access—compare honest demo pricing until checkout is live.",
   ctaLabel: "View plans",
   ctaHref: "/pricing",
-  trust: "Designed to help you launch with confidence.",
+  aiCta: { label: TRY_AI_CTA.label, href: TRY_AI_CTA.href },
+  trust: "Sized for workloads that need control—not shared-hosting limits.",
   visualSrc: "/home/hero-portrait.webp",
   visualAlt:
-    "Person holding a laptop, ready to bring an idea online with RunRacks.",
+    "Person with a laptop reviewing RunRacks hosting plans and infrastructure.",
   trustBand: {
     label: "Excellent",
     score: 4.5,
