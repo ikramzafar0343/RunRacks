@@ -1,6 +1,10 @@
-/* Admin RDP two-column hero — base layout (Sage & Ink / Nourd) */
+/* Admin RDP two-column hero — product workstation shot (Sage & Ink / Nourd) */
 
 .ardpHero {
+  --ardp-accent: var(--color-brand);
+  --ardp-cta: var(--color-brand);
+  --ardp-on-cta: var(--color-brand-contrast);
+
   position: relative;
   isolation: isolate;
   padding-top: clamp(4.25rem, 8vw, 5.75rem);
@@ -12,18 +16,24 @@
   overflow: clip;
 }
 
+html.dark .ardpHero {
+  --ardp-accent: var(--color-lime);
+  --ardp-cta: var(--color-lime);
+  --ardp-on-cta: var(--color-on-lime);
+}
+
 .ardpHeroShell {
   width: min(100%, 91.25rem);
   margin-inline: auto;
   display: grid;
-  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   align-items: center;
-  gap: clamp(1.25rem, 3.5vw, 3.5rem);
+  gap: clamp(1.25rem, 3.5vw, 3.25rem);
 }
 
 .ardpHeroCopy {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   min-width: 0;
 }
 
@@ -49,6 +59,7 @@
   font-weight: 400;
   letter-spacing: -0.036em;
   line-height: 1.18;
+  color: var(--ardp-accent);
 }
 
 .ardpHeroLead {
@@ -81,25 +92,27 @@
   text-decoration: none;
   transition:
     transform var(--motion-fast, 150ms) ease,
-    background var(--motion-fast, 150ms) ease,
-    box-shadow var(--motion-fast, 150ms) ease,
-    filter var(--motion-fast, 150ms) ease;
+    background var(--motion-fast, 150ms) ease;
 }
 
 .ardpHeroCtaPrimary {
-  background: linear-gradient(
-    95deg,
-    var(--color-lime),
-    color-mix(in srgb, var(--color-lime) 78%, var(--color-brand))
-  );
-  color: var(--color-on-lime);
-  box-shadow: 0 8px 20px
-    color-mix(in srgb, var(--color-lime) 28%, transparent);
+  background: var(--ardp-cta);
+  color: var(--ardp-on-cta);
+  border: 1px solid var(--ardp-cta);
+}
+
+.ardpHeroCtaPrimary img {
+  /* SVG stroke is dark; invert on brand-green light CTA */
+  filter: brightness(0) invert(1);
+}
+
+html.dark .ardpHeroCtaPrimary img {
+  filter: none;
 }
 
 .ardpHeroCtaPrimary:hover {
-  filter: brightness(1.04);
   transform: translateY(-2px);
+  background: color-mix(in srgb, var(--ardp-cta) 88%, white);
 }
 
 .ardpHeroCtaSecondary {
@@ -114,7 +127,7 @@
 
 .ardpHeroCtaPrimary:focus-visible,
 .ardpHeroCtaSecondary:focus-visible {
-  outline: 2px solid var(--color-brand);
+  outline: 2px solid var(--ardp-accent);
   outline-offset: 3px;
 }
 
@@ -148,122 +161,36 @@
 .ardpHeroVisual {
   position: relative;
   z-index: 1;
-  align-self: end;
   min-width: 0;
-  height: clamp(20rem, 42vw, 36.5rem);
-  margin-inline: clamp(-2.5rem, -4vw, -4rem) clamp(-1.5rem, -3vw, -3.5rem);
-}
-
-.ardpHeroHalo,
-.ardpHeroOrbits {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none;
-}
-
-.ardpHeroHalo {
-  z-index: 0;
-}
-
-.ardpHeroOrbits {
-  z-index: 1;
-  opacity: 0.83;
+  align-self: stretch;
+  display: grid;
+  place-items: center end;
 }
 
 .ardpHeroPlate {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  bottom: 1.25rem;
-  width: 108%;
-  max-width: none;
-  display: grid;
-  place-items: end center;
-  pointer-events: none;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: transparent;
+}
+
+.ardpHeroPlate picture,
+.ardpHeroImage {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .ardpHeroImage {
-  position: relative;
-  width: 100%;
-  height: auto;
   object-fit: contain;
-  background: transparent;
-  mix-blend-mode: normal;
+  object-position: center bottom;
   filter: drop-shadow(
-    0 14px 18px color-mix(in srgb, var(--color-heading) 12%, transparent)
+    0 18px 28px color-mix(in srgb, var(--color-heading) 16%, transparent)
   );
 }
 
-.ardpHeroFloat {
-  position: absolute;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 11.875rem;
-  padding: 0.875rem 1.05rem;
-  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
-  border-radius: 1.25rem;
-  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
-  box-shadow:
-    0 1px 0 color-mix(in srgb, var(--color-heading) 4%, transparent),
-    0 12px 24px color-mix(in srgb, var(--color-heading) 10%, transparent);
-  backdrop-filter: blur(12px);
-}
-
-.ardpHeroFloat--connection {
-  top: 14%;
-  right: 1rem;
-}
-
-.ardpHeroFloatIcon {
-  width: 2rem;
-  height: 2rem;
-  flex-shrink: 0;
-}
-
-.ardpHeroFloatText {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  min-width: 0;
-}
-
-.ardpHeroFloatText strong {
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--color-heading);
-  white-space: nowrap;
-}
-
-.ardpHeroFloatText small {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: var(--color-muted);
-  font-size: 0.75rem;
-  white-space: nowrap;
-}
-
-.ardpHeroFloatText small i {
-  display: inline-block;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--color-success, #6ecc52);
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--color-success, #6ecc52) 22%, transparent);
-}
-
-html.dark .ardpHeroFloat {
-  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
-}
-
-html.dark .ardpHeroOrbits {
-  opacity: 0.7;
+html.dark .ardpHeroImage {
+  filter: drop-shadow(0 20px 36px color-mix(in srgb, #000 50%, transparent));
 }
 
 @media (prefers-reduced-motion: reduce) {

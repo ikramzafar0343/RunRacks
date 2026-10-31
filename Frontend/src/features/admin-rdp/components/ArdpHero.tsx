@@ -1,5 +1,5 @@
 /**
- * Admin RDP hero — two-column copy + layered workstation scene (Sage & Ink / Nourd).
+ * Admin RDP hero — copy + product workstation shot (Sage & Ink / Nourd).
  */
 import Image from "next/image";
 import Link from "next/link";
@@ -47,56 +47,25 @@ export function ArdpHero() {
           </div>
         </div>
 
-        <div className="ardpHeroVisual" aria-label="Windows Admin RDP workstation scene">
-          <Image
-            className="ardpHeroHalo"
-            src={`${ASSET}/hero-background-halo.svg`}
-            alt=""
-            width={970}
-            height={590}
-            unoptimized
-            aria-hidden
-          />
-          <Image
-            className="ardpHeroOrbits"
-            src={`${ASSET}/hero-orbit-lines.svg`}
-            alt=""
-            width={970}
-            height={590}
-            unoptimized
-            aria-hidden
-          />
+        <div className="ardpHeroVisual">
           <div className="ardpHeroPlate">
-            <Image
-              className="ardpHeroImage"
-              src={hero.visual.src}
-              alt={hero.visual.alt}
-              width={960}
-              height={472}
-              sizes="(max-width: 700px) 100vw, (max-width: 1100px) 90vw, 55vw"
-              preload
-              unoptimized
-            />
-          </div>
-          <div
-            className="ardpHeroFloat ardpHeroFloat--connection"
-            aria-label={`${hero.cards.connection.title}: ${hero.cards.connection.detail}`}
-          >
-            <Image
-              className="ardpHeroFloatIcon"
-              src={`${ASSET}/windows-logo.svg`}
-              alt=""
-              width={32}
-              height={32}
-              unoptimized
-            />
-            <span className="ardpHeroFloatText">
-              <strong>{hero.cards.connection.title}</strong>
-              <small>
-                <i aria-hidden />
-                {hero.cards.connection.detail}
-              </small>
-            </span>
+            <picture>
+              <source
+                media="(max-width: 700px)"
+                srcSet={hero.visualMobile.src}
+                type="image/webp"
+              />
+              <Image
+                className="ardpHeroImage"
+                src={hero.visual.src}
+                alt={hero.visual.alt}
+                width={1024}
+                height={576}
+                sizes="(max-width: 700px) 100vw, (max-width: 1100px) 90vw, 55vw"
+                preload
+                unoptimized
+              />
+            </picture>
           </div>
         </div>
       </div>

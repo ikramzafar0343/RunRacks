@@ -33,18 +33,12 @@ export const ADMIN_RDP = {
       href: "/ai" as Route,
     },
     visual: {
-      src: "/images/admin-rdp/hero-workstation-cut.webp",
-      alt: "Illustrative workstation with monitor, PC tower, keyboard, mouse, and plant",
+      src: "/images/admin-rdp/hero-workstation.webp",
+      alt: "Windows Admin RDP workstation — monitor with Windows desktop, RunRacks tower, keyboard, and mouse",
     },
     visualMobile: {
-      src: "/images/admin-rdp/hero-workstation-cut.webp",
-      alt: "Illustrative workstation with monitor, PC tower, keyboard, mouse, and plant",
-    },
-    cards: {
-      connection: {
-        title: "Windows RDP",
-        detail: "Ready to connect",
-      },
+      src: "/images/admin-rdp/hero-workstation-mobile.webp",
+      alt: "Windows Admin RDP workstation — monitor with Windows desktop, RunRacks tower, keyboard, and mouse",
     },
   },
   /** Centered scroll word-fill block under the float stage */
