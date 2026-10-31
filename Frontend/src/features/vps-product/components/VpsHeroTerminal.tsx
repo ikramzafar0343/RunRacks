@@ -10,6 +10,11 @@ import "@/features/vps-product/components/vps-product-hero-terminal.css";
 const HOLD_MS = 2400;
 const RESTART_GAP_MS = 450;
 
+function prefersReducedMotion(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 function buildScript(): string[] {
   const t = VPS_PRODUCT.hero.terminal;
   return [
@@ -33,30 +38,21 @@ function lineKind(line: string): "cmd" | "step" | "ok" | "detail" | "idle" {
 export function VpsHeroTerminal() {
   const lines = useMemo(() => buildScript(), []);
   const target = useMemo(() => lines.join("\n"), [lines]);
-  const [instant, setInstant] = useState(false);
+  const [instant, setInstant] = useState(prefersReducedMotion);
   const [shown, setShown] = useState("");
   const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => {
-      if (reduce.matches) {
-        setInstant(true);
-        setShown(target);
-      } else {
-        setInstant(false);
-      }
+    const onChange = () => {
+      setInstant(reduce.matches);
     };
-    apply();
-    reduce.addEventListener("change", apply);
-    return () => reduce.removeEventListener("change", apply);
-  }, [target]);
+    reduce.addEventListener("change", onChange);
+    return () => reduce.removeEventListener("change", onChange);
+  }, []);
 
   useEffect(() => {
-    if (instant) {
-      setShown(target);
-      return;
-    }
+    if (instant) return;
 
     if (shown.length >= target.length) {
       const hold = window.setTimeout(() => {
@@ -66,22 +62,22 @@ export function VpsHeroTerminal() {
       return () => window.clearTimeout(hold);
     }
 
-    if (shown.length === 0 && cycle > 0) {
-      const gap = window.setTimeout(() => {
-        setShown(target.slice(0, 1));
-      }, RESTART_GAP_MS);
-      return () => window.clearTimeout(gap);
-    }
+    const delay =
+      shown.length === 0 && cycle > 0
+        ? RESTART_GAP_MS
+        : (() => {
+            const nextChar = target[shown.length] ?? "";
+            return nextChar === "\n" ? 95 : nextChar === " " ? 14 : 12;
+          })();
 
-    const nextChar = target[shown.length] ?? "";
-    const delay = nextChar === "\n" ? 95 : nextChar === " " ? 14 : 12;
     const id = window.setTimeout(() => {
       setShown(target.slice(0, shown.length + 1));
     }, delay);
     return () => window.clearTimeout(id);
   }, [target, shown, instant, cycle]);
 
-  const rows = shown.length > 0 ? shown.split("\n") : [""];
+  const text = instant ? target : shown;
+  const rows = text.length > 0 ? text.split("\n") : [""];
   const typing = !instant && shown.length < target.length;
   const done = !instant && shown.length >= target.length;
   const title = VPS_PRODUCT.hero.terminal.title;
@@ -102,7 +98,8 @@ export function VpsHeroTerminal() {
         {rows.map((line, i) => {
           const kind = lineKind(line);
           const isLast = i === rows.length - 1;
-          const showCursor = isLast && (typing || done || shown.length === 0);
+          const showCursor =
+            isLast && (instant || typing || done || shown.length === 0);
           if (kind === "detail") {
             const [label = "", value = ""] = line.split("\t");
             return (
