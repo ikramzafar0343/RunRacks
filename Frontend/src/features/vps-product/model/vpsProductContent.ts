@@ -57,29 +57,39 @@ export const VPS_PRODUCT = {
   metaDescription:
     "Linux VPS on local NVMe with full root access. Compare documented vCPU, RAM, and storage—demo prices labeled until checkout.",
   hero: {
-    titleLine: "Linux VPS on NVMe",
-    accentLine: "with full root access",
-    highlights: [
-      { id: "speed", icon: "speed", label: "Local NVMe storage" },
-      { id: "uptime", icon: "shield", label: "Isolated KVM guests" },
-      { id: "locations", icon: "globe", label: "Catalog regions" },
+    titleLine: "Your VPS Server.",
+    accentLine: "Your rules.",
+    lead: "Full root access on every plan.",
+    pricePrefix: "Starting at just",
+    priceSuffix: "/mo",
+    pills: [
+      { id: "pricing", label: "Lowest pricing", icon: "badgeDollarSign" },
+      { id: "nvme", label: "NVMe storage", icon: "hardDrive" },
+      { id: "backups", label: "Daily backups", icon: "cloudUpload" },
+      { id: "locations", label: "8 locations", icon: "globe" },
+      { id: "setup", label: "Easy setup", icon: "rocket" },
+      { id: "support", label: "24/7 support", icon: "headset" },
     ] as const,
-    primaryCta: { label: "View Plans", href: "#vps-plans" },
+    primaryCta: { label: "View plans", href: "#vps-plans" },
     secondaryCta: { label: "Try RunRacks AI", href: "/ai" },
-    visual: {
-      src: "/images/vps/hero/server-stack-large.webp",
-      alt: "Three dark VPS server units with illuminated green status lights",
+    terminal: {
+      title: "runracks — vps create",
+      prompt: "$",
+      command:
+        "runracks vps create --name api-sg --plan vps-1 --region sg --image ubuntu-24.04",
+      steps: [
+        "Provisioning KVM guest · 4 vCPU · 6 GB RAM · 100 GB NVMe",
+        "Attaching public IPv4 · configuring outbound network",
+        "Imaging Ubuntu 24.04 LTS · injecting SSH key",
+        "Enabling root access · applying host firewall defaults",
+      ] as const,
+      success: "Instance ready",
+      details: [
+        { label: "Host", value: "api-sg.runracks.net" },
+        { label: "IPv4", value: "203.0.113.24" },
+        { label: "SSH", value: "ssh root@203.0.113.24" },
+      ] as const,
     },
-    visualMobile: {
-      src: "/images/vps/hero/server-stack-mobile.webp",
-      alt: "Three dark VPS server units with illuminated green status lights",
-    },
-    /** Demo catalog floor (VPS 1) — not a live provisioning claim. */
-    specs: [
-      { id: "cpu", icon: "cpu", label: "CPU", value: "From 1 vCPU" },
-      { id: "ram", icon: "ram", label: "RAM", value: "From 1 GB" },
-      { id: "storage", icon: "storage", label: "Storage", value: "From 20 GB NVMe" },
-    ] as const,
     features: [
       {
         id: "speed",

@@ -15,6 +15,7 @@ import { VpsCompetitorCompare } from "@/features/vps-product/components/VpsCompe
 import { VpsPrinciples } from "@/features/vps-product/components/VpsPrinciples";
 import { VpsProductFeatures } from "@/features/vps-product/components/VpsProductFeatures";
 import { VpsProductHero } from "@/features/vps-product/components/VpsProductHero";
+import { getStartingPrice } from "@/features/product-hosting/model/startingPrice";
 import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
 import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
 import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
@@ -36,10 +37,11 @@ export function VpsProductPage({
   initialTerm = null,
 }: VpsProductPageProps = {}) {
   const catalog = initialCatalog ?? getDemoVpsCatalog();
+  const startingPrice = getStartingPrice(catalog, "linux", initialLocation);
 
   return (
     <main className="vpsProductPage rrDenseSpacing flex flex-1 flex-col">
-      <VpsProductHero />
+      <VpsProductHero startingPrice={startingPrice} />
       <section
         id="vps-plans"
         className="vpsProductPricing"

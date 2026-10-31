@@ -1,0 +1,171 @@
+/*
+ * VPS hero deploy terminal — fixed height, typewriter body, blink cursor.
+ */
+
+.vpsHeroTerm {
+  width: 100%;
+  height: 26.5rem;
+  min-height: 26.5rem;
+  max-height: 26.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-radius: 0.95rem;
+  border: 1px solid color-mix(in srgb, var(--color-heading) 14%, transparent);
+  background: #0a100d;
+  box-shadow:
+    0 18px 40px color-mix(in srgb, var(--color-heading) 14%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-on-inverse) 8%, transparent);
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.vpsHeroTermChrome {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 2.4rem;
+  padding: 0 0.9rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-on-inverse) 10%, transparent);
+  background: color-mix(in srgb, var(--color-on-inverse) 5%, transparent);
+}
+
+.vpsHeroTermDot {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.vpsHeroTermDot--red {
+  background: #ff5f57;
+}
+
+.vpsHeroTermDot--amber {
+  background: #febc2e;
+}
+
+.vpsHeroTermDot--green {
+  background: #28c840;
+}
+
+.vpsHeroTermTitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--color-on-inverse) 52%, transparent);
+  white-space: nowrap;
+}
+
+.vpsHeroTermBody {
+  margin: 0;
+  flex: 1 1 auto;
+  display: grid;
+  align-content: start;
+  gap: 0.38rem;
+  padding: 0.95rem 1.1rem 1.05rem;
+  overflow: hidden;
+  font-size: 0.8rem;
+  line-height: 1.42;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: color-mix(in srgb, var(--color-on-inverse) 78%, transparent);
+}
+
+.vpsHeroTermLine {
+  margin: 0;
+}
+
+.vpsHeroTermLine--cmd {
+  color: var(--color-lime);
+  font-weight: 600;
+}
+
+.vpsHeroTermLine--step {
+  color: color-mix(in srgb, var(--color-on-inverse) 68%, transparent);
+}
+
+.vpsHeroTermLine--ok {
+  margin-top: 0.12rem;
+  color: var(--color-on-inverse);
+  font-weight: 700;
+}
+
+.vpsHeroTermLine--idle {
+  margin-top: 0.15rem;
+  color: var(--color-lime);
+  font-weight: 600;
+  min-height: 1.15rem;
+}
+
+.vpsHeroTermLine--detail {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr) auto;
+  gap: 0.7rem;
+  align-items: baseline;
+}
+
+.vpsHeroTermDetailLabel {
+  color: color-mix(in srgb, var(--color-on-inverse) 42%, transparent);
+}
+
+.vpsHeroTermDetailValue {
+  color: color-mix(in srgb, var(--color-on-inverse) 90%, transparent);
+  font-weight: 500;
+}
+
+.vpsHeroTermCursor {
+  display: inline-block;
+  width: 0.5rem;
+  height: 1.05em;
+  margin-left: 0.1rem;
+  vertical-align: text-bottom;
+  border-radius: 0.08rem;
+  background: var(--color-lime);
+  animation: vpsHeroTermBlink 1.05s steps(1, end) infinite;
+}
+
+@keyframes vpsHeroTermBlink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vpsHeroTermCursor {
+    animation: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .vpsHeroTerm {
+    height: 24.5rem;
+    min-height: 24.5rem;
+    max-height: 24.5rem;
+  }
+
+  .vpsHeroTermBody {
+    font-size: 0.74rem;
+    padding: 0.85rem 0.9rem 0.95rem;
+  }
+
+  .vpsHeroTermLine--detail {
+    grid-template-columns: 3.1rem minmax(0, 1fr) auto;
+    gap: 0.5rem;
+  }
+
+  .vpsHeroTermTitle {
+    font-size: 0.62rem;
+  }
+}
