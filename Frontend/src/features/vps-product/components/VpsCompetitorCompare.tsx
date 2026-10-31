@@ -35,8 +35,8 @@ function BrandMark({
   size = "md",
 }: {
   mark: string;
-  logo?: CompareLogo;
-  featured?: boolean;
+  logo?: CompareLogo | undefined;
+  featured?: boolean | undefined;
   size?: "md" | "sm";
 }) {
   const toneClass = logo?.tone ? ` vpsCmpMarkTone-${logo.tone}` : "";
