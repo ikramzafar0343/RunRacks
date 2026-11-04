@@ -69,7 +69,7 @@ export function SupportCtaCard({ card }: SupportCtaCardProps) {
           src={card.imageSrc}
           alt={card.imageAlt}
           fill
-          sizes="(max-width: 639px) 90vw, (max-width: 1023px) 280px, 240px"
+          sizes="(max-width: 1023px) 360px, 200px"
         />
       </div>
     </article>

@@ -71,7 +71,7 @@ export const ABOUT_FEATURES: readonly FeatureItem[] = [
     body: "We want people and businesses to feel confident about the systems behind their work—through clear communication, thoughtful performance, and a commitment to keep improving.",
     mediaSide: "left",
     image: {
-      src: "/images/showcase/rail-photo-operator.jpg",
+      src: "/images/showcase/rail-photo-operator.webp",
       alt: "Operator reviewing systems at a workstation",
       objectPosition: "50% 30%",
     },
@@ -85,7 +85,7 @@ export const ABOUT_FEATURES: readonly FeatureItem[] = [
     body: "Our job is to turn infrastructure into a strong foundation for your next move—whether you're launching a first site, managing clients, or growing a more demanding project.",
     mediaSide: "right",
     image: {
-      src: "/images/admin-rdp/team.jpg",
+      src: "/images/admin-rdp/team.webp",
       alt: "Team collaborating around screens in a shared workspace",
       objectPosition: "50% 40%",
     },
@@ -99,7 +99,7 @@ export const ABOUT_FEATURES: readonly FeatureItem[] = [
     body: "We design our approach around adaptability, useful tooling, and practical performance priorities. The aim is straightforward: fewer obstacles between your ideas and your work.",
     mediaSide: "left",
     image: {
-      src: "/images/showcase/vps-cover-1200.jpg",
+      src: "/images/showcase/vps-cover-1200.webp",
       alt: "Server infrastructure aisle with cool lighting",
       objectPosition: "center",
     },
@@ -113,7 +113,7 @@ export const ABOUT_FEATURES: readonly FeatureItem[] = [
     body: "Good hosting takes more than technology. It takes people who pay attention to the details, work together when something is difficult, and care about the result.",
     mediaSide: "right",
     image: {
-      src: "/images/admin-rdp/story-desk.jpg",
+      src: "/images/admin-rdp/story-desk.webp",
       alt: "Collaborative planning workspace with laptops and notes",
       objectPosition: "50% 45%",
     },

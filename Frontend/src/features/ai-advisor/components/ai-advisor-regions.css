@@ -14,7 +14,7 @@
   border-radius: 1.15rem;
   border: 1px solid var(--ai-border);
   background: var(--ai-panel);
-  box-shadow: 0 18px 48px color-mix(in srgb, var(--color-heading) 14%, transparent);
+  box-shadow: none;
   overflow: auto;
 }
 

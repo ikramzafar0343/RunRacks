@@ -9,11 +9,14 @@ import type { CustomerStory } from "@/features/customer-stories/model/types";
 type CustomerStoryMediaProps = {
   story: CustomerStory;
   animateKey: string;
+  /** Prefetch neighbors without showing them. */
+  prefetchUrls?: readonly string[];
 };
 
 export function CustomerStoryMedia({
   story,
   animateKey,
+  prefetchUrls = [],
 }: CustomerStoryMediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -36,9 +39,23 @@ export function CustomerStoryMedia({
           alt={story.portraitAlt}
           fill
           sizes="(max-width: 767px) 100vw, 342px"
+          quality={75}
           style={{ objectPosition: story.mediaFocalPoint ?? "center 35%" }}
         />
       ) : null}
+
+      {prefetchUrls.map((url) => (
+        <Image
+          key={url}
+          src={url}
+          alt=""
+          width={1}
+          height={1}
+          sizes="1px"
+          className="pointer-events-none absolute h-px w-px opacity-0"
+          aria-hidden="true"
+        />
+      ))}
 
       {hasVideo ? (
         <>

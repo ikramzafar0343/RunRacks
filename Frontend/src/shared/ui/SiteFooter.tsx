@@ -13,7 +13,6 @@ import "@/shared/ui/site-footer-responsive.css";
 export function SiteFooter() {
   return (
     <footer className="siteFooter" aria-labelledby="site-footer-brand">
-      <div className="siteFooterGlow" aria-hidden="true" />
       <div className="siteFooterInner">
         <div className="siteFooterBrandBlock">
           <Link href="/" className="siteFooterBrand" id="site-footer-brand">

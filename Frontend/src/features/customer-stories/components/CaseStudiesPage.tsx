@@ -40,7 +40,7 @@ export function CaseStudiesPage() {
                     src={story.portraitUrl}
                     alt={story.portraitAlt}
                     fill
-                    sizes="(max-width: 768px) 100vw, 720px"
+                    sizes="(max-width: 768px) 100vw, 640px"
                     className="object-cover"
                     style={{
                       objectPosition: story.mediaFocalPoint ?? "center 35%",

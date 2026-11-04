@@ -1,108 +1,147 @@
 /*
- * Design tokens — Sage & Ink
- * Light: warm paper. Dark: ink forest.
- * Lime is the action color. It does not flood the page.
+ * =============================================================================
+ * THEME CONTROL PANEL — Sage & Ink
+ * =============================================================================
+ *
+ * Edit colors HERE. Changes flow to:
+ *   • body background (globals.css)
+ *   • Tailwind utilities via @theme (bg-brand, text-heading, …)
+ *   • Feature CSS that uses var(--color-*) / var(--gradient-*)
+ *
+ * HOW TO USE
+ *   1. Light theme knobs  → :root { … }
+ *   2. Dark theme knobs   → html.dark { … }
+ *   3. Prefer editing the COLOR knobs; gradients below are DERIVED from them.
+ *   4. Fonts: WOFF2 faces live in src/styles/fonts.ts (next/font). CSS only
+ *      consumes --font-nourd / --font-nourd-heading set on <html> by layout.
+ *
+ * Do not add a second theme file — this is the single source of truth.
  */
 
 :root {
   color-scheme: light;
 
-  --color-canvas: #f3f1ea;
-  --color-surface: #fbfaf6;
+  /* ---------------------------------------------------------------------------
+   * 1. PAGE BACKGROUND
+   *    canvas = page wash · surface = cards/panels · input = form fields
+   * --------------------------------------------------------------------------- */
+  --color-canvas: #ffffff; /* pure white page background */
+  --color-surface: #ffffff;
   --color-input: #ffffff;
+  --color-accent-soft: #e6eee8; /* soft sage fill behind chips / soft cards */
+
+  /* ---------------------------------------------------------------------------
+   * 2. TEXT
+   * --------------------------------------------------------------------------- */
   --color-heading: #1c332b;
   --color-body: #3a4a42;
   --color-muted: #5e6d65;
+
+  /* ---------------------------------------------------------------------------
+   * 3. BRAND / ACTIONS
+   *    brand = primary CTAs · lime = hover/press accent (does not flood the page)
+   * --------------------------------------------------------------------------- */
   --color-brand: #2c6a52;
   --color-brand-hover: #245844;
-  --color-brand-contrast: #ffffff;
-  --color-accent-soft: #e6eee8;
+  --color-brand-contrast: #ffffff; /* text/icons on brand fills */
   --color-lime: #c6f24c;
-  --color-on-lime: #0b1a12;
+  --color-on-lime: #0b1a12; /* text/icons on lime fills */
   --color-selected: #2c6a52;
+
+  /* ---------------------------------------------------------------------------
+   * 4. BORDERS / STATUS
+   * --------------------------------------------------------------------------- */
   --color-border: #d7e0d8;
   --color-success: #1f6b48;
   --color-error: #b42318;
 
-  /* Featured / product panels — deep forest on paper */
+  /* ---------------------------------------------------------------------------
+   * 5. INVERSE / FEATURED PANELS (dark strips on light paper)
+   * --------------------------------------------------------------------------- */
   --color-inverse: #101c17;
   --color-on-inverse: #f2f6f1;
   --color-inverse-muted: color-mix(in srgb, #f2f6f1 68%, transparent);
   --color-inverse-accent: #8fceb0;
   --color-inverse-border: color-mix(in srgb, #f2f6f1 12%, transparent);
 
-  /* Faint edge glow — the page stays paper */
-  --gradient-canvas-glow:
-    radial-gradient(
-      ellipse 42% 32% at 0% 0%,
-      color-mix(in srgb, var(--color-brand) 9%, transparent) 0%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 36% 28% at 100% 12%,
-      color-mix(in srgb, var(--color-lime) 12%, transparent) 0%,
-      transparent 68%
-    );
-  --gradient-canvas:
-    var(--gradient-canvas-glow),
-    linear-gradient(var(--color-canvas), var(--color-canvas));
+  /* ---------------------------------------------------------------------------
+   * 6. CARDS — radius + shadow (background uses --gradient-card / surface)
+   * --------------------------------------------------------------------------- */
+  --radius-sm: 0.25rem;
+  --radius-card: 1rem; /* 16px — marketing cards, trust band */
+  /* Flat cards — no soft drop-shadow haze */
+  --shadow-card: none;
 
-  /* Hero only — same family, a little stronger */
-  --gradient-hero:
-    radial-gradient(
-      ellipse 70% 50% at 50% 18%,
-      color-mix(in srgb, var(--color-brand) 10%, transparent),
-      transparent 70%
-    ),
-    linear-gradient(
-      to bottom,
-      var(--color-canvas) 0%,
-      color-mix(in srgb, var(--color-brand) 6%, var(--color-canvas)) 55%,
-      color-mix(in srgb, var(--color-lime) 14%, var(--color-canvas)) 100%
-    );
+  /* ---------------------------------------------------------------------------
+   * 7. GRADIENTS (derived — change brand/lime/canvas above to restyle washes)
+   * --------------------------------------------------------------------------- */
+  /* Solid white page — no tinted edge glow */
+  --gradient-canvas-glow: none;
+  --gradient-canvas: linear-gradient(var(--color-canvas), var(--color-canvas));
 
-  /* Near-solid surface, small sage corner */
-  --gradient-card:
-    radial-gradient(
-      ellipse 55% 45% at 0% 0%,
-      color-mix(in srgb, var(--color-accent-soft) 90%, var(--color-surface)) 0%,
-      transparent 64%
-    ),
-    var(--color-surface);
+  /* Product / home heroes — stay on white canvas (no sage wash) */
+  --gradient-hero: linear-gradient(var(--color-canvas), var(--color-canvas));
 
+  /* Pricing page hero ambient — pure white */
+  --gradient-pricing-hero: linear-gradient(
+    var(--color-canvas),
+    var(--color-canvas)
+  );
+
+  /* Flat white cards — no sage corner wash */
+  --gradient-card: linear-gradient(var(--color-surface), var(--color-surface));
+
+  /* ---------------------------------------------------------------------------
+   * 8. SPACING / MOTION
+   * --------------------------------------------------------------------------- */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2.5rem;
   --space-6: 4rem;
-  --radius-sm: 0.25rem;
   --motion-fast: 150ms;
   --motion-base: 280ms;
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---------------------------------------------------------------------------
+   * 9. FONTS
+   *    Faces: src/styles/fonts.ts → --font-nourd / --font-nourd-heading on <html>
+   *    Tailwind: font-sans / font-heading (see globals.css @theme)
+   * --------------------------------------------------------------------------- */
 }
 
+/* =============================================================================
+ * DARK — ink forest (same section order as light)
+ * ============================================================================= */
 html.dark {
   color-scheme: dark;
 
+  /* 1. Page background */
   --color-canvas: #0c1411;
   --color-surface: #16211c;
+  --color-input: #121c18;
+  --color-accent-soft: #24352c;
+
+  /* 2. Text */
   --color-heading: #f2f6f1;
+  --color-body: #d5e2da;
+  --color-muted: #b7c8bc;
+
+  /* 3. Brand / actions */
   --color-brand: #8fceb0;
   --color-brand-hover: #b7e6cf;
   --color-brand-contrast: #0c1411;
-  --color-accent-soft: #24352c;
   --color-lime: #c6f24c;
   --color-on-lime: #0b1a12;
-  --color-body: #d5e2da;
-  --color-muted: #b7c8bc;
-  --color-border: #2a3d34;
-  --color-input: #121c18;
   --color-selected: #8fceb0;
+
+  /* 4. Borders / status */
+  --color-border: #2a3d34;
   --color-success: #9ed9bc;
   --color-error: #ff8b83;
 
-  /* Lifted panel + lime hairline so featured still reads on ink */
+  /* 5. Inverse / featured */
   --color-inverse: #1c2e26;
   --color-on-inverse: #f2f6f1;
   --color-inverse-muted: color-mix(in srgb, #f2f6f1 68%, transparent);
@@ -113,6 +152,10 @@ html.dark {
     transparent
   );
 
+  /* 6. Cards — match light: border-only, no soft glow */
+  --shadow-card: none;
+
+  /* 7. Gradients (re-derived from dark knobs) */
   --gradient-canvas-glow:
     radial-gradient(
       ellipse 40% 30% at 8% 0%,
@@ -139,6 +182,20 @@ html.dark {
       var(--color-canvas) 0%,
       color-mix(in srgb, var(--color-brand) 10%, var(--color-canvas)) 60%,
       color-mix(in srgb, var(--color-lime) 6%, var(--color-canvas)) 100%
+    );
+
+  --gradient-pricing-hero:
+    radial-gradient(
+      ellipse 70% 55% at 50% 52%,
+      color-mix(in srgb, var(--color-brand) 18%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-canvas) 0%,
+      color-mix(in srgb, var(--color-surface) 80%, var(--color-canvas)) 35%,
+      color-mix(in srgb, var(--color-brand) 14%, var(--color-canvas)) 75%,
+      color-mix(in srgb, var(--color-brand) 10%, var(--color-surface)) 100%
     );
 
   --gradient-card:

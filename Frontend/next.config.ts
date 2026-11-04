@@ -73,7 +73,8 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [75, 80],
-    deviceSizes: [640, 750, 828, 1080, 1200],
+    // 360/480 for small 3G phones; cap at 1200 to avoid huge variants.
+    deviceSizes: [360, 480, 640, 750, 828, 1080, 1200],
     imageSizes: [96, 128, 188, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
@@ -109,6 +110,10 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/flags/:path*",
+        headers: publicAssetCache,
+      },
+      {
+        source: "/assets/:path*",
         headers: publicAssetCache,
       },
     ];

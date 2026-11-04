@@ -72,6 +72,8 @@ html.dark {
   --color-ring: var(--ring);
   --color-lime: var(--color-lime);
   --color-on-lime: var(--color-on-lime);
+  --radius-card: var(--radius-card);
+  --shadow-card: var(--shadow-card);
   /* --font-nourd is set on <html> by next/font in layout.tsx */
   --font-sans: var(--font-nourd), ui-sans-serif, sans-serif;
   --font-heading:
@@ -118,21 +120,28 @@ html.dark .logoCloudImg:hover {
   opacity: 1;
 }
 
-body {
-  /* Paper / ink wash — faint edge glow from --gradient-canvas */
+/*
+ * Pricing hero ambient — wash from tokens.css (--gradient-pricing-hero).
+ * Layout/padding stay on the component; only color lives in the theme.
+ */
+.pricingHeroAmbient {
   background-color: var(--color-canvas);
-  background-image: var(--gradient-canvas);
+  background-image: var(--gradient-pricing-hero);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-attachment: scroll;
-  color: var(--foreground);
-  font-family: var(--font-nourd), ui-sans-serif, sans-serif;
 }
 
-@media (min-width: 1024px) {
-  body {
-    background-attachment: fixed;
-  }
+.pricingHeroAmbientGlow {
+  /* Follows white canvas — no brand wash over the page */
+  background-image: none;
+}
+
+body {
+  /* Flat theme canvas — no gradient / fixed wash (avoids smoky banding) */
+  background-color: var(--color-canvas);
+  background-image: none;
+  color: var(--foreground);
+  font-family: var(--font-nourd), ui-sans-serif, sans-serif;
 }
 
 /*

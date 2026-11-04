@@ -1,6 +1,7 @@
 /**
- * Catalog region geometry for the Windows network map.
+ * Catalog region geometry for the network map.
  * IDs must match VpsRegion.id from the VPS catalog.
+ * Pins use explicit SVG viewBox coords (800×400) aligned to the dotted map landmasses.
  */
 import type { WorldMapDot, WorldMapPoint } from "@/components/ui/map";
 import type { VpsRegion } from "@/features/vps-pricing/model/types";
@@ -12,6 +13,9 @@ export type NetworkPinMeta = {
   group: NetworkGroupId;
   lat: number;
   lng: number;
+  /** Authoritative pin position in WorldMap SVG viewBox (800×400). */
+  mapX: number;
+  mapY: number;
   /** Legacy SVG pin center (1000×500) — kept for reference. */
   x: number;
   y: number;
@@ -33,15 +37,18 @@ export const NETWORK_GROUP_ORDER: readonly NetworkGroupId[] = [
 ];
 
 /**
- * Pin geometry keyed by catalog region id.
- * lat/lng = primary hosting hub cities (not country centroids) for accurate globe markers.
+ * Hub geometry keyed by catalog region id.
+ * mapX/mapY are landmass-aligned on the equirectangular dotted bake (viewBox 800×400).
+ * lat/lng kept for marketing globes / copy; map placement does not project them.
  */
 export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
   us: {
     id: "us",
     group: "na",
-    lat: 40.7128,
-    lng: -74.006,
+    lat: 38.9072,
+    lng: -77.0369,
+    mapX: 175,
+    mapY: 122,
     x: 227,
     y: 148,
     labelX: 227,
@@ -51,8 +58,10 @@ export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
   ca: {
     id: "ca",
     group: "na",
-    lat: 43.6532,
-    lng: -79.3832,
+    lat: 45.4215,
+    lng: -75.6972,
+    mapX: 162,
+    mapY: 90,
     x: 210,
     y: 105,
     labelX: 210,
@@ -64,6 +73,8 @@ export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
     group: "eu",
     lat: 51.5074,
     lng: -0.1278,
+    mapX: 395,
+    mapY: 62,
     x: 488,
     y: 108,
     labelX: 468,
@@ -75,6 +86,8 @@ export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
     group: "eu",
     lat: 52.3676,
     lng: 4.9041,
+    mapX: 408,
+    mapY: 66,
     x: 508,
     y: 112,
     labelX: 508,
@@ -86,6 +99,8 @@ export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
     group: "eu",
     lat: 50.1109,
     lng: 8.6821,
+    mapX: 424,
+    mapY: 74,
     x: 528,
     y: 118,
     labelX: 548,
@@ -97,6 +112,8 @@ export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
     group: "apac",
     lat: 1.3521,
     lng: 103.8198,
+    mapX: 652,
+    mapY: 210,
     x: 778,
     y: 268,
     labelX: 778,
@@ -108,6 +125,8 @@ export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
     group: "apac",
     lat: -33.8688,
     lng: 151.2093,
+    mapX: 730,
+    mapY: 310,
     x: 868,
     y: 348,
     labelX: 868,
@@ -119,6 +138,8 @@ export const NETWORK_PIN_META: Record<string, NetworkPinMeta> = {
     group: "apac",
     lat: 35.6762,
     lng: 139.6503,
+    mapX: 732,
+    mapY: 154,
     x: 870,
     y: 158,
     labelX: 870,
@@ -140,16 +161,20 @@ const NETWORK_ARC_PAIRS: readonly [string, string][] = [
   ["de", "jp"],
 ];
 
-/** Label pixel nudges so close hubs don’t stack (viewBox 800×400). */
+/**
+ * Label pixel nudges (viewBox 800×400).
+ * Keep pills beside pins — especially NA / Western Europe clusters.
+ */
+/** Tight nudges so borderless flags sit just off each pin. */
 const LABEL_OFFSETS: Record<string, { dx: number; dy: number }> = {
-  us: { dx: 10, dy: 22 },
-  ca: { dx: -42, dy: -30 },
-  gb: { dx: -62, dy: -24 },
-  nl: { dx: 18, dy: -34 },
-  de: { dx: 58, dy: 18 },
-  sg: { dx: -8, dy: 26 },
-  jp: { dx: 12, dy: -28 },
-  au: { dx: 0, dy: 24 },
+  us: { dx: 0, dy: -2 },
+  ca: { dx: -6, dy: -2 },
+  gb: { dx: -8, dy: -4 },
+  nl: { dx: 0, dy: -8 },
+  de: { dx: 8, dy: -2 },
+  sg: { dx: 0, dy: -2 },
+  jp: { dx: 0, dy: -2 },
+  au: { dx: 0, dy: -2 },
 };
 
 function pointForRegion(region: VpsRegion): WorldMapPoint | null {
@@ -159,6 +184,8 @@ function pointForRegion(region: VpsRegion): WorldMapPoint | null {
   return {
     lat: meta.lat,
     lng: meta.lng,
+    mapX: meta.mapX,
+    mapY: meta.mapY,
     label: region.name,
     flagCode: region.countryCode,
     ...(offset ? { labelDx: offset.dx, labelDy: offset.dy } : {}),

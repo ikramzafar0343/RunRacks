@@ -108,8 +108,7 @@
       transparent 50%
     ),
     var(--color-inverse);
-  box-shadow: 0 16px 36px
-    color-mix(in srgb, var(--color-inverse) 28%, transparent);
+  box-shadow: none;
 }
 
 .phWorkloadPreview {
@@ -124,7 +123,7 @@
   border-radius: 0.75rem;
   overflow: hidden;
   pointer-events: none;
-  box-shadow: 0 14px 32px color-mix(in srgb, #000 40%, transparent);
+  box-shadow: none;
   opacity: 0;
   transform: translate3d(0, 65%, 0) rotate(-8deg);
   transition:

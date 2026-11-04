@@ -30,7 +30,7 @@ export const WINDOWS_WORKLOADS: readonly WorkloadItem[] = [
     ],
     toolIds: ["docker", "github", "gitlab"],
     preview: {
-      src: "/images/showcase/rail-preview-brand.jpg",
+      src: "/images/showcase/rail-preview-brand.webp",
       objectPosition: "50% 50%",
     },
   },
@@ -48,7 +48,7 @@ export const WINDOWS_WORKLOADS: readonly WorkloadItem[] = [
     ],
     toolIds: ["github", "gitlab", "docker"],
     preview: {
-      src: "/images/showcase/rail-preview-stop.jpg",
+      src: "/images/showcase/rail-preview-stop.webp",
       objectPosition: "50% 50%",
     },
   },
@@ -66,7 +66,7 @@ export const WINDOWS_WORKLOADS: readonly WorkloadItem[] = [
     ],
     toolIds: ["github", "gitlab", "docker"],
     preview: {
-      src: "/images/showcase/rail-preview-leads.jpg",
+      src: "/images/showcase/rail-preview-leads.webp",
       objectPosition: "50% 50%",
     },
   },
@@ -84,7 +84,7 @@ export const WINDOWS_WORKLOADS: readonly WorkloadItem[] = [
     ],
     toolIds: ["docker", "github", "gitlab"],
     preview: {
-      src: "/images/showcase/rail-preview-grow.jpg",
+      src: "/images/showcase/rail-preview-grow.webp",
       objectPosition: "50% 50%",
     },
   },
@@ -102,7 +102,7 @@ export const WINDOWS_WORKLOADS: readonly WorkloadItem[] = [
     ],
     toolIds: ["github", "docker", "ubuntu"],
     preview: {
-      src: "/images/showcase/rail-photo-cloud.jpg",
+      src: "/images/showcase/rail-photo-cloud.webp",
       objectPosition: "50% 40%",
     },
   },

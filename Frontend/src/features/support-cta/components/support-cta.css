@@ -24,9 +24,7 @@
   --sc-ease: var(--ease-standard);
   --sc-media-bg: var(--color-accent-soft);
   --sc-card-border: var(--color-border);
-  --sc-card-shadow:
-    0 1px 0 color-mix(in srgb, var(--color-heading) 4%, transparent),
-    0 10px 28px color-mix(in srgb, var(--color-heading) 6%, transparent);
+  --sc-card-shadow: var(--shadow-card);
   --sc-card-bg: var(--gradient-card);
 
   position: relative;
@@ -57,7 +55,7 @@
   align-items: center;
   min-height: 240px;
   padding: 1.65rem 1.5rem 1.65rem 1.75rem;
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   border: 1px solid var(--sc-card-border);
   background: var(--sc-card-bg);
   color: var(--sc-ink);
@@ -124,7 +122,7 @@
 .supportCtaBtn:hover {
   transform: translateY(-1px) translateZ(0);
   background-color: var(--sc-btn-hover);
-  box-shadow: 0 6px 14px color-mix(in srgb, #000 14%, transparent);
+  box-shadow: none;
 }
 
 .supportCtaBtn:hover .supportCtaBtnIcon {
@@ -173,7 +171,7 @@
 
 .supportCtaMediaImg {
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center 18%;
 }
 
 @media (prefers-reduced-motion: reduce) {

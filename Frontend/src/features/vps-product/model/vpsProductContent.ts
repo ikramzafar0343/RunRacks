@@ -145,14 +145,14 @@ export const VPS_PRODUCT = {
   },
   photoPair: {
     left: {
-      src: "/images/showcase/vps-photo-left.jpg",
+      src: "/images/showcase/vps-photo-left.webp",
       alt: "Support reaching down to help — reliable help when you need it",
       width: 768,
       height: 1024,
       objectPosition: "50% 40%",
     } satisfies EditorialImage,
     right: {
-      src: "/images/showcase/vps-photo-right.jpg",
+      src: "/images/showcase/vps-photo-right.webp",
       alt: "Hand placing the final puzzle piece — goals, growth, and launch fitting together",
       width: 1024,
       height: 1024,
@@ -212,7 +212,7 @@ export const VPS_PRODUCT = {
         type: "photo",
         height: "tall",
         image: {
-          src: "/images/showcase/rail-photo-cloud.jpg",
+          src: "/images/showcase/rail-photo-cloud.webp",
           alt: "Server connected to the cloud with green data beams",
           width: 1024,
           height: 1024,
@@ -227,7 +227,7 @@ export const VPS_PRODUCT = {
         title: "Plans that stay readable",
         body: "Compare specs, regions, and access before you order—without the maze.",
         preview: {
-          src: "/images/showcase/rail-preview-stop.jpg",
+          src: "/images/showcase/rail-preview-stop.webp",
           alt: "",
           width: 1024,
           height: 1024,
@@ -239,7 +239,7 @@ export const VPS_PRODUCT = {
         type: "photo",
         height: "tall",
         image: {
-          src: "/images/showcase/rail-photo-operator.jpg",
+          src: "/images/showcase/rail-photo-operator.webp",
           alt: "Operator with a laptop beside green-lit server racks",
           width: 1024,
           height: 1024,
@@ -253,7 +253,7 @@ export const VPS_PRODUCT = {
         title: "From first question to next release",
         body: "We bring clarity to the work ahead—specs, access, and the path to production.",
         preview: {
-          src: "/images/showcase/rail-preview-brand.jpg",
+          src: "/images/showcase/rail-preview-brand.webp",
           alt: "",
           width: 1024,
           height: 1024,
@@ -268,7 +268,7 @@ export const VPS_PRODUCT = {
         title: "Compute, storage, and control",
         body: "Strategy, operations, and technology working together on your VPS.",
         preview: {
-          src: "/images/showcase/rail-preview-grow.jpg",
+          src: "/images/showcase/rail-preview-grow.webp",
           alt: "",
           width: 1024,
           height: 1024,
@@ -282,7 +282,7 @@ export const VPS_PRODUCT = {
         title: "Working standard",
         body: "Clear scope. Useful feedback. A shared understanding of what comes next.",
         preview: {
-          src: "/images/showcase/rail-preview-leads.jpg",
+          src: "/images/showcase/rail-preview-leads.webp",
           alt: "",
           width: 1024,
           height: 1024,

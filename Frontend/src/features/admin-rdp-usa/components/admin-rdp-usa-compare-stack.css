@@ -28,8 +28,7 @@
   border-radius: 1rem;
   background: var(--gradient-card);
   border: 1px solid var(--cmp-border);
-  box-shadow: 0 8px 22px
-    color-mix(in srgb, var(--color-heading) 6%, transparent);
+  box-shadow: none;
 }
 
 .ardpCompareStackItem + .ardpCompareStackItem {

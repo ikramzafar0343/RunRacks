@@ -5,7 +5,7 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { CustomerStoryCarousel } from "@/features/customer-stories/components/CustomerStoryCarousel";
-import { getDemoCustomerStories } from "@/features/customer-stories/model/demoStories";
+import { getFeaturedDemoCustomerStories } from "@/features/customer-stories/model/demoStories";
 import "@/features/customer-stories/components/customer-stories.css";
 import "@/features/customer-stories/components/customer-stories-cards.css";
 
@@ -20,7 +20,7 @@ export function CustomerStoriesSection({
   heading = "How teams use RunRacks",
   intro = "Illustrative stories from operators running VPS, Windows, and Admin RDP workloads—labeled demo until verified case studies ship.",
 }: CustomerStoriesSectionProps = {}) {
-  const payload = getDemoCustomerStories();
+  const payload = getFeaturedDemoCustomerStories();
   if (payload.stories.length === 0) return null;
 
   return (

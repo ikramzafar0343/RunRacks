@@ -9,11 +9,11 @@ import Image from "next/image";
 import { useId, useMemo, useRef, useState } from "react";
 import { useDocumentTheme } from "@/shared/lib/useDocumentTheme";
 import { MapFlag } from "./mapFlag";
-import { createCurvedPath, projectPoint } from "./mapGeometry";
+import { createCurvedPath, resolveMapPoint } from "./mapGeometry";
+import { mergeMapPoints } from "./mapPoints";
 import {
   SAGE_BRAND,
   SAGE_LIME,
-  type WorldMapPoint,
   type WorldMapProps,
 } from "./mapTypes";
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
@@ -61,54 +61,28 @@ export function WorldMap({
   const pauseTime = 2;
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
-  const uniquePoints = useMemo(() => {
-    const byKey = new Map<string, WorldMapPoint>();
-    const merge = (point: WorldMapPoint) => {
-      const key = `${point.lat.toFixed(2)},${point.lng.toFixed(2)}`;
-      const prev = byKey.get(key);
-      if (!prev) {
-        byKey.set(key, point);
-        return;
-      }
-      // Prefer labeled / flagged pins when the same hub appears twice.
-      const next: WorldMapPoint = { lat: point.lat, lng: point.lng };
-      const label = point.label ?? prev.label;
-      const flagCode = point.flagCode ?? prev.flagCode;
-      const labelDx = point.labelDx ?? prev.labelDx;
-      const labelDy = point.labelDy ?? prev.labelDy;
-      if (label !== undefined) next.label = label;
-      if (flagCode !== undefined) next.flagCode = flagCode;
-      if (labelDx !== undefined) next.labelDx = labelDx;
-      if (labelDy !== undefined) next.labelDy = labelDy;
-      byKey.set(key, next);
-    };
-    for (const point of extraPoints) merge(point);
-    for (const dot of dots) {
-      merge(dot.start);
-      merge(dot.end);
-    }
-    return [...byKey.values()];
-  }, [dots, extraPoints]);
+  const uniquePoints = useMemo(
+    () => mergeMapPoints(dots, extraPoints),
+    [dots, extraPoints],
+  );
 
   return (
     <div
-      className={`relative w-full aspect-[2/1] md:aspect-[2.5/1] lg:aspect-[2/1] overflow-hidden font-sans bg-transparent ${className}`}
+      className={`relative w-full aspect-[2/1] overflow-visible font-sans bg-transparent ${className}`}
     >
       <Image
+        fill
         src={isDark ? DOTTED_MAP_SRC.dark : DOTTED_MAP_SRC.light}
-        className="pointer-events-none h-full w-full select-none bg-transparent object-cover [mask-image:linear-gradient(to_bottom,transparent_0%,#000_12%,#000_88%,transparent_100%),linear-gradient(to_right,transparent_0%,#000_8%,#000_92%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-composite:source-in]"
+        className="pointer-events-none select-none object-fill"
         alt="world map"
-        height={495}
-        width={1056}
         draggable={false}
-        loading="lazy"
         sizes="(max-width: 960px) 100vw, 960px"
       />
       <svg
         ref={svgRef}
         viewBox="0 0 800 400"
         className="pointer-events-auto absolute inset-0 h-full w-full select-none"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="none"
       >
         <defs>
           <linearGradient id={pathGradientId} x1="0%" y1="0%" x2="100%" y2="0%">
@@ -129,8 +103,8 @@ export function WorldMap({
         </defs>
 
         {dots.map((dot, i) => {
-          const startPoint = projectPoint(dot.start.lat, dot.start.lng);
-          const endPoint = projectPoint(dot.end.lat, dot.end.lng);
+          const startPoint = resolveMapPoint(dot.start);
+          const endPoint = resolveMapPoint(dot.end);
           const pathD = createCurvedPath(startPoint, endPoint);
           const startTime = (i * staggerDelay) / fullCycleDuration;
           const endTime =
@@ -193,15 +167,16 @@ export function WorldMap({
         })}
 
         {uniquePoints.map((point, i) => {
-          const { x, y } = projectPoint(point.lat, point.lng);
-          const labelW = point.flagCode ? 156 : 128;
-          const labelH = 28;
+          const { x, y } = resolveMapPoint(point);
+          const flagOnly = Boolean(point.flagCode);
+          const labelW = flagOnly ? 18 : 128;
+          const labelH = flagOnly ? 14 : 22;
           const dx = point.labelDx ?? 0;
           const dy = point.labelDy ?? 0;
           const hoverLabel = point.label || `Location ${i}`;
 
           return (
-            <g key={`point-${point.lat}-${point.lng}-${i}`}>
+            <g key={`point-${x.toFixed(1)}-${y.toFixed(1)}-${i}`}>
               <motion.g
                 onHoverStart={() =>
                   setHoveredLocation({
@@ -220,7 +195,7 @@ export function WorldMap({
                   r="3"
                   fill={strokeColor}
                   filter={`url(#${glowId})`}
-                  className="drop-shadow-lg"
+                  className="drop-shadow-none"
                 />
                 {!reducedMotion ? (
                   <circle cx={x} cy={y} r="3" fill={strokeColor} opacity="0.5">
@@ -244,7 +219,7 @@ export function WorldMap({
                 ) : null}
               </motion.g>
 
-              {showLabels && point.label ? (
+              {showLabels && (point.flagCode || point.label) ? (
                 <motion.g
                   initial={reducedMotion ? false : { opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -254,22 +229,27 @@ export function WorldMap({
                   }}
                   className="pointer-events-none"
                 >
+                  <title>{hoverLabel}</title>
                   <foreignObject
                     x={x - labelW / 2 + dx}
-                    y={y - 34 + dy}
+                    y={y - (flagOnly ? 12 : 28) + dy}
                     width={labelW}
                     height={labelH}
                     className="block overflow-visible"
                   >
                     <div className="flex h-full items-center justify-center">
-                      <span
-                        className={`${labelClassName} ${labelClass} inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border px-2 py-0.5 font-medium shadow-sm`}
-                      >
-                        {point.flagCode ? (
-                          <MapFlag code={point.flagCode} />
-                        ) : null}
-                        {point.label}
-                      </span>
+                      {point.flagCode ? (
+                        <span title={hoverLabel} className="inline-flex">
+                          <MapFlag code={point.flagCode} size="md" />
+                        </span>
+                      ) : (
+                        <span
+                          className={`${labelClassName} ${labelClass} inline-flex items-center justify-center rounded-md border px-1 py-0.5 shadow-sm`}
+                          title={hoverLabel}
+                        >
+                          {point.label}
+                        </span>
+                      )}
                     </div>
                   </foreignObject>
                 </motion.g>
@@ -285,7 +265,7 @@ export function WorldMap({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className={`absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium backdrop-blur-sm sm:hidden ${tipClass}`}
+            className={`absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium sm:hidden ${tipClass}`}
           >
             {hoveredLocation.flagCode ? (
               <MapFlag code={hoveredLocation.flagCode} size="md" />

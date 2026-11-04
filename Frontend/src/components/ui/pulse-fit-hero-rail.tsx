@@ -96,7 +96,7 @@ function ProgramCard({ program }: { program: PulseFitProgramCard }) {
   );
 
   const shell =
-    "group relative h-[min(480px,58vw)] w-[min(356px,78vw)] flex-shrink-0 overflow-hidden rounded-2xl shadow-[0_8px_32px_color-mix(in_srgb,var(--color-heading)_12%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-brand)]";
+    "group relative h-[min(480px,58vw)] w-[min(356px,78vw)] flex-shrink-0 overflow-hidden rounded-2xl shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-brand)]";
 
   if (program.href) {
     return (

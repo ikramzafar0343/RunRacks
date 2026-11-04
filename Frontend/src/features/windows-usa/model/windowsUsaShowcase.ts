@@ -38,7 +38,7 @@ export const WINDOWS_USA_SHOWCASE_SLIDES: readonly WindowsUsaShowcaseSlide[] = [
       "Plan filters",
       "Compare tiers",
     ],
-    mediaSrc: "/images/showcase/windows-cover-1200.jpg",
+    mediaSrc: "/images/showcase/windows-cover-1200.webp",
     mediaAlt: "Windows hosting cover photography for plan comparison",
   },
   {
@@ -70,7 +70,7 @@ export const WINDOWS_USA_SHOWCASE_SLIDES: readonly WindowsUsaShowcaseSlide[] = [
       "Peer hubs available",
       "Clear region cards",
     ],
-    mediaSrc: "/images/showcase/rail-photo-cloud.jpg",
+    mediaSrc: "/images/showcase/rail-photo-cloud.webp",
     mediaAlt:
       "Infrastructure photography suggesting cloud operations atmosphere",
   },
@@ -87,7 +87,7 @@ export const WINDOWS_USA_SHOWCASE_SLIDES: readonly WindowsUsaShowcaseSlide[] = [
       "View plans",
       "No chatbot maze",
     ],
-    mediaSrc: "/images/showcase/rail-photo-operator.jpg",
+    mediaSrc: "/images/showcase/rail-photo-operator.webp",
     mediaAlt: "Operator at work — illustrative support atmosphere photo",
   },
 ] as const;

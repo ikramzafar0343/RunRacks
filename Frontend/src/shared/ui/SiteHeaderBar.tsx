@@ -20,6 +20,7 @@ import {
   type PrimaryNavItem,
 } from "@/shared/config/navConfig";
 import { subscribeScrollFrame } from "@/shared/lib/scrollFrame";
+import { scrollDocumentToTop } from "@/shared/lib/scrollToTop";
 import {
   applyTheme,
   useDocumentTheme,
@@ -27,6 +28,13 @@ import {
 } from "@/shared/lib/useDocumentTheme";
 import "@/shared/ui/site-header.css";
 import "@/shared/ui/site-header-mobile.css";
+
+function onChromeNavClick() {
+  scrollDocumentToTop();
+  window.setTimeout(scrollDocumentToTop, 0);
+  window.setTimeout(scrollDocumentToTop, 50);
+  window.setTimeout(scrollDocumentToTop, 120);
+}
 
 function isBlogNavActive(pathname: string, href: string): boolean {
   if (href === "/blog") {
@@ -106,7 +114,11 @@ export function SiteHeaderBar({
       className={isPill ? "siteHeader siteHeader--pill" : "siteHeader"}
     >
       <div className="siteHeaderInner">
-        <Link href={headerActions.home.href} className="siteHeaderBrand">
+        <Link
+          href={headerActions.home.href}
+          className="siteHeaderBrand"
+          onClick={onChromeNavClick}
+        >
           {headerActions.home.label}
         </Link>
 
@@ -121,6 +133,7 @@ export function SiteHeaderBar({
                   aria-current={
                     isBlogNavActive(pathname, item.href) ? "page" : undefined
                   }
+                  onClick={onChromeNavClick}
                 >
                   {item.label}
                 </Link>
@@ -158,7 +171,10 @@ export function SiteHeaderBar({
                             ? "page"
                             : undefined
                         }
-                        onClick={() => setOpenMenu(null)}
+                        onClick={() => {
+                          setOpenMenu(null);
+                          onChromeNavClick();
+                        }}
                       >
                         {child.label}
                       </Link>
@@ -171,7 +187,11 @@ export function SiteHeaderBar({
         </nav>
 
         <div className="siteHeaderActions">
-          <Link href={headerActions.ai.href} className="siteHeaderAi">
+          <Link
+            href={headerActions.ai.href}
+            className="siteHeaderAi"
+            onClick={onChromeNavClick}
+          >
             {headerActions.ai.label}
           </Link>
 
@@ -194,6 +214,7 @@ export function SiteHeaderBar({
             href={headerActions.profile.href}
             className="siteHeaderIconBtn"
             aria-label={headerActions.profile.label}
+            onClick={onChromeNavClick}
           >
             <HiOutlineUserCircle size={20} aria-hidden="true" />
           </Link>
@@ -226,7 +247,10 @@ export function SiteHeaderBar({
                   aria-current={
                     isBlogNavActive(pathname, item.href) ? "page" : undefined
                   }
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    onChromeNavClick();
+                  }}
                 >
                   {item.label}
                 </Link>
@@ -246,7 +270,10 @@ export function SiteHeaderBar({
                           ? "page"
                           : undefined
                       }
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        onChromeNavClick();
+                      }}
                     >
                       {child.label}
                     </Link>
@@ -258,7 +285,10 @@ export function SiteHeaderBar({
           <Link
             href={headerActions.ai.href}
             className="siteHeaderMobileAi"
-            onClick={() => setMobileOpen(false)}
+            onClick={() => {
+              setMobileOpen(false);
+              onChromeNavClick();
+            }}
           >
             {headerActions.ai.label}
           </Link>

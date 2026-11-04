@@ -36,7 +36,7 @@
   width: 100%;
   padding: 6.5rem 0 2.125rem;
   color: var(--vps-text);
-  /* Transparent — body soft-mint wash; cards stay elevated */
+  /* Transparent — page canvas is flat white */
   background: transparent;
 }
 

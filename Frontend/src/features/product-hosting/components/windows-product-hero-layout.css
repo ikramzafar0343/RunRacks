@@ -17,13 +17,7 @@
   padding-top: var(--win-hero-header-clearance);
   color: var(--win-hero-fg);
   font-family: var(--font-nourd), system-ui, sans-serif;
-  background:
-    radial-gradient(
-      ellipse 50% 48% at 12% 30%,
-      var(--win-hero-glow),
-      transparent 70%
-    ),
-    var(--gradient-hero);
+  background: var(--color-canvas);
 }
 
 @media (min-width: 768px) {

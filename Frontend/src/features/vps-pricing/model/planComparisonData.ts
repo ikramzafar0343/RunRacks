@@ -1,3 +1,5 @@
+import type { VpsFamily } from "@/features/vps-pricing/model/types";
+
 export type PlanSpec = {
   name: string;
   supported: boolean;
@@ -6,18 +8,36 @@ export type PlanSpec = {
 
 export type FeatureRow = {
   feature: string;
+  /** When true, render Check/X beside the value. */
+  showIcon?: boolean;
   linux: PlanSpec[];
   windows: PlanSpec[];
   adminRdp: PlanSpec[];
 };
 
-const L_NAMES = ["VPS 1", "VPS 2", "VPS 3", "VPS 4"];
-const W_NAMES = ["Win VPS 1", "Win VPS 3", "Win VPS 5", "Win VPS 7"];
-const R_NAMES = ["Admin RDP 1", "Admin RDP 3", "Admin RDP 5", "Admin RDP 7"];
+export type ComparisonFamilyKey = "linux" | "windows" | "adminRdp";
 
-type S = [boolean, string];
+export const L_NAMES = ["VPS 1", "VPS 2", "VPS 3", "VPS 4", "VPS 5", "VPS 6"];
+export const W_NAMES = [
+  "Win VPS 1",
+  "Win VPS 3",
+  "Win VPS 5",
+  "Win VPS 7",
+  "Win VPS 9",
+  "Win VPS 11",
+];
+export const R_NAMES = [
+  "Admin RDP 1",
+  "Admin RDP 3",
+  "Admin RDP 5",
+  "Admin RDP 7",
+  "Admin RDP 9",
+  "Admin RDP 11",
+];
 
-function toSpecs(names: string[], specs: S[]): PlanSpec[] {
+export type SpecTuple = [boolean, string];
+
+export function toSpecs(names: string[], specs: SpecTuple[]): PlanSpec[] {
   return names.map((name, i) => ({
     name,
     supported: specs[i]?.[0] ?? true,
@@ -25,266 +45,41 @@ function toSpecs(names: string[], specs: S[]): PlanSpec[] {
   }));
 }
 
-function r(feature: string, l: S[], w: S[], rdp: S[]): FeatureRow {
+export function comparisonRow(
+  feature: string,
+  l: SpecTuple[],
+  w: SpecTuple[],
+  rdp: SpecTuple[],
+  showIcon = false,
+): FeatureRow {
   return {
     feature,
+    showIcon,
     linux: toSpecs(L_NAMES, l),
     windows: toSpecs(W_NAMES, w),
     adminRdp: toSpecs(R_NAMES, rdp),
   };
 }
 
-export const COMPARISON_ROWS: FeatureRow[] = [
-  r(
-    "Monthly Price",
-    [
-      [true, "$4.49"],
-      [true, "$10.49"],
-      [true, "$18.89"],
-      [true, "$41.69"],
-    ],
-    [
-      [true, "$8.99"],
-      [true, "$16.99"],
-      [true, "$25.99"],
-      [true, "$38.99"],
-    ],
-    [
-      [true, "$10.99"],
-      [true, "$19.99"],
-      [true, "$31.99"],
-      [true, "$44.99"],
-    ],
-  ),
-  r(
-    "vCPU Compute",
-    [
-      [true, "4 Cores"],
-      [true, "6 Cores"],
-      [true, "8 Cores"],
-      [true, "12 Cores"],
-    ],
-    [
-      [true, "2 Cores"],
-      [true, "4 Cores"],
-      [true, "6 Cores"],
-      [true, "8 Cores"],
-    ],
-    [
-      [true, "2 Cores"],
-      [true, "4 Cores"],
-      [true, "6 Cores"],
-      [true, "8 Cores"],
-    ],
-  ),
-  r(
-    "Dedicated RAM",
-    [
-      [true, "6 GB"],
-      [true, "16 GB"],
-      [true, "24 GB"],
-      [true, "48 GB"],
-    ],
-    [
-      [true, "4 GB"],
-      [true, "8 GB"],
-      [true, "12 GB"],
-      [true, "16 GB"],
-    ],
-    [
-      [true, "4 GB"],
-      [true, "8 GB"],
-      [true, "16 GB"],
-      [true, "24 GB"],
-    ],
-  ),
-  r(
-    "NVMe Storage",
-    [
-      [true, "100 GB"],
-      [true, "200 GB"],
-      [true, "300 GB"],
-      [true, "400 GB"],
-    ],
-    [
-      [true, "40 GB"],
-      [true, "80 GB"],
-      [true, "160 GB"],
-      [true, "320 GB"],
-    ],
-    [
-      [true, "60 GB"],
-      [true, "120 GB"],
-      [true, "240 GB"],
-      [true, "400 GB"],
-    ],
-  ),
-  r(
-    "Windows License",
-    [
-      [false, "No"],
-      [false, "No"],
-      [false, "No"],
-      [false, "No"],
-    ],
-    [
-      [true, "2022"],
-      [true, "2022"],
-      [true, "2022"],
-      [true, "2025"],
-    ],
-    [
-      [true, "2022"],
-      [true, "2022"],
-      [true, "2022"],
-      [true, "2022"],
-    ],
-  ),
-  r(
-    "Pre-installed Suite",
-    [
-      [false, "No"],
-      [false, "No"],
-      [false, "No"],
-      [false, "No"],
-    ],
-    [
-      [false, "No"],
-      [false, "No"],
-      [false, "No"],
-      [false, "No"],
-    ],
-    [
-      [true, "Browsers"],
-      [true, "Browsers"],
-      [true, "Dev Tools"],
-      [true, "Full Suite"],
-    ],
-  ),
-  r(
-    "Admin / Root Access",
-    [
-      [true, "SSH Root"],
-      [true, "SSH Root"],
-      [true, "SSH Root"],
-      [true, "SSH Root"],
-    ],
-    [
-      [true, "Admin RDP"],
-      [true, "Admin RDP"],
-      [true, "Admin RDP"],
-      [true, "Admin RDP"],
-    ],
-    [
-      [true, "Full Admin"],
-      [true, "Full Admin"],
-      [true, "Full Admin"],
-      [true, "Full Admin"],
-    ],
-  ),
-  r(
-    "Port & Bandwidth",
-    [
-      [true, "30 TB"],
-      [true, "30 TB"],
-      [true, "30 TB"],
-      [true, "30 TB"],
-    ],
-    [
-      [true, "1 Gbps"],
-      [true, "1 Gbps"],
-      [true, "1 Gbps"],
-      [true, "Dedicated"],
-    ],
-    [
-      [true, "1 Gbps"],
-      [true, "1 Gbps"],
-      [true, "1 Gbps"],
-      [true, "Dedicated"],
-    ],
-  ),
-  r(
-    "Delivery",
-    [
-      [true, "15 min"],
-      [true, "15 min"],
-      [true, "15 min"],
-      [true, "15 min"],
-    ],
-    [
-      [false, "—"],
-      [false, "—"],
-      [false, "—"],
-      [false, "—"],
-    ],
-    [
-      [false, "—"],
-      [false, "—"],
-      [false, "—"],
-      [false, "—"],
-    ],
-  ),
-  r(
-    "Dedicated IPv4",
-    [
-      [true, "1 IP"],
-      [true, "1 IP"],
-      [true, "1 IP"],
-      [true, "2 IPs"],
-    ],
-    [
-      [true, "1 IP"],
-      [true, "1 IP"],
-      [true, "1 IP"],
-      [true, "2 IPs"],
-    ],
-    [
-      [true, "1 IP"],
-      [true, "1 IP"],
-      [true, "1 IP"],
-      [true, "2 IPs"],
-    ],
-  ),
-  r(
-    "Automated Backups",
-    [
-      [false, "No"],
-      [true, "Weekly"],
-      [true, "Daily"],
-      [true, "Hourly"],
-    ],
-    [
-      [false, "No"],
-      [true, "Weekly"],
-      [true, "Daily"],
-      [true, "Hourly"],
-    ],
-    [
-      [false, "No"],
-      [true, "Weekly"],
-      [true, "Daily"],
-      [true, "Hourly"],
-    ],
-  ),
-  r(
-    "DDoS Mitigation",
-    [
-      [true, "Fast"],
-      [true, "Fast"],
-      [true, "Fast"],
-      [true, "Advanced"],
-    ],
-    [
-      [true, "Fast"],
-      [true, "Fast"],
-      [true, "Fast"],
-      [true, "Advanced"],
-    ],
-    [
-      [true, "Fast"],
-      [true, "Fast"],
-      [true, "Fast"],
-      [true, "Advanced"],
-    ],
-  ),
-];
+/** Map URL family id to comparison row key. */
+export function comparisonKeyForFamily(family: VpsFamily): ComparisonFamilyKey {
+  if (family === "windows") return "windows";
+  if (family === "windows-admin-rdp") return "adminRdp";
+  return "linux";
+}
+
+export function plansForFamily(
+  row: FeatureRow,
+  family: VpsFamily,
+): PlanSpec[] {
+  return row[comparisonKeyForFamily(family)];
+}
+
+export const FAMILY_META: Record<
+  ComparisonFamilyKey,
+  { label: string; accent: "linux" | "windows" | "rdp" }
+> = {
+  linux: { label: "Linux VPS", accent: "linux" },
+  windows: { label: "Windows VPS", accent: "windows" },
+  adminRdp: { label: "Admin RDP", accent: "rdp" },
+};

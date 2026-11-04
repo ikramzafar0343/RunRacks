@@ -31,7 +31,7 @@ export const FEATURE_CARDS: FeatureCard[] = [
       "Filter by family, region, and billing term. Demo prices are labeled until checkout is connected.",
     ctaLabel: "View plans",
     href: "/pricing" as Route,
-    imageSrc: "/images/showcase/plans-cover-1200.jpg",
+    imageSrc: "/images/showcase/plans-cover-1200.webp",
     imageAlt:
       "Person considering hosting plans with plan option cards on a green studio backdrop",
     imagePosition: "center center",
@@ -46,7 +46,7 @@ export const FEATURE_CARDS: FeatureCard[] = [
       "NVMe-backed virtual servers with documented vCPU, RAM, and storage for production and staging.",
     ctaLabel: "View VPS plans",
     href: "/products/vps" as Route,
-    imageSrc: "/images/showcase/vps-cover-1200.jpg",
+    imageSrc: "/images/showcase/vps-cover-1200.webp",
     imageAlt:
       "Person with a phone seated against a green VPS hosting studio backdrop",
     imagePosition: "center center",
@@ -61,7 +61,7 @@ export const FEATURE_CARDS: FeatureCard[] = [
       "Administrator access on Windows Server–ready plans sized for apps, tools, and remote management.",
     ctaLabel: "Explore Windows",
     href: "/products/windows" as Route,
-    imageSrc: "/images/showcase/windows-cover-1200.jpg",
+    imageSrc: "/images/showcase/windows-cover-1200.webp",
     imageAlt:
       "Professional with a tablet beside Windows hosting feature cards on a green backdrop",
     imagePosition: "center center",
@@ -76,7 +76,7 @@ export const FEATURE_CARDS: FeatureCard[] = [
       "Persistent Windows workspaces for operators who need hands-on control—not a locked shared desktop.",
     ctaLabel: "View Admin RDP",
     href: "/products/admin-rdp" as Route,
-    imageSrc: "/images/showcase/admin-rdp-cover-1200.jpg",
+    imageSrc: "/images/showcase/admin-rdp-cover-1200.webp",
     imageAlt:
       "Administrator at a desk with Windows Admin RDP feature cards on a green backdrop",
     imagePosition: "center center",

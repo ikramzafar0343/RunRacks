@@ -19,6 +19,14 @@
   padding: 2.25rem 0 2rem;
 }
 
+/*
+ * Pricing hero floats PricingTrustBand halfway below the fold.
+ * Dense brands padding alone is too short — clear the overhang + gap.
+ */
+.pricingPage.rrDenseSpacing .brandsSection {
+  padding-top: clamp(7.25rem, 12vw, 9.5rem);
+}
+
 .rrDenseSpacing .brandsMarquee {
   margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
 }
@@ -40,6 +48,10 @@
   .rrDenseSpacing .brandsSection {
     padding: 2rem 0 1.75rem;
   }
+
+  .pricingPage.rrDenseSpacing .brandsSection {
+    padding-top: clamp(6.75rem, 14vw, 8.5rem);
+  }
 }
 
 @media (max-width: 560px) {
@@ -53,6 +65,10 @@
 
   .rrDenseSpacing .brandsSection {
     padding: 1.75rem 0 1.5rem;
+  }
+
+  .pricingPage.rrDenseSpacing .brandsSection {
+    padding-top: clamp(7.5rem, 22vw, 9rem);
   }
 
   .rrDenseSpacing .vpsFaq {

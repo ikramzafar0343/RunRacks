@@ -49,23 +49,16 @@ export function ArdpHero() {
 
         <div className="ardpHeroVisual">
           <div className="ardpHeroPlate">
-            <picture>
-              <source
-                media="(max-width: 700px)"
-                srcSet={hero.visualMobile.src}
-                type="image/webp"
-              />
-              <Image
-                className="ardpHeroImage"
-                src={hero.visual.src}
-                alt={hero.visual.alt}
-                width={1024}
-                height={576}
-                sizes="(max-width: 700px) 100vw, (max-width: 1100px) 90vw, 55vw"
-                preload
-                unoptimized
-              />
-            </picture>
+            <Image
+              className="ardpHeroImage"
+              src={hero.visual.src}
+              alt={hero.visual.alt}
+              width={1024}
+              height={576}
+              sizes="(max-width: 700px) 100vw, (max-width: 1100px) 90vw, 55vw"
+              quality={80}
+              preload
+            />
           </div>
         </div>
       </div>

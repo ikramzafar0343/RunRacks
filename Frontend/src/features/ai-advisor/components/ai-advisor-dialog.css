@@ -18,7 +18,7 @@
   border: 1px solid var(--ai-border);
   background: var(--ai-panel);
   color: var(--ai-heading);
-  box-shadow: 0 24px 60px color-mix(in srgb, var(--color-heading) 22%, transparent);
+  box-shadow: none;
 }
 
 .aiDialogPanel--lg {

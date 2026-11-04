@@ -6,13 +6,7 @@
   padding-bottom: clamp(2rem, 4vw, 3rem);
   text-align: center;
   overflow: hidden;
-  background:
-    radial-gradient(
-      70% 55% at 88% 8%,
-      color-mix(in srgb, var(--color-accent-soft) 70%, transparent),
-      transparent 60%
-    ),
-    var(--color-canvas);
+  background: var(--color-canvas);
 }
 
 .aboutHeroInner {

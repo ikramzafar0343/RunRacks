@@ -16,7 +16,7 @@ export const ABOUT_TIMELINE: readonly TimelineItem[] = [
     description:
       "An ambition to make the technical side of getting online easier to navigate.",
     image: {
-      src: "/images/showcase/plans-cover-1200.jpg",
+      src: "/images/showcase/plans-cover-1200.webp",
       alt: "Planning materials on a workspace surface",
     },
   },
@@ -27,7 +27,7 @@ export const ABOUT_TIMELINE: readonly TimelineItem[] = [
     description:
       "A focus on the essential details that make digital experiences feel dependable.",
     image: {
-      src: "/images/showcase/vps-photo-left.jpg",
+      src: "/images/showcase/vps-photo-left.webp",
       alt: "Close view of server hardware",
     },
   },
@@ -38,7 +38,7 @@ export const ABOUT_TIMELINE: readonly TimelineItem[] = [
     description:
       "Prioritizing the human side of complex questions and everyday needs.",
     image: {
-      src: "/images/admin-rdp/story-portrait.jpg",
+      src: "/images/admin-rdp/story-portrait.webp",
       alt: "Person focused on work in a bright office",
     },
   },
@@ -49,7 +49,7 @@ export const ABOUT_TIMELINE: readonly TimelineItem[] = [
     description:
       "Thinking about flexible tools and the different needs of growing projects.",
     image: {
-      src: "/images/showcase/vps-photo-right.jpg",
+      src: "/images/showcase/vps-photo-right.webp",
       alt: "Perspective view of a server environment",
     },
   },
@@ -60,7 +60,7 @@ export const ABOUT_TIMELINE: readonly TimelineItem[] = [
     description:
       "Learning what users need and removing unnecessary friction along the way.",
     image: {
-      src: "/images/showcase/rail-preview-leads.jpg",
+      src: "/images/showcase/rail-preview-leads.webp",
       alt: "Product collaboration scene at a desk",
     },
   },
@@ -71,7 +71,7 @@ export const ABOUT_TIMELINE: readonly TimelineItem[] = [
     description:
       "Continuing to invest attention in the work that makes hosting more useful.",
     image: {
-      src: "/images/showcase/rail-preview-grow.jpg",
+      src: "/images/showcase/rail-preview-grow.webp",
       alt: "Modern workspace suggesting forward progress",
     },
   },
@@ -90,7 +90,7 @@ export const ABOUT_VALUES: readonly ValueItem[] = [
     title: "Earn trust",
     description: "Communicate clearly, follow through, and do what we say.",
     image: {
-      src: "/images/showcase/rail-preview-brand.jpg",
+      src: "/images/showcase/rail-preview-brand.webp",
       alt: "Calm branded workspace atmosphere",
     },
   },
@@ -100,7 +100,7 @@ export const ABOUT_VALUES: readonly ValueItem[] = [
     description:
       "Focus on the problem in front of us and find the useful answer.",
     image: {
-      src: "/images/showcase/vps-lead.jpg",
+      src: "/images/showcase/vps-lead.webp",
       alt: "Hands-on work reviewing hosting setup",
     },
   },
@@ -127,7 +127,7 @@ export const ABOUT_VALUES: readonly ValueItem[] = [
     title: "Take ownership",
     description: "Stay accountable, solve what matters, and keep learning.",
     image: {
-      src: "/images/admin-rdp/story-detail.jpg",
+      src: "/images/admin-rdp/story-detail.webp",
       alt: "Detailed desk work and focus",
     },
   },
@@ -137,7 +137,7 @@ export const ABOUT_VALUES: readonly ValueItem[] = [
     description:
       "Improve the way things work instead of accepting needless friction.",
     image: {
-      src: "/images/showcase/rail-photo-cloud.jpg",
+      src: "/images/showcase/rail-photo-cloud.webp",
       alt: "Abstract cloud infrastructure visual",
     },
   },
@@ -152,7 +152,7 @@ export const ABOUT_TECH = {
   ],
   link: { label: "Explore customize", href: "/customize" as const },
   image: {
-    src: "/images/admin-rdp/team.jpg",
+    src: "/images/admin-rdp/team.webp",
     alt: "People working together with systems and screens",
   },
 } as const;
@@ -170,7 +170,7 @@ export const ABOUT_TEAM: readonly TeamItem[] = [
     title: "Customer Support",
     description: "Thoughtful help, clear communication, and useful answers.",
     image: {
-      src: "/images/admin-rdp/story-portrait.jpg",
+      src: "/images/admin-rdp/story-portrait.webp",
       alt: "Support-focused workspace portrait",
     },
   },
@@ -180,7 +180,7 @@ export const ABOUT_TEAM: readonly TeamItem[] = [
     title: "Infrastructure & Reliability",
     description: "Attention to the systems that keep projects working.",
     image: {
-      src: "/images/showcase/vps-cover-1200.jpg",
+      src: "/images/showcase/vps-cover-1200.webp",
       alt: "Infrastructure environment photography",
     },
   },
@@ -190,7 +190,7 @@ export const ABOUT_TEAM: readonly TeamItem[] = [
     title: "Product & Engineering",
     description: "Making complex workflows more approachable.",
     image: {
-      src: "/images/showcase/rail-photo-operator.jpg",
+      src: "/images/showcase/rail-photo-operator.webp",
       alt: "Engineering work at a monitoring station",
     },
   },
@@ -200,7 +200,7 @@ export const ABOUT_TEAM: readonly TeamItem[] = [
     title: "Growth & Operations",
     description: "Connecting people, processes, and practical progress.",
     image: {
-      src: "/images/showcase/rail-preview-grow.jpg",
+      src: "/images/showcase/rail-preview-grow.webp",
       alt: "Operations and growth planning atmosphere",
     },
   },
@@ -241,7 +241,7 @@ export const ABOUT_CTA = {
   primary: { label: "View plans", href: "/pricing" as const },
   secondary: { label: "Explore hosting", href: "/products/vps" as const },
   image: {
-    src: "/images/admin-rdp/story-desk.jpg",
+    src: "/images/admin-rdp/story-desk.webp",
     alt: "Supportive workspace ready for a conversation",
   },
 } as const;

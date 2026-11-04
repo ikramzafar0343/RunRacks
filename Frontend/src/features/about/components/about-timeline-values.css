@@ -200,7 +200,7 @@
       var(--color-brand) 35%,
       var(--color-border)
     );
-    box-shadow: 0 18px 55px rgba(21, 37, 31, 0.08);
+    box-shadow: none;
   }
 
   .aboutValueCard:hover .aboutValueMedia img {

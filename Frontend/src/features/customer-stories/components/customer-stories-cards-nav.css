@@ -62,8 +62,25 @@
 .csMobileNav {
   display: none;
   justify-content: center;
+  align-items: center;
   gap: 16px;
   margin-top: 20px;
+}
+
+.csPosition,
+.csPositionDesktop {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--cs-muted, var(--color-body));
+  font-variant-numeric: tabular-nums;
+}
+
+.csPositionDesktop {
+  display: none;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 @media (max-width: 1023px) {
@@ -72,6 +89,15 @@
   }
   .csArrowDesktop {
     display: none;
+  }
+  .csPositionDesktop {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .csPositionDesktop {
+    display: block;
   }
 }
 

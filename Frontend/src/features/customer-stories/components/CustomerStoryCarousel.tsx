@@ -5,6 +5,7 @@
 
 import {
   useCallback,
+  useMemo,
   useRef,
   useState,
   type KeyboardEvent,
@@ -25,7 +26,17 @@ export function CustomerStoryCarousel({ stories }: CustomerStoryCarouselProps) {
   const touchStartX = useRef<number | null>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const showNav = stories.length >= 2;
+  const total = stories.length;
   const story = stories[activeIndex] ?? stories[0];
+
+  const prefetchUrls = useMemo(() => {
+    if (!total) return [] as string[];
+    const prev = stories[(activeIndex - 1 + total) % total]?.portraitUrl;
+    const next = stories[(activeIndex + 1) % total]?.portraitUrl;
+    return [prev, next].filter(
+      (url): url is string => Boolean(url) && url !== story?.portraitUrl,
+    );
+  }, [activeIndex, stories, story?.portraitUrl, total]);
 
   const goTo = useCallback(
     (next: number) => {
@@ -80,6 +91,8 @@ export function CustomerStoryCarousel({ stories }: CustomerStoryCarouselProps) {
 
   if (!story) return null;
 
+  const positionLabel = `${activeIndex + 1} of ${total}`;
+
   return (
     <div
       className="csStage"
@@ -87,7 +100,7 @@ export function CustomerStoryCarousel({ stories }: CustomerStoryCarouselProps) {
       onKeyDown={onKeyDown}
       tabIndex={showNav ? 0 : undefined}
       aria-roledescription="carousel"
-      aria-label="Customer stories"
+      aria-label={`Customer stories, ${positionLabel}`}
     >
       {showNav ? (
         <CarouselArrow
@@ -107,6 +120,7 @@ export function CustomerStoryCarousel({ stories }: CustomerStoryCarouselProps) {
           key={story.id}
           story={story}
           animateKey={story.id}
+          prefetchUrls={prefetchUrls}
         />
       </div>
 
@@ -124,6 +138,9 @@ export function CustomerStoryCarousel({ stories }: CustomerStoryCarouselProps) {
             direction="prev"
             onClick={() => goTo(activeIndex - 1)}
           />
+          <p className="csPosition" aria-hidden="true">
+            {positionLabel}
+          </p>
           <CarouselArrow
             direction="next"
             onClick={() => goTo(activeIndex + 1)}
@@ -131,8 +148,14 @@ export function CustomerStoryCarousel({ stories }: CustomerStoryCarouselProps) {
         </div>
       ) : null}
 
+      {showNav ? (
+        <p className="csPositionDesktop" aria-hidden="true">
+          {positionLabel}
+        </p>
+      ) : null}
+
       <p className="csSrOnly" aria-live="polite" aria-atomic="true">
-        {story.customerName}
+        Story {positionLabel}: {story.customerName}
         {story.companyName ? `, ${story.companyName}` : ""}
       </p>
     </div>

@@ -163,7 +163,8 @@ export function ContactHero() {
               src={CONTACT_HERO.image.src}
               alt={CONTACT_HERO.image.alt}
               fill
-              priority
+              preload
+              quality={80}
               sizes="(max-width: 899px) 100vw, 42vw"
               className="contactHeroMediaImg"
             />

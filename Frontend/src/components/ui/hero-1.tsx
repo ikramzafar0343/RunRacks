@@ -7,13 +7,13 @@ export function HeroSection() {
   return (
     <section className="relative w-full overflow-visible">
       {/* Hero Ambient Background Box */}
-      <div className="relative w-full overflow-visible border-b border-border/40 bg-[radial-gradient(ellipse_70%_55%_at_50%_52%,color-mix(in_srgb,var(--color-brand)_14%,transparent),transparent_70%),linear-gradient(180deg,var(--color-canvas)_0%,color-mix(in_srgb,var(--color-surface)_70%,var(--color-canvas))_35%,color-mix(in_srgb,var(--color-brand)_16%,var(--color-canvas))_75%,color-mix(in_srgb,var(--color-brand)_10%,var(--color-surface))_100%)] pt-14 pb-38 sm:pb-40 md:pt-18 md:pb-40">
+      <div className="pricingHeroAmbient relative w-full overflow-visible border-b border-border/40 pt-14 pb-38 sm:pb-40 md:pt-18 md:pb-40">
         {/* Top Shades (Sage ambient glow) */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 isolate hidden overflow-hidden contain-strict lg:block"
         >
-          <div className="absolute inset-0 -top-14 isolate -z-10 bg-[radial-gradient(40%_80%_at_50%_0%,color-mix(in_srgb,var(--color-brand)_14%,transparent),transparent)] contain-strict" />
+          <div className="pricingHeroAmbientGlow absolute inset-0 -top-14 isolate -z-10 contain-strict" />
         </div>
 
         {/* X Bold Faded Borders */}
@@ -61,7 +61,7 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="rounded-full bg-brand px-8 text-[15px] font-semibold text-brand-contrast shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-lime hover:text-on-lime hover:shadow-[0_10px_28px_color-mix(in_srgb,var(--color-heading)_18%,transparent)] active:translate-y-0 active:shadow-none"
+              className="rounded-full bg-brand px-8 text-[15px] font-semibold text-brand-contrast shadow-none transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-lime hover:text-on-lime hover:shadow-none active:translate-y-0 active:shadow-none"
             >
               <a href="#pricing-plans" className="group">
                 Explore Plans

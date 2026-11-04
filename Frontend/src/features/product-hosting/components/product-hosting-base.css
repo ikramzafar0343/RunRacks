@@ -102,17 +102,7 @@
   position: absolute;
   inset: -20% 10% auto;
   height: 70%;
-  background:
-    radial-gradient(
-      ellipse 50% 60% at 50% 40%,
-      color-mix(in srgb, var(--ph-primary) 18%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 40% 50% at 70% 60%,
-      color-mix(in srgb, var(--ph-accent) 14%, transparent),
-      transparent 70%
-    );
+  background: none;
   pointer-events: none;
 }
 

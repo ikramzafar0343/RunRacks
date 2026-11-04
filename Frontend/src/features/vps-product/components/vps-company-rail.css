@@ -57,8 +57,7 @@
   background: var(--rail-surface);
   border: 1px solid var(--rail-border);
   color: var(--rail-ink);
-  box-shadow: 0 12px 28px
-    color-mix(in srgb, var(--color-heading) 8%, transparent);
+  box-shadow: none;
 }
 
 .vpsRailCard[data-type="message"] {
@@ -92,7 +91,7 @@
       transparent 70%
     ),
     linear-gradient(155deg, #1a4030 0%, #2a5c45 42%, #34745a 78%, #285b46 100%);
-  box-shadow: 0 14px 32px color-mix(in srgb, #082615 22%, transparent);
+  box-shadow: none;
 }
 
 .vpsRailCardPreview {
@@ -108,7 +107,7 @@
   border-radius: 12px;
   overflow: hidden;
   pointer-events: none;
-  box-shadow: 0 16px 36px color-mix(in srgb, #082615 28%, transparent);
+  box-shadow: none;
   opacity: 0;
   transform: translate3d(0, 70%, 0) rotate(-8deg);
   transition:

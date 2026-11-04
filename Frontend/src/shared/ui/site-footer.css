@@ -1,5 +1,5 @@
 /*
- * Site footer — Sage & Ink, light/dark glow + outlined watermark.
+ * Site footer — Sage & Ink, flat canvas background + outlined watermark.
  */
 
 .siteFooter {
@@ -8,9 +8,7 @@
   --sf-link: color-mix(in srgb, var(--color-body) 88%, transparent);
   --sf-rule: color-mix(in srgb, var(--color-heading) 14%, transparent);
   --sf-watermark: color-mix(in srgb, var(--color-heading) 14%, transparent);
-  --sf-bg: transparent;
-  --sf-glow: color-mix(in srgb, var(--color-brand) 28%, transparent);
-  --sf-glow-soft: color-mix(in srgb, var(--color-lime) 16%, transparent);
+  --sf-bg: var(--color-canvas);
   --sf-ease: var(--ease-standard);
 
   position: relative;
@@ -19,30 +17,9 @@
   width: 100%;
   margin-top: auto;
   padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(1.75rem, 3vw, 2.25rem);
-  /* Continues site mint wash — no solid white slab */
-  background: transparent;
+  background: var(--sf-bg);
   color: var(--sf-ink);
   border-top: 1px solid var(--sf-rule);
-}
-
-.siteFooterGlow {
-  position: absolute;
-  inset: 18% 8% 22%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse 55% 55% at 50% 48%,
-      var(--sf-glow),
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 40% 40% at 50% 52%,
-      var(--sf-glow-soft),
-      transparent 70%
-    );
-  filter: blur(2px);
-  opacity: 0.9;
 }
 
 .siteFooterInner {

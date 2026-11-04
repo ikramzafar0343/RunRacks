@@ -6,7 +6,7 @@ export const WINDOWS_USA_HIGHLIGHT = {
   heading: "Administrator control on US Windows plans",
   body: "Compare NVMe-backed Windows VPS tiers with administrator access, then talk to RunRacks engineers when you need a human path forward—not a chatbot maze.",
   image: {
-    src: "/images/showcase/rail-photo-operator.jpg",
+    src: "/images/showcase/rail-photo-operator.webp",
     alt: "Operator reviewing a hosting workflow on a laptop",
     width: 1200,
     height: 800,

@@ -15,7 +15,8 @@ import {
 
 /** Catalog hubs for the hero Cobe globe (US focus + peer regions). */
 export const ADMIN_RDP_USA_GLOBE_MARKERS: readonly GlobeMarker[] = [
-  { id: "us", location: [40.7128, -74.006], size: 0.065 },
+  /** Matches NETWORK_PIN_META.us hub (Washington DC metro). */
+  { id: "us", location: [38.9072, -77.0369], size: 0.065 },
   { id: "nl", location: [52.3676, 4.9041], size: 0.04 },
   { id: "sg", location: [1.3521, 103.8198], size: 0.04 },
   { id: "au", location: [-33.8688, 151.2093], size: 0.04 },
@@ -86,7 +87,7 @@ export const ADMIN_RDP_USA = {
         emphasis: "engineers",
         ctaLabel: "Let's talk",
         href: "/pricing" as Route,
-        imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+        imageSrc: "/media/customer-stories/demo-01/portrait.webp",
         imageAlt:
           "Demo portrait of an engineer at a laptop — not a verified staff photo",
       },
@@ -96,7 +97,7 @@ export const ADMIN_RDP_USA = {
         body: "Size Admin RDP tiers for support desks or agency sessions in the United States region, then continue on Pricing without mixing in Windows VPS server plans.",
         ctaLabel: "Chat with us",
         href: "/ai" as Route,
-        imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+        imageSrc: "/media/customer-stories/demo-02/portrait.webp",
         imageAlt: "Demo portrait in a workspace — not a verified staff photo",
       },
     ] satisfies readonly SupportCtaCard[],

@@ -10,11 +10,7 @@
   height: 60%;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(
-    50% 55% at 70% 40%,
-    color-mix(in srgb, var(--color-brand) 16%, transparent),
-    transparent 70%
-  );
+  background: none;
 }
 
 .contactFormLayout {

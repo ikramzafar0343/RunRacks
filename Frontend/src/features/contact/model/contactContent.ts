@@ -17,7 +17,7 @@ export const CONTACT_HERO = {
   primary: { label: "Send a message", href: "#contact-form" as const },
   secondary: { label: "View plans", href: "/pricing" as Route },
   image: {
-    src: "/images/admin-rdp/story-desk.jpg",
+    src: "/images/admin-rdp/story-desk.webp",
     alt: "Demo workspace desk — not a verified RunRacks office photo",
   },
 } as const;
@@ -39,7 +39,7 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
     body: "Describe your stack, migration, or blocking issue. We route it when message intake is live.",
     ctaLabel: "Open the form",
     href: "#contact-form",
-    imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+    imageSrc: "/media/customer-stories/demo-01/portrait.webp",
     imageAlt:
       "Demo portrait of an engineer at a laptop — not a verified staff photo",
   },
@@ -49,7 +49,7 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
     body: "Explore plan and product questions in chat. Live model answers connect when the AI backend is configured.",
     ctaLabel: "Try RunRacks AI",
     href: "/ai" as Route,
-    imageSrc: "/images/showcase/rail-preview-brand.jpg",
+    imageSrc: "/images/showcase/rail-preview-brand.webp",
     imageAlt: "Product preview imagery for RunRacks AI guidance",
   },
   {
@@ -58,7 +58,7 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
     body: "Compare Linux VPS, Windows, and Admin RDP before you write us.",
     ctaLabel: "View pricing",
     href: "/pricing" as Route,
-    imageSrc: "/images/showcase/plans-cover-1200.jpg",
+    imageSrc: "/images/showcase/plans-cover-1200.webp",
     imageAlt: "RunRacks plans cover imagery",
   },
   {
@@ -67,7 +67,7 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
     body: "Security or abuse concerns use the form with the Report issue topic — no fake mailbox.",
     ctaLabel: "Report via form",
     href: "#contact-form",
-    imageSrc: "/images/showcase/rail-photo-operator.jpg",
+    imageSrc: "/images/showcase/rail-photo-operator.webp",
     imageAlt: "Demo operator workspace imagery — not a verified staff photo",
   },
 ] as const;
@@ -90,7 +90,7 @@ export const CONTACT_FORM = {
   submitLabel: "Send message",
   pendingLabel: "Sending…",
   image: {
-    src: "/images/admin-rdp/story-portrait.jpg",
+    src: "/images/admin-rdp/story-portrait.webp",
     alt: "Demo portrait in a workspace — not a verified staff photo",
   },
 } as const;

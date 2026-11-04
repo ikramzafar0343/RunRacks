@@ -12,12 +12,18 @@ import {
   USA_REGION_ANSWER,
 } from "@/shared/content/demoPricingCopy";
 
-/** Catalog pin geometry for United States (same hub as network map). */
-const US_PIN = { lat: 40.7128, lng: -74.006 } as const;
+/** Same US hub as the network map (explicit viewBox coords). */
+const US_PIN = {
+  lat: 38.9072,
+  lng: -77.0369,
+  mapX: 175,
+  mapY: 122,
+} as const;
+
 const ARC_ENDS = [
-  { lat: 52.3676, lng: 4.9041 },
-  { lat: 1.3521, lng: 103.8198 },
-  { lat: -33.8688, lng: 151.2093 },
+  { lat: 52.3676, lng: 4.9041, mapX: 408, mapY: 66 },
+  { lat: 1.3521, lng: 103.8198, mapX: 652, mapY: 210 },
+  { lat: -33.8688, lng: 151.2093, mapX: 730, mapY: 310 },
 ] as const;
 
 export const VPS_USA_MAP_DOTS: readonly WorldMapDot[] = ARC_ENDS.map(
@@ -25,16 +31,23 @@ export const VPS_USA_MAP_DOTS: readonly WorldMapDot[] = ARC_ENDS.map(
     start: {
       lat: US_PIN.lat,
       lng: US_PIN.lng,
+      mapX: US_PIN.mapX,
+      mapY: US_PIN.mapY,
       ...(i === 0
         ? {
             label: "United States",
             flagCode: "us",
-            labelDx: 8,
-            labelDy: -28,
+            labelDx: 0,
+            labelDy: -2,
           }
         : {}),
     },
-    end: { lat: end.lat, lng: end.lng },
+    end: {
+      lat: end.lat,
+      lng: end.lng,
+      mapX: end.mapX,
+      mapY: end.mapY,
+    },
   }),
 );
 
@@ -51,31 +64,31 @@ export const VPS_USA = {
     disclaimer: "Demo pricing — not live checkout",
     programs: [
       {
-        image: "/images/showcase/vps-lead.jpg",
+        image: "/images/showcase/vps-lead.webp",
         category: "Sites & stores",
         title: "Ship marketing and storefronts on US plans",
         href: "#usa-plans" as Route,
       },
       {
-        image: "/images/showcase/rail-photo-cloud.jpg",
+        image: "/images/showcase/rail-photo-cloud.webp",
         category: "Apps & APIs",
         title: "Run app servers with clear vCPU and RAM",
         href: "#usa-plans" as Route,
       },
       {
-        image: "/images/showcase/rail-photo-operator.jpg",
+        image: "/images/showcase/rail-photo-operator.webp",
         category: "Teams",
         title: "Compare plans your operators can act on",
         href: "/pricing" as Route,
       },
       {
-        image: "/images/showcase/plans-cover-1200.jpg",
+        image: "/images/showcase/plans-cover-1200.webp",
         category: "NVMe",
         title: "Local NVMe listed on every tier",
         href: "#usa-plans" as Route,
       },
       {
-        image: "/images/showcase/vps-cover-1200.jpg",
+        image: "/images/showcase/vps-cover-1200.webp",
         category: "Root access",
         title: "Administrator control when you launch",
         href: "#usa-plans" as Route,
@@ -101,13 +114,13 @@ export const VPS_USA = {
       "You get documented resource slices and NVMe tiers—without inventing latency claims or city lists that are not in the catalog.",
     ],
     image: {
-      src: "/images/showcase/vps-lead.jpg",
+      src: "/images/showcase/vps-lead.webp",
       alt: "RunRacks team reviewing a VPS deployment together at a laptop",
       width: 1024,
       height: 682,
     },
     imageSecondary: {
-      src: "/images/showcase/rail-photo-cloud.jpg",
+      src: "/images/showcase/rail-photo-cloud.webp",
       alt: "Infrastructure photography suggesting cloud operations atmosphere",
       width: 1200,
       height: 800,
@@ -212,7 +225,7 @@ export const VPS_USA = {
         emphasis: "engineers",
         ctaLabel: "Let's talk",
         href: "/pricing" as Route,
-        imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+        imageSrc: "/media/customer-stories/demo-01/portrait.webp",
         imageAlt:
           "Demo portrait of an engineer at a laptop — not a verified staff photo",
       },
@@ -222,7 +235,7 @@ export const VPS_USA = {
         body: "Size root-access Linux tiers for United States locations, confirm NVMe and vCPU fit, then continue on Pricing with USA already in focus.",
         ctaLabel: "Chat with us",
         href: "/ai" as Route,
-        imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+        imageSrc: "/media/customer-stories/demo-02/portrait.webp",
         imageAlt: "Demo portrait in a workspace — not a verified staff photo",
       },
     ] satisfies readonly SupportCtaCard[],

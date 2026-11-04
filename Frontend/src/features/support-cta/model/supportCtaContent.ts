@@ -15,10 +15,12 @@ export type SupportCtaCard = {
   imageAlt: string;
 };
 
+const DEMO_ENGINEER_SRC = "/media/support-cta/engineer.webp";
 const DEMO_ENGINEER_ALT =
-  "Demo portrait of an engineer at a laptop — not a verified staff photo";
+  "Demo portrait of a support engineer with a headset — not a verified staff photo";
+const DEMO_ADVISOR_SRC = "/media/support-cta/advisor.webp";
 const DEMO_WORKSPACE_ALT =
-  "Demo portrait in a workspace — not a verified staff photo";
+  "Demo portrait of an advisor with a headset — not a verified staff photo";
 
 /** Homepage — cross-product entry. */
 export const SUPPORT_CTA = {
@@ -30,7 +32,7 @@ export const SUPPORT_CTA = {
       emphasis: "engineers",
       ctaLabel: "Contact us",
       href: "/contact" as Route,
-      imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+      imageSrc: DEMO_ENGINEER_SRC,
       imageAlt: DEMO_ENGINEER_ALT,
     },
     {
@@ -39,7 +41,7 @@ export const SUPPORT_CTA = {
       body: "We can walk through family choice, region, and administrator access so your move onto RunRacks stays clear.",
       ctaLabel: "Try RunRacks AI",
       href: "/ai" as Route,
-      imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+      imageSrc: DEMO_ADVISOR_SRC,
       imageAlt: DEMO_WORKSPACE_ALT,
     },
   ] satisfies readonly SupportCtaCard[],
@@ -55,7 +57,7 @@ export const SUPPORT_CTA_PRICING = {
       emphasis: "engineers",
       ctaLabel: "Contact us",
       href: "/contact" as Route,
-      imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+      imageSrc: DEMO_ENGINEER_SRC,
       imageAlt: DEMO_ENGINEER_ALT,
     },
     {
@@ -64,7 +66,7 @@ export const SUPPORT_CTA_PRICING = {
       body: "RunRacks AI can narrow family, region, and capacity using the same catalog language you see on this page.",
       ctaLabel: "Try RunRacks AI",
       href: "/ai" as Route,
-      imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+      imageSrc: DEMO_ADVISOR_SRC,
       imageAlt: DEMO_WORKSPACE_ALT,
     },
   ] satisfies readonly SupportCtaCard[],
@@ -80,7 +82,7 @@ export const SUPPORT_CTA_LINUX_VPS = {
       emphasis: "engineers",
       ctaLabel: "Contact us",
       href: "/contact" as Route,
-      imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+      imageSrc: DEMO_ENGINEER_SRC,
       imageAlt: DEMO_ENGINEER_ALT,
     },
     {
@@ -89,7 +91,7 @@ export const SUPPORT_CTA_LINUX_VPS = {
       body: "Map SSH keys, images, and region before you leave shared hosting—then continue on Pricing with Linux still in focus.",
       ctaLabel: "Try RunRacks AI",
       href: "/ai" as Route,
-      imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+      imageSrc: DEMO_ADVISOR_SRC,
       imageAlt: DEMO_WORKSPACE_ALT,
     },
   ] satisfies readonly SupportCtaCard[],
@@ -105,7 +107,7 @@ export const SUPPORT_CTA_ADMIN_RDP = {
       emphasis: "engineers",
       ctaLabel: "Contact us",
       href: "/contact" as Route,
-      imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+      imageSrc: DEMO_ENGINEER_SRC,
       imageAlt: DEMO_ENGINEER_ALT,
     },
     {
@@ -114,7 +116,7 @@ export const SUPPORT_CTA_ADMIN_RDP = {
       body: "Size remote desktop tiers for support desks or agencies, then continue on Pricing without mixing in server-only Windows VPS.",
       ctaLabel: "Try RunRacks AI",
       href: "/ai" as Route,
-      imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+      imageSrc: DEMO_ADVISOR_SRC,
       imageAlt: DEMO_WORKSPACE_ALT,
     },
   ] satisfies readonly SupportCtaCard[],
@@ -130,7 +132,7 @@ export const SUPPORT_CTA_CUSTOMIZE = {
       emphasis: "engineers",
       ctaLabel: "Contact us",
       href: "/contact" as Route,
-      imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+      imageSrc: DEMO_ENGINEER_SRC,
       imageAlt: DEMO_ENGINEER_ALT,
     },
     {
@@ -139,7 +141,7 @@ export const SUPPORT_CTA_CUSTOMIZE = {
       body: "Describe the workload to RunRacks AI and get a family and capacity suggestion aligned with documented demo tiers.",
       ctaLabel: "Try RunRacks AI",
       href: "/ai" as Route,
-      imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+      imageSrc: DEMO_ADVISOR_SRC,
       imageAlt: DEMO_WORKSPACE_ALT,
     },
   ] satisfies readonly SupportCtaCard[],
@@ -155,7 +157,7 @@ export const SUPPORT_CTA_CONTACT = {
       emphasis: "catalog",
       ctaLabel: "View Pricing",
       href: "/pricing" as Route,
-      imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+      imageSrc: DEMO_ENGINEER_SRC,
       imageAlt: DEMO_ENGINEER_ALT,
     },
     {
@@ -164,7 +166,7 @@ export const SUPPORT_CTA_CONTACT = {
       body: "RunRacks AI can shortlist family and region while the contact form waits on inbox transport.",
       ctaLabel: "Try RunRacks AI",
       href: "/ai" as Route,
-      imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+      imageSrc: DEMO_ADVISOR_SRC,
       imageAlt: DEMO_WORKSPACE_ALT,
     },
   ] satisfies readonly SupportCtaCard[],
@@ -180,7 +182,7 @@ export const SUPPORT_CTA_BLOG = {
       emphasis: "plans",
       ctaLabel: "View Pricing",
       href: "/pricing" as Route,
-      imageSrc: "/media/customer-stories/demo-01/portrait.jpg",
+      imageSrc: DEMO_ENGINEER_SRC,
       imageAlt: DEMO_ENGINEER_ALT,
     },
     {
@@ -189,7 +191,7 @@ export const SUPPORT_CTA_BLOG = {
       body: "Ask RunRacks AI whether Linux VPS, Windows VPS, or Admin RDP fits the workload you just read about.",
       ctaLabel: "Try RunRacks AI",
       href: "/ai" as Route,
-      imageSrc: "/media/customer-stories/demo-02/portrait.jpg",
+      imageSrc: DEMO_ADVISOR_SRC,
       imageAlt: DEMO_WORKSPACE_ALT,
     },
   ] satisfies readonly SupportCtaCard[],

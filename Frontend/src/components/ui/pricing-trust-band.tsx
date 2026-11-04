@@ -139,7 +139,7 @@ export function PricingTrustBand({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "mx-auto w-full max-w-4xl rounded-2xl border border-border/70 bg-surface/90 px-6 py-4.5 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.06)] backdrop-blur-md dark:bg-card/90 dark:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.3)]",
+        "mx-auto w-full max-w-4xl rounded-2xl border border-border bg-surface px-6 py-4.5 shadow-none dark:bg-card",
         className,
       )}
     >

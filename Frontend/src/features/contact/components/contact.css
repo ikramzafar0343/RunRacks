@@ -46,17 +46,7 @@
   height: min(72vh, 42rem);
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(
-      55% 60% at 18% 35%,
-      color-mix(in srgb, var(--color-brand) 22%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      45% 50% at 82% 28%,
-      color-mix(in srgb, var(--color-lime) 18%, transparent),
-      transparent 72%
-    );
+  background: none;
 }
 
 .contactHeroOrb {
@@ -64,7 +54,7 @@
   z-index: 0;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(2px);
+  display: none;
 }
 
 .contactHeroOrb--a {

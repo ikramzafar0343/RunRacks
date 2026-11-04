@@ -1,6 +1,12 @@
 export type WorldMapPoint = {
   lat: number;
   lng: number;
+  /**
+   * Explicit SVG viewBox coordinates (800×400). When both are set, WorldMap
+   * places the pin here instead of projecting lat/lng.
+   */
+  mapX?: number;
+  mapY?: number;
   label?: string;
   /** ISO 3166-1 alpha-2 — renders `/flags/{code}.svg` in the label pill. */
   flagCode?: string;

@@ -196,7 +196,7 @@ html.dark .winShowcase {
 .winShowcaseCta:hover {
   background: color-mix(in srgb, var(--ws-lime) 88%, #fff);
   transform: translateY(-2px);
-  box-shadow: 0 7px 24px color-mix(in srgb, var(--ws-lime) 17%, transparent);
+  box-shadow: none;
 }
 
 .winShowcaseCta:focus-visible,

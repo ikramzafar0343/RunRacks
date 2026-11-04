@@ -17,7 +17,7 @@
   border-radius: 9px;
   border: 1px solid var(--color-inverse-border);
   background: var(--vps-demo-terminal-bg);
-  box-shadow: 0 14px 36px color-mix(in srgb, #000 28%, transparent);
+  box-shadow: none;
 }
 
 .vpsAiTerminalBar {

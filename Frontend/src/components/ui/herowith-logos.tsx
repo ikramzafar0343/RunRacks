@@ -154,7 +154,7 @@ export function HeroWithLogos({
           <div className="flex w-full max-w-[80vw] flex-col items-center justify-start md:max-w-[392px]">
             <Link
               href={secondaryCta.href as Route}
-              className="flex h-14 w-full cursor-pointer items-center justify-center border-x border-[color-mix(in_srgb,var(--color-heading)_12%,transparent)] bg-transparent text-base text-[var(--color-heading)] backdrop-blur-xl transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--color-heading)_5%,transparent)]"
+              className="flex h-14 w-full cursor-pointer items-center justify-center border-x border-[color-mix(in_srgb,var(--color-heading)_12%,transparent)] bg-transparent text-base text-[var(--color-heading)] transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--color-heading)_5%,transparent)]"
             >
               {secondaryCta.label}
             </Link>

@@ -46,14 +46,13 @@
   position: absolute;
   z-index: 2;
   max-width: calc(50% - 6px);
-  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+  background: var(--color-surface);
   color: var(--color-heading);
   border: 1px solid color-mix(in srgb, var(--color-border) 85%, transparent);
   border-radius: 12px;
-  backdrop-filter: blur(12px);
-  box-shadow:
-    0 10px 28px color-mix(in srgb, var(--color-heading) 14%, transparent),
-    inset 0 1px 0 color-mix(in srgb, var(--color-surface) 55%, transparent);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
   animation: homeHeroFloatBob 5.5s ease-in-out infinite;
 }
 

@@ -8,7 +8,7 @@
   border-radius: var(--ai-radius-md);
   border: 1px solid var(--ai-border);
   background: var(--ai-panel);
-  box-shadow: 0 8px 22px color-mix(in srgb, var(--color-heading) 5%, transparent);
+  box-shadow: none;
   animation: aiFadeUp 0.45s ease both;
 }
 
@@ -85,7 +85,7 @@
   border-radius: 1.75rem;
   border: 1px solid var(--ai-border);
   background: var(--ai-panel);
-  box-shadow: 0 12px 32px color-mix(in srgb, var(--color-heading) 8%, transparent);
+  box-shadow: none;
 }
 
 .aiAdvisorComposer:focus-within {
