@@ -137,8 +137,9 @@
 }
 
 .winHeroCta {
-  background: var(--color-brand);
-  color: var(--color-brand-contrast, #fff);
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
 }
 
 .winHeroCtaSecondary {
@@ -149,8 +150,9 @@
 
 .winHeroCta:hover,
 .winHeroCta:active {
-  background: var(--color-lime);
-  color: var(--color-on-lime);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
 }
 
 .winHeroCtaSecondary:hover,

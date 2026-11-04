@@ -12,6 +12,12 @@ type SiteFooterGateProps = {
 
 export function SiteFooterGate({ children }: SiteFooterGateProps) {
   const pathname = usePathname() ?? "";
-  if (pathname === "/ai" || pathname.startsWith("/ai/")) return null;
+  if (
+    pathname === "/ai" ||
+    pathname.startsWith("/ai/") ||
+    pathname === "/checkout"
+  ) {
+    return null;
+  }
   return children;
 }

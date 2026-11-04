@@ -5,7 +5,14 @@
  */
 import { useId, useMemo, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
-import { HiArrowRight } from "react-icons/hi2";
+import {
+  HiArrowRight,
+  HiCircleStack,
+  HiGlobeAlt,
+  HiSquares2X2,
+  HiTag,
+} from "react-icons/hi2";
+import type { IconType } from "react-icons";
 import { WorldMap } from "@/components/ui/map";
 import { flagSrc } from "@/features/customize/components/customizeIcons";
 import {
@@ -91,12 +98,32 @@ export function PhInfra({
     document.getElementById(`${baseId}-row-${id}`)?.focus();
   }
 
-  const metrics = [
-    { value: String(regions.length), caption: "Catalog regions" },
-    { value: "NVMe", caption: "Local disk plans" },
-    { value: "Demo", caption: "Labeled pricing" },
-    { value: "3", caption: "Hosting families" },
-  ] as const;
+  const metrics: readonly {
+    value: string;
+    caption: string;
+    Icon: IconType;
+  }[] = [
+    {
+      value: String(regions.length),
+      caption: "Catalog regions",
+      Icon: HiGlobeAlt,
+    },
+    {
+      value: "NVMe",
+      caption: "Local disk plans",
+      Icon: HiCircleStack,
+    },
+    {
+      value: "Demo",
+      caption: "Labeled pricing",
+      Icon: HiTag,
+    },
+    {
+      value: "3",
+      caption: "Hosting families",
+      Icon: HiSquares2X2,
+    },
+  ];
 
   return (
     <section
@@ -182,19 +209,14 @@ export function PhInfra({
         </div>
 
         <div className="phNetworkMetrics" aria-label="Section facts">
-          {metrics.map((m) => (
-            <div key={m.caption} className="phNetworkMetric">
+          {metrics.map(({ value, caption, Icon }) => (
+            <div key={caption} className="phNetworkMetric">
               <div className="phNetworkMetricIcon" aria-hidden>
-                <svg viewBox="0 0 24 24" width="18" height="18">
-                  <path
-                    d="M13 2 4 14h7l-1 8 10-14h-7l0-6z"
-                    fill="currentColor"
-                  />
-                </svg>
+                <Icon size={18} />
               </div>
               <div>
-                <p className="phNetworkMetricValue">{m.value}</p>
-                <p className="phNetworkMetricCaption">{m.caption}</p>
+                <p className="phNetworkMetricValue">{value}</p>
+                <p className="phNetworkMetricCaption">{caption}</p>
               </div>
             </div>
           ))}

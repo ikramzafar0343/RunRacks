@@ -11,9 +11,10 @@
   --cs-lime: var(--color-lime);
   --cs-arrow-bg: var(--color-accent-soft);
   --cs-arrow-fg: var(--color-heading);
-  --cs-cta-bg: var(--color-surface);
-  --cs-cta-text: var(--color-heading);
-  --cs-cta-hover: var(--color-accent-soft);
+  /* Arrow CTA: tokens.css §3b (--cta-arrow-* before / after hover) */
+  --cs-cta-bg: var(--cta-arrow-bg);
+  --cs-cta-text: var(--cta-arrow-fg);
+  --cs-cta-hover: var(--cta-arrow-bg-hover);
   --cs-ink-deep: var(--color-inverse);
   --cs-glow: color-mix(in srgb, var(--color-brand) 16%, transparent);
   --cs-radius: 13px;

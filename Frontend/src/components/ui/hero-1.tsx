@@ -61,7 +61,7 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="rounded-full bg-brand px-8 text-[15px] font-semibold text-brand-contrast shadow-none transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-lime hover:text-on-lime hover:shadow-none active:translate-y-0 active:shadow-none"
+              className="rrCta rounded-full px-8 text-[15px] font-semibold shadow-none transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-none active:translate-y-0 active:shadow-none"
             >
               <a href="#pricing-plans" className="group">
                 Explore Plans

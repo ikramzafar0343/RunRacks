@@ -5,6 +5,7 @@
 "use client";
 
 import { useState } from "react";
+import { useCart } from "@/features/cart/lib/CartProvider";
 import { VpsPlanCard } from "@/features/vps-pricing/components/VpsPlanCard";
 import { VpsPlanRow } from "@/features/vps-pricing/components/VpsPlanRow";
 import type {
@@ -33,12 +34,23 @@ export function VpsPlanList({
   checkoutConfigured,
   layout = "rows",
 }: VpsPlanListProps) {
+  const { seedFromPlan } = useCart();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(() =>
     defaultSelectedId(plans),
   );
   const plansKey = plans.map((plan) => plan.id).join("|");
   const [boundPlansKey, setBoundPlansKey] = useState(plansKey);
+
+  function addToCart(planId: string) {
+    const plan = plans.find((entry) => entry.id === planId);
+    seedFromPlan({
+      planId,
+      locationId: locationId || "us",
+      term,
+      ...(plan ? { family: plan.family } : {}),
+    });
+  }
 
   if (plansKey !== boundPlansKey) {
     setBoundPlansKey(plansKey);
@@ -74,6 +86,7 @@ export function VpsPlanList({
                 checkoutConfigured={checkoutConfigured}
                 selected={plan.id === activeSelectedId}
                 onSelect={setSelectedId}
+                onAddToCart={addToCart}
               />
             </li>
           ))}
@@ -91,6 +104,7 @@ export function VpsPlanList({
                   setExpandedId((prev) => (prev === plan.id ? null : plan.id))
                 }
                 checkoutConfigured={checkoutConfigured}
+                onAddToCart={addToCart}
               />
             </li>
           ))}

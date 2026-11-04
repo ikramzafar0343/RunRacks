@@ -8,9 +8,10 @@
   --hero-fg: var(--color-heading);
   --hero-copy: var(--color-body);
   --hero-muted: var(--color-muted);
-  --hero-cta-text: var(--color-brand-contrast);
-  --hero-cta-surface: var(--color-brand);
-  --hero-cta-hover: var(--color-brand-hover);
+  /* CTA colors: tokens.css §3b (--cta-* before / after hover) */
+  --hero-cta-text: var(--cta-fg);
+  --hero-cta-surface: var(--cta-bg);
+  --hero-cta-hover: var(--cta-bg-hover);
   --hero-card-radius: 22px;
   --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -135,6 +136,7 @@
 }
 
 .homeHeroCta {
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
   background: var(--hero-cta-surface);
   color: var(--hero-cta-text);
 }
@@ -146,8 +148,9 @@
 }
 
 .homeHeroCta:is(:hover, :active) {
-  background: var(--color-lime);
-  color: var(--color-on-lime);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
   transform: translateY(-2px);
   box-shadow: none;
 }

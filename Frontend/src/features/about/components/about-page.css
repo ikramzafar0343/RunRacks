@@ -117,15 +117,18 @@
 }
 
 .aboutBtnPrimary {
-  background: var(--color-brand);
-  color: var(--color-brand-contrast);
-  border: 1px solid var(--color-brand);
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  border: 1px solid var(--cta-bg);
 }
 
 .aboutBtnPrimary:hover,
 .aboutBtnPrimary:focus-visible {
-  background: var(--color-brand-hover);
-  border-color: var(--color-brand-hover);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  border-color: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
   transform: translateY(-2px);
   outline: none;
 }
@@ -149,20 +152,18 @@
 }
 
 .aboutBtnOnDark {
-  background: var(--color-lime);
-  color: var(--color-on-lime);
-  border-color: var(--color-lime);
+  /* BEFORE hover — lime resting on dark panels */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
+  border-color: var(--cta-bg-hover);
 }
 
 .aboutBtnOnDark:hover,
 .aboutBtnOnDark:focus-visible {
-  background: color-mix(
-    in srgb,
-    var(--color-lime) 88%,
-    var(--color-on-inverse)
-  );
-  border-color: var(--color-lime);
-  color: var(--color-on-lime);
+  /* AFTER hover — brand fill */
+  background: var(--cta-bg);
+  border-color: var(--cta-bg);
+  color: var(--cta-fg);
 }
 
 .aboutBtnGhostOnDark {

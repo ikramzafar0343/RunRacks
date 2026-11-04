@@ -3,6 +3,8 @@
  */
 "use client";
 
+import { useRouter } from "next/navigation";
+import type { Route } from "next";
 import { useMemo, useState } from "react";
 import {
   HiCircleStack,
@@ -13,6 +15,7 @@ import {
   HiServer,
   HiSignal,
 } from "react-icons/hi2";
+import { useCart } from "@/features/cart/lib/CartProvider";
 import { CustomizePriceCard } from "@/features/customize/components/CustomizePriceCard";
 import { CustomizeRegionSelect } from "@/features/customize/components/CustomizeRegionSelect";
 import { CustomizeSlider } from "@/features/customize/components/CustomizeSlider";
@@ -45,6 +48,8 @@ export function CustomizeConfigurator({
   plansHref,
   lockedFamily,
 }: CustomizeConfiguratorProps) {
+  const router = useRouter();
+  const { seedFromCustomize } = useCart();
   const d = CUSTOMIZE.defaults;
   const [family, setFamily] = useState<VpsFamily>(lockedFamily ?? d.family);
   const [regionId, setRegionId] = useState(defaultRegionId);
@@ -98,6 +103,27 @@ export function CustomizeConfigurator({
 
   function handleRamChange(next: number) {
     setRamGb(Math.max(next, ramFloor));
+  }
+
+  function handleChoosePlan() {
+    seedFromCustomize({
+      locationId: regionId || defaultRegionId || "us",
+      term,
+      custom: {
+        family,
+        label: familyLabel,
+        vcpu,
+        ramGb,
+        nvmeGb,
+        bandwidthTb,
+        dedicatedIpv4,
+        automatedBackups,
+        monthlyMinor: price.monthlyMinor,
+        termTotalMinor: price.termTotalMinor,
+        currency: price.currency,
+      },
+    });
+    router.push("/cart" as Route);
   }
 
   return (
@@ -267,6 +293,7 @@ export function CustomizeConfigurator({
         dedicatedIpv4={dedicatedIpv4}
         automatedBackups={automatedBackups}
         price={price}
+        onChoosePlan={handleChoosePlan}
         {...(plansHref ? { plansHref } : {})}
       />
     </div>

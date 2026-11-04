@@ -145,19 +145,23 @@ html.dark .processSection {
   min-height: 44px;
   padding-inline: 20px;
   border-radius: 999px;
-  background: var(--color-heading);
-  color: var(--process-ink-text);
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
   font-size: 13.5px;
   font-weight: 500;
   text-decoration: none;
   transition:
     background-color 0.25s,
+    color 0.25s,
     transform 0.25s,
     box-shadow 0.25s;
 }
 
 .processCta:hover {
-  background: var(--process-ink-hover);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
   transform: translateY(-2px);
   box-shadow: none;
 }

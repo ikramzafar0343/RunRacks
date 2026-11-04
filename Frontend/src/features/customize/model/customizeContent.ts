@@ -77,7 +77,7 @@ export const CUSTOMIZE = {
   summary: {
     monthlyLabel: "Monthly equivalent",
     termLabel: "Term total",
-    cta: { label: "View plans", href: "/pricing" as Route },
+    cta: { label: "Choose plan", href: "/pricing" as Route },
     secondary: {
       label: "Compare catalog plans",
       href: "/pricing" as Route,

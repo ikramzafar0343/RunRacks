@@ -8,14 +8,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand text-brand-contrast hover:bg-brand-hover shadow-sm",
+        default:
+          "bg-[var(--cta-bg)] text-[var(--cta-fg)] hover:bg-[var(--cta-bg-hover)] hover:text-[var(--cta-fg-hover)] shadow-none",
         secondary:
           "bg-surface text-heading border border-border hover:bg-accent-soft hover:border-brand/40 shadow-xs",
         outline:
           "border border-border bg-transparent text-heading hover:bg-accent-soft hover:text-heading",
         ghost: "hover:bg-accent-soft hover:text-heading text-body",
         link: "text-brand underline-offset-4 hover:underline",
-        lime: "bg-lime text-on-lime font-semibold hover:brightness-105 shadow-sm",
+        lime: "bg-[var(--cta-bg-hover)] text-[var(--cta-fg-hover)] font-semibold hover:brightness-105 shadow-none",
       },
       size: {
         default: "h-10 px-4 py-2",

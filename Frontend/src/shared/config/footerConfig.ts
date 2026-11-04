@@ -61,17 +61,18 @@ export const FOOTER = {
       title: "Hosting products",
       links: [
         { label: "Linux VPS", href: "/products/vps" as Route },
-        { label: "VPS in USA", href: "/products/vps-usa" as Route },
-        { label: "Windows in USA", href: "/products/windows-usa" as Route },
+        // Hidden for now — restore with Resources USA links when needed:
+        // { label: "VPS in USA", href: "/products/vps-usa" as Route },
+        // { label: "Windows in USA", href: "/products/windows-usa" as Route },
         { label: "Windows VPS", href: "/products/windows" as Route },
         {
           label: "Windows Admin RDP",
           href: "/products/admin-rdp" as Route,
         },
-        {
-          label: "Admin RDP in USA",
-          href: "/products/admin-rdp-usa" as Route,
-        },
+        // {
+        //   label: "Admin RDP in USA",
+        //   href: "/products/admin-rdp-usa" as Route,
+        // },
         { label: "Compare plans", href: "/pricing" as Route },
         { label: "RunRacks AI", href: "/ai" as Route },
         { label: "Customize", href: "/customize" as Route },
@@ -103,6 +104,7 @@ export const FOOTER = {
   legal: [
     { label: "Privacy Policy", href: "/privacy" as Route },
     { label: "Terms & Conditions", href: "/terms" as Route },
+    { label: "Refund Policy", href: "/refund" as Route },
   ] satisfies readonly FooterLink[],
   copyright: "© 2026. RunRacks.",
 } as const;

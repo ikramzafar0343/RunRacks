@@ -1,0 +1,60 @@
+/*
+ * Shared CTA hover contract — colors come from tokens.css (§3b).
+ * Use .rrCta for solid pills/rects; .rrCtaArrow + .rrCtaArrowTile for label+tile.
+ */
+
+.rrCta {
+  /* BEFORE hover */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  transition:
+    background var(--motion-fast, 150ms) var(--ease-standard, ease),
+    color var(--motion-fast, 150ms) var(--ease-standard, ease),
+    border-color var(--motion-fast, 150ms) var(--ease-standard, ease),
+    transform var(--motion-fast, 150ms) var(--ease-standard, ease);
+}
+
+.rrCta:is(:hover, :active) {
+  /* AFTER hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
+}
+
+.rrCtaArrow {
+  /* BEFORE hover */
+  background: var(--cta-arrow-bg);
+  color: var(--cta-arrow-fg);
+  transition:
+    background var(--motion-fast, 150ms) var(--ease-standard, ease),
+    color var(--motion-fast, 150ms) var(--ease-standard, ease);
+}
+
+.rrCtaArrowTile {
+  /* BEFORE hover — lime tile */
+  background: var(--cta-arrow-tile-bg);
+  color: var(--cta-arrow-tile-fg);
+  transition:
+    background var(--motion-fast, 150ms) var(--ease-standard, ease),
+    color var(--motion-fast, 150ms) var(--ease-standard, ease),
+    transform var(--motion-fast, 150ms) var(--ease-standard, ease);
+}
+
+.rrCtaArrow:is(:hover, :active) {
+  /* AFTER hover — lime fill */
+  background: var(--cta-arrow-bg-hover);
+  color: var(--cta-arrow-fg-hover);
+}
+
+.rrCtaArrow:is(:hover, :active) .rrCtaArrowTile {
+  /* AFTER hover — dark tile + lime icon */
+  background: var(--cta-arrow-tile-bg-hover);
+  color: var(--cta-arrow-tile-fg-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rrCta,
+  .rrCtaArrow,
+  .rrCtaArrowTile {
+    transition: none;
+  }
+}

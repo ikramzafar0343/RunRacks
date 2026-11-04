@@ -195,14 +195,16 @@
 }
 
 .phBtn--primary {
-  background: var(--ph-primary);
-  color: var(--color-brand-contrast);
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
 }
 
 .phBtn--primary:hover,
 .phBtn--primary:active {
-  background: var(--color-lime);
-  color: var(--color-on-lime);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
 }
 
 .phBtn--ghost {

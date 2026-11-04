@@ -7,20 +7,13 @@
   --sc-band: transparent;
   --sc-ink: var(--color-heading);
   --sc-muted: var(--color-body);
+  /* BEFORE hover: dark fill + lime tile · AFTER: tokens --cta-arrow-*-hover */
   --sc-btn: var(--color-inverse);
-  --sc-btn-hover: color-mix(
-    in srgb,
-    var(--color-inverse) 82%,
-    var(--color-brand)
-  );
+  --sc-btn-hover: var(--cta-arrow-bg-hover);
   --sc-btn-fg: var(--color-on-inverse);
-  --sc-lime: var(--color-lime);
-  --sc-lime-hover: color-mix(
-    in srgb,
-    var(--color-lime) 88%,
-    var(--color-on-inverse)
-  );
-  --sc-on-lime: var(--color-on-lime);
+  --sc-lime: var(--cta-arrow-tile-bg);
+  --sc-lime-hover: var(--cta-arrow-tile-bg-hover);
+  --sc-on-lime: var(--cta-arrow-tile-fg);
   --sc-ease: var(--ease-standard);
   --sc-media-bg: var(--color-accent-soft);
   --sc-card-border: var(--color-border);
@@ -120,13 +113,16 @@
 }
 
 .supportCtaBtn:hover {
+  /* AFTER hover — tokens.css --cta-arrow-*-hover */
   transform: translateY(-1px) translateZ(0);
   background-color: var(--sc-btn-hover);
+  color: var(--cta-arrow-fg-hover);
   box-shadow: none;
 }
 
 .supportCtaBtn:hover .supportCtaBtnIcon {
   background-color: var(--sc-lime-hover);
+  color: var(--cta-arrow-tile-fg-hover);
 }
 
 .supportCtaBtn:active {

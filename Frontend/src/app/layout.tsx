@@ -2,6 +2,7 @@
  * Root layout — wraps every page in the App Router.
  */
 import type { Metadata } from "next";
+import { CartProvider } from "@/features/cart/lib/CartProvider";
 import { SiteFooter } from "@/shared/ui/SiteFooter";
 import { SiteFooterGate } from "@/shared/ui/SiteFooterGate";
 import { SiteHeader } from "@/shared/ui/SiteHeader";
@@ -42,12 +43,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full flex flex-col font-sans text-body">
-        <NavigationScrollReset />
-        <SiteHeader />
-        {children}
-        <SiteFooterGate>
-          <SiteFooter />
-        </SiteFooterGate>
+        <CartProvider>
+          <NavigationScrollReset />
+          <SiteHeader />
+          {children}
+          <SiteFooterGate>
+            <SiteFooter />
+          </SiteFooterGate>
+        </CartProvider>
       </body>
     </html>
   );

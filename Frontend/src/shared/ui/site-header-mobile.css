@@ -61,8 +61,18 @@
   justify-content: center;
   min-height: 2.75rem;
   border-radius: 999px;
-  background: var(--color-brand);
-  color: var(--color-brand-contrast);
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
   font-weight: 600;
   text-decoration: none;
+  transition:
+    background 200ms ease,
+    color 200ms ease;
+}
+
+.siteHeaderMobileAi:hover {
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
 }

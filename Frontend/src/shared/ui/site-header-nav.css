@@ -103,13 +103,15 @@
   min-height: 2.4rem;
   padding: 0 0.95rem;
   border-radius: 999px;
-  background: var(--color-brand);
-  color: var(--color-brand-contrast);
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
   transition:
     background 200ms var(--header-ease),
+    color 200ms var(--header-ease),
     min-height var(--header-duration) var(--header-ease),
     padding var(--header-duration) var(--header-ease);
 }
@@ -127,7 +129,9 @@
 }
 
 .siteHeaderAi:hover {
-  background: var(--color-brand-hover);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
 }
 
 .siteHeaderAi:focus-visible {
@@ -165,6 +169,26 @@
 .siteHeaderIconBtn:focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 2px;
+}
+
+.siteHeaderCartBtn {
+  position: relative;
+}
+
+.siteHeaderCartBadge {
+  position: absolute;
+  top: -0.15rem;
+  right: -0.15rem;
+  min-width: 1.05rem;
+  height: 1.05rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: var(--color-brand-contrast);
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.05rem;
+  text-align: center;
 }
 
 .siteHeaderMenuToggle {

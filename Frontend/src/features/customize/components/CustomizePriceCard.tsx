@@ -4,6 +4,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import type { Route } from "next";
 import { HiCheck } from "react-icons/hi2";
 import {
   familyIcon,
@@ -33,8 +35,10 @@ export type CustomizePriceCardProps = {
   dedicatedIpv4: boolean;
   automatedBackups: boolean;
   price: CustomizePriceResult;
-  /** Override summary CTAs (e.g. `#vps-plans` when embedded on the VPS page). */
+  /** Override secondary compare link (e.g. `#vps-plans` when embedded). */
   plansHref?: string;
+  /** Add configured build to cart (preferred over linking to Pricing). */
+  onChoosePlan?: () => void;
 };
 
 export function CustomizePriceCard({
@@ -50,6 +54,7 @@ export function CustomizePriceCard({
   automatedBackups,
   price,
   plansHref,
+  onChoosePlan,
 }: CustomizePriceCardProps) {
   const features = [
     `${vcpu} vCPU`,
@@ -59,8 +64,7 @@ export function CustomizePriceCard({
     ...(dedicatedIpv4 ? [CUSTOMIZE.addons.dedicatedIpv4.label] : []),
     ...(automatedBackups ? [CUSTOMIZE.addons.automatedBackups.label] : []),
   ];
-  const primaryHref = plansHref ?? CUSTOMIZE.summary.cta.href;
-  const secondaryHref = plansHref ?? CUSTOMIZE.summary.secondary.href;
+  const secondaryHref = (plansHref ?? CUSTOMIZE.summary.secondary.href) as Route;
 
   return (
     <article className="czPriceCard" aria-live="polite">
@@ -102,9 +106,22 @@ export function CustomizePriceCard({
         </p>
       </div>
 
-      <a className="czCtaPrimary" href={primaryHref}>
-        {CUSTOMIZE.summary.cta.label}
-      </a>
+      {onChoosePlan ? (
+        <button
+          type="button"
+          className="czCtaPrimary"
+          onClick={onChoosePlan}
+        >
+          {CUSTOMIZE.summary.cta.label}
+        </button>
+      ) : (
+        <Link
+          className="czCtaPrimary"
+          href={(plansHref ?? CUSTOMIZE.summary.cta.href) as Route}
+        >
+          {CUSTOMIZE.summary.cta.label}
+        </Link>
+      )}
 
       <ul className="czPriceCardFeatures">
         {features.map((item) => (
@@ -117,9 +134,9 @@ export function CustomizePriceCard({
 
       <p className="czNotice">{price.notice}</p>
 
-      <a className="czCtaSecondary" href={secondaryHref}>
+      <Link className="czCtaSecondary" href={secondaryHref}>
         {CUSTOMIZE.summary.secondary.label}
-      </a>
+      </Link>
     </article>
   );
 }

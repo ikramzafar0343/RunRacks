@@ -29,6 +29,8 @@ type VpsPlanCardProps = {
   checkoutConfigured: boolean;
   selected: boolean;
   onSelect: (planId: string) => void;
+  /** Seeds the client configure cart (payment still not live). */
+  onAddToCart?: (planId: string) => void;
 };
 
 export function VpsPlanCard({
@@ -38,6 +40,7 @@ export function VpsPlanCard({
   checkoutConfigured,
   selected,
   onSelect,
+  onAddToCart,
 }: VpsPlanCardProps) {
   const price = selectPlanPrice(plan, term, locationId);
   const displayMinor =
@@ -123,11 +126,14 @@ export function VpsPlanCard({
         className="vpsPlanTileCta"
         aria-pressed={selected}
         title={
-          canCheckout ? "Choose plan" : "Select plan · checkout not configured"
+          canCheckout
+            ? "Choose plan"
+            : "Add to configure cart · checkout payment not configured"
         }
         onClick={(event) => {
           event.stopPropagation();
           onSelect(plan.id);
+          onAddToCart?.(plan.id);
         }}
       >
         Choose plan

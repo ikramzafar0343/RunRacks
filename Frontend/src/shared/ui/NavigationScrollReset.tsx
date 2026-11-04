@@ -1,9 +1,10 @@
 "use client";
 
 /**
- * Site-wide: logo/nav/in-app links and route changes land at the top of the page.
+ * Site-wide: logo/nav/in-app path changes land at the top of the page.
+ * Query-only updates (pricing location/term filters) keep scroll position.
  */
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import {
   scrollToTopPinned,
@@ -12,8 +13,6 @@ import {
 
 function NavigationScrollResetEffects() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const search = searchParams?.toString() ?? "";
 
   useEffect(() => {
     if ("scrollRestoration" in history) {
@@ -25,7 +24,7 @@ function NavigationScrollResetEffects() {
     if (typeof window === "undefined") return;
     if (window.location.hash) return;
     scrollToTopPinned();
-  }, [pathname, search]);
+  }, [pathname]);
 
   useEffect(() => {
     function onDocumentClick(event: MouseEvent) {

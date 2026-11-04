@@ -185,9 +185,10 @@
   min-height: 34px;
   margin-top: 0;
   border-radius: 8px;
-  border: 1.5px solid var(--color-brand);
+  /* BEFORE hover — outline brand (tokens --cta-bg / --cta-fg) */
+  border: 1.5px solid var(--cta-bg);
   background: transparent;
-  color: var(--color-brand);
+  color: var(--cta-bg);
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
@@ -198,9 +199,10 @@
 }
 
 .vpsPlanTileCta:hover:not(:disabled) {
-  background: var(--color-lime);
-  border-color: var(--color-lime);
-  color: var(--color-on-lime);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  border-color: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
 }
 
 .vpsPlanTileCta:disabled {
@@ -209,17 +211,16 @@
 }
 
 .vpsPlanTile[data-featured="true"] .vpsPlanTileCta {
+  /* BEFORE hover on featured — lime resting */
   border-color: transparent;
-  background: var(--color-lime);
-  color: var(--color-on-lime);
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
 }
 
 .vpsPlanTile[data-featured="true"] .vpsPlanTileCta:hover:not(:disabled) {
-  background: color-mix(
-    in srgb,
-    var(--color-lime) 88%,
-    var(--color-on-inverse)
-  );
+  /* AFTER hover on featured — brand fill */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
 }
 
 .vpsPlanTileBilling {

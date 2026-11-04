@@ -1,5 +1,5 @@
 /**
- * Single VPS plan row: summary, expand, price, disabled cart CTA.
+ * Single VPS plan row: summary, expand, price, cart CTA (configure cart).
  * Client boundary is VpsPlanList (parent).
  */
 import { HiMinus, HiPlus, HiOutlineShoppingBag } from "react-icons/hi2";
@@ -21,6 +21,7 @@ type VpsPlanRowProps = {
   expanded: boolean;
   onToggle: () => void;
   checkoutConfigured: boolean;
+  onAddToCart?: (planId: string) => void;
 };
 
 export function VpsPlanRow({
@@ -30,6 +31,7 @@ export function VpsPlanRow({
   expanded,
   onToggle,
   checkoutConfigured,
+  onAddToCart,
 }: VpsPlanRowProps) {
   const price = selectPlanPrice(plan, term, locationId);
   const panelId = `vps-details-${plan.id}`;
@@ -93,8 +95,12 @@ export function VpsPlanRow({
         <button
           type="button"
           className="vpsCartButton"
-          disabled={!checkoutConfigured || !plan.purchasable}
-          title={checkoutConfigured ? "Add to cart" : "Checkout not configured"}
+          title={
+            checkoutConfigured && plan.purchasable
+              ? "Add to cart"
+              : "Add to configure cart · checkout payment not configured"
+          }
+          onClick={() => onAddToCart?.(plan.id)}
         >
           <HiOutlineShoppingBag size={15} aria-hidden />
           Add to cart

@@ -22,7 +22,7 @@ export function StaticMarketingPage({
       </p>
       <Link
         href="/"
-        className="mt-8 inline-flex w-fit items-center justify-center rounded-[11px] bg-brand px-5 py-3 text-sm font-semibold text-brand-contrast transition-colors hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+        className="rrCta mt-8 inline-flex w-fit items-center justify-center rounded-[11px] px-5 py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
       >
         Back to home
       </Link>

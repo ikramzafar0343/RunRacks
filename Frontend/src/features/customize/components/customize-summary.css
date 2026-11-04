@@ -200,15 +200,23 @@
   padding: 0.55rem 1rem;
   border-radius: 0.5rem;
   border: 1px solid transparent;
-  background: var(--color-brand);
-  color: var(--color-brand-contrast);
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  font: inherit;
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
 }
 
 .czCtaPrimary:hover {
-  background: var(--color-brand-hover);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
 }
 
 .czCtaSecondary {

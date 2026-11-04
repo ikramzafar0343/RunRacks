@@ -65,16 +65,21 @@
   margin-top: auto;
   padding: 0.55rem 1rem;
   border-radius: 0.5rem;
-  background: var(--ph-accent);
-  color: var(--color-on-lime);
+  /* BEFORE hover — lime resting on dark cards (tokens --cta-*-hover pair) */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
   font-size: 0.8125rem;
   font-weight: 700;
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .phWorkloadCta:hover {
-  background: color-mix(in srgb, var(--ph-accent) 85%, var(--color-on-lime));
+  /* AFTER hover — brand fill from tokens --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
 }
 
 .phWorkloadCta:focus-visible {

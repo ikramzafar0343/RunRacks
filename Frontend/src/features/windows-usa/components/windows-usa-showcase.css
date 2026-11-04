@@ -182,19 +182,23 @@ html.dark .winShowcase {
   margin-top: 23px;
   padding: 0 25px;
   border-radius: 999px;
-  background: var(--ws-lime);
-  color: var(--ws-on-lime);
+  /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
+  background: var(--cta-bg);
+  color: var(--cta-fg);
   font-weight: 600;
   font-size: 13px;
   text-decoration: none;
   transition:
     background 0.2s,
+    color 0.2s,
     transform 0.2s,
     box-shadow 0.2s;
 }
 
 .winShowcaseCta:hover {
-  background: color-mix(in srgb, var(--ws-lime) 88%, #fff);
+  /* AFTER hover — tokens.css --cta-*-hover */
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
   transform: translateY(-2px);
   box-shadow: none;
 }

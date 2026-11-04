@@ -49,6 +49,28 @@
   --color-selected: #2c6a52;
 
   /* ---------------------------------------------------------------------------
+   * 3b. CTA BUTTONS — site-wide hover contract
+   *    Edit these → solid + arrow CTAs update everywhere (via cta-buttons.css).
+   * --------------------------------------------------------------------------- */
+  /* Solid primary CTA — BEFORE hover (resting) */
+  --cta-bg: var(--color-brand);
+  --cta-fg: var(--color-brand-contrast);
+  /* Solid primary CTA — AFTER hover */
+  --cta-bg-hover: var(--color-lime);
+  --cta-fg-hover: var(--color-on-lime);
+
+  /* Arrow / tile CTA — BEFORE hover (label + lime tile) */
+  --cta-arrow-bg: transparent;
+  --cta-arrow-fg: var(--color-heading);
+  --cta-arrow-tile-bg: var(--color-lime);
+  --cta-arrow-tile-fg: var(--color-on-lime);
+  /* Arrow / tile CTA — AFTER hover (lime pill + dark tile) */
+  --cta-arrow-bg-hover: var(--color-lime);
+  --cta-arrow-fg-hover: var(--color-on-lime);
+  --cta-arrow-tile-bg-hover: var(--color-on-lime);
+  --cta-arrow-tile-fg-hover: var(--color-lime);
+
+  /* ---------------------------------------------------------------------------
    * 4. BORDERS / STATUS
    * --------------------------------------------------------------------------- */
   --color-border: #d7e0d8;

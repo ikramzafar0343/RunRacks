@@ -59,5 +59,13 @@ export function shouldScrollToTopForClick(
   // Keep intentional section landing (e.g. /pricing#pricing-plans).
   if (url.hash) return false;
 
+  // Same path, query-only change (filters) — stay on the current section.
+  if (
+    url.pathname === window.location.pathname &&
+    url.search !== window.location.search
+  ) {
+    return false;
+  }
+
   return true;
 }

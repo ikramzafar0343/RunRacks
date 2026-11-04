@@ -23,6 +23,7 @@ import {
 } from "react-icons/si";
 import { HiCheck } from "react-icons/hi2";
 import type { WorkloadItem } from "@/features/product-hosting/model/productHostingContent";
+import { useWorkloadAutoRotate } from "@/features/product-hosting/components/useWorkloadAutoRotate";
 import { useWorkloadMobileReveal } from "@/features/product-hosting/components/useWorkloadMobileReveal";
 
 type PhWorkloadsProps = {
@@ -44,8 +45,10 @@ const TOOL_ICONS: Record<string, { label: string; Icon: typeof SiDocker }> = {
 export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
   const baseId = useId();
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
+  const [paused, setPaused] = useState(false);
   const activeIdRef = useRef(activeId);
   const rowRef = useRef<HTMLDivElement>(null);
+  const itemIds = items.map((w) => w.id);
 
   useEffect(() => {
     activeIdRef.current = activeId;
@@ -66,6 +69,14 @@ export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
     activeIdRef,
     activate,
     enabled: items.length > 0,
+  });
+
+  useWorkloadAutoRotate({
+    itemIds,
+    activeId,
+    activate,
+    paused,
+    enabled: items.length > 1,
   });
 
   function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
@@ -112,7 +123,16 @@ export function PhWorkloads({ heading, intro, items }: PhWorkloadsProps) {
           role="tablist"
           aria-label="Workload types"
           data-active-index={String(activeIndex)}
+          data-paused={paused ? "true" : "false"}
           onKeyDown={onKeyDown}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+              setPaused(false);
+            }
+          }}
         >
           {items.map((w, i) => {
             const active = w.id === activeId;
