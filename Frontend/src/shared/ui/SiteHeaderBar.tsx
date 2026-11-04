@@ -20,7 +20,6 @@ import {
   type HeaderActions,
   type PrimaryNavItem,
 } from "@/shared/config/navConfig";
-import { useCart } from "@/features/cart/lib/CartProvider";
 import { subscribeScrollFrame } from "@/shared/lib/scrollFrame";
 import { scrollToTopPinned } from "@/shared/lib/scrollToTop";
 import {
@@ -46,11 +45,16 @@ function isBlogNavActive(pathname: string, href: string): boolean {
 type SiteHeaderBarProps = {
   primaryNav: readonly PrimaryNavItem[];
   headerActions: HeaderActions;
+  /** Wired from features/cart — shared must not import the cart feature. */
+  cartItemCount?: number;
+  cartHydrated?: boolean;
 };
 
 export function SiteHeaderBar({
   primaryNav,
   headerActions,
+  cartItemCount = 0,
+  cartHydrated = false,
 }: SiteHeaderBarProps) {
   const pathname = usePathname() ?? "";
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -59,7 +63,7 @@ export function SiteHeaderBar({
   const [isPill, setIsPill] = useState(false);
   const rootRef = useRef<HTMLElement>(null);
   const menuId = useId();
-  const { itemCount, hydrated } = useCart();
+  const showCartBadge = cartHydrated && cartItemCount > 0;
 
   useEffect(() => {
     let active = false;
@@ -215,16 +219,16 @@ export function SiteHeaderBar({
             href={headerActions.cart.href}
             className="siteHeaderIconBtn siteHeaderCartBtn"
             aria-label={
-              hydrated && itemCount > 0
-                ? `${headerActions.cart.label}, ${itemCount} item`
+              showCartBadge
+                ? `${headerActions.cart.label}, ${cartItemCount} item`
                 : headerActions.cart.label
             }
             onClick={scrollToTopPinned}
           >
             <HiOutlineShoppingBag size={18} aria-hidden="true" />
-            {hydrated && itemCount > 0 ? (
+            {showCartBadge ? (
               <span className="siteHeaderCartBadge" aria-hidden>
-                {itemCount}
+                {cartItemCount}
               </span>
             ) : null}
           </Link>

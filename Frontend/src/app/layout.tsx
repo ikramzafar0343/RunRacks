@@ -3,9 +3,9 @@
  */
 import type { Metadata } from "next";
 import { CartProvider } from "@/features/cart/lib/CartProvider";
+import { SiteHeaderWithCart } from "@/features/cart/components/SiteHeaderWithCart";
 import { SiteFooter } from "@/shared/ui/SiteFooter";
 import { SiteFooterGate } from "@/shared/ui/SiteFooterGate";
-import { SiteHeader } from "@/shared/ui/SiteHeader";
 import { NavigationScrollReset } from "@/shared/ui/NavigationScrollReset";
 import { nourd, nourdHeading } from "@/styles/fonts";
 import "@/shared/styles/dense-section-spacing.css";
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col font-sans text-body">
         <CartProvider>
           <NavigationScrollReset />
-          <SiteHeader />
+          <SiteHeaderWithCart />
           {children}
           <SiteFooterGate>
             <SiteFooter />
