@@ -71,10 +71,14 @@ export function WhyChooseUs({
           </div>
 
           <div className="rrWhyFeats">
-            {content.features.map((feature) => {
+            {content.features.map((feature, index) => {
               const Icon = ICONS[feature.icon];
+              const theme = index % 2 === 0 ? "lime" : "ink";
               return (
-                <article key={feature.id} className="rrWhyFeat">
+                <article
+                  key={feature.id}
+                  className={`rrWhyFeat rrWhyFeat--${theme}`}
+                >
                   <div className="rrWhyFeatIcon" aria-hidden>
                     <Icon size={20} strokeWidth={2} />
                   </div>

@@ -154,20 +154,46 @@ html.dark .rrWhy {
 }
 
 .rrWhyFeat {
+  --rr-why-feat-bg: var(--color-lime);
+  --rr-why-feat-fg: var(--color-on-lime);
+  --rr-why-feat-muted: color-mix(in srgb, var(--color-on-lime) 78%, transparent);
+  --rr-why-feat-icon-bg: #20372f;
+  --rr-why-feat-icon-fg: #f3f6f0;
+  --rr-why-feat-hover: color-mix(in srgb, var(--color-lime) 88%, #fff);
+
   display: grid;
   gap: 0.65rem;
   align-content: start;
   padding: 1.25rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid transparent;
   border-radius: 1rem;
-  background: var(--color-surface);
+  background: var(--rr-why-feat-bg);
+  color: var(--rr-why-feat-fg);
   transition:
-    border-color var(--motion-fast, 150ms) ease,
+    background var(--motion-fast, 150ms) ease,
     transform var(--motion-fast, 150ms) ease;
 }
 
+.rrWhyFeat--ink {
+  --rr-why-feat-bg: #20372f;
+  --rr-why-feat-fg: #f3f6f0;
+  --rr-why-feat-muted: color-mix(in srgb, #f3f6f0 78%, transparent);
+  --rr-why-feat-icon-bg: var(--color-lime);
+  --rr-why-feat-icon-fg: var(--color-on-lime);
+  --rr-why-feat-hover: #2a453b;
+}
+
+html.dark .rrWhyFeat--ink {
+  --rr-why-feat-bg: #1a2e26;
+  --rr-why-feat-hover: #243a31;
+}
+
+html.dark .rrWhyFeat--lime {
+  --rr-why-feat-hover: color-mix(in srgb, var(--color-lime) 82%, #000);
+}
+
 .rrWhyFeat:hover {
-  border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-border));
+  background: var(--rr-why-feat-hover);
   transform: translateY(-2px);
 }
 
@@ -177,8 +203,8 @@ html.dark .rrWhy {
   display: grid;
   place-items: center;
   border-radius: 0.7rem;
-  background: var(--rr-why-cta);
-  color: var(--rr-why-on-cta);
+  background: var(--rr-why-feat-icon-bg);
+  color: var(--rr-why-feat-icon-fg);
 }
 
 .rrWhyFeatTitle {
@@ -187,12 +213,12 @@ html.dark .rrWhy {
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.25;
-  color: var(--color-heading);
+  color: var(--rr-why-feat-fg);
 }
 
 .rrWhyFeatBody {
   margin: 0;
-  color: var(--color-body);
+  color: var(--rr-why-feat-muted);
   font-size: 0.8125rem;
   line-height: 1.6;
 }

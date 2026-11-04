@@ -16,6 +16,7 @@ const listeners = new Set<Listener>();
 
 let cacheRaw: string | null | undefined;
 let cacheLines: CartLine[] = [];
+const EMPTY_LINES: CartLine[] = [];
 
 function notify() {
   cacheRaw = undefined;
@@ -23,11 +24,12 @@ function notify() {
 }
 
 function readCachedLines(): CartLine[] {
-  if (typeof window === "undefined") return [];
+  if (typeof window === "undefined") return EMPTY_LINES;
   const raw = window.localStorage.getItem(CART_STORAGE_KEY);
   if (raw === cacheRaw) return cacheLines;
   cacheRaw = raw;
-  cacheLines = readCartState().lines;
+  const next = readCartState().lines;
+  cacheLines = next.length === 0 ? EMPTY_LINES : next;
   return cacheLines;
 }
 
@@ -36,7 +38,7 @@ export function getCartSnapshot(): CartLine[] {
 }
 
 export function getCartServerSnapshot(): CartLine[] {
-  return [];
+  return EMPTY_LINES;
 }
 
 export function subscribeCart(onStoreChange: Listener): () => void {

@@ -7,7 +7,8 @@
 
   position: relative;
   isolation: isolate;
-  padding-top: clamp(4.25rem, 8vw, 5.75rem);
+  /* Clear fixed site header (~4rem) with breathing room */
+  padding-top: clamp(6.75rem, 11vw, 8.5rem);
   padding-bottom: clamp(1.25rem, 3vw, 2rem);
   padding-inline: var(--ardp-gutter, clamp(1.25rem, 4vw, 3.5rem));
   color: var(--color-heading);

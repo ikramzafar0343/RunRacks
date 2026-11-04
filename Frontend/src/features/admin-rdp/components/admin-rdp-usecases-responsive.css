@@ -1,4 +1,4 @@
-/* Admin RDP use cases — motion + breakpoints */
+/* Admin RDP use cases — motion, media-only, breakpoints */
 
 @keyframes ardpUseCasesFade {
   from {
@@ -11,19 +11,89 @@
   }
 }
 
+/* Frame sized to the clip (height-driven); no zoom/side crop */
+.ardpUseCasesDetail[data-media-only="true"] {
+  align-self: start;
+  justify-self: center;
+  box-sizing: border-box;
+  width: auto;
+  max-width: 100%;
+  height: min(40rem, 85vh);
+  min-height: 0;
+  aspect-ratio: var(--ardp-video-aspect, 9 / 16);
+  background: var(--color-heading);
+}
+
+.ardpUseCasesMediaFill {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  max-height: none;
+  width: auto;
+  height: auto;
+  background: transparent;
+}
+
+.ardpUseCasesDetail[data-media-only="true"] .ardpUseCasesVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+}
+
+.ardpUseCasesCtaOverlay {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1;
+  margin: 0;
+  padding: 0.7rem 1.05rem;
+  border-radius: 0.75rem;
+  background: var(--color-surface);
+  color: var(--color-brand);
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.ardpUseCasesCtaOverlay:hover {
+  color: var(--color-brand-hover);
+}
+
 @media (max-width: 860px) {
   .ardpUseCasesGrid {
     grid-template-columns: 1fr;
   }
 
-  .ardpUseCasesDetail {
-    padding: 1.5rem;
+  .ardpUseCasesDetailBody {
+    padding: 1.35rem 1.5rem 1.5rem;
+  }
+
+  .ardpUseCasesMedia {
+    aspect-ratio: 4 / 5;
+    max-height: 18rem;
+  }
+
+  .ardpUseCasesDetail[data-media-only="true"] {
+    height: min(36rem, 80vh);
+    width: auto;
+    max-width: 100%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ardpUseCasesDetailBody {
     animation: none;
+  }
+
+  .ardpUseCasesDetail:not([data-media-only="true"]) .ardpUseCasesMedia,
+  .ardpUseCasesDetail:not([data-media-only="true"]) .ardpUseCasesVideo {
+    display: none;
+  }
+
+  .ardpUseCasesDetail[data-media-only="true"] .ardpUseCasesVideo {
+    pointer-events: none;
   }
 
   .ardpUseCasesItem,

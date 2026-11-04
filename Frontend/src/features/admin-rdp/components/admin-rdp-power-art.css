@@ -1,0 +1,47 @@
+/**
+ * Admin RDP power schematic art.
+ */
+.ardpPowerArt {
+  position: relative;
+  width: 100%;
+  min-height: 16rem;
+  color: var(--color-brand);
+}
+
+.ardpPowerArtSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ardpPowerArtTile {
+  fill: var(--color-brand);
+}
+
+.ardpPowerArtTileStroke {
+  fill: none;
+  stroke: var(--color-lime);
+  stroke-width: 3;
+}
+
+.ardpPowerArtLabel {
+  fill: var(--color-brand-contrast);
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  letter-spacing: 0.04em;
+}
+
+html.dark .ardpPowerArt {
+  color: var(--color-lime);
+}
+
+html.dark .ardpPowerArtTile {
+  fill: color-mix(in srgb, var(--color-brand) 55%, #0c1411);
+}
+
+html.dark .ardpPowerArtTileStroke {
+  stroke: var(--color-lime);
+}
+
+html.dark .ardpPowerArtLabel {
+  fill: var(--color-lime);
+}

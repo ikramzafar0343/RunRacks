@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import { ArdpHero } from "@/features/admin-rdp/components/ArdpHero";
 import { ArdpStatistics } from "@/features/admin-rdp/components/ArdpStatistics";
 import { ArdpUseCases } from "@/features/admin-rdp/components/ArdpUseCases";
-import { ArdpWordFill } from "@/features/admin-rdp/components/ArdpWordFill";
+import { ArdpPowerSection } from "@/features/admin-rdp/components/ArdpPowerSection";
 import { ADMIN_RDP } from "@/features/admin-rdp/model/adminRdpContent";
 import { CustomerStoriesSection } from "@/features/customer-stories/components/CustomerStoriesSection";
 import { PhInfra } from "@/features/product-hosting/components/PhInfra";
@@ -38,7 +38,7 @@ export function AdminRdpPage({ initialCatalog }: AdminRdpPageProps) {
           <VpsPricingSection variant="page" initialCatalog={initialCatalog} />
         </Suspense>
       </section>
-      <ArdpWordFill />
+      <ArdpPowerSection />
       <ArdpUseCases />
       <PhInfra
         heading="Catalog regions"

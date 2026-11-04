@@ -15,6 +15,10 @@ export type ArdpUseCase = {
   title: string;
   body: string;
   tools: readonly string[];
+  /** Optional detail media under `/public/videos/admin-rdp/` */
+  videoSrc?: string;
+  /** Video fills the detail card; copy is omitted; only the shared CTA overlays. */
+  mediaOnly?: boolean;
 };
 
 export const ADMIN_RDP_USE_CASES = {
@@ -28,71 +32,55 @@ export const ADMIN_RDP_USE_CASES = {
       id: "deploy",
       icon: "server",
       title: "Deploy apps and host websites",
-      body: "Run web apps, APIs and websites on your own Windows or Linux environment. Install any stack you need with full admin rights, and keep it online around the clock on fast NVMe storage.",
-      tools: ["IIS", "XAMPP", "Node.js", "Nginx", "MySQL", "WordPress"],
+      body: "",
+      tools: [],
+      videoSrc: "/videos/admin-rdp/use-case.mp4",
+      mediaOnly: true,
     },
     {
       id: "dev",
       icon: "code",
       title: "Software development and testing",
-      body: "Get a clean, isolated machine for coding, debugging and beta testing. Break things freely — nothing you test touches your personal computer or your live users.",
-      tools: ["VS Code", "Git", "Docker", "Visual Studio", "Python", "JDK"],
+      body: "",
+      tools: [],
+      videoSrc: "/videos/admin-rdp/use-case-software-dev.mp4",
+      mediaOnly: true,
     },
     {
       id: "automation",
       icon: "bot",
       title: "Automation, scripts and bots",
-      body: "Schedule scripts, scrapers and bots that run 24/7 without keeping your own PC switched on. Your RDP stays up even when you log off, so jobs keep running overnight.",
-      tools: [
-        "Selenium",
-        "Python",
-        "Task Scheduler",
-        "Puppeteer",
-        "AutoIt",
-        "Node.js",
-      ],
+      body: "",
+      tools: [],
+      videoSrc: "/videos/admin-rdp/use-case-automation.mp4",
+      mediaOnly: true,
     },
     {
       id: "transfers",
       icon: "download",
       title: "High-speed downloads and uploads",
-      body: "Move large files, software packages and media using our high-bandwidth data-centre ports. Ideal for content creators, uploaders and anyone shifting big files between servers.",
-      tools: [
-        "qBittorrent",
-        "IDM",
-        "FileZilla",
-        "rclone",
-        "JDownloader",
-        "WinSCP",
-      ],
+      body: "",
+      tools: [],
+      videoSrc: "/videos/admin-rdp/use-case-transfers.mp4",
+      mediaOnly: true,
     },
     {
       id: "design",
       icon: "palette",
       title: "Graphic design and multimedia",
-      body: "Use dedicated CPU and RAM for design, editing and rendering work. Access your projects from any device and let long renders finish on the server instead of your laptop.",
-      tools: [
-        "Photoshop",
-        "Illustrator",
-        "Premiere Pro",
-        "After Effects",
-        "Blender",
-        "Figma",
-      ],
+      body: "",
+      tools: [],
+      videoSrc: "/videos/admin-rdp/use-case-design.mp4",
+      mediaOnly: true,
     },
     {
       id: "trading",
       icon: "chart",
       title: "Forex and crypto trading",
-      body: "Keep your trading terminals and expert advisors running non-stop with low-latency connections. Choose a location close to your broker and never miss a trade because your PC went to sleep.",
-      tools: [
-        "MetaTrader 4",
-        "MetaTrader 5",
-        "cTrader",
-        "TradingView",
-        "NinjaTrader",
-        "Binance",
-      ],
+      body: "",
+      tools: [],
+      videoSrc: "/videos/admin-rdp/use-case-trading.mp4",
+      mediaOnly: true,
     },
   ] as const satisfies readonly ArdpUseCase[],
 } as const;

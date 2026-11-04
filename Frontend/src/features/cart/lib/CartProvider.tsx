@@ -74,12 +74,12 @@ function emptyProvision(family?: VpsFamily) {
       };
 }
 
+const hydrateSubscribe = () => () => {};
+const hydrateClient = () => true;
+const hydrateServer = () => false;
+
 function useCartHydrated(): boolean {
-  return useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
+  return useSyncExternalStore(hydrateSubscribe, hydrateClient, hydrateServer);
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {

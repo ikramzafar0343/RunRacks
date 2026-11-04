@@ -43,11 +43,35 @@ export const ADMIN_RDP = {
       alt: "Windows Admin RDP workstation — monitor with Windows desktop, RunRacks tower, keyboard, and mouse",
     },
   },
-  /** Centered scroll word-fill block under the float stage */
-  manifesto: {
-    paragraphs: [
-      "Admin RDP is for teams that need a real Windows desktop remotely—full administrator access with documented demo specs for vCPU, RAM, and storage before checkout is connected.",
-    ] as const,
+  /** Feature + hardware schematic — replaces manifesto word-fill */
+  power: {
+    title: "The power behind your VPS.",
+    items: [
+      {
+        id: "amd-nvme" as const,
+        icon: "cpu" as const,
+        title: "AMD & NVMe performance",
+        body: "Fast processors and storage for your websites, apps, and projects.",
+      },
+      {
+        id: "kvm" as const,
+        icon: "kvm" as const,
+        title: "KVM virtualization",
+        body: "An isolated virtual environment with its own operating system.",
+      },
+      {
+        id: "ddos" as const,
+        icon: "shield" as const,
+        title: "500 Gbps DDoS protection",
+        body: "Always-on filtering to help protect your services from attacks.",
+      },
+      {
+        id: "network" as const,
+        icon: "network" as const,
+        title: "1 Gbps network",
+        body: "High-speed connectivity for your websites and applications.",
+      },
+    ],
   },
   useCases: ADMIN_RDP_USE_CASES,
   /** Demo catalog figures — labeled illustrative, not live SLAs */
