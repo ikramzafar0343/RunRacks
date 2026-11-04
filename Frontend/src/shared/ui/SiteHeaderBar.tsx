@@ -20,7 +20,7 @@ import {
   type PrimaryNavItem,
 } from "@/shared/config/navConfig";
 import { subscribeScrollFrame } from "@/shared/lib/scrollFrame";
-import { scrollDocumentToTop } from "@/shared/lib/scrollToTop";
+import { scrollToTopPinned } from "@/shared/lib/scrollToTop";
 import {
   applyTheme,
   useDocumentTheme,
@@ -29,12 +29,9 @@ import {
 import "@/shared/ui/site-header.css";
 import "@/shared/ui/site-header-mobile.css";
 
-function onChromeNavClick() {
-  scrollDocumentToTop();
-  window.setTimeout(scrollDocumentToTop, 0);
-  window.setTimeout(scrollDocumentToTop, 50);
-  window.setTimeout(scrollDocumentToTop, 120);
-}
+/** Enter pill after deliberate scroll; exit sooner when returning to top. */
+const SCROLL_PILL_ENTER = 140;
+const SCROLL_PILL_EXIT = 48;
 
 function isBlogNavActive(pathname: string, href: string): boolean {
   if (href === "/blog") {
@@ -117,7 +114,7 @@ export function SiteHeaderBar({
         <Link
           href={headerActions.home.href}
           className="siteHeaderBrand"
-          onClick={onChromeNavClick}
+          onClick={scrollToTopPinned}
         >
           {headerActions.home.label}
         </Link>
@@ -133,7 +130,7 @@ export function SiteHeaderBar({
                   aria-current={
                     isBlogNavActive(pathname, item.href) ? "page" : undefined
                   }
-                  onClick={onChromeNavClick}
+                  onClick={scrollToTopPinned}
                 >
                   {item.label}
                 </Link>
@@ -173,7 +170,7 @@ export function SiteHeaderBar({
                         }
                         onClick={() => {
                           setOpenMenu(null);
-                          onChromeNavClick();
+                          scrollToTopPinned();
                         }}
                       >
                         {child.label}
@@ -190,7 +187,7 @@ export function SiteHeaderBar({
           <Link
             href={headerActions.ai.href}
             className="siteHeaderAi"
-            onClick={onChromeNavClick}
+            onClick={scrollToTopPinned}
           >
             {headerActions.ai.label}
           </Link>
@@ -214,7 +211,7 @@ export function SiteHeaderBar({
             href={headerActions.profile.href}
             className="siteHeaderIconBtn"
             aria-label={headerActions.profile.label}
-            onClick={onChromeNavClick}
+            onClick={scrollToTopPinned}
           >
             <HiOutlineUserCircle size={20} aria-hidden="true" />
           </Link>
@@ -249,7 +246,7 @@ export function SiteHeaderBar({
                   }
                   onClick={() => {
                     setMobileOpen(false);
-                    onChromeNavClick();
+                    scrollToTopPinned();
                   }}
                 >
                   {item.label}
@@ -272,7 +269,7 @@ export function SiteHeaderBar({
                       }
                       onClick={() => {
                         setMobileOpen(false);
-                        onChromeNavClick();
+                        scrollToTopPinned();
                       }}
                     >
                       {child.label}
@@ -287,7 +284,7 @@ export function SiteHeaderBar({
             className="siteHeaderMobileAi"
             onClick={() => {
               setMobileOpen(false);
-              onChromeNavClick();
+              scrollToTopPinned();
             }}
           >
             {headerActions.ai.label}
@@ -297,7 +294,3 @@ export function SiteHeaderBar({
     </header>
   );
 }
-
-/** Enter pill after a deliberate scroll; exit sooner when returning to top. */
-const SCROLL_PILL_ENTER = 140;
-const SCROLL_PILL_EXIT = 48;

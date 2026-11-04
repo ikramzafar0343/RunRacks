@@ -6,17 +6,9 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import {
-  scrollDocumentToTop,
+  scrollToTopPinned,
   shouldScrollToTopForClick,
 } from "@/shared/lib/scrollToTop";
-
-function scrollToTopPinned() {
-  scrollDocumentToTop();
-  // Next soft-nav can re-apply a cached scroll position after same-route clicks.
-  window.setTimeout(scrollDocumentToTop, 0);
-  window.setTimeout(scrollDocumentToTop, 50);
-  window.setTimeout(scrollDocumentToTop, 120);
-}
 
 function NavigationScrollResetEffects() {
   const pathname = usePathname();

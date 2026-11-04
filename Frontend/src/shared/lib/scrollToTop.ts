@@ -18,6 +18,14 @@ export function scrollDocumentToTop() {
   });
 }
 
+/** Pin top again after Next soft-nav can restore a cached scroll position. */
+export function scrollToTopPinned() {
+  scrollDocumentToTop();
+  window.setTimeout(scrollDocumentToTop, 0);
+  window.setTimeout(scrollDocumentToTop, 50);
+  window.setTimeout(scrollDocumentToTop, 120);
+}
+
 /** True when this click should reset scroll for an in-app path (no hash). */
 export function shouldScrollToTopForClick(
   anchor: HTMLAnchorElement,
