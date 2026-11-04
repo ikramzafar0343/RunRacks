@@ -1,0 +1,282 @@
+/**
+ * Checkout review page — scoped to .checkoutPage (RunRacks brand tokens).
+ */
+.checkoutPage {
+  --co-primary: var(--color-brand);
+  --co-primary-soft: var(--color-accent-soft);
+  --co-text: var(--color-heading);
+  --co-muted: var(--color-muted);
+  --co-border: var(--color-border);
+  --co-surface: var(--color-surface);
+  --co-canvas: color-mix(in srgb, var(--color-accent-soft) 35%, #ffffff);
+  --co-radius-lg: 8px;
+  --co-radius-md: 6px;
+  --co-radius-sm: 5px;
+  --co-shadow: 0 3px 12px color-mix(in srgb, var(--color-brand) 6%, transparent);
+
+  position: relative;
+  isolation: isolate;
+  background: var(--co-canvas);
+  color: var(--co-text);
+  padding: 6.5rem 1rem 2.5rem;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: min(100vh, 100dvh);
+}
+
+@media (min-width: 768px) {
+  .checkoutPage {
+    padding-top: 7.5rem;
+  }
+}
+
+.checkoutPage--empty {
+  min-height: calc(100dvh - 8rem);
+  padding-top: 8.75rem;
+  padding-bottom: 5rem;
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) {
+  .checkoutPage--empty {
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+  }
+}
+
+html.dark .checkoutPage {
+  --co-canvas: color-mix(in srgb, var(--color-surface) 92%, #000);
+}
+
+.checkoutDecor {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.checkoutDecor svg {
+  position: absolute;
+  top: -4%;
+  right: -8%;
+  width: min(52vw, 420px);
+  height: auto;
+  opacity: 0.18;
+  color: var(--co-primary);
+}
+
+.checkoutInner {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.checkoutTitle {
+  margin: 0;
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.checkoutLead {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--co-muted);
+}
+
+.checkoutLead a {
+  color: var(--co-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.checkoutLead a:hover {
+  text-decoration: underline;
+}
+
+.checkoutStepper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin: 1.1rem 0 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.checkoutStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  position: relative;
+  text-align: center;
+}
+
+.checkoutStep:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 0.7rem;
+  left: calc(50% + 0.85rem);
+  right: calc(-50% + 0.85rem);
+  height: 1px;
+  background: var(--co-border);
+}
+
+.checkoutStep[data-state="done"]:not(:last-child)::after,
+.checkoutStep[data-state="active"]:not(:last-child)::after {
+  background: var(--co-primary);
+}
+
+.checkoutStepDot {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--co-border);
+  background: var(--co-surface);
+  color: var(--co-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.checkoutStep[data-state="done"] .checkoutStepDot {
+  border-color: var(--co-primary);
+  color: var(--co-primary);
+}
+
+.checkoutStep[data-state="active"] .checkoutStepDot {
+  border-color: var(--co-primary);
+  background: var(--co-primary);
+  color: var(--color-brand-contrast);
+}
+
+.checkoutStepLabel {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--co-muted);
+  line-height: 1.25;
+}
+
+.checkoutStep[data-state="active"] .checkoutStepLabel {
+  color: var(--co-primary);
+}
+
+.checkoutStep[data-state="done"] .checkoutStepLabel {
+  color: var(--co-text);
+}
+
+.checkoutMain {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.checkoutLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.checkoutEmpty {
+  padding: 1.5rem 1rem 2rem;
+  text-align: center;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.checkoutEmptyBrand {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--co-primary);
+}
+
+.checkoutEmpty .checkoutTitle {
+  margin: 0 0 0.35rem;
+}
+
+.checkoutEmpty p {
+  margin: 0.45rem 0 0;
+  color: var(--co-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.checkoutEmptyActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.checkoutEmptyCta,
+.checkoutEmptyCtaAlt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--co-radius-md);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.checkoutEmptyCta {
+  background: var(--cta-bg, var(--color-brand));
+  color: var(--cta-fg, var(--color-brand-contrast));
+}
+
+.checkoutEmptyCta:hover {
+  background: var(--cta-bg-hover, var(--color-lime));
+  color: var(--cta-fg-hover, var(--color-on-lime));
+}
+
+.checkoutEmptyCtaAlt {
+  border: 1px solid var(--co-border);
+  background: var(--co-surface);
+  color: var(--co-text);
+}
+
+.checkoutEmptyCtaAlt:hover {
+  background: var(--co-primary-soft);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .checkoutMain {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .checkoutStepLabel {
+    font-size: 0.58rem;
+  }
+}

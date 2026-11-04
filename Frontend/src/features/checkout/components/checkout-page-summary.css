@@ -1,0 +1,200 @@
+/**
+ * Checkout order summary, pay action, and legal footer.
+ */
+
+.checkoutSummaryHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--co-border);
+}
+
+.checkoutSummaryHead h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.checkoutSummaryBlock {
+  margin-top: 0.75rem;
+}
+
+.checkoutSummaryToggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--co-text);
+  cursor: pointer;
+}
+
+.checkoutSummaryLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.45rem;
+  font-size: 0.75rem;
+}
+
+.checkoutSummaryMuted {
+  color: var(--co-muted);
+}
+
+.checkoutProductRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+}
+
+.checkoutProductIcon {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--co-radius-sm);
+  background: var(--co-primary-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.checkoutSetupFee {
+  margin-top: 0.55rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--co-radius-sm);
+  background: color-mix(in srgb, var(--co-primary-soft) 55%, #fff);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+html.dark .checkoutSetupFee {
+  background: color-mix(in srgb, var(--co-primary-soft) 40%, var(--co-surface));
+}
+
+.checkoutTotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--co-border);
+}
+
+.checkoutTotalRow strong {
+  font-size: 1.05rem;
+  color: var(--co-primary);
+}
+
+.checkoutPayBtn {
+  width: 100%;
+  margin-top: 0.85rem;
+  border: 0;
+  border-radius: var(--co-radius-md);
+  background: var(--cta-bg, var(--color-brand));
+  color: var(--cta-fg, var(--color-brand-contrast));
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.7rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.checkoutSignInNote {
+  margin: 0.45rem 0 0;
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--co-muted);
+}
+
+.checkoutGuarantee {
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: var(--co-radius-md);
+  background: var(--co-primary-soft);
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+}
+
+.checkoutGuarantee h3 {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.checkoutGuarantee p {
+  margin: 0.2rem 0 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: var(--co-muted);
+}
+
+.checkoutAccept {
+  margin-top: 0.85rem;
+}
+
+.checkoutAcceptLabel {
+  margin: 0 0 0.35rem;
+  font-size: 0.7rem;
+  color: var(--co-muted);
+}
+
+.checkoutPayMarks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checkoutPayMark {
+  border: 1px solid var(--co-border);
+  border-radius: var(--co-radius-sm);
+  background: #fff;
+  padding: 0.2rem 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+html.dark .checkoutPayMark {
+  background: var(--co-surface);
+}
+
+.checkoutLegalFooter {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--co-muted);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem 1rem;
+}
+
+.checkoutLegalFooter a {
+  color: var(--co-muted);
+  text-decoration: none;
+}
+
+.checkoutLegalFooter a:hover {
+  color: var(--co-primary);
+  text-decoration: underline;
+}

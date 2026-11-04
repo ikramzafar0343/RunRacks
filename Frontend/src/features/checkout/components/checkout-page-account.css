@@ -1,0 +1,296 @@
+/**
+ * Checkout account card and shared form controls.
+ */
+
+.checkoutCard {
+  background: var(--co-surface);
+  border: 1px solid var(--co-border);
+  border-radius: var(--co-radius-lg);
+  box-shadow: var(--co-shadow);
+  padding: 13px;
+}
+
+.checkoutCardHead {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.checkoutCardIndex {
+  flex: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background: var(--co-primary);
+  color: var(--color-brand-contrast);
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.checkoutCardTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.checkoutCardSub {
+  margin: 0.2rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--co-muted);
+}
+
+.checkoutTabs {
+  display: inline-flex;
+  border: 1px solid var(--co-border);
+  border-radius: 999px;
+  padding: 2px;
+  gap: 2px;
+  margin-bottom: 0.75rem;
+  background: var(--co-surface);
+}
+
+.checkoutTab {
+  border: 0;
+  background: transparent;
+  color: var(--co-text);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkoutTab[data-active="true"] {
+  background: var(--co-primary);
+  color: var(--color-brand-contrast);
+}
+
+.checkoutGoogleBlock {
+  margin: 0 0 0.85rem;
+}
+
+.checkoutGoogleBtn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--co-border);
+  border-radius: var(--co-radius-md);
+  background: var(--co-surface);
+  color: var(--co-text);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+}
+
+.checkoutGoogleBtn:hover {
+  background: color-mix(in srgb, var(--co-primary-soft) 55%, var(--co-surface));
+  border-color: color-mix(in srgb, var(--co-primary) 35%, var(--co-border));
+}
+
+.checkoutGoogleBtn:focus-visible {
+  outline: 2px solid var(--co-primary);
+  outline-offset: 2px;
+}
+
+.checkoutOrDivider {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.7rem 0 0;
+  font-size: 0.68rem;
+  color: var(--co-muted);
+}
+
+.checkoutOrDivider::before,
+.checkoutOrDivider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--co-border);
+}
+
+.checkoutOrDivider span {
+  flex: none;
+}
+
+.checkoutFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 8px;
+  row-gap: 9px;
+}
+
+.checkoutFieldFull {
+  grid-column: 1 / -1;
+}
+
+.checkoutLabel {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.checkoutInput,
+.checkoutSelect {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--co-border);
+  border-radius: var(--co-radius-sm);
+  background: var(--co-surface);
+  color: var(--co-text);
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 0.48rem 0.65rem;
+}
+
+.checkoutPasswordWrap {
+  position: relative;
+}
+
+.checkoutPasswordWrap .checkoutInput {
+  padding-right: 2.2rem;
+}
+
+.checkoutEyeBtn {
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--co-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  display: inline-flex;
+  line-height: 0;
+}
+
+.checkoutHint {
+  margin: 0.25rem 0 0;
+  font-size: 0.65rem;
+  color: var(--co-muted);
+}
+
+.checkoutSectionTitle {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  grid-column: 1 / -1;
+}
+
+.checkoutCountrySeg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.checkoutCountryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--co-border);
+  background: var(--co-surface);
+  color: var(--co-text);
+  border-radius: var(--co-radius-md);
+  padding: 0.35rem 0.55rem;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkoutCountryBtn[data-active="true"] {
+  border-color: var(--co-primary);
+  background: var(--co-primary-soft);
+  color: var(--co-primary);
+}
+
+.checkoutCountryFlag {
+  display: inline-block;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--co-border) 80%, transparent);
+}
+
+.checkoutBtn {
+  border: 0;
+  border-radius: var(--co-radius-md);
+  background: var(--cta-bg, var(--color-brand));
+  color: var(--cta-fg, var(--color-brand-contrast));
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.checkoutBtn:hover:not(:disabled) {
+  background: var(--cta-bg-hover, var(--color-lime));
+  color: var(--cta-fg-hover, var(--color-on-lime));
+}
+
+.checkoutBtn:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.checkoutBtnRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.checkoutLinkBtn {
+  border: 0;
+  background: none;
+  color: var(--co-primary);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+}
+
+.checkoutLinkBtn:hover {
+  text-decoration: underline;
+}
+
+.checkoutBanner {
+  margin: 0.65rem 0 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--co-radius-md);
+  background: var(--co-primary-soft);
+  border: 1px solid var(--co-border);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--co-text);
+}
+
+.checkoutBanner[data-tone="error"] {
+  background: color-mix(in srgb, #b42318 10%, var(--co-surface));
+  border-color: color-mix(in srgb, #b42318 35%, var(--co-border));
+}
+
+@media (max-width: 640px) {
+  .checkoutFormGrid {
+    grid-template-columns: 1fr;
+  }
+}

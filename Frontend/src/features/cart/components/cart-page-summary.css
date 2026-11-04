@@ -1,0 +1,231 @@
+/**
+ * Cart order summary, payment marks, domain note, and trust row.
+ */
+
+.cartSummaryHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--cart-border);
+}
+
+.cartSummaryHead h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.cartSummaryBlock {
+  margin-top: 0.75rem;
+}
+
+.cartSummaryToggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cart-text);
+  cursor: pointer;
+}
+
+.cartSummaryLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.45rem;
+  font-size: 0.75rem;
+}
+
+.cartSummaryMuted {
+  color: var(--cart-muted);
+}
+
+.cartSetupFee {
+  margin-top: 0.55rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--cart-radius-sm);
+  background: color-mix(in srgb, var(--cart-primary-soft) 55%, #fff);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+.cartTotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--cart-border);
+}
+
+.cartTotalRow strong {
+  font-size: 1.05rem;
+  color: var(--cart-primary);
+}
+
+.cartPayBtn {
+  width: 100%;
+  margin-top: 0.85rem;
+  border: 0;
+  border-radius: var(--cart-radius-md);
+  background: var(--cta-bg, var(--color-brand));
+  color: var(--cta-fg, var(--color-brand-contrast));
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.7rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.cartPayBtnLink:hover {
+  background: var(--cta-bg-hover, var(--color-lime));
+  color: var(--cta-fg-hover, var(--color-on-lime));
+}
+
+.cartPayBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.cartGuarantee {
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: var(--cart-radius-md);
+  background: var(--cart-primary-soft);
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+}
+
+.cartGuarantee h3 {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cartGuarantee p {
+  margin: 0.2rem 0 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: var(--cart-muted);
+}
+
+.cartAccept {
+  margin-top: 0.85rem;
+}
+
+.cartAcceptLabel {
+  margin: 0 0 0.35rem;
+  font-size: 0.7rem;
+  color: var(--cart-muted);
+}
+
+.cartPayMarks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cartPayMark {
+  border: 1px solid var(--cart-border);
+  border-radius: var(--cart-radius-sm);
+  background: #fff;
+  padding: 0.2rem 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+html.dark .cartPayMark {
+  background: var(--cart-surface);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cartDomainNote {
+  margin: 0.85rem 0 0;
+  font-size: 0.78rem;
+  color: var(--cart-muted);
+}
+
+.cartDomainNote a {
+  color: var(--cart-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cartDomainNote a:hover {
+  text-decoration: underline;
+}
+
+.cartTrust {
+  margin-top: 0.85rem;
+  border: 1px solid var(--cart-border);
+  border-radius: var(--cart-radius-lg);
+  background: var(--cart-surface);
+  padding: 0.85rem 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.cartTrustItem {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.cartTrustItem svg {
+  color: var(--cart-primary);
+  flex: none;
+  margin-top: 0.1rem;
+}
+
+.cartTrustItem h3 {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.cartTrustItem p {
+  margin: 0.2rem 0 0;
+  font-size: 0.65rem;
+  line-height: 1.4;
+  color: var(--cart-muted);
+}
+
+@media (max-width: 900px) {
+  .cartTrust {
+    grid-template-columns: 1fr;
+  }
+}

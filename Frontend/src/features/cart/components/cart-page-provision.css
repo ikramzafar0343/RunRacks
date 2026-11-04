@@ -1,0 +1,267 @@
+/**
+ * Cart configure options — OS, apps, credentials, billing, and specs.
+ */
+
+.cartOsHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.cartOsHead h3 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cartOsSelected {
+  margin: 0;
+  font-size: 0.7rem;
+  color: var(--cart-muted);
+}
+
+.cartOsSelectedMark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--cart-text);
+  font-weight: 600;
+}
+
+.cartSearchWrap {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.cartSearchWrap svg {
+  position: absolute;
+  left: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cart-muted);
+}
+
+.cartSearchWrap .cartSearch {
+  padding-left: 1.85rem;
+}
+
+.cartGroupLabel {
+  margin: 0.75rem 0 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cart-muted);
+}
+
+.cartOsGrid,
+.cartAppGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cartChoice {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--cart-border);
+  background: var(--cart-surface);
+  border-radius: var(--cart-radius-md);
+  padding: 0.55rem 0.6rem;
+  cursor: pointer;
+  font: inherit;
+  color: var(--cart-text);
+  min-height: 3.4rem;
+}
+
+.cartChoice[data-active="true"] {
+  border-color: var(--cart-primary);
+  background: color-mix(in srgb, var(--cart-primary-soft) 70%, #fff);
+  box-shadow: inset 0 0 0 1px var(--cart-primary);
+}
+
+.cartChoiceName {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cartChoiceMeta {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.65rem;
+  color: var(--cart-muted);
+}
+
+.cartOsChoice,
+.cartAppChoice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3.15rem;
+}
+
+.cartOsLogo,
+.cartAppLogo {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--cart-radius-sm);
+  background: color-mix(in srgb, var(--cart-primary-soft) 55%, #fff);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+html.dark .cartOsLogo,
+html.dark .cartAppLogo {
+  background: color-mix(in srgb, var(--cart-primary-soft) 40%, var(--cart-surface));
+}
+
+.cartVersions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.cartVersionBtn {
+  border: 1px solid var(--cart-border);
+  background: var(--cart-surface);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--cart-text);
+}
+
+.cartVersionBtn[data-active="true"] {
+  border-color: var(--cart-primary);
+  background: var(--cart-primary);
+  color: var(--color-brand-contrast);
+}
+
+.cartCreds {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-top: 0.85rem;
+}
+
+.cartHelper {
+  margin: 0.35rem 0 0;
+  font-size: 0.65rem;
+  line-height: 1.45;
+  color: var(--cart-muted);
+}
+
+.cartTextarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.cartBillingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+}
+
+.cartBillingCard {
+  position: relative;
+  text-align: left;
+  border: 1px solid var(--cart-border);
+  background: var(--cart-surface);
+  border-radius: var(--cart-radius-md);
+  padding: 0.65rem 0.55rem;
+  cursor: pointer;
+  font: inherit;
+  color: var(--cart-text);
+}
+
+.cartBillingCard[data-active="true"] {
+  border-color: var(--cart-primary);
+  box-shadow: inset 0 0 0 1px var(--cart-primary);
+}
+
+.cartBillingTitle {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.cartBillingCard[data-active="true"] .cartBillingTitle {
+  color: var(--cart-primary);
+}
+
+.cartBillingSave {
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cart-success) 14%, #fff);
+  color: var(--cart-success);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.cartBillingPrice {
+  margin: 0.45rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.cartBillingNote {
+  margin: 0.55rem 0 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: var(--cart-muted);
+}
+
+.cartSpecs {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.cartSpecs li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--cart-text);
+}
+
+.cartSpecs svg {
+  color: var(--cart-muted);
+  flex: none;
+}
+
+.cartDemoNote {
+  margin: 0.85rem 0 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--cart-radius-md);
+  background: var(--cart-primary-soft);
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: var(--cart-muted);
+}
+
+@media (max-width: 640px) {
+  .cartOsGrid,
+  .cartAppGrid,
+  .cartBillingGrid,
+  .cartCreds {
+    grid-template-columns: 1fr;
+  }
+}

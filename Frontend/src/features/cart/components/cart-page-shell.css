@@ -1,0 +1,291 @@
+/**
+ * Cart configure page — scoped to .cartPage (RunRacks brand tokens).
+ */
+.cartPage {
+  --cart-primary: var(--color-brand);
+  --cart-primary-soft: var(--color-accent-soft);
+  --cart-text: var(--color-heading);
+  --cart-muted: var(--color-muted);
+  --cart-border: var(--color-border);
+  --cart-surface: var(--color-surface);
+  --cart-canvas: color-mix(in srgb, var(--color-accent-soft) 35%, #ffffff);
+  --cart-radius-lg: 9px;
+  --cart-radius-md: 6px;
+  --cart-radius-sm: 4px;
+  --cart-shadow: 0 3px 12px color-mix(in srgb, var(--color-brand) 6%, transparent);
+  --cart-success: #188b54;
+
+  position: relative;
+  isolation: isolate;
+  background: var(--cart-canvas);
+  color: var(--cart-text);
+  /* Clear fixed site header (~4rem bar + breathing room) */
+  padding: 6.5rem 1rem 3.5rem;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: min(100vh, 100dvh);
+}
+
+@media (min-width: 768px) {
+  .cartPage {
+    padding-top: 7.5rem;
+  }
+}
+
+.cartPage--empty {
+  /* Clear fixed header, then give the empty state room before the footer */
+  min-height: calc(100dvh - 8rem);
+  padding-top: 8.75rem;
+  padding-bottom: 5rem;
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) {
+  .cartPage--empty {
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+  }
+}
+
+html.dark .cartPage {
+  --cart-canvas: color-mix(in srgb, var(--color-surface) 92%, #000);
+}
+
+.cartPageDecor {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.cartPageDecor svg {
+  position: absolute;
+  top: -4%;
+  right: -8%;
+  width: min(52vw, 420px);
+  height: auto;
+  opacity: 0.18;
+  color: var(--cart-primary);
+}
+
+.cartPageInner {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.cartPageTitle {
+  margin: 0;
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cart-text);
+}
+
+.cartPageLead {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--cart-muted);
+}
+
+.cartStepper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin: 1.15rem 0 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.cartStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  position: relative;
+  text-align: center;
+}
+
+.cartStep:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 0.7rem;
+  left: calc(50% + 0.85rem);
+  right: calc(-50% + 0.85rem);
+  height: 1px;
+  background: var(--cart-border);
+}
+
+.cartStep[data-state="done"]:not(:last-child)::after,
+.cartStep[data-state="active"]:not(:last-child)::after {
+  background: var(--cart-primary);
+}
+
+.cartStepDot {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--cart-border);
+  background: var(--cart-surface);
+  color: var(--cart-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.cartStep[data-state="done"] .cartStepDot {
+  border-color: var(--cart-primary);
+  color: var(--cart-primary);
+  background: var(--cart-surface);
+}
+
+.cartStep[data-state="active"] .cartStepDot {
+  border-color: var(--cart-primary);
+  background: var(--cart-primary);
+  color: var(--color-brand-contrast);
+}
+
+.cartStepLabel {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--cart-muted);
+  line-height: 1.25;
+}
+
+.cartStep[data-state="active"] .cartStepLabel {
+  color: var(--cart-primary);
+}
+
+.cartStep[data-state="done"] .cartStepLabel {
+  color: var(--cart-text);
+}
+
+.cartMain {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.cartEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: min(34rem, 100%);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 2.5rem;
+  text-align: center;
+}
+
+.cartEmptyBrand {
+  margin: 0 0 1.35rem;
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--cart-primary);
+}
+
+.cartEmptyIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1.1rem;
+  border-radius: 999px;
+  background: var(--cart-primary-soft);
+  color: var(--cart-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartEmptyTitle {
+  margin: 0;
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cart-text);
+}
+
+.cartEmptyLead {
+  margin: 0.65rem auto 0;
+  max-width: 26rem;
+  color: var(--cart-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.cartEmptyActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
+}
+
+.cartEmptyCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--cart-radius-md);
+  background: var(--cta-bg, var(--color-brand));
+  color: var(--cta-fg, var(--color-brand-contrast));
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.cartEmptyCta:hover {
+  background: var(--cta-bg-hover, var(--color-lime));
+  color: var(--cta-fg-hover, var(--color-on-lime));
+}
+
+.cartEmptyCtaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--cart-radius-md);
+  border: 1px solid var(--cart-border);
+  background: transparent;
+  color: var(--cart-text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.cartEmptyCtaSecondary:hover {
+  background: var(--cart-primary-soft);
+  border-color: color-mix(in srgb, var(--cart-primary) 35%, var(--cart-border));
+}
+
+@media (max-width: 900px) {
+  .cartMain {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .cartStepper {
+    gap: 0.2rem;
+  }
+
+  .cartStepLabel {
+    font-size: 0.58rem;
+  }
+}

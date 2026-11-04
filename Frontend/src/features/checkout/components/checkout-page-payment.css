@@ -1,0 +1,202 @@
+/**
+ * Checkout payment options, card fields, terms, and trust row.
+ */
+
+.checkoutPayNotice {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  color: var(--co-muted);
+}
+
+.checkoutCardTitleActive {
+  color: var(--co-primary);
+}
+
+.checkoutCollapsedHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.checkoutBillingSummary {
+  margin-top: 0.65rem;
+  padding-left: calc(1.35rem + 0.65rem);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.checkoutBillingSummary p {
+  margin: 0.15rem 0 0;
+}
+
+.checkoutPayOptions {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
+}
+
+.checkoutPayOption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.55rem;
+  align-items: start;
+  border: 1px solid var(--co-border);
+  border-radius: var(--co-radius-md);
+  padding: 0.65rem 0.7rem;
+  cursor: pointer;
+  background: var(--co-surface);
+}
+
+.checkoutPayOption[data-active="true"] {
+  border-color: var(--co-primary);
+  box-shadow: inset 0 0 0 1px var(--co-primary);
+  background: color-mix(in srgb, var(--co-primary-soft) 45%, var(--co-surface));
+}
+
+.checkoutPayOption input {
+  margin-top: 0.2rem;
+}
+
+.checkoutPayOptionTitle {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.checkoutPayOptionMeta {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: var(--co-muted);
+}
+
+.checkoutPayOptionLogos {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: none;
+}
+
+.checkoutBankChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid var(--co-border);
+  border-radius: var(--co-radius-sm);
+  padding: 0.25rem 0.45rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--co-text);
+  background: var(--co-surface);
+  white-space: nowrap;
+}
+
+.checkoutCardFields {
+  margin: -0.15rem 0 0.15rem;
+  padding: 0.7rem;
+  border: 1px solid var(--co-border);
+  border-radius: var(--co-radius-md);
+  background: color-mix(in srgb, var(--co-primary-soft) 35%, #fff);
+  display: grid;
+  gap: 0.65rem;
+}
+
+html.dark .checkoutCardFields {
+  background: color-mix(in srgb, var(--co-primary-soft) 25%, var(--co-surface));
+}
+
+.checkoutCardNumberWrap {
+  position: relative;
+}
+
+.checkoutCardNumberWrap .checkoutInput {
+  padding-right: 5rem;
+}
+
+.checkoutCardNumberLogos {
+  position: absolute;
+  right: 0.45rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  gap: 0.2rem;
+  pointer-events: none;
+}
+
+.checkoutDivider {
+  border: 0;
+  border-top: 1px solid var(--co-border);
+  margin: 0.75rem 0;
+}
+
+.checkoutTerms {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.checkoutTerms input {
+  margin-top: 0.15rem;
+  flex: none;
+}
+
+.checkoutTerms a {
+  color: var(--co-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.checkoutTerms a:hover {
+  text-decoration: underline;
+}
+
+.checkoutTrust {
+  border: 1px solid var(--co-border);
+  border-radius: var(--co-radius-lg);
+  background: var(--co-surface);
+  padding: 0.85rem 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.checkoutTrustItem {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.checkoutTrustIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--co-radius-sm);
+  background: var(--co-primary-soft);
+  color: var(--co-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.checkoutTrustItem h3 {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.checkoutTrustItem p {
+  margin: 0.2rem 0 0;
+  font-size: 0.65rem;
+  line-height: 1.4;
+  color: var(--co-muted);
+}
+
+@media (max-width: 900px) {
+  .checkoutTrust {
+    grid-template-columns: 1fr;
+  }
+}
