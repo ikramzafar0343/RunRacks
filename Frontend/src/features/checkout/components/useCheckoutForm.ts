@@ -1,12 +1,10 @@
 /**
  * Checkout form state. Passwords and card fields stay in memory only.
- * Country follows the cart location until the shopper picks an override.
  */
 "use client";
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useCart } from "@/features/cart/lib/CartProvider";
-import { familyLabel } from "@/features/cart/lib/cartPlanHelpers";
 import {
   ACCOUNT_UNAVAILABLE,
   GOOGLE_UNAVAILABLE,
@@ -16,13 +14,12 @@ import {
   type CheckoutStage,
   type PayMethod,
 } from "@/features/checkout/components/checkoutConstants";
+import { buildCheckoutTotals } from "@/features/checkout/components/checkoutTotals";
 import { fetchVpsCatalog } from "@/features/vps-pricing/lib/fetchVpsCatalog";
-import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
-import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
 import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
 
 export function useCheckoutForm() {
-  const { line, hydrated, updateLine } = useCart();
+  const { lines, line, hydrated, updateLine } = useCart();
   const [catalog, setCatalog] = useState<VpsCatalogPayload | null>(null);
   const [tab, setTab] = useState<AccountTab>("new");
   const [stage, setStage] = useState<CheckoutStage>("account");
@@ -146,28 +143,22 @@ export function useCheckoutForm() {
     setAuthNotice(GOOGLE_UNAVAILABLE);
   }
 
-  const plan = useMemo(() => {
-    if (!catalog || !line) return null;
-    return catalog.plans.find((entry) => entry.id === line.planId) ?? null;
-  }, [catalog, line]);
+  const totals = useMemo(
+    () => buildCheckoutTotals(lines, catalog),
+    [lines, catalog],
+  );
 
-  const activeFamily = plan?.family ?? line?.custom?.family ?? null;
-
-  const price = useMemo(() => {
-    if (!line) return null;
-    if (line.custom) {
-      return {
-        monthlyEquivalentMinor: line.custom.monthlyMinor,
-        amountMinor: line.custom.termTotalMinor,
-        currency: line.custom.currency,
-      };
-    }
-    if (!plan) return null;
-    return selectPlanPrice(plan, line.term, line.locationId);
-  }, [plan, line]);
+  const readyLines = useMemo(() => {
+    if (!catalog) return lines.filter((entry) => entry.custom);
+    return lines.filter(
+      (entry) =>
+        entry.custom ||
+        catalog.plans.some((plan) => plan.id === entry.planId),
+    );
+  }, [lines, catalog]);
 
   if (!hydrated) return { status: "loading" as const };
-  if (!line || (!plan && !line.custom) || !activeFamily) {
+  if (readyLines.length === 0 || !line) {
     return { status: "empty" as const };
   }
 
@@ -186,23 +177,25 @@ export function useCheckoutForm() {
   ]
     .filter(Boolean)
     .join(", ");
-  const displayMinor =
-    price?.monthlyEquivalentMinor ?? price?.amountMinor ?? null;
-  const amountLabel =
-    displayMinor != null && price
-      ? formatMoneyMinor(displayMinor, price.currency)
-      : "—";
+
+  const primary = totals.rows[0]!;
 
   return {
     status: "ready" as const,
     line,
-    updateLine,
-    activeFamily,
-    productName: line.custom?.label ?? plan?.name ?? familyLabel(activeFamily),
-    amountLabel,
-    termTotalLabel:
-      price != null ? formatMoneyMinor(price.amountMinor, price.currency) : "—",
-    setupLabel: price ? formatMoneyMinor(0, price.currency) : "$0.00",
+    lines: readyLines,
+    lineRows: totals.rows,
+    updateCoupon: (coupon: string) => {
+      for (const entry of readyLines) {
+        updateLine(entry.id, { coupon });
+      }
+    },
+    activeFamily: primary.family,
+    productName: primary.name,
+    amountLabel: totals.amountLabel,
+    termTotalLabel: totals.termTotalLabel,
+    setupLabel: totals.setupLabel,
+    serverCount: totals.count,
     regions,
     countryId,
     cardCountryId,

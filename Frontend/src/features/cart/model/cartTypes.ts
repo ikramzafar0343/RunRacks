@@ -1,5 +1,5 @@
 /**
- * Client cart line — demo configure UI until live checkout exists.
+ * Client cart lines — multi-server configure UI until live checkout exists.
  */
 import type {
   BillingTermMonths,
@@ -11,6 +11,8 @@ export type CartBillingTerm = BillingTermMonths;
 
 /** Synthetic id for builds from /customize (not a catalog plan seed). */
 export const CUSTOM_PLAN_PREFIX = "custom:";
+
+export const MAX_CART_LINES = 10;
 
 export type CartCustomSpec = {
   family: VpsFamily;
@@ -27,6 +29,7 @@ export type CartCustomSpec = {
 };
 
 export type CartLine = {
+  id: string;
   planId: string;
   locationId: string;
   term: CartBillingTerm;
@@ -41,10 +44,11 @@ export type CartLine = {
 };
 
 export type CartState = {
-  line: CartLine | null;
+  lines: CartLine[];
 };
 
-export const CART_STORAGE_KEY = "runracks.cart.v1";
+export const CART_STORAGE_KEY = "runracks.cart.v2";
+export const CART_STORAGE_KEY_V1 = "runracks.cart.v1";
 
 export const CART_FAMILIES: readonly {
   id: VpsFamily;
@@ -68,4 +72,11 @@ export function isCustomPlanId(planId: string): boolean {
 
 export function customPlanId(family: VpsFamily): string {
   return `${CUSTOM_PLAN_PREFIX}${family}`;
+}
+
+export function createCartLineId(): string {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `line-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }

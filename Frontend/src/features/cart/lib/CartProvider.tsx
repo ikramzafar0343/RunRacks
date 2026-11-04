@@ -1,5 +1,5 @@
 /**
- * Client cart context — single-line configure cart until live checkout exists.
+ * Client cart context — multi-line configure cart until live checkout exists.
  */
 "use client";
 
@@ -12,14 +12,16 @@ import {
   type ReactNode,
 } from "react";
 import {
+  MAX_CART_LINES,
   clampCartTerm,
+  createCartLineId,
   customPlanId,
   type CartCustomSpec,
   type CartLine,
 } from "@/features/cart/model/cartTypes";
 import { defaultProvisionForFamily } from "@/features/cart/model/provisionCatalog";
 import {
-  commitCartLine,
+  commitCartLines,
   getCartServerSnapshot,
   getCartSnapshot,
   subscribeCart,
@@ -39,13 +41,24 @@ type SeedCustomizeInput = {
   custom: CartCustomSpec;
 };
 
+export type CartAddResult =
+  | { ok: true; line: CartLine }
+  | { ok: false; reason: "full" };
+
 type CartContextValue = {
+  lines: CartLine[];
+  /** First line — convenience for single-line callers. */
   line: CartLine | null;
   itemCount: number;
   hydrated: boolean;
-  seedFromPlan: (input: SeedCartInput) => void;
-  seedFromCustomize: (input: SeedCustomizeInput) => void;
-  updateLine: (patch: Partial<CartLine>) => void;
+  addFromPlan: (input: SeedCartInput) => CartAddResult;
+  addFromCustomize: (input: SeedCustomizeInput) => CartAddResult;
+  /** @deprecated Prefer addFromPlan — appends, does not replace. */
+  seedFromPlan: (input: SeedCartInput) => CartAddResult;
+  /** @deprecated Prefer addFromCustomize — appends, does not replace. */
+  seedFromCustomize: (input: SeedCustomizeInput) => CartAddResult;
+  updateLine: (id: string, patch: Partial<Omit<CartLine, "id">>) => void;
+  removeLine: (id: string) => void;
   clearCart: () => void;
 };
 
@@ -70,16 +83,19 @@ function useCartHydrated(): boolean {
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const line = useSyncExternalStore(
+  const lines = useSyncExternalStore(
     subscribeCart,
     getCartSnapshot,
     getCartServerSnapshot,
   );
   const hydrated = useCartHydrated();
 
-  const seedFromPlan = useCallback((input: SeedCartInput) => {
+  const addFromPlan = useCallback((input: SeedCartInput): CartAddResult => {
+    const prev = getCartSnapshot();
+    if (prev.length >= MAX_CART_LINES) return { ok: false, reason: "full" };
     const provision = emptyProvision(input.family);
-    commitCartLine({
+    const line: CartLine = {
+      id: createCartLineId(),
       planId: input.planId,
       locationId: input.locationId || "us",
       term: clampCartTerm(input.term),
@@ -90,46 +106,77 @@ export function CartProvider({ children }: { children: ReactNode }) {
       sshKey: "",
       coupon: "",
       custom: null,
-    });
+    };
+    commitCartLines([...prev, line]);
+    return { ok: true, line };
   }, []);
 
-  const seedFromCustomize = useCallback((input: SeedCustomizeInput) => {
-    const provision = defaultProvisionForFamily(input.custom.family);
-    commitCartLine({
-      planId: customPlanId(input.custom.family),
-      locationId: input.locationId || "us",
-      term: clampCartTerm(input.term),
-      osId: provision.osId,
-      osVersion: provision.osVersion,
-      appId: provision.appId,
-      hostname: "",
-      sshKey: "",
-      coupon: "",
-      custom: input.custom,
-    });
-  }, []);
+  const addFromCustomize = useCallback(
+    (input: SeedCustomizeInput): CartAddResult => {
+      const prev = getCartSnapshot();
+      if (prev.length >= MAX_CART_LINES) return { ok: false, reason: "full" };
+      const provision = defaultProvisionForFamily(input.custom.family);
+      const line: CartLine = {
+        id: createCartLineId(),
+        planId: customPlanId(input.custom.family),
+        locationId: input.locationId || "us",
+        term: clampCartTerm(input.term),
+        osId: provision.osId,
+        osVersion: provision.osVersion,
+        appId: provision.appId,
+        hostname: "",
+        sshKey: "",
+        coupon: "",
+        custom: input.custom,
+      };
+      commitCartLines([...prev, line]);
+      return { ok: true, line };
+    },
+    [],
+  );
 
-  const updateLine = useCallback((patch: Partial<CartLine>) => {
-    const prev = getCartSnapshot();
-    if (!prev) return;
-    commitCartLine({ ...prev, ...patch });
+  const updateLine = useCallback(
+    (id: string, patch: Partial<Omit<CartLine, "id">>) => {
+      const prev = getCartSnapshot();
+      const next = prev.map((entry) =>
+        entry.id === id ? { ...entry, ...patch, id: entry.id } : entry,
+      );
+      commitCartLines(next);
+    },
+    [],
+  );
+
+  const removeLine = useCallback((id: string) => {
+    commitCartLines(getCartSnapshot().filter((entry) => entry.id !== id));
   }, []);
 
   const clearCart = useCallback(() => {
-    commitCartLine(null);
+    commitCartLines([]);
   }, []);
 
   const value = useMemo<CartContextValue>(
     () => ({
-      line,
-      itemCount: line ? 1 : 0,
+      lines,
+      line: lines[0] ?? null,
+      itemCount: lines.length,
       hydrated,
-      seedFromPlan,
-      seedFromCustomize,
+      addFromPlan,
+      addFromCustomize,
+      seedFromPlan: addFromPlan,
+      seedFromCustomize: addFromCustomize,
       updateLine,
+      removeLine,
       clearCart,
     }),
-    [line, hydrated, seedFromPlan, seedFromCustomize, updateLine, clearCart],
+    [
+      lines,
+      hydrated,
+      addFromPlan,
+      addFromCustomize,
+      updateLine,
+      removeLine,
+      clearCart,
+    ],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

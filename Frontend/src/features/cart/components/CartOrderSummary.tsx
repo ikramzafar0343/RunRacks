@@ -1,5 +1,5 @@
 /**
- * Cart order summary — totals stay demo until checkout billing is connected.
+ * Cart order summary — multi-line totals; billing stays demo until connected.
  */
 import Link from "next/link";
 import type { Route } from "next";
@@ -9,14 +9,22 @@ import type { CartConfigureReady } from "@/features/cart/components/useCartConfi
 import { cartTermTitle } from "@/features/cart/lib/cartLineEdits";
 import { DEMO_PRICING_ANSWER } from "@/shared/content/demoPricingCopy";
 
-export function CartOrderSummary({ cart }: { cart: CartConfigureReady }) {
-  const { line } = cart;
+type CartOrderSummaryProps = {
+  cart: CartConfigureReady;
+  onCouponHint: () => void;
+};
+
+export function CartOrderSummary({
+  cart,
+  onCouponHint,
+}: CartOrderSummaryProps) {
+  const { line, cartTotals, lineSummaries } = cart;
   return (
     <aside className="cartCard" aria-labelledby="cart-summary-title">
       <div className="cartSummaryHead">
         <h2 id="cart-summary-title">Order summary</h2>
         <Link href="/pricing" className="cartLinkBtn">
-          Edit Cart
+          Add plan
         </Link>
       </div>
 
@@ -27,17 +35,19 @@ export function CartOrderSummary({ cart }: { cart: CartConfigureReady }) {
           aria-expanded={cart.serversOpen}
           onClick={cart.toggleServers}
         >
-          <span>Servers (1)</span>
+          <span>Servers ({cartTotals.count})</span>
           <HiChevronDown size={16} aria-hidden />
         </button>
         {cart.serversOpen ? (
           <>
-            <div className="cartSummaryLine">
-              <span>{cart.productName}</span>
-              <span>{cart.amountLabel}</span>
-            </div>
+            {lineSummaries.map((row) => (
+              <div key={row.id} className="cartSummaryLine">
+                <span>{row.name}</span>
+                <span>{row.amountLabel}</span>
+              </div>
+            ))}
             <div className="cartSummaryLine cartSummaryMuted">
-              <span>{cartTermTitle(line.term)} billing</span>
+              <span>Active: {cartTermTitle(line.term)} billing</span>
               <span>{cart.amountLabel}/mo</span>
             </div>
           </>
@@ -46,7 +56,7 @@ export function CartOrderSummary({ cart }: { cart: CartConfigureReady }) {
 
       <div className="cartSetupFee">
         <span>Setup fee</span>
-        <span>{cart.setupLabel}</span>
+        <span>{cartTotals.setupLabel}</span>
       </div>
 
       <div className="cartSummaryBlock">
@@ -54,7 +64,10 @@ export function CartOrderSummary({ cart }: { cart: CartConfigureReady }) {
           type="button"
           className="cartSummaryToggle"
           aria-expanded={cart.couponOpen}
-          onClick={cart.toggleCoupon}
+          onClick={() => {
+            cart.toggleCoupon();
+            if (!cart.couponOpen) onCouponHint();
+          }}
         >
           <span>Have a coupon code?</span>
           <HiChevronDown size={16} aria-hidden />
@@ -75,7 +88,7 @@ export function CartOrderSummary({ cart }: { cart: CartConfigureReady }) {
 
       <div className="cartSummaryLine" style={{ marginTop: "0.85rem" }}>
         <span>Subtotal</span>
-        <span>{cart.amountLabel}</span>
+        <span>{cartTotals.monthlyLabel}</span>
       </div>
       <div className="cartSummaryLine cartSummaryMuted">
         <span>Taxes</span>
@@ -84,7 +97,7 @@ export function CartOrderSummary({ cart }: { cart: CartConfigureReady }) {
 
       <div className="cartTotalRow">
         <span>Total due today</span>
-        <strong>{cart.termTotalLabel}</strong>
+        <strong>{cartTotals.termTotalLabel}</strong>
       </div>
       <p className="cartHelper">
         Billed in your account currency when you sign in. {DEMO_PRICING_ANSWER}

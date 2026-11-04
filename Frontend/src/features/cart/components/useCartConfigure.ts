@@ -1,5 +1,5 @@
 /**
- * Cart configure state — catalog load and edits. Payment stays unconnected.
+ * Cart configure state — multi-line catalog load and edits.
  */
 "use client";
 
@@ -12,24 +12,33 @@ import {
   patchForServerType,
   patchForTerm,
 } from "@/features/cart/lib/cartLineEdits";
+import {
+  linePrice,
+  resolveCartPlan,
+  summarizeCartLines,
+} from "@/features/cart/lib/cartLinePricing";
 import { plansForFamily } from "@/features/cart/lib/cartPlanHelpers";
 import { useCart } from "@/features/cart/lib/CartProvider";
-import type { CartBillingTerm } from "@/features/cart/model/cartTypes";
+import type { CartBillingTerm, CartLine } from "@/features/cart/model/cartTypes";
 import {
   getAppOptions,
   getOsOptions,
 } from "@/features/cart/model/provisionCatalog";
 import { fetchVpsCatalog } from "@/features/vps-pricing/lib/fetchVpsCatalog";
 import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
+import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
 import type {
   VpsCatalogPayload,
   VpsFamily,
 } from "@/features/vps-pricing/model/types";
 
+export type { CartLineSummary } from "@/features/cart/lib/cartLinePricing";
+
 export function useCartConfigure() {
-  const { line, hydrated, updateLine, clearCart } = useCart();
+  const { lines, hydrated, updateLine, removeLine, clearCart } = useCart();
   const [catalog, setCatalog] = useState<VpsCatalogPayload | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [activeLineId, setActiveLineId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [planPickerOpen, setPlanPickerOpen] = useState(false);
   const [serversOpen, setServersOpen] = useState(true);
@@ -49,13 +58,46 @@ export function useCartConfigure() {
     };
   }, []);
 
-  const plan = useMemo(() => {
-    if (!catalog || !line) return null;
-    return catalog.plans.find((entry) => entry.id === line.planId) ?? null;
-  }, [catalog, line]);
+  const readyLines = useMemo(() => {
+    return lines.filter((entry) => {
+      if (entry.custom) return true;
+      if (!catalog) return true;
+      return catalog.plans.some((plan) => plan.id === entry.planId);
+    });
+  }, [lines, catalog]);
 
+  const line =
+    readyLines.find((entry) => entry.id === activeLineId) ??
+    readyLines[0] ??
+    null;
+
+  const plan = useMemo(() => resolveCartPlan(catalog, line), [catalog, line]);
   const activeFamily: VpsFamily | null =
     plan?.family ?? line?.custom?.family ?? null;
+
+  const lineSummaries = useMemo(
+    () => summarizeCartLines(readyLines, catalog),
+    [readyLines, catalog],
+  );
+
+  const cartTotals = useMemo(() => {
+    const currency = lineSummaries[0]?.currency ?? "USD";
+    let monthly = 0;
+    let termTotal = 0;
+    for (const entry of readyLines) {
+      const priced = linePrice(entry, catalog);
+      if (!priced) continue;
+      monthly += priced.monthly;
+      termTotal += priced.termTotal;
+    }
+    return {
+      currency,
+      monthlyLabel: formatMoneyMinor(monthly, currency),
+      termTotalLabel: formatMoneyMinor(termTotal, currency),
+      setupLabel: formatMoneyMinor(0, currency),
+      count: lineSummaries.length,
+    };
+  }, [lineSummaries, readyLines, catalog]);
 
   const region = useMemo(() => {
     if (!catalog || !line) return null;
@@ -70,16 +112,14 @@ export function useCartConfigure() {
     if (!activeFamily) return [];
     const all = getOsOptions(activeFamily);
     const q = query.trim().toLowerCase();
-    if (!q) return all;
-    return all.filter((os) => os.name.toLowerCase().includes(q));
+    return q ? all.filter((os) => os.name.toLowerCase().includes(q)) : all;
   }, [activeFamily, query]);
 
   const appList = useMemo(() => {
     if (!activeFamily) return [];
     const all = getAppOptions(activeFamily);
     const q = query.trim().toLowerCase();
-    if (!q) return all;
-    return all.filter((app) => app.name.toLowerCase().includes(q));
+    return q ? all.filter((app) => app.name.toLowerCase().includes(q)) : all;
   }, [activeFamily, query]);
 
   const selectedOs = useMemo(() => {
@@ -107,10 +147,15 @@ export function useCartConfigure() {
     );
   }, [catalog, activeFamily, line]);
 
+  function patchActive(patch: Partial<Omit<CartLine, "id">>) {
+    if (!line) return;
+    updateLine(line.id, patch);
+  }
+
   function onRegionChange(locationId: string) {
     if (!catalog || !line || !activeFamily) return;
     const patch = patchForRegion(line, catalog.plans, locationId);
-    if (patch) updateLine(patch);
+    if (patch) patchActive(patch);
   }
 
   function onServerTypeChange(family: VpsFamily) {
@@ -120,7 +165,7 @@ export function useCartConfigure() {
         ? patchForServerType(line, catalog.plans, family)
         : patchForServerType(line, catalog.plans, family, plan.ramGb);
     if (!patch) return;
-    updateLine(patch);
+    patchActive(patch);
     setPlanPickerOpen(false);
   }
 
@@ -128,23 +173,28 @@ export function useCartConfigure() {
     if (!catalog || !line) return;
     const patch = patchForCatalogPlan(catalog.plans, planId);
     if (!patch) return;
-    updateLine(patch);
+    patchActive(patch);
     setPlanPickerOpen(false);
   }
 
   function onSelectOs(osId: string) {
     if (!activeFamily) return;
-    updateLine(patchForOs(activeFamily, osId));
+    patchActive(patchForOs(activeFamily, osId));
   }
 
   function onTermChange(term: CartBillingTerm) {
     if (!line) return;
-    updateLine(patchForTerm(line, term));
+    patchActive(patchForTerm(line, term));
   }
 
-  if (!hydrated) return { status: "loading" as const };
-  if (!line || (!plan && !line.custom) || !activeFamily) {
-    return { status: "empty" as const };
+  if (!hydrated) return { status: "loading" as const, loadError: null };
+  if (
+    readyLines.length === 0 ||
+    !line ||
+    (!plan && !line.custom) ||
+    !activeFamily
+  ) {
+    return { status: "empty" as const, loadError };
   }
 
   const copy = describeReadyCart({
@@ -159,6 +209,11 @@ export function useCartConfigure() {
   return {
     status: "ready" as const,
     line,
+    lines: readyLines,
+    lineSummaries,
+    cartTotals,
+    activeLineId: line.id,
+    setActiveLineId,
     plan,
     regions: catalog?.regions ?? [],
     region,
@@ -179,7 +234,8 @@ export function useCartConfigure() {
     onSelectPlan,
     onSelectOs,
     onTermChange,
-    updateLine,
+    updateLine: patchActive,
+    removeLine,
     clearCart,
     togglePlanPicker: () => setPlanPickerOpen((open) => !open),
     toggleServers: () => setServersOpen((open) => !open),

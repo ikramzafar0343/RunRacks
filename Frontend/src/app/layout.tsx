@@ -7,6 +7,7 @@ import { SiteHeaderWithCart } from "@/features/cart/components/SiteHeaderWithCar
 import { SiteFooter } from "@/shared/ui/SiteFooter";
 import { SiteFooterGate } from "@/shared/ui/SiteFooterGate";
 import { NavigationScrollReset } from "@/shared/ui/NavigationScrollReset";
+import { NotifyProvider } from "@/shared/ui/notify/NotifyProvider";
 import { nourd, nourdHeading } from "@/styles/fonts";
 import "@/shared/styles/dense-section-spacing.css";
 import "./globals.css";
@@ -43,14 +44,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full flex flex-col font-sans text-body">
-        <CartProvider>
-          <NavigationScrollReset />
-          <SiteHeaderWithCart />
-          {children}
-          <SiteFooterGate>
-            <SiteFooter />
-          </SiteFooterGate>
-        </CartProvider>
+        <NotifyProvider>
+          <CartProvider>
+            <NavigationScrollReset />
+            <SiteHeaderWithCart />
+            {children}
+            <SiteFooterGate>
+              <SiteFooter />
+            </SiteFooterGate>
+          </CartProvider>
+        </NotifyProvider>
       </body>
     </html>
   );

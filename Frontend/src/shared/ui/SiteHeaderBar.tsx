@@ -220,7 +220,9 @@ export function SiteHeaderBar({
             className="siteHeaderIconBtn siteHeaderCartBtn"
             aria-label={
               showCartBadge
-                ? `${headerActions.cart.label}, ${cartItemCount} item`
+                ? `${headerActions.cart.label}, ${cartItemCount} ${
+                    cartItemCount === 1 ? "item" : "items"
+                  }`
                 : headerActions.cart.label
             }
             onClick={scrollToTopPinned}

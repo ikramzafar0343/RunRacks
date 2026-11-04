@@ -1,0 +1,97 @@
+/**
+ * Confirm dialog — Sage & Ink.
+ */
+.rrConfirmRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 1450;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.rrConfirmBackdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, #0c1411 42%, transparent);
+}
+
+.rrConfirmDialog {
+  position: relative;
+  width: min(24rem, 100%);
+  padding: 1.35rem 1.25rem 1.15rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-heading);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--color-brand) 16%, transparent);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.rrConfirmTitle {
+  margin: 0;
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.rrConfirmDesc {
+  margin: 0.55rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.rrConfirmActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+}
+
+.rrConfirmCancel,
+.rrConfirmOk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.45rem;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.rrConfirmCancel {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-heading);
+}
+
+.rrConfirmCancel:hover {
+  background: var(--color-accent-soft);
+}
+
+.rrConfirmOk {
+  border: 0;
+  background: var(--cta-bg, var(--color-brand));
+  color: var(--cta-fg, var(--color-brand-contrast));
+}
+
+.rrConfirmOk:hover {
+  background: var(--cta-bg-hover, var(--color-lime));
+  color: var(--cta-fg-hover, var(--color-on-lime));
+}
+
+.rrConfirmOk[data-tone="error"] {
+  background: var(--color-error);
+  color: #fff;
+}
+
+.rrConfirmOk[data-tone="error"]:hover {
+  filter: brightness(0.94);
+  background: var(--color-error);
+  color: #fff;
+}

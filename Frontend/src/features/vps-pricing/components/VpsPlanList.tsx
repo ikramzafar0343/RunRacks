@@ -12,6 +12,8 @@ import type {
   BillingTermMonths,
   VpsPlan,
 } from "@/features/vps-pricing/model/types";
+import { NOTIFY_COPY } from "@/shared/ui/notify/notifyCopy";
+import { useNotify } from "@/shared/ui/notify/NotifyProvider";
 
 type PlanLayout = "rows" | "cards";
 
@@ -34,7 +36,8 @@ export function VpsPlanList({
   checkoutConfigured,
   layout = "rows",
 }: VpsPlanListProps) {
-  const { seedFromPlan } = useCart();
+  const { addFromPlan } = useCart();
+  const { toast } = useNotify();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(() =>
     defaultSelectedId(plans),
@@ -44,11 +47,21 @@ export function VpsPlanList({
 
   function addToCart(planId: string) {
     const plan = plans.find((entry) => entry.id === planId);
-    seedFromPlan({
+    const result = addFromPlan({
       planId,
       locationId: locationId || "us",
       term,
       ...(plan ? { family: plan.family } : {}),
+    });
+    if (!result.ok) {
+      toast({ tone: "warning", ...NOTIFY_COPY.cartFull });
+      return;
+    }
+    const name = plan?.name ?? "Plan";
+    toast({
+      tone: "success",
+      ...NOTIFY_COPY.addedPlan(name),
+      action: { label: NOTIFY_COPY.viewCart, href: "/cart" },
     });
   }
 

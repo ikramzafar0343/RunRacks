@@ -1,9 +1,11 @@
 /**
- * localStorage persistence for the client cart line.
+ * localStorage persistence for multi-line client cart (v2 + v1 migrate).
  */
 import {
   CART_STORAGE_KEY,
+  CART_STORAGE_KEY_V1,
   clampCartTerm,
+  createCartLineId,
   type CartCustomSpec,
   type CartLine,
   type CartState,
@@ -59,6 +61,7 @@ function parseLine(raw: unknown): CartLine | null {
   if (typeof raw.locationId !== "string" || !raw.locationId) return null;
   const term = clampCartTerm(Number(raw.term) || 1);
   return {
+    id: typeof raw.id === "string" && raw.id ? raw.id : createCartLineId(),
     planId: raw.planId,
     locationId: raw.locationId,
     term,
@@ -72,16 +75,51 @@ function parseLine(raw: unknown): CartLine | null {
   };
 }
 
+function emptyState(): CartState {
+  return { lines: [] };
+}
+
+function migrateV1(): CartState | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(CART_STORAGE_KEY_V1);
+    if (!raw) return null;
+    const parsed: unknown = JSON.parse(raw);
+    if (!isRecord(parsed)) return null;
+    const line = parseLine(parsed.line);
+    window.localStorage.removeItem(CART_STORAGE_KEY_V1);
+    return { lines: line ? [line] : [] };
+  } catch {
+    return null;
+  }
+}
+
 export function readCartState(): CartState {
-  if (typeof window === "undefined") return { line: null };
+  if (typeof window === "undefined") return emptyState();
   try {
     const raw = window.localStorage.getItem(CART_STORAGE_KEY);
-    if (!raw) return { line: null };
+    if (!raw) {
+      const migrated = migrateV1();
+      if (migrated) {
+        writeCartState(migrated);
+        return migrated;
+      }
+      return emptyState();
+    }
     const parsed: unknown = JSON.parse(raw);
-    if (!isRecord(parsed)) return { line: null };
-    return { line: parseLine(parsed.line) };
+    if (!isRecord(parsed)) return emptyState();
+    if (Array.isArray(parsed.lines)) {
+      return {
+        lines: parsed.lines
+          .map((entry) => parseLine(entry))
+          .filter((entry): entry is CartLine => entry != null),
+      };
+    }
+    /* accidental v1 shape under v2 key */
+    const line = parseLine(parsed.line);
+    return { lines: line ? [line] : [] };
   } catch {
-    return { line: null };
+    return emptyState();
   }
 }
 

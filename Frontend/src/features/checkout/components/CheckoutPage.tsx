@@ -1,11 +1,11 @@
 /**
  * Checkout step 3 — review account + payment UI.
- * Auth/payment stay honestly unavailable; passwords never leave component memory.
  */
 "use client";
 
 import Link from "next/link";
 import type { Route } from "next";
+import { useEffect, useRef } from "react";
 import { HiCheck, HiLockClosed, HiShieldCheck } from "react-icons/hi2";
 import { MdHeadsetMic } from "react-icons/md";
 import { CheckoutAccountPanel } from "@/features/checkout/components/CheckoutAccountPanel";
@@ -14,10 +14,28 @@ import { CheckoutOrderSummary } from "@/features/checkout/components/CheckoutOrd
 import { CheckoutPaymentPanel } from "@/features/checkout/components/CheckoutPaymentPanel";
 import { CHECKOUT_STEPS } from "@/features/checkout/components/checkoutConstants";
 import { useCheckoutForm } from "@/features/checkout/components/useCheckoutForm";
+import { NOTIFY_COPY } from "@/shared/ui/notify/notifyCopy";
+import { useNotify } from "@/shared/ui/notify/NotifyProvider";
 import "@/features/checkout/components/checkout-page.css";
 
 export function CheckoutPage() {
   const form = useCheckoutForm();
+  const { toast } = useNotify();
+  const lastNotice = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (form.status !== "ready" || !form.authNotice) return;
+    if (lastNotice.current === form.authNotice) return;
+    lastNotice.current = form.authNotice;
+    const isGoogle = form.authNotice.includes("Google");
+    toast({
+      tone: "info",
+      ...(isGoogle
+        ? NOTIFY_COPY.googleUnavailable
+        : NOTIFY_COPY.accountUnavailable),
+    });
+  }, [form, toast]);
+
   if (form.status === "loading") {
     return <CheckoutEmptyState variant="loading" />;
   }
@@ -103,7 +121,15 @@ export function CheckoutPage() {
               </div>
             </div>
           </div>
-          <CheckoutOrderSummary form={form} />
+          <CheckoutOrderSummary
+            form={form}
+            onCouponHint={() =>
+              toast({ tone: "info", ...NOTIFY_COPY.couponNotLive })
+            }
+            onPlaceOrderAttempt={() =>
+              toast({ tone: "info", ...NOTIFY_COPY.paymentNotLive })
+            }
+          />
         </div>
 
         <footer className="checkoutLegalFooter">

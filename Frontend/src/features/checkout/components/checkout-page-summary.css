@@ -110,8 +110,12 @@ html.dark .checkoutSetupFee {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  cursor: not-allowed;
-  opacity: 0.72;
+  cursor: pointer;
+}
+
+.checkoutPayBtn:hover {
+  background: var(--cta-bg-hover, var(--color-lime));
+  color: var(--cta-fg-hover, var(--color-on-lime));
 }
 
 .checkoutSignInNote {

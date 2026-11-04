@@ -1,5 +1,5 @@
 /**
- * Module cart store — localStorage + same-tab listeners for useSyncExternalStore.
+ * Module cart store — multi-line localStorage + same-tab listeners.
  */
 import {
   CART_STORAGE_KEY,
@@ -15,34 +15,36 @@ type Listener = () => void;
 const listeners = new Set<Listener>();
 
 let cacheRaw: string | null | undefined;
-let cacheLine: CartLine | null = null;
+let cacheLines: CartLine[] = [];
 
 function notify() {
   cacheRaw = undefined;
   for (const listener of listeners) listener();
 }
 
-function readCachedLine(): CartLine | null {
-  if (typeof window === "undefined") return null;
+function readCachedLines(): CartLine[] {
+  if (typeof window === "undefined") return [];
   const raw = window.localStorage.getItem(CART_STORAGE_KEY);
-  if (raw === cacheRaw) return cacheLine;
+  if (raw === cacheRaw) return cacheLines;
   cacheRaw = raw;
-  cacheLine = readCartState().line;
-  return cacheLine;
+  cacheLines = readCartState().lines;
+  return cacheLines;
 }
 
-export function getCartSnapshot(): CartLine | null {
-  return readCachedLine();
+export function getCartSnapshot(): CartLine[] {
+  return readCachedLines();
 }
 
-export function getCartServerSnapshot(): CartLine | null {
-  return null;
+export function getCartServerSnapshot(): CartLine[] {
+  return [];
 }
 
 export function subscribeCart(onStoreChange: Listener): () => void {
   listeners.add(onStoreChange);
   function onStorage(event: StorageEvent) {
-    if (event.key !== CART_STORAGE_KEY) return;
+    if (event.key !== CART_STORAGE_KEY && event.key !== "runracks.cart.v1") {
+      return;
+    }
     notify();
   }
   function onLocal() {
@@ -57,11 +59,11 @@ export function subscribeCart(onStoreChange: Listener): () => void {
   };
 }
 
-export function commitCartLine(line: CartLine | null): void {
-  const next: CartState = { line };
+export function commitCartLines(lines: CartLine[]): void {
+  const next: CartState = { lines };
   writeCartState(next);
   cacheRaw = undefined;
-  cacheLine = line;
+  cacheLines = lines;
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event(CART_EVENT));
   }

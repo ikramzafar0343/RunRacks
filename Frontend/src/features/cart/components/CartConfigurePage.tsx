@@ -1,16 +1,19 @@
 /**
- * Cart configure page — seeded from Choose plan; editable region / server type / tier.
- * Continue to Payment advances to /checkout (payment provider still not live).
+ * Cart configure page — multi-line; payment provider still not live.
  */
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { HiCheck, HiLockClosed, HiShieldCheck } from "react-icons/hi2";
 import { MdHeadsetMic } from "react-icons/md";
 import { CartEmptyState } from "@/features/cart/components/CartEmptyState";
+import { CartLinesRail } from "@/features/cart/components/CartLinesRail";
 import { CartOrderSummary } from "@/features/cart/components/CartOrderSummary";
 import { CartPlanConfigPanel } from "@/features/cart/components/CartPlanConfigPanel";
 import { useCartConfigure } from "@/features/cart/components/useCartConfigure";
+import { NOTIFY_COPY } from "@/shared/ui/notify/notifyCopy";
+import { useNotify } from "@/shared/ui/notify/NotifyProvider";
 import "@/features/cart/components/cart-page.css";
 
 const STEPS = [
@@ -22,11 +25,46 @@ const STEPS = [
 
 export function CartConfigurePage() {
   const cart = useCartConfigure();
+  const { toast, confirm } = useNotify();
+
+  const loadError =
+    cart.status === "ready" || cart.status === "empty"
+      ? cart.loadError
+      : null;
+
+  useEffect(() => {
+    if (loadError) {
+      toast({ tone: "error", ...NOTIFY_COPY.catalogError });
+    }
+  }, [loadError, toast]);
+
   if (cart.status === "loading") {
     return <CartEmptyState variant="loading" />;
   }
   if (cart.status === "empty") {
     return <CartEmptyState variant="empty" />;
+  }
+
+  const ready = cart;
+
+  async function onRemoveActive() {
+    const ok = await confirm({
+      ...NOTIFY_COPY.confirmRemove,
+      tone: "error",
+    });
+    if (!ok) return;
+    ready.removeLine(ready.line.id);
+    toast({ tone: "success", ...NOTIFY_COPY.removedLine });
+  }
+
+  async function onClearAll() {
+    const ok = await confirm({
+      ...NOTIFY_COPY.confirmClear,
+      tone: "error",
+    });
+    if (!ok) return;
+    ready.clearCart();
+    toast({ tone: "success", ...NOTIFY_COPY.clearedCart });
   }
 
   return (
@@ -50,8 +88,7 @@ export function CartConfigurePage() {
         <header>
           <h1 className="cartPageTitle">Your cart</h1>
           <p className="cartPageLead">
-            Pick your billing term and region, configure the start image, then
-            continue when checkout is connected.
+            Configure each server, then continue when checkout is connected.
           </p>
         </header>
 
@@ -66,15 +103,25 @@ export function CartConfigurePage() {
           ))}
         </ol>
 
-        {cart.loadError ? (
+        <CartLinesRail cart={ready} onClearAll={() => void onClearAll()} />
+
+        {ready.loadError ? (
           <p className="cartPageLead" role="alert">
-            {cart.loadError}
+            {ready.loadError}
           </p>
         ) : null}
 
         <div className="cartMain">
-          <CartPlanConfigPanel cart={cart} />
-          <CartOrderSummary cart={cart} />
+          <CartPlanConfigPanel
+            cart={ready}
+            onRemove={() => void onRemoveActive()}
+          />
+          <CartOrderSummary
+            cart={ready}
+            onCouponHint={() =>
+              toast({ tone: "info", ...NOTIFY_COPY.couponNotLive })
+            }
+          />
         </div>
 
         <p className="cartDomainNote">

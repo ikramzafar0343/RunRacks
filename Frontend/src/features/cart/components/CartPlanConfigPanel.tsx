@@ -13,7 +13,13 @@ import { flagSrc } from "@/features/customize/components/customizeIcons";
 import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
 import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
 
-export function CartPlanConfigPanel({ cart }: { cart: CartConfigureReady }) {
+export function CartPlanConfigPanel({
+  cart,
+  onRemove,
+}: {
+  cart: CartConfigureReady;
+  onRemove: () => void;
+}) {
   const { line, plan, activeFamily } = cart;
   return (
     <section className="cartCard" aria-labelledby="cart-config-title">
@@ -58,7 +64,7 @@ export function CartPlanConfigPanel({ cart }: { cart: CartConfigureReady }) {
         <button
           type="button"
           className="cartLinkBtn cartLinkBtnDanger"
-          onClick={cart.clearCart}
+          onClick={onRemove}
         >
           Remove
         </button>

@@ -13,13 +13,22 @@ import {
   CART_PAYMENT_MARKS,
   cartFamilyIcon,
 } from "@/features/cart/components/cartProvisionIcons";
-import { familyLabel } from "@/features/cart/lib/cartPlanHelpers";
 import { checkoutTermTitle } from "@/features/checkout/components/checkoutConstants";
 import type { CheckoutReady } from "@/features/checkout/components/useCheckoutForm";
 import { DEMO_PRICING_ANSWER } from "@/shared/content/demoPricingCopy";
 
-export function CheckoutOrderSummary({ form }: { form: CheckoutReady }) {
-  const { line } = form;
+type CheckoutOrderSummaryProps = {
+  form: CheckoutReady;
+  onCouponHint: () => void;
+  onPlaceOrderAttempt: () => void;
+};
+
+export function CheckoutOrderSummary({
+  form,
+  onCouponHint,
+  onPlaceOrderAttempt,
+}: CheckoutOrderSummaryProps) {
+  const couponValue = form.line.coupon;
   return (
     <aside className="checkoutCard" aria-labelledby="co-summary-title">
       <div className="checkoutSummaryHead">
@@ -36,33 +45,35 @@ export function CheckoutOrderSummary({ form }: { form: CheckoutReady }) {
           aria-expanded={form.serversOpen}
           onClick={form.toggleServers}
         >
-          <span>Servers (1)</span>
+          <span>Servers ({form.serverCount})</span>
           <HiChevronDown size={16} aria-hidden />
         </button>
-        {form.serversOpen ? (
-          <div className="checkoutProductRow">
-            <span className="checkoutProductIcon" aria-hidden>
-              {cartFamilyIcon(form.activeFamily, 16)}
-            </span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="checkoutSummaryLine" style={{ marginTop: 0 }}>
-                <span>
-                  {form.productName}
-                  <span className="checkoutSummaryMuted">
-                    {" "}
-                    · {familyLabel(form.activeFamily)}
-                    {line.custom ? " · Custom" : ""}
-                  </span>
+        {form.serversOpen
+          ? form.lineRows.map((row) => (
+              <div key={row.id} className="checkoutProductRow">
+                <span className="checkoutProductIcon" aria-hidden>
+                  {cartFamilyIcon(row.family, 16)}
                 </span>
-                <span>{form.amountLabel}</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="checkoutSummaryLine" style={{ marginTop: 0 }}>
+                    <span>
+                      {row.name}
+                      <span className="checkoutSummaryMuted">
+                        {" "}
+                        · {row.familyLabel}
+                        {row.isCustom ? " · Custom" : ""}
+                      </span>
+                    </span>
+                    <span>{row.amountLabel}</span>
+                  </div>
+                  <div className="checkoutSummaryLine checkoutSummaryMuted">
+                    <span>{checkoutTermTitle(row.term)} Billing</span>
+                    <span>{row.amountLabel}/mo</span>
+                  </div>
+                </div>
               </div>
-              <div className="checkoutSummaryLine checkoutSummaryMuted">
-                <span>{checkoutTermTitle(line.term)} Billing</span>
-                <span>{form.amountLabel}/mo</span>
-              </div>
-            </div>
-          </div>
-        ) : null}
+            ))
+          : null}
       </div>
 
       <div className="checkoutSetupFee">
@@ -75,7 +86,10 @@ export function CheckoutOrderSummary({ form }: { form: CheckoutReady }) {
           type="button"
           className="checkoutSummaryToggle"
           aria-expanded={form.couponOpen}
-          onClick={form.toggleCoupon}
+          onClick={() => {
+            form.toggleCoupon();
+            if (!form.couponOpen) onCouponHint();
+          }}
         >
           <span>Have a coupon code?</span>
           <HiChevronDown size={16} aria-hidden />
@@ -84,11 +98,9 @@ export function CheckoutOrderSummary({ form }: { form: CheckoutReady }) {
           <input
             className="checkoutInput"
             style={{ marginTop: "0.45rem" }}
-            value={line.coupon}
+            value={couponValue}
             placeholder="Coupon code"
-            onChange={(event) =>
-              form.updateLine({ coupon: event.target.value })
-            }
+            onChange={(event) => form.updateCoupon(event.target.value)}
             aria-label="Coupon code"
             autoComplete="off"
           />
@@ -122,7 +134,7 @@ export function CheckoutOrderSummary({ form }: { form: CheckoutReady }) {
       <button
         type="button"
         className="checkoutPayBtn"
-        disabled
+        onClick={onPlaceOrderAttempt}
         title="Checkout payment and account systems are not configured"
       >
         <HiLockClosed size={15} aria-hidden />

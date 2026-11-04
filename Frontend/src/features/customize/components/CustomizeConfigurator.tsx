@@ -6,19 +6,11 @@
 import { useRouter } from "next/navigation";
 import type { Route } from "next";
 import { useMemo, useState } from "react";
-import {
-  HiCircleStack,
-  HiCloud,
-  HiCpuChip,
-  HiGlobeAlt,
-  HiOutlineCalendarDays,
-  HiServer,
-  HiSignal,
-} from "react-icons/hi2";
+import { HiGlobeAlt, HiOutlineCalendarDays, HiServer } from "react-icons/hi2";
 import { useCart } from "@/features/cart/lib/CartProvider";
 import { CustomizePriceCard } from "@/features/customize/components/CustomizePriceCard";
 import { CustomizeRegionSelect } from "@/features/customize/components/CustomizeRegionSelect";
-import { CustomizeSlider } from "@/features/customize/components/CustomizeSlider";
+import { CustomizeResourceFields } from "@/features/customize/components/CustomizeResourceFields";
 import { familyIcon } from "@/features/customize/components/customizeIcons";
 import {
   attachedRamGb,
@@ -30,15 +22,15 @@ import type {
   VpsFamily,
   VpsRegion,
 } from "@/features/vps-pricing/model/types";
+import { NOTIFY_COPY } from "@/shared/ui/notify/notifyCopy";
+import { useNotify } from "@/shared/ui/notify/NotifyProvider";
 import "@/features/customize/components/customize.css";
 import "@/features/customize/components/customize-summary.css";
 
 export type CustomizeConfiguratorProps = {
   regions: readonly VpsRegion[];
   defaultRegionId: string;
-  /** Override summary CTAs (e.g. `#vps-plans` when embedded on the VPS page). */
   plansHref?: string;
-  /** When set, locks family and hides the Hosting type control. */
   lockedFamily?: VpsFamily;
 };
 
@@ -49,7 +41,8 @@ export function CustomizeConfigurator({
   lockedFamily,
 }: CustomizeConfiguratorProps) {
   const router = useRouter();
-  const { seedFromCustomize } = useCart();
+  const { addFromCustomize } = useCart();
+  const { toast } = useNotify();
   const d = CUSTOMIZE.defaults;
   const [family, setFamily] = useState<VpsFamily>(lockedFamily ?? d.family);
   const [regionId, setRegionId] = useState(defaultRegionId);
@@ -92,20 +85,10 @@ export function CustomizeConfigurator({
   const selectedRegion = regions.find((r) => r.id === regionId);
   const familyLabel =
     CUSTOMIZE.families.find((f) => f.id === family)?.label ?? family;
-  const s = CUSTOMIZE.sliders;
   const ramFloor = attachedRamGb(vcpu);
 
-  function handleVcpuChange(next: number) {
-    setVcpu(next);
-    setRamGb(attachedRamGb(next));
-  }
-
-  function handleRamChange(next: number) {
-    setRamGb(Math.max(next, ramFloor));
-  }
-
   function handleChoosePlan() {
-    seedFromCustomize({
+    const result = addFromCustomize({
       locationId: regionId || defaultRegionId || "us",
       term,
       custom: {
@@ -122,6 +105,11 @@ export function CustomizeConfigurator({
         currency: price.currency,
       },
     });
+    if (!result.ok) {
+      toast({ tone: "warning", ...NOTIFY_COPY.cartFull });
+      return;
+    }
+    toast({ tone: "success", ...NOTIFY_COPY.addedCustom(familyLabel) });
     router.push("/cart" as Route);
   }
 
@@ -194,90 +182,23 @@ export function CustomizeConfigurator({
           </div>
         </div>
 
-        <div className="czFieldBlock">
-          <CustomizeSlider
-            id="cz-vcpu"
-            label={s.vcpu.label}
-            unit={s.vcpu.unit}
-            min={s.vcpu.min}
-            max={s.vcpu.max}
-            step={s.vcpu.step}
-            value={vcpu}
-            icon={<HiCpuChip size={14} />}
-            onChange={handleVcpuChange}
-          />
-          <CustomizeSlider
-            id="cz-ram"
-            label={s.ramGb.label}
-            unit={s.ramGb.unit}
-            min={s.ramGb.min}
-            max={s.ramGb.max}
-            step={s.ramGb.step}
-            value={ramGb}
-            icon={<HiServer size={14} />}
-            onChange={handleRamChange}
-          />
-          <CustomizeSlider
-            id="cz-nvme"
-            label={s.nvmeGb.label}
-            unit={s.nvmeGb.unit}
-            min={s.nvmeGb.min}
-            max={s.nvmeGb.max}
-            step={s.nvmeGb.step}
-            value={nvmeGb}
-            icon={<HiCircleStack size={14} />}
-            onChange={setNvmeGb}
-          />
-          <CustomizeSlider
-            id="cz-bw"
-            label={s.bandwidthTb.label}
-            unit={s.bandwidthTb.unit}
-            min={s.bandwidthTb.min}
-            max={s.bandwidthTb.max}
-            step={s.bandwidthTb.step}
-            value={bandwidthTb}
-            icon={<HiSignal size={14} />}
-            onChange={setBandwidthTb}
-          />
-        </div>
-
-        <div className="czFieldBlock">
-          <p className="czFieldLabel">Add-ons</p>
-          <div className="czToggleList">
-            <label className="czToggle">
-              <input
-                type="checkbox"
-                checked={dedicatedIpv4}
-                onChange={(e) => setDedicatedIpv4(e.target.checked)}
-              />
-              <span className="czToggleIcon" aria-hidden>
-                <HiGlobeAlt size={15} />
-              </span>
-              <span className="czToggleName">
-                {CUSTOMIZE.addons.dedicatedIpv4.label}
-              </span>
-              <span className="czToggleHint">
-                {CUSTOMIZE.addons.dedicatedIpv4.hint}
-              </span>
-            </label>
-            <label className="czToggle">
-              <input
-                type="checkbox"
-                checked={automatedBackups}
-                onChange={(e) => setAutomatedBackups(e.target.checked)}
-              />
-              <span className="czToggleIcon" aria-hidden>
-                <HiCloud size={15} />
-              </span>
-              <span className="czToggleName">
-                {CUSTOMIZE.addons.automatedBackups.label}
-              </span>
-              <span className="czToggleHint">
-                {CUSTOMIZE.addons.automatedBackups.hint}
-              </span>
-            </label>
-          </div>
-        </div>
+        <CustomizeResourceFields
+          vcpu={vcpu}
+          ramGb={ramGb}
+          nvmeGb={nvmeGb}
+          bandwidthTb={bandwidthTb}
+          dedicatedIpv4={dedicatedIpv4}
+          automatedBackups={automatedBackups}
+          onVcpu={(next) => {
+            setVcpu(next);
+            setRamGb(attachedRamGb(next));
+          }}
+          onRam={(next) => setRamGb(Math.max(next, ramFloor))}
+          onNvme={setNvmeGb}
+          onBandwidth={setBandwidthTb}
+          onIpv4={setDedicatedIpv4}
+          onBackups={setAutomatedBackups}
+        />
       </div>
 
       <CustomizePriceCard

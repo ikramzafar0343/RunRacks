@@ -1,0 +1,59 @@
+/**
+ * Multi-line cart rail chips.
+ */
+.cartLinesRail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  margin: 0 0 1.15rem;
+}
+
+.cartLineChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: 100%;
+  padding: 0.45rem 0.7rem;
+  border-radius: var(--cart-radius-md);
+  border: 1px solid var(--cart-border);
+  background: var(--cart-surface);
+  color: var(--cart-text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.cartLineChip[data-active="true"] {
+  border-color: color-mix(in srgb, var(--cart-primary) 45%, var(--cart-border));
+  background: var(--cart-primary-soft);
+}
+
+.cartLineChipIndex {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cart-primary);
+  color: var(--color-brand-contrast);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.cartLineChipMeta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cartLineChipName {
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cartLineChipSub {
+  font-size: 0.68rem;
+  color: var(--cart-muted);
+}
