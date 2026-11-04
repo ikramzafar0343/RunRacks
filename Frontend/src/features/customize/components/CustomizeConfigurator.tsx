@@ -97,7 +97,6 @@ export function CustomizeConfigurator({
 
   function handleVcpuChange(next: number) {
     setVcpu(next);
-    /* Keep RAM attached to cores so the track fill stays proportional. */
     setRamGb(attachedRamGb(next));
   }
 

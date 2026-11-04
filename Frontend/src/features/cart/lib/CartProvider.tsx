@@ -7,20 +7,23 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import {
-  CART_STORAGE_KEY,
   clampCartTerm,
   customPlanId,
   type CartCustomSpec,
   type CartLine,
 } from "@/features/cart/model/cartTypes";
 import { defaultProvisionForFamily } from "@/features/cart/model/provisionCatalog";
-import { readCartState, writeCartState } from "@/features/cart/lib/cartStorage";
+import {
+  commitCartLine,
+  getCartServerSnapshot,
+  getCartSnapshot,
+  subscribeCart,
+} from "@/features/cart/lib/cartStore";
 import type { BillingTermMonths, VpsFamily } from "@/features/vps-pricing/model/types";
 
 type SeedCartInput = {
@@ -51,35 +54,32 @@ const CartContext = createContext<CartContextValue | null>(null);
 function emptyProvision(family?: VpsFamily) {
   return family
     ? defaultProvisionForFamily(family)
-    : { osId: "", osVersion: null as string | null, appId: null as string | null };
+    : {
+        osId: "",
+        osVersion: null as string | null,
+        appId: null as string | null,
+      };
+}
+
+function useCartHydrated(): boolean {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [line, setLine] = useState<CartLine | null>(null);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setLine(readCartState().line);
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!hydrated) return;
-    writeCartState({ line });
-  }, [line, hydrated]);
-
-  useEffect(() => {
-    function onStorage(event: StorageEvent) {
-      if (event.key !== CART_STORAGE_KEY) return;
-      setLine(readCartState().line);
-    }
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
-  }, []);
+  const line = useSyncExternalStore(
+    subscribeCart,
+    getCartSnapshot,
+    getCartServerSnapshot,
+  );
+  const hydrated = useCartHydrated();
 
   const seedFromPlan = useCallback((input: SeedCartInput) => {
     const provision = emptyProvision(input.family);
-    setLine({
+    commitCartLine({
       planId: input.planId,
       locationId: input.locationId || "us",
       term: clampCartTerm(input.term),
@@ -95,7 +95,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const seedFromCustomize = useCallback((input: SeedCustomizeInput) => {
     const provision = defaultProvisionForFamily(input.custom.family);
-    setLine({
+    commitCartLine({
       planId: customPlanId(input.custom.family),
       locationId: input.locationId || "us",
       term: clampCartTerm(input.term),
@@ -110,14 +110,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const updateLine = useCallback((patch: Partial<CartLine>) => {
-    setLine((prev) => {
-      if (!prev) return prev;
-      return { ...prev, ...patch };
-    });
+    const prev = getCartSnapshot();
+    if (!prev) return;
+    commitCartLine({ ...prev, ...patch });
   }, []);
 
   const clearCart = useCallback(() => {
-    setLine(null);
+    commitCartLine(null);
   }, []);
 
   const value = useMemo<CartContextValue>(

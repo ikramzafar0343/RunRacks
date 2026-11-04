@@ -28,6 +28,7 @@ import {
   useDocumentTheme,
   type DocumentTheme,
 } from "@/shared/lib/useDocumentTheme";
+import { SiteHeaderMobilePanel } from "@/shared/ui/SiteHeaderMobilePanel";
 import "@/shared/ui/site-header.css";
 import "@/shared/ui/site-header-mobile.css";
 
@@ -255,62 +256,13 @@ export function SiteHeaderBar({
       </div>
 
       {mobileOpen ? (
-        <div id={`${menuId}-mobile`} className="siteHeaderMobile">
-          {primaryNav.map((item) => {
-            if (!isNavDropdown(item)) {
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  aria-current={
-                    isBlogNavActive(pathname, item.href) ? "page" : undefined
-                  }
-                  onClick={() => {
-                    setMobileOpen(false);
-                    scrollToTopPinned();
-                  }}
-                >
-                  {item.label}
-                </Link>
-              );
-            }
-
-            return (
-              <div key={item.label}>
-                <div className="siteHeaderMobileGroup">{item.label}</div>
-                <div className="siteHeaderMobileSub">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      aria-current={
-                        isBlogNavActive(pathname, child.href)
-                          ? "page"
-                          : undefined
-                      }
-                      onClick={() => {
-                        setMobileOpen(false);
-                        scrollToTopPinned();
-                      }}
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-          <Link
-            href={headerActions.ai.href}
-            className="siteHeaderMobileAi"
-            onClick={() => {
-              setMobileOpen(false);
-              scrollToTopPinned();
-            }}
-          >
-            {headerActions.ai.label}
-          </Link>
-        </div>
+        <SiteHeaderMobilePanel
+          id={`${menuId}-mobile`}
+          pathname={pathname}
+          primaryNav={primaryNav}
+          headerActions={headerActions}
+          onClose={() => setMobileOpen(false)}
+        />
       ) : null}
     </header>
   );
