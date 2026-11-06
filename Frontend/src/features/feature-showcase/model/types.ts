@@ -18,6 +18,10 @@ export type FeatureCard = {
   imageSrc: string;
   imageAlt: string;
   imagePosition: string;
+  /** Optional muted loop cover (plays on all cards; no still poster). */
+  videoSrc?: string;
+  /** Loop only the first N seconds of `videoSrc` (inclusive cap). */
+  videoMaxSeconds?: number;
   theme: FeatureCardTheme;
   verifiedOfferText?: string;
 };

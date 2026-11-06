@@ -3,6 +3,8 @@
   flex: 1;
   display: flex;
   min-width: 0;
+  min-height: 0;
+  height: 100%;
   gap: 0;
 }
 
@@ -10,10 +12,27 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: min(100% - 1.5rem, var(--ai-max));
+  gap: 0.45rem;
+  width: 100%;
+  max-width: var(--ai-max);
   margin-inline: auto;
-  padding: clamp(4.75rem, 10vw, 6.5rem) 0.75rem 1.25rem;
-  min-height: 100dvh;
+  padding: 1rem 1.25rem 0.85rem;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.aiAdvisorMain--chat {
+  max-width: min(1040px, 100%);
+  padding-top: 0.75rem;
+}
+
+.aiAdvisorTranscriptWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .aiAdvisorShell--split {
@@ -63,7 +82,11 @@
 
 .aiAdvisorTitleAccent {
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--ai-lime) 80%, var(--ai-accent));
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--ai-lime) 80%,
+    var(--ai-accent)
+  );
   text-decoration-thickness: 3px;
   text-underline-offset: 0.18em;
 }
@@ -155,18 +178,20 @@
 
 .aiAdvisorSpacer {
   flex: 1;
-  min-height: 4rem;
+  min-height: 0;
 }
 
 .aiAdvisorTranscript {
   flex: 1;
-  min-height: 10rem;
-  max-height: min(48dvh, 26rem);
+  min-height: 0;
+  max-height: none;
   overflow-y: auto;
+  overscroll-behavior: contain;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  padding: 0.5rem 0.1rem 0.75rem;
+  padding: 0.5rem 0.25rem 1.25rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 .aiAdvisorEmpty {
@@ -181,7 +206,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  max-width: 88%;
+  max-width: min(75ch, 92%);
 }
 
 .aiAdvisorMsg--user {
@@ -208,10 +233,15 @@
   border-radius: var(--ai-radius-md);
   border: 1px solid var(--ai-border);
   background: var(--ai-panel);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.65;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.aiAdvisorMsgBubble--pending {
+  color: var(--ai-muted);
+  letter-spacing: 0.12em;
 }
 
 .aiAdvisorMsg--user .aiAdvisorMsgBubble {
@@ -221,41 +251,45 @@
   color: var(--color-brand-contrast, #fff);
 }
 
-.aiAdvisorBanner {
+.aiFollowUps {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem 0.85rem;
-  margin: 0.75rem 0 0;
-  padding: 0.55rem 0.85rem;
-  border-radius: var(--ai-radius-sm);
-  border: 1px solid color-mix(in srgb, var(--ai-accent) 35%, var(--ai-border));
-  background: var(--ai-accent-bg);
-  color: var(--ai-heading);
-  font-size: 0.9rem;
-  line-height: 1.4;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.aiAdvisorBanner p {
+.aiFollowUpsTitle {
   margin: 0;
+  width: 100%;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--ai-heading);
 }
 
-.aiAdvisorBanner--error {
-  border-color: color-mix(in srgb, var(--ai-error) 40%, var(--ai-border));
+.aiFollowUpChip {
+  min-height: 44px;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.aiAdvisorComposerShell {
-  position: sticky;
-  bottom: 0;
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  margin-top: auto;
-  padding: 0.75rem 0 0.35rem;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    color-mix(in srgb, var(--color-canvas, var(--color-surface)) 92%, transparent) 22%
-  );
+.aiFollowUpChip:hover,
+.aiFollowUpChip:focus-visible {
+  border-color: var(--ai-accent);
+  background: var(--ai-accent-bg);
+  outline: none;
+}
+
+.aiFollowUpChip:focus-visible {
+  outline: 2px solid var(--ai-accent);
+  outline-offset: 2px;
 }

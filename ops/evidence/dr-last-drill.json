@@ -1,0 +1,10 @@
+{
+  "ranAt": null,
+  "elapsedSeconds": null,
+  "recoveredToBackupStamp": null,
+  "method": "pg_dump restore into ephemeral container",
+  "status": "NOT_RUN",
+  "detail": "Docker unavailable on this workstation. Run bash scripts/dr/backup.sh && bash scripts/dr/restore-drill.sh or ops-readiness CI to populate measured RPO/RTO.",
+  "rpoNote": "RPO is the age of the dump/WAL used; not a hardcoded SLA",
+  "rtoNote": "RTO is elapsedSeconds from a completed drill only"
+}

@@ -110,8 +110,7 @@
 .contactFieldControl:focus {
   outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 2px
-    color-mix(in srgb, var(--color-brand) 25%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-brand) 25%, transparent);
 }
 
 .contactFieldControl--area {

@@ -27,7 +27,7 @@ const ICONS: Record<WhyChooseIconId, LucideIcon> = {
   shield: ShieldCheck,
 };
 
-type WhyChooseUsProps = {
+export type WhyChooseUsProps = {
   variant: WhyChooseVariant;
   sectionId?: string;
 };
@@ -55,7 +55,10 @@ export function WhyChooseUs({
             <p className="rrWhyLead">{content.lead}</p>
 
             <p className="rrWhyKpisNotice">{content.kpisNotice}</p>
-            <div className="rrWhyKpis" aria-label="Illustrative service targets">
+            <div
+              className="rrWhyKpis"
+              aria-label="Illustrative service targets"
+            >
               {content.kpis.map((kpi) => (
                 <div key={kpi.caption} className="rrWhyKpi">
                   <strong>{kpi.value}</strong>

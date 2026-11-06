@@ -2,7 +2,8 @@
  * Admin RDP power section — layout + feature list (Sage & Ink / Nourd).
  */
 .ardpPower {
-  padding: clamp(2rem, 5vw, 3.5rem) var(--ardp-gutter, clamp(1.25rem, 4vw, 3.5rem));
+  padding: clamp(2rem, 5vw, 3.5rem)
+    var(--ardp-gutter, clamp(1.25rem, 4vw, 3.5rem));
 }
 
 .ardpPowerInner {
@@ -14,12 +15,20 @@
   align-items: center;
   padding: clamp(1.5rem, 3.5vw, 2.75rem);
   border-radius: 14px;
-  background: color-mix(in srgb, var(--color-accent-soft) 72%, var(--color-canvas));
+  background: color-mix(
+    in srgb,
+    var(--color-accent-soft) 72%,
+    var(--color-canvas)
+  );
   border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
 }
 
 html.dark .ardpPowerInner {
-  background: color-mix(in srgb, var(--color-accent-soft) 55%, var(--color-surface));
+  background: color-mix(
+    in srgb,
+    var(--color-accent-soft) 55%,
+    var(--color-surface)
+  );
 }
 
 .ardpPowerCopy {

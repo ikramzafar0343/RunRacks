@@ -1,0 +1,76 @@
+{
+  "brand": "RunRacks",
+  "snapshot_date": "2026-11-05",
+  "authority": "public_page_evidence_only",
+  "product_families": [
+    "Linux VPS",
+    "Windows VPS",
+    "Admin RDP"
+  ],
+  "catalog_regions": [
+    "United States",
+    "United Kingdom",
+    "Canada",
+    "Netherlands",
+    "Germany",
+    "Singapore",
+    "Australia",
+    "Japan"
+  ],
+  "demo_pricing": {
+    "status": "verified_public",
+    "orderable": false,
+    "reason": "Demo prices until billing and checkout connected",
+    "sources": [
+      "https://run-racks-ho8d.vercel.app/pricing",
+      "https://run-racks-ho8d.vercel.app/customize"
+    ]
+  },
+  "ai_backend": {
+    "status": "not_live_on_public_site",
+    "source": "https://run-racks-ho8d.vercel.app/ai"
+  },
+  "contact_inbox": {
+    "status": "not_connected_on_public_site",
+    "source": "https://run-racks-ho8d.vercel.app/contact"
+  },
+  "legal_documents": {
+    "privacy": "pending",
+    "terms": "pending",
+    "refund": "pending",
+    "sources": [
+      "https://run-racks-ho8d.vercel.app/privacy",
+      "https://run-racks-ho8d.vercel.app/terms",
+      "https://run-racks-ho8d.vercel.app/refund"
+    ]
+  },
+  "backup_included": {
+    "status": "conflicted",
+    "evidence": [
+      "https://run-racks-ho8d.vercel.app/products/vps",
+      "https://run-racks-ho8d.vercel.app/customize"
+    ],
+    "customer_safe_claim": "Inclusion, retention and cost not verified"
+  },
+  "numeric_claims": {
+    "review_counts": "demo_not_verified",
+    "customer_counts": "demo_not_verified",
+    "hypervisor_statistics": "demo_not_live",
+    "network_ddos_capacity": "needs_owner_proof"
+  },
+  "competitor_comparison": {
+    "brand": "WaseerHost",
+    "terms_conflict": {
+      "homepage": "same-price-renewal marketing",
+      "terms": "many introductory terms renew at higher regular price"
+    },
+    "free_domain_conflict": {
+      "starter_card": "free .com domain text",
+      "legal_and_faq": "offer limited to eligible Basic/Business/Pro annual+ plans"
+    },
+    "source_urls": [
+      "https://waseerhost.com/pk",
+      "https://waseerhost.com/terms-of-service"
+    ]
+  }
+}

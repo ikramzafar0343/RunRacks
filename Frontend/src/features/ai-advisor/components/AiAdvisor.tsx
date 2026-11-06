@@ -1,10 +1,7 @@
 "use client";
 
-/**
- * AI Advisor — chat column for Linux VPS, Windows VPS, and Admin RDP.
- */
 import { Menu } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { AiAdvisorHeader } from "@/features/ai-advisor/components/AiAdvisorHeader";
 import { AiPlansDock } from "@/features/ai-advisor/components/AiPlansDock";
 import { AiSidebar } from "@/features/ai-advisor/components/AiSidebar";
@@ -12,20 +9,24 @@ import { AiUnavailableState } from "@/features/ai-advisor/components/AiUnavailab
 import { ChatComposer } from "@/features/ai-advisor/components/ChatComposer";
 import { ConversationView } from "@/features/ai-advisor/components/ConversationView";
 import { StarterPromptList } from "@/features/ai-advisor/components/StarterPromptList";
-import {
-  AI_COPY,
-  AI_STARTERS,
-  isAiTopic,
-  startersForTopic,
-  type AiStarterWithIcon,
-} from "@/features/ai-advisor/model/aiContent";
+import { useAdvisorFrame } from "@/features/ai-advisor/hooks/useAdvisorFrame";
+import { useAiChatHistory } from "@/features/ai-advisor/hooks/useAiChatHistory";
+import { useConsumeAsk } from "@/features/ai-advisor/hooks/useConsumeAsk";
 import { useAiConversation } from "@/features/ai-advisor/hooks/useAiConversation";
+import { AI_COPY, isAiTopic } from "@/features/ai-advisor/model/aiContent";
+import {
+  isAskedCustomSpecBuild,
+  matchAskedBudgetPlanIds,
+  matchAskedFamily,
+  matchAskedPlanIds,
+} from "@/features/ai-advisor/model/askedPlans";
 import { PlanFinderDialog } from "@/features/ai-advisor/plan-finder/PlanFinderDialog";
-import { fetchAiConfig } from "@/features/ai-advisor/services/aiClient";
 import type { AiTopic } from "@/shared/lib/apiContracts";
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { VpsFamily } from "@/features/vps-pricing";
+import { useNotify } from "@/shared/ui/notify/NotifyProvider";
 import "@/features/ai-advisor/components/ai-advisor.css";
 import "@/features/ai-advisor/components/ai-advisor-chat.css";
+import "@/features/ai-advisor/components/ai-advisor-motion.css";
 import "@/features/ai-advisor/components/ai-advisor-composer.css";
 import "@/features/ai-advisor/components/ai-advisor-dock.css";
 import "@/features/ai-advisor/components/ai-advisor-panels.css";
@@ -34,77 +35,93 @@ import "@/features/ai-advisor/components/ai-advisor-regions.css";
 
 type AiAdvisorProps = {
   topicParam?: string | null;
+  ask?: string | null;
 };
 
-export function AiAdvisor({ topicParam = null }: AiAdvisorProps) {
+export function AiAdvisor({ topicParam = null, ask = null }: AiAdvisorProps) {
+  const { toast, confirm } = useNotify();
   const topic: AiTopic | null = isAiTopic(topicParam) ? topicParam : null;
-  const [starters, setStarters] =
-    useState<readonly AiStarterWithIcon[]>(AI_STARTERS);
-  const [disclaimer, setDisclaimer] = useState<string>(AI_COPY.disclaimer);
   const [planOpen, setPlanOpen] = useState(false);
   const [plansOpen, setPlansOpen] = useState(false);
   const [planFamily, setPlanFamily] = useState<VpsFamily | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [drawer, setDrawer] = useState(false);
-  const menuRef = useRef<HTMLButtonElement>(null);
+  const [askedPlanIds, setAskedPlanIds] = useState<string[] | null>(null);
+  const {
+    starters,
+    disclaimer,
+    sidebarOpen,
+    setSidebarOpen,
+    drawer,
+    menuRef,
+    closeSidebar,
+  } = useAdvisorFrame(topic);
 
   const {
     draft,
     setDraft,
     messages,
     phase,
+    sessionStore,
     applyChip,
     send,
+    retry,
+    stop,
     resetChat,
+    openConversation,
+    conversationId,
+    savedTick,
     hasMessages,
     isDirty,
   } = useAiConversation(topic);
 
-  useEffect(() => {
-    let cancelled = false;
-    fetchAiConfig()
-      .then((cfg) => {
-        if (cancelled) return;
-        setDisclaimer(cfg.disclaimer);
-        setStarters(startersForTopic(topic));
-      })
-      .catch(() => {
-        if (cancelled) return;
-        setStarters(startersForTopic(topic));
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [topic]);
+  const activeTitle =
+    messages.find((message) => message.role === "user")?.text ?? null;
+  const history = useAiChatHistory({
+    savedTick,
+    activeId: conversationId,
+    activeTitle,
+    activeStore: sessionStore,
+  });
 
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 899px)");
-    const apply = () => {
-      setDrawer(media.matches);
-      if (!media.matches) setSidebarOpen(false);
-    };
-    apply();
-    media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
-  }, []);
-
-  useEffect(() => {
-    if (!sidebarOpen || !drawer) return;
-    function onKey(event: KeyboardEvent) {
-      if (event.key !== "Escape") return;
-      setSidebarOpen(false);
-      menuRef.current?.focus();
+  function inspectPromptForPlans(text: string) {
+    // Custom CPU/RAM/NVMe/bandwidth builds are quoted via Customize — do not
+    // open the catalog dock with a nearest published SKU.
+    if (isAskedCustomSpecBuild(text)) {
+      setAskedPlanIds(null);
+      setPlansOpen(false);
+      return;
     }
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = previous;
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [sidebarOpen, drawer]);
+    const budgetIds = matchAskedBudgetPlanIds(text);
+    if (budgetIds.length > 0) {
+      setAskedPlanIds(budgetIds);
+      setPlanFamily(null);
+      setPlansOpen(true);
+      return;
+    }
+    const ids = matchAskedPlanIds(text);
+    if (ids.length > 0) {
+      setAskedPlanIds(ids);
+      setPlansOpen(true);
+      return;
+    }
+    const family = matchAskedFamily(text);
+    if (family) {
+      setAskedPlanIds(null);
+      setPlanFamily(family);
+      setPlansOpen(true);
+    }
+  }
 
-  const pending = phase.kind === "submitting";
+  function handleSend() {
+    const text = draft.trim();
+    if (text) inspectPromptForPlans(text);
+    void send();
+  }
+  useConsumeAsk(ask, (text) => {
+    inspectPromptForPlans(text);
+    void send(text);
+  });
+
+  const pending = phase.kind === "submitting" || phase.kind === "streaming";
   const banner = useMemo(() => {
     if (phase.kind === "unavailable") {
       return { message: phase.message, variant: "unavailable" as const };
@@ -115,19 +132,48 @@ export function AiAdvisor({ topicParam = null }: AiAdvisorProps) {
     return null;
   }, [phase]);
 
-  function handleNewChat() {
+  async function handleNewChat() {
     if (isDirty) {
-      const ok = window.confirm("Start a new chat? This clears the current session.");
+      const ok = await confirm({
+        ...AI_COPY.newChatConfirm,
+        tone: "info",
+      });
       if (!ok) return;
     }
     resetChat();
     setPlansOpen(false);
-    setSidebarOpen(false);
+    closeSidebar();
   }
 
-  function closeSidebar() {
-    setSidebarOpen(false);
-    if (drawer) menuRef.current?.focus();
+  function handleOpenChat(id: string) {
+    if (id === conversationId) {
+      closeSidebar();
+      return;
+    }
+    void history.openChat(id).then((loaded) => {
+      if (!loaded) return;
+      openConversation(loaded.id, loaded.messages, loaded.store);
+      setPlansOpen(false);
+      closeSidebar();
+    });
+  }
+
+  async function handleDeleteChat(id: string) {
+    if (pending && id === conversationId) return;
+    const ok = await confirm({
+      ...AI_COPY.deleteChatConfirm,
+      tone: "error",
+    });
+    if (!ok) return;
+    const removed = await history.removeChat(id);
+    if (!removed) {
+      toast({ tone: "error", ...AI_COPY.chatDeleteFailed });
+      return;
+    }
+    toast({ tone: "success", ...AI_COPY.chatDeleted });
+    if (id !== conversationId) return;
+    resetChat();
+    setPlansOpen(false);
   }
 
   return (
@@ -135,16 +181,24 @@ export function AiAdvisor({ topicParam = null }: AiAdvisorProps) {
       <AiSidebar
         open={sidebarOpen}
         drawer={drawer}
-        messages={messages}
+        chats={history.chats}
+        activeId={conversationId}
+        historyPhase={history.phase}
+        notice={history.notice}
+        error={history.error}
+        lockedId={pending ? conversationId : null}
         onClose={closeSidebar}
         onNewChat={handleNewChat}
+        onOpenChat={handleOpenChat}
+        onDeleteChat={handleDeleteChat}
         onPlanFinder={() => {
           setPlanOpen(true);
-          setSidebarOpen(false);
+          closeSidebar();
         }}
         onPlans={() => {
+          setAskedPlanIds(null);
           setPlansOpen(true);
-          setSidebarOpen(false);
+          closeSidebar();
         }}
       />
 
@@ -153,33 +207,62 @@ export function AiAdvisor({ topicParam = null }: AiAdvisorProps) {
           plansOpen ? "aiAdvisorShell aiAdvisorShell--split" : "aiAdvisorShell"
         }
       >
-        <div className="aiAdvisorMain">
-          <button
-            type="button"
-            ref={menuRef}
-            className="aiSidebarToggle"
-            aria-expanded={sidebarOpen}
-            aria-controls="ai-sidebar"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <Menu size={18} aria-hidden />
-            Menu
-          </button>
+        <div
+          className={
+            hasMessages ? "aiAdvisorMain aiAdvisorMain--chat" : "aiAdvisorMain"
+          }
+        >
+          <div className="aiAdvisorChrome">
+            <button
+              type="button"
+              ref={menuRef}
+              className="aiSidebarToggle"
+              aria-expanded={sidebarOpen}
+              aria-controls="ai-sidebar"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <Menu size={18} aria-hidden />
+              Menu
+            </button>
 
-          {!hasMessages ? <AiAdvisorHeader /> : null}
+            {!hasMessages ? <AiAdvisorHeader /> : null}
+            {!hasMessages ? (
+              <StarterPromptList
+                starters={starters}
+                onSelect={(starter) => {
+                  applyChip(starter);
+                  inspectPromptForPlans(starter.prompt);
+                }}
+              />
+            ) : null}
 
-          {!hasMessages ? (
-            <StarterPromptList starters={starters} onSelect={applyChip} />
-          ) : null}
+            {sessionStore === "memory" ? (
+              <p className="aiSessionNotice" role="status">
+                {AI_COPY.tempSession}
+              </p>
+            ) : null}
 
-          {banner ? (
-            <AiUnavailableState
-              message={banner.message}
-              variant={banner.variant}
+            {banner ? (
+              <AiUnavailableState
+                message={banner.message}
+                variant={banner.variant}
+                {...(banner.variant === "error"
+                  ? { onRetry: () => void retry() }
+                  : {})}
+              />
+            ) : null}
+          </div>
+
+          {hasMessages ? (
+            <ConversationView
+              messages={messages}
+              onChip={(label) => {
+                inspectPromptForPlans(label);
+                void send(label);
+              }}
+              streaming={pending}
             />
-          ) : null}
-
-          {hasMessages ? <ConversationView messages={messages} /> : (
+          ) : (
             <div className="aiAdvisorSpacer" aria-hidden />
           )}
 
@@ -187,9 +270,8 @@ export function AiAdvisor({ topicParam = null }: AiAdvisorProps) {
             <ChatComposer
               value={draft}
               onChange={setDraft}
-              onSend={() => {
-                void send();
-              }}
+              onSend={handleSend}
+              onStop={stop}
               pending={pending}
             />
             <p className="aiAdvisorDisclaimer">{disclaimer}</p>
@@ -199,6 +281,7 @@ export function AiAdvisor({ topicParam = null }: AiAdvisorProps) {
         <AiPlansDock
           open={plansOpen}
           family={planFamily}
+          planIds={askedPlanIds}
           onClose={() => setPlansOpen(false)}
         />
       </div>

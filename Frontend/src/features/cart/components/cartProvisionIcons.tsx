@@ -2,7 +2,14 @@
  * Brand logos for cart OS / apps / payments / families.
  */
 import type { ComponentType, ReactNode } from "react";
-import { FaCcAmex, FaCcMastercard, FaCcPaypal, FaCcVisa, FaUniversity, FaWindows } from "react-icons/fa";
+import {
+  FaCcAmex,
+  FaCcMastercard,
+  FaCcPaypal,
+  FaCcVisa,
+  FaUniversity,
+  FaWindows,
+} from "react-icons/fa";
 import {
   HiOutlineComputerDesktop,
   HiOutlineServerStack,
@@ -35,7 +42,7 @@ import {
   SiWordpress,
   SiZoom,
 } from "react-icons/si";
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { VpsFamily } from "@/features/vps-pricing";
 
 type IconProps = {
   size?: number;
@@ -55,9 +62,7 @@ function renderBrand(
   color: string,
   size: number,
 ) {
-  return (
-    <Icon size={size} color={color} style={{ color }} aria-hidden />
-  );
+  return <Icon size={size} color={color} style={{ color }} aria-hidden />;
 }
 
 const OS_ICONS: Record<string, BrandIcon> = {

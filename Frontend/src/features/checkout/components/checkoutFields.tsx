@@ -3,8 +3,8 @@
  */
 import Image from "next/image";
 import { HiEye, HiEyeSlash } from "react-icons/hi2";
-import { flagSrc } from "@/features/customize/components/customizeIcons";
-import type { VpsRegion } from "@/features/vps-pricing/model/types";
+import { flagSrc } from "@/features/customize";
+import type { VpsRegion } from "@/features/vps-pricing";
 
 export function CheckoutTextField({
   id,

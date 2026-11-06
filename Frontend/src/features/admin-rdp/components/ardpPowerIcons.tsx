@@ -35,8 +35,20 @@ function KvmIcon({ size = 18 }: IconProps) {
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
       <circle cx="12" cy="12" r="2.4" fill="currentColor" />
       <circle cx="12" cy="5" r="1.7" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="5.5" cy="17" r="1.7" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="18.5" cy="17" r="1.7" stroke="currentColor" strokeWidth="1.5" />
+      <circle
+        cx="5.5"
+        cy="17"
+        r="1.7"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <circle
+        cx="18.5"
+        cy="17"
+        r="1.7"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
       <path
         d="M12 9.6V6.8M10.1 13.4 6.8 16M13.9 13.4l3.3 2.6"
         stroke="currentColor"
@@ -102,10 +114,7 @@ const ICONS: Record<ArdpPowerIconId, (props: IconProps) => ReactNode> = {
   network: NetworkIcon,
 };
 
-export function ardpPowerIcon(
-  id: ArdpPowerIconId,
-  size = 18,
-): ReactNode {
+export function ardpPowerIcon(id: ArdpPowerIconId, size = 18): ReactNode {
   const Icon = ICONS[id];
   return Icon({ size });
 }

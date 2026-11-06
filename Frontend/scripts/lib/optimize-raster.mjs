@@ -177,7 +177,11 @@ export async function deleteUnreferenced(filePath, root, srcHaystack) {
     } catch {
       // none
     }
-    return { path: path.relative(root, filePath), saved: st.size, kind: "unref" };
+    return {
+      path: path.relative(root, filePath),
+      saved: st.size,
+      kind: "unref",
+    };
   } catch {
     return null;
   }

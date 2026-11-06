@@ -1,0 +1,6 @@
+{
+  "ranAt": "2026-11-06T07:36:13.048Z",
+  "configured": false,
+  "delivered": false,
+  "detail": "ALERT_WEBHOOK_URL unset — config-ready only, not active delivery"
+}

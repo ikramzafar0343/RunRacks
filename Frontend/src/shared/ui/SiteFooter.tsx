@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FOOTER } from "@/shared/config/footerConfig";
 import { FooterNavColumns } from "@/shared/ui/FooterNavColumns";
 import { FooterSocial } from "@/shared/ui/FooterSocial";
+import { SiteLogo } from "@/shared/ui/SiteLogo";
 import "@/shared/ui/site-footer.css";
 import "@/shared/ui/site-footer-social.css";
 import "@/shared/ui/site-footer-accordion.css";
@@ -15,8 +16,13 @@ export function SiteFooter() {
     <footer className="siteFooter" aria-labelledby="site-footer-brand">
       <div className="siteFooterInner">
         <div className="siteFooterBrandBlock">
-          <Link href="/" className="siteFooterBrand" id="site-footer-brand">
-            <span className="siteFooterBrandName">{FOOTER.brand}</span>
+          <Link
+            href="/"
+            className="siteFooterBrand"
+            id="site-footer-brand"
+            aria-label="RunRacks"
+          >
+            <SiteLogo size="footer" />
           </Link>
           <FooterSocial items={FOOTER.social} />
         </div>

@@ -29,9 +29,9 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function validate(body: unknown):
-  | { ok: true; data: ContactRequest }
-  | { ok: false; fields: FieldErrors } {
+function validate(
+  body: unknown,
+): { ok: true; data: ContactRequest } | { ok: false; fields: FieldErrors } {
   if (!isRecord(body)) {
     return {
       ok: false,

@@ -68,10 +68,7 @@ export function comparisonKeyForFamily(family: VpsFamily): ComparisonFamilyKey {
   return "linux";
 }
 
-export function plansForFamily(
-  row: FeatureRow,
-  family: VpsFamily,
-): PlanSpec[] {
+export function plansForFamily(row: FeatureRow, family: VpsFamily): PlanSpec[] {
   return row[comparisonKeyForFamily(family)];
 }
 

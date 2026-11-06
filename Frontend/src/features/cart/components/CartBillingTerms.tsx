@@ -4,12 +4,9 @@
 import { termSavePercent } from "@/features/cart/lib/cartPlanHelpers";
 import { CART_TERMS, cartTermTitle } from "@/features/cart/lib/cartLineEdits";
 import type { CartConfigureReady } from "@/features/cart/components/useCartConfigure";
-import { calculateCustomizePrice } from "@/features/customize/model/customizePricing";
-import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
-import {
-  billingNoteForTerm,
-  formatMoneyMinor,
-} from "@/features/vps-pricing/model/formatPrice";
+import { calculateCustomizePrice } from "@/features/customize";
+import { selectPlanPrice } from "@/features/vps-pricing";
+import { billingNoteForTerm, formatMoneyMinor } from "@/features/vps-pricing";
 
 export function CartBillingTerms({ cart }: { cart: CartConfigureReady }) {
   const { line, plan } = cart;

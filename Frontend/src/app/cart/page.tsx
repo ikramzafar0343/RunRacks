@@ -2,7 +2,7 @@
  * Cart configure route — client cart seeded from Choose plan.
  */
 import type { Metadata } from "next";
-import { CartConfigurePage } from "@/features/cart/components/CartConfigurePage";
+import { CartConfigurePage } from "@/features/cart";
 
 export const metadata: Metadata = {
   title: "Your cart",

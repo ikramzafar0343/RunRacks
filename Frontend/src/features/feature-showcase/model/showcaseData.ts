@@ -35,6 +35,8 @@ export const FEATURE_CARDS: FeatureCard[] = [
     imageAlt:
       "Person considering hosting plans with plan option cards on a green studio backdrop",
     imagePosition: "center center",
+    // Cache-bust so replaced clips are not stuck behind an old browser cache.
+    videoSrc: "/videos/showcase/plans-cover.mp4?v=20261106",
     theme: "red",
   },
   {
@@ -49,7 +51,11 @@ export const FEATURE_CARDS: FeatureCard[] = [
     imageSrc: "/images/showcase/vps-cover-1200.webp",
     imageAlt:
       "Person with a phone seated against a green VPS hosting studio backdrop",
-    imagePosition: "center center",
+    // Portrait 720×1278 in a square tile. 50% slices the headline; 26% keeps
+    // the title inside and the scene centered.
+    imagePosition: "center 26%",
+    videoSrc: "/videos/showcase/vps-cover.mp4?v=20261106",
+    videoMaxSeconds: 27,
     theme: "violet",
   },
   {
@@ -65,6 +71,7 @@ export const FEATURE_CARDS: FeatureCard[] = [
     imageAlt:
       "Professional with a tablet beside Windows hosting feature cards on a green backdrop",
     imagePosition: "center center",
+    videoSrc: "/videos/showcase/windows-cover.mp4?v=20261106",
     theme: "slate",
   },
   {
@@ -78,8 +85,9 @@ export const FEATURE_CARDS: FeatureCard[] = [
     href: "/products/admin-rdp" as Route,
     imageSrc: "/images/showcase/admin-rdp-cover-1200.webp",
     imageAlt:
-      "Administrator at a desk with Windows Admin RDP feature cards on a green backdrop",
+      "Emails and socials inbox scene with floating message cards for Windows Admin RDP",
     imagePosition: "center center",
+    videoSrc: "/videos/showcase/admin-rdp-cover.mp4?v=20261106b",
     theme: "night",
   },
 ];

@@ -1,12 +1,9 @@
 /**
  * Lowest monthly-equivalent price for a catalog family (hero “from” line).
  */
-import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
-import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
-import type {
-  VpsCatalogPayload,
-  VpsFamily,
-} from "@/features/vps-pricing/model/types";
+import { selectPlanPrice } from "@/features/vps-pricing";
+import { formatMoneyMinor } from "@/features/vps-pricing";
+import type { VpsCatalogPayload, VpsFamily } from "@/features/vps-pricing";
 
 export type StartingPrice = {
   label: string;

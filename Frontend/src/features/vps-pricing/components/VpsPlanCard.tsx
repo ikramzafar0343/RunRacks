@@ -148,7 +148,10 @@ export function VpsPlanCard({
 
       <ul className="vpsPlanTileFeatures">
         {hardware.map(({ key, label, Icon }) => (
-          <li key={key} className="vpsPlanTileFeature vpsPlanTileFeatureHardware">
+          <li
+            key={key}
+            className="vpsPlanTileFeature vpsPlanTileFeatureHardware"
+          >
             <Icon
               className="vpsPlanTileHardwareIcon"
               aria-hidden

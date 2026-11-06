@@ -1,13 +1,15 @@
 "use client";
 
 /**
- * Advisor sidebar — labeled tools and this-session chats.
+ * Advisor sidebar — tools, saved chats, and delete.
  * On narrow screens it is a drawer opened from the menu button.
  */
-import { Compass, Plus, Sparkles, Tags, X } from "lucide-react";
+import { Compass, Plus, Sparkles, Tags, Trash2, X } from "lucide-react";
 import { useEffect, useRef } from "react";
-import type { ChatMessage } from "@/features/ai-advisor/hooks/useAiConversation";
+import type { HistoryPhase } from "@/features/ai-advisor/hooks/useAiChatHistory";
 import { AI_COPY } from "@/features/ai-advisor/model/aiContent";
+
+type SidebarChat = { id: string; title: string };
 
 type AiSidebarProps = {
   open: boolean;
@@ -16,7 +18,14 @@ type AiSidebarProps = {
   onNewChat: () => void;
   onPlanFinder: () => void;
   onPlans: () => void;
-  messages: readonly ChatMessage[];
+  chats: readonly SidebarChat[];
+  activeId: string | null;
+  historyPhase: HistoryPhase;
+  notice: string | null;
+  error: string | null;
+  lockedId: string | null;
+  onOpenChat: (id: string) => void;
+  onDeleteChat: (id: string) => void;
 };
 
 export function AiSidebar({
@@ -26,16 +35,30 @@ export function AiSidebar({
   onNewChat,
   onPlanFinder,
   onPlans,
-  messages,
+  chats,
+  activeId,
+  historyPhase,
+  notice,
+  error,
+  lockedId,
+  onOpenChat,
+  onDeleteChat,
 }: AiSidebarProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const hidden = drawer && !open;
-  const turns = messages.filter((message) => message.role === "user");
 
   useEffect(() => {
     if (!open || !drawer) return;
     closeRef.current?.focus();
   }, [open, drawer]);
+
+  const empty =
+    historyPhase === "loading"
+      ? AI_COPY.historyLoading
+      : (error ??
+        (historyPhase === "unavailable"
+          ? AI_COPY.historyUnavailable
+          : AI_COPY.historyEmpty));
 
   return (
     <>
@@ -77,7 +100,11 @@ export function AiSidebar({
             <Plus size={16} aria-hidden />
             New chat
           </button>
-          <button type="button" className="aiSidebarItem" onClick={onPlanFinder}>
+          <button
+            type="button"
+            className="aiSidebarItem"
+            onClick={onPlanFinder}
+          >
             <Compass size={16} aria-hidden />
             Plan Finder
           </button>
@@ -87,18 +114,55 @@ export function AiSidebar({
           </button>
         </div>
 
-        <p className="aiSidebarSection">This session</p>
-        {turns.length === 0 ? (
-          <p className="aiSidebarEmpty">{AI_COPY.historyEmpty}</p>
-        ) : (
-          <ul className="aiSidebarChats">
-            {turns.map((message) => (
-              <li key={message.id} className="aiSidebarChat" title={message.text}>
-                {message.text}
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className="aiSidebarHistory">
+          <p className="aiSidebarSection">Chats</p>
+          {chats.length === 0 ? (
+            <p className="aiSidebarEmpty">{empty}</p>
+          ) : (
+            <ul className="aiSidebarChats">
+              {chats.map((chat) => {
+                const active = chat.id === activeId;
+                return (
+                  <li
+                    key={chat.id}
+                    className={
+                      active
+                        ? "aiSidebarChat aiSidebarChat--active"
+                        : "aiSidebarChat"
+                    }
+                  >
+                    <button
+                      type="button"
+                      className="aiSidebarChatBtn"
+                      aria-current={active ? "true" : undefined}
+                      title={chat.title}
+                      onClick={() => onOpenChat(chat.id)}
+                    >
+                      {chat.title}
+                    </button>
+                    <button
+                      type="button"
+                      className="aiSidebarChatDelete"
+                      aria-label={`Delete ${chat.title}`}
+                      disabled={lockedId === chat.id}
+                      onClick={() => onDeleteChat(chat.id)}
+                    >
+                      <Trash2 size={15} aria-hidden />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          {chats.length > 0 && notice ? (
+            <p className="aiSidebarEmpty">{notice}</p>
+          ) : null}
+          {chats.length > 0 && error ? (
+            <p className="aiSidebarEmpty" role="alert">
+              {error}
+            </p>
+          ) : null}
+        </div>
       </nav>
     </>
   );

@@ -3,12 +3,9 @@
  */
 import { familyLabel } from "@/features/cart/lib/cartPlanHelpers";
 import type { CartLine } from "@/features/cart/model/cartTypes";
-import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
-import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
-import type {
-  VpsCatalogPayload,
-  VpsPlan,
-} from "@/features/vps-pricing/model/types";
+import { selectPlanPrice } from "@/features/vps-pricing";
+import { formatMoneyMinor } from "@/features/vps-pricing";
+import type { VpsCatalogPayload, VpsPlan } from "@/features/vps-pricing";
 
 export type CartLineSummary = {
   id: string;

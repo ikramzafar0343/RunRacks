@@ -24,7 +24,8 @@
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   color: var(--color-heading);
-  box-shadow: 0 16px 40px color-mix(in srgb, var(--color-brand) 16%, transparent);
+  box-shadow: 0 16px 40px
+    color-mix(in srgb, var(--color-brand) 16%, transparent);
   font-family: var(--font-sans), sans-serif;
 }
 

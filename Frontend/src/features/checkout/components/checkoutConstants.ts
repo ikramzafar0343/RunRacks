@@ -1,7 +1,7 @@
 /**
  * Checkout copy and account-form checks. Payment is not submitted from here.
  */
-import type { CartBillingTerm } from "@/features/cart/model/cartTypes";
+import type { CartBillingTerm } from "@/features/cart";
 
 export type AccountTab = "new" | "existing";
 export type CheckoutStage = "account" | "payment";

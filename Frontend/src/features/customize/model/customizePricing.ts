@@ -2,10 +2,7 @@
  * Demo-only customize formula — rates calibrated against demoCatalogSeeds.
  * Not live commercial pricing; checkout is not configured.
  */
-import type {
-  BillingTermMonths,
-  VpsFamily,
-} from "@/features/vps-pricing/model/types";
+import type { BillingTermMonths, VpsFamily } from "@/features/vps-pricing";
 import { DEMO_PRICING_ANSWER } from "@/shared/content/demoPricingCopy";
 
 export type CustomizeConfig = {

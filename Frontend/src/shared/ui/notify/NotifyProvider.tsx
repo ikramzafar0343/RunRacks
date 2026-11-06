@@ -100,9 +100,18 @@ export function NotifyProvider({ children }: { children: ReactNode }) {
   return (
     <NotifyContext.Provider value={api}>
       {children}
-      <div className="rrNotifyToasts" aria-live="polite" aria-relevant="additions">
+      <div
+        className="rrNotifyToasts"
+        aria-live="polite"
+        aria-relevant="additions"
+      >
         {toasts.map((item) => (
-          <div key={item.id} className="rrToast" data-tone={item.tone} role="status">
+          <div
+            key={item.id}
+            className="rrToast"
+            data-tone={item.tone}
+            role="status"
+          >
             <p className="rrToastTitle">{item.title}</p>
             <button
               type="button"

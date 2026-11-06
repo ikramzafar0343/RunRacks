@@ -31,3 +31,16 @@ export function speechCtor(): (new () => SpeechRec) | null {
   };
   return host.SpeechRecognition ?? host.webkitSpeechRecognition ?? null;
 }
+
+export function readSpeechTranscript(event: SpeechEvent): string {
+  let finalText = "";
+  let interim = "";
+  for (let index = 0; index < event.results.length; index += 1) {
+    const result = event.results[index];
+    if (!result) continue;
+    const chunk = result[0]?.transcript ?? "";
+    if (result.isFinal) finalText += chunk;
+    else interim += chunk;
+  }
+  return `${finalText}${interim}`.trim();
+}

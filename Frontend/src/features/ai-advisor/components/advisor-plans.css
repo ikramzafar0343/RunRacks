@@ -1,0 +1,10 @@
+.aiAdvisorPlans {
+  margin-top: 0.45rem;
+  width: min(17.25rem, 100%);
+}
+
+.aiAdvisorPlans .vpsPlanCardGrid {
+  --vps-card-cols: 1;
+  margin: 0;
+  justify-content: start;
+}

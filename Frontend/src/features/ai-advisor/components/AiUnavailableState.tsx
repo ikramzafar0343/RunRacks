@@ -1,20 +1,19 @@
 /**
  * Short unavailable / error line. Links are real routes.
  */
-import { AI_COPY } from "@/features/ai-advisor/model/aiContent";
 import { SupportHandoff } from "@/features/ai-advisor/components/SupportHandoff";
 
 type AiUnavailableStateProps = {
   message: string;
   variant?: "unavailable" | "error";
+  onRetry?: (() => void) | undefined;
 };
 
 export function AiUnavailableState({
   message,
   variant = "unavailable",
+  onRetry,
 }: AiUnavailableStateProps) {
-  const text = variant === "unavailable" ? AI_COPY.unavailable : message;
-
   return (
     <div
       className={
@@ -24,8 +23,13 @@ export function AiUnavailableState({
       }
       role={variant === "error" ? "alert" : "status"}
     >
-      <p>{text}</p>
+      <p>{message}</p>
       {variant === "unavailable" ? <SupportHandoff /> : null}
+      {variant === "error" && onRetry ? (
+        <button type="button" className="aiBannerRetry" onClick={onRetry}>
+          Retry
+        </button>
+      ) : null}
     </div>
   );
 }

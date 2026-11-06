@@ -35,7 +35,10 @@ export function projectPoint(lat: number, lng: number) {
 }
 
 /** Prefer baked viewBox coords for catalog hubs; fall back to lat/lng projection. */
-export function resolveMapPoint(point: WorldMapPoint): { x: number; y: number } {
+export function resolveMapPoint(point: WorldMapPoint): {
+  x: number;
+  y: number;
+} {
   if (point.mapX !== undefined && point.mapY !== undefined) {
     return { x: point.mapX, y: point.mapY };
   }

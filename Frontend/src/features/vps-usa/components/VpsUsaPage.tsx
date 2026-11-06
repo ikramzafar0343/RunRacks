@@ -3,18 +3,18 @@
  * Order: hero → why → coverage → story → audience → pricing → inclusions → FAQ → CTA.
  */
 import { Suspense } from "react";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
-import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
-import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
-import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
+import { FaqSection } from "@/features/vps-faq";
+import { SupportCtaSection } from "@/features/support-cta";
+import { VpsPricingFallback } from "@/features/vps-pricing";
+import { VpsPricingSection } from "@/features/vps-pricing";
+import type { VpsCatalogPayload } from "@/features/vps-pricing";
 import { VpsUsaAudience } from "@/features/vps-usa/components/VpsUsaAudience";
 import { VpsUsaCoverage } from "@/features/vps-usa/components/VpsUsaCoverage";
 import { VpsUsaHero } from "@/features/vps-usa/components/VpsUsaHero";
 import { VpsUsaInclusions } from "@/features/vps-usa/components/VpsUsaInclusions";
 import { VpsUsaStory } from "@/features/vps-usa/components/VpsUsaStory";
 import { VPS_USA } from "@/features/vps-usa/model/vpsUsaContent";
-import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
+import { WhyChooseUs } from "@/features/why-choose";
 import "@/features/vps-usa/components/vps-usa.css";
 import "@/features/vps-usa/components/vps-usa-sections.css";
 

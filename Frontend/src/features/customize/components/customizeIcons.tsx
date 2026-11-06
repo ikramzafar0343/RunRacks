@@ -4,7 +4,7 @@
 import { FaWindows } from "react-icons/fa";
 import { HiOutlineServerStack } from "react-icons/hi2";
 import { SiLinux } from "react-icons/si";
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { VpsFamily } from "@/features/vps-pricing";
 
 export function flagSrc(countryCode: string) {
   return `/flags/${countryCode.toLowerCase()}.svg`;

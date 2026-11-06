@@ -49,12 +49,13 @@ export type HealthData = {
   timestamp: string;
 };
 
-/** Payload when GET /api/v1/ready succeeds (both integrations configured). */
+/** Payload when GET /api/v1/ready succeeds (Backend /ready probe passed). */
 export type ReadyData = {
   service: "frontend";
   status: "ready";
   backendConfigured: true;
-  databaseConfigured: true;
+  /** From Backend Postgres verification — not Frontend DATABASE_URL. */
+  databaseConfigured: boolean;
   timestamp: string;
 };
 
@@ -69,11 +70,7 @@ export type ReadyBlockedData = {
 
 /** Contact form topics — keep in sync with contactContent CONTACT_TOPICS. */
 export type ContactTopic =
-  | "engineers"
-  | "plans"
-  | "migration"
-  | "abuse"
-  | "other";
+  "engineers" | "plans" | "migration" | "abuse" | "other";
 
 /** Body for POST /api/v1/contact */
 export type ContactRequest = {

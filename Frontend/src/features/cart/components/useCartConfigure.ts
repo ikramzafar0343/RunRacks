@@ -19,18 +19,18 @@ import {
 } from "@/features/cart/lib/cartLinePricing";
 import { plansForFamily } from "@/features/cart/lib/cartPlanHelpers";
 import { useCart } from "@/features/cart/lib/CartProvider";
-import type { CartBillingTerm, CartLine } from "@/features/cart/model/cartTypes";
+import type {
+  CartBillingTerm,
+  CartLine,
+} from "@/features/cart/model/cartTypes";
 import {
   getAppOptions,
   getOsOptions,
 } from "@/features/cart/model/provisionCatalog";
-import { fetchVpsCatalog } from "@/features/vps-pricing/lib/fetchVpsCatalog";
-import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
-import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
-import type {
-  VpsCatalogPayload,
-  VpsFamily,
-} from "@/features/vps-pricing/model/types";
+import { fetchVpsCatalog } from "@/features/vps-pricing";
+import { selectPlanPrice } from "@/features/vps-pricing";
+import { formatMoneyMinor } from "@/features/vps-pricing";
+import type { VpsCatalogPayload, VpsFamily } from "@/features/vps-pricing";
 
 export type { CartLineSummary } from "@/features/cart/lib/cartLinePricing";
 

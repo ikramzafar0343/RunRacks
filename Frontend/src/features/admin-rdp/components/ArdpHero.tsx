@@ -35,7 +35,10 @@ export function ArdpHero() {
                 unoptimized
               />
             </Link>
-            <Link href={hero.secondaryCta.href} className="ardpHeroCtaSecondary">
+            <Link
+              href={hero.secondaryCta.href}
+              className="ardpHeroCtaSecondary"
+            >
               {hero.secondaryCta.label}
             </Link>
           </div>

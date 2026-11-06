@@ -6,7 +6,7 @@
 import { AppWindow, Monitor, Server, type LucideIcon } from "lucide-react";
 import { AiDialog } from "@/features/ai-advisor/components/AiDialog";
 import { PLAN_CHOICES } from "@/features/ai-advisor/plan-finder/planFinderContent";
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { VpsFamily } from "@/features/vps-pricing";
 
 type PlanFinderDialogProps = {
   open: boolean;

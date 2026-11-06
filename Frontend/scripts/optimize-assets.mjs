@@ -176,7 +176,12 @@ async function main() {
     // keep if webp missing
   }
 
-  const all = [...imageResults, ...webpResults, ...pruneResults, ...fontResults];
+  const all = [
+    ...imageResults,
+    ...webpResults,
+    ...pruneResults,
+    ...fontResults,
+  ];
   const saved = all.reduce((n, r) => n + (r.saved ?? 0), 0) / 1024;
 
   console.log(
@@ -187,9 +192,11 @@ async function main() {
     console.log(`  ${r.path}${tag} (−${(r.saved / 1024).toFixed(0)} KiB)`);
   }
 
-  await reportOutliers(await walk(PUBLIC).then((files) =>
-    files.filter((f) => RASTER_EXT.has(path.extname(f).toLowerCase())),
-  ));
+  await reportOutliers(
+    await walk(PUBLIC).then((files) =>
+      files.filter((f) => RASTER_EXT.has(path.extname(f).toLowerCase())),
+    ),
+  );
 }
 
 main().catch((err) => {

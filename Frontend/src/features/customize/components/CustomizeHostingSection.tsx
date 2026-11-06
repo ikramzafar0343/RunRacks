@@ -8,10 +8,7 @@ import { Button } from "@/components/ui/button";
 import { CustomizeConfigurator } from "@/features/customize/components/CustomizeConfigurator";
 import { CUSTOMIZE } from "@/features/customize/model/customizeContent";
 import type { CustomizeHostingTrust } from "@/features/customize/model/customizeTrust";
-import type {
-  VpsFamily,
-  VpsRegion,
-} from "@/features/vps-pricing/model/types";
+import type { VpsFamily, VpsRegion } from "@/features/vps-pricing";
 import "@/features/customize/components/customize.css";
 import "@/features/customize/components/customize-summary.css";
 
@@ -87,10 +84,17 @@ export function CustomizeHostingSection({
             {trust ? (
               <span className="czHostingTrustStars" aria-hidden>
                 {STAR_SLOTS.map((slot) => {
-                  const fill = Math.min(1, Math.max(0, trust.score - (slot - 1)));
+                  const fill = Math.min(
+                    1,
+                    Math.max(0, trust.score - (slot - 1)),
+                  );
                   const style = { "--fill": String(fill) } as CSSProperties;
                   return (
-                    <span key={slot} className="czHostingTrustStar" style={style}>
+                    <span
+                      key={slot}
+                      className="czHostingTrustStar"
+                      style={style}
+                    >
                       <svg viewBox="0 0 24 24" focusable="false">
                         <path d="M12 2.5l2.7 6.4 6.9.6-5.2 4.6 1.6 6.7L12 17.8 5.9 20.8l1.6-6.7L2.4 9.5l6.9-.6L12 2.5z" />
                       </svg>

@@ -8,8 +8,7 @@ export type DemoCustomerAvatar = {
   alt: string;
 };
 
-const ALT =
-  "Illustrative demo avatar — not a verified customer photo";
+const ALT = "Illustrative demo avatar — not a verified customer photo";
 
 export const DEMO_CUSTOMER_AVATARS: readonly DemoCustomerAvatar[] = [
   { src: "/images/customer-avatars/customer-avatar-01.webp", alt: ALT },

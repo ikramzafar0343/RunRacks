@@ -3,17 +3,17 @@
  */
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
-import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
-import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
+import { VpsPricingFallback } from "@/features/vps-pricing";
+import { VpsPricingSection } from "@/features/vps-pricing";
 import { HeroSection } from "@/components/ui/hero-1";
-import { BrandsSection } from "@/features/home/components/BrandsSection";
-import { VpsPlanComparison } from "@/features/vps-pricing/components/VpsPlanComparison";
-import { VpsPlanComparisonFallback } from "@/features/vps-pricing/components/VpsPlanComparisonFallback";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
-import { PRICING_FAQ } from "@/features/vps-faq/model/faqContent";
-import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { SUPPORT_CTA_PRICING } from "@/features/support-cta/model/supportCtaContent";
+import { BrandsSection } from "@/features/home";
+import { VpsPlanComparison } from "@/features/vps-pricing";
+import { VpsPlanComparisonFallback } from "@/features/vps-pricing";
+import { FaqSection } from "@/features/vps-faq";
+import { PRICING_FAQ } from "@/features/vps-faq";
+import { SupportCtaSection } from "@/features/support-cta";
+import { SUPPORT_CTA_PRICING } from "@/features/support-cta";
+import { getCatalogForPage } from "@/server/catalogGateway";
 
 export const metadata: Metadata = {
   title: "Hosting Plans & Pricing | RunRacks",
@@ -21,16 +21,19 @@ export const metadata: Metadata = {
     "Compare Linux VPS, Windows VPS, and Admin RDP plans by region and billing term. Catalog prices are labeled demo until checkout is live.",
 };
 
-export default function PricingPage() {
-  const catalog = getDemoVpsCatalog();
+async function PricingCatalog() {
+  const catalog = await getCatalogForPage();
+  return <VpsPricingSection variant="page" initialCatalog={catalog} />;
+}
 
+export default function PricingPage() {
   return (
     <main className="pricingPage rrDenseSpacing flex flex-1 flex-col pt-16 md:pt-[4.8rem]">
       <HeroSection />
       <BrandsSection />
       <div id="pricing-plans" className="scroll-mt-24">
         <Suspense fallback={<VpsPricingFallback variant="page" />}>
-          <VpsPricingSection variant="page" initialCatalog={catalog} />
+          <PricingCatalog />
         </Suspense>
       </div>
       <Suspense fallback={<VpsPlanComparisonFallback />}>

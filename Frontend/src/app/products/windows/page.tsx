@@ -2,9 +2,10 @@
  * Windows product route — static shell; URL filters read client-side in pricing.
  */
 import type { Metadata } from "next";
-import { ProductHostingPage } from "@/features/product-hosting/components/ProductHostingPage";
-import { PRODUCT_HOSTING } from "@/features/product-hosting/model/productHostingContent";
-import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
+import { Suspense } from "react";
+import { ProductHostingPage } from "@/features/product-hosting";
+import { PRODUCT_HOSTING } from "@/features/product-hosting";
+import { getCatalogForPage } from "@/server/catalogGateway";
 
 const content = PRODUCT_HOSTING.windows;
 
@@ -14,12 +15,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "/products/windows" },
 };
 
-export default function WindowsProductRoute() {
+async function WindowsCatalogPage() {
   return (
     <ProductHostingPage
       product="windows"
-      initialCatalog={getDemoVpsCatalog()}
+      initialCatalog={await getCatalogForPage()}
       initialFamily="windows"
     />
+  );
+}
+
+export default function WindowsProductRoute() {
+  return (
+    <Suspense fallback={null}>
+      <WindowsCatalogPage />
+    </Suspense>
   );
 }

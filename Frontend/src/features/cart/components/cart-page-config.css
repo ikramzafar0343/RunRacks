@@ -215,7 +215,11 @@
   border: 1px solid var(--cart-border);
   border-radius: var(--cart-radius-md);
   padding: 0.55rem;
-  background: color-mix(in srgb, var(--cart-primary-soft) 40%, var(--cart-surface));
+  background: color-mix(
+    in srgb,
+    var(--cart-primary-soft) 40%,
+    var(--cart-surface)
+  );
 }
 
 .cartPlanPickList {

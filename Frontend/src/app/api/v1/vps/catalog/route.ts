@@ -1,15 +1,16 @@
 /**
- * GET /api/v1/vps/catalog — VPS plan catalog seam.
- * Serves labeled demo catalog until a live backend exists.
- * Response is explicitly source:demo — not a live integration success claim.
+ * GET /api/v1/vps/catalog — demo until WHMCS-mapped Backend cache exists.
+ * Always labels source honestly via X-RunRacks-Data-Source.
  */
 import { NextResponse } from "next/server";
-import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
+import { getCatalogForPage } from "@/server/catalogGateway";
 import type { ApiSuccessBody } from "@/shared/lib/apiContracts";
-import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
+import type { VpsCatalogPayload } from "@/features/vps-pricing";
 
-export function GET(): NextResponse<ApiSuccessBody<VpsCatalogPayload>> {
-  const catalog = getDemoVpsCatalog();
+export async function GET(): Promise<
+  NextResponse<ApiSuccessBody<VpsCatalogPayload>>
+> {
+  const catalog = await getCatalogForPage();
 
   const body: ApiSuccessBody<VpsCatalogPayload> = {
     ok: true,
@@ -19,8 +20,7 @@ export function GET(): NextResponse<ApiSuccessBody<VpsCatalogPayload>> {
   return NextResponse.json(body, {
     headers: {
       "X-RunRacks-Data-Source": catalog.source,
-      // Demo catalog is static; short cache avoids client flash without claiming live backend.
-      "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
+      "Cache-Control": "public, max-age=30, stale-while-revalidate=120",
     },
   });
 }

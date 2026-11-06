@@ -11,11 +11,7 @@ import { useDocumentTheme } from "@/shared/lib/useDocumentTheme";
 import { MapFlag } from "./mapFlag";
 import { createCurvedPath, resolveMapPoint } from "./mapGeometry";
 import { mergeMapPoints } from "./mapPoints";
-import {
-  SAGE_BRAND,
-  SAGE_LIME,
-  type WorldMapProps,
-} from "./mapTypes";
+import { SAGE_BRAND, SAGE_LIME, type WorldMapProps } from "./mapTypes";
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 export type { WorldMapDot, WorldMapPoint } from "./mapTypes";

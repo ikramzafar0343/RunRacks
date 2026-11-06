@@ -11,7 +11,9 @@ export function CaseStudiesPage() {
 
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 pb-20 pt-28 md:pt-32">
-      <p className="text-sm font-medium tracking-wide text-muted-foreground">Resources</p>
+      <p className="text-sm font-medium tracking-wide text-muted-foreground">
+        Resources
+      </p>
       <h1 className="mt-2 font-sans text-3xl font-medium tracking-tight text-heading md:text-4xl">
         Case studies
       </h1>

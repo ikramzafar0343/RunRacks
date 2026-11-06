@@ -8,14 +8,8 @@ export type {
   WorkloadItem,
 } from "./productHostingTypes";
 
-import {
-  LINUX_INCLUSIONS,
-  LINUX_WORKLOADS,
-} from "./productHostingShared";
-import {
-  WINDOWS_INCLUSIONS,
-  WINDOWS_WORKLOADS,
-} from "./windowsHostingContent";
+import { LINUX_INCLUSIONS, LINUX_WORKLOADS } from "./productHostingShared";
+import { WINDOWS_INCLUSIONS, WINDOWS_WORKLOADS } from "./windowsHostingContent";
 import type {
   ProductHostingContent,
   ProductHostingKey,

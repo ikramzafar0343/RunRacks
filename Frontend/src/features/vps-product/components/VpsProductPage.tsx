@@ -3,26 +3,26 @@
  * Hero + pricing stay eager; below-fold GSAP/rails use dynamic() for JS budget.
  */
 import { Suspense } from "react";
-import { CustomizeHostingSection } from "@/features/customize/components/CustomizeHostingSection";
-import { BrandsSection } from "@/features/home/components/BrandsSection";
-import { PhInfra } from "@/features/product-hosting/components/PhInfra";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
-import { VPS_FAQ } from "@/features/vps-faq/model/faqContent";
+import { CustomizeHostingSection } from "@/features/customize";
+import { BrandsSection } from "@/features/home";
+import { PhInfra } from "@/features/product-hosting";
+import { FaqSection } from "@/features/vps-faq";
+import { VPS_FAQ } from "@/features/vps-faq";
 import { catalogRegionsIntro } from "@/shared/content/demoPricingCopy";
-import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { SUPPORT_CTA_LINUX_VPS } from "@/features/support-cta/model/supportCtaContent";
+import { SupportCtaSection } from "@/features/support-cta";
+import { SUPPORT_CTA_LINUX_VPS } from "@/features/support-cta";
 import { VpsCompanyRail } from "@/features/vps-product/components/VpsCompanyRail";
 
 import { VpsCompetitorCompare } from "@/features/vps-product/components/VpsCompetitorCompare";
 import { VpsProductFeatures } from "@/features/vps-product/components/VpsProductFeatures";
 import { VpsProductHero } from "@/features/vps-product/components/VpsProductHero";
-import { getStartingPrice } from "@/features/product-hosting/model/startingPrice";
-import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
-import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
-import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
-import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
+import { getStartingPrice } from "@/features/product-hosting";
+import { getDemoVpsCatalog } from "@/features/vps-pricing";
+import { VpsPricingFallback } from "@/features/vps-pricing";
+import { VpsPricingSection } from "@/features/vps-pricing";
+import type { VpsCatalogPayload } from "@/features/vps-pricing";
 import { VPS_CUSTOMIZE_TRUST } from "@/features/vps-product/model/vpsCustomizeTrust";
-import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
+import { WhyChooseUs } from "@/features/why-choose";
 import "@/features/vps-product/components/vps-product.css";
 
 export type VpsProductPageProps = {

@@ -36,7 +36,8 @@ export const NOTIFY_COPY = {
   },
   couponNotLive: {
     title: "Coupons not connected",
-    description: "Promo codes will apply when billing is live. Nothing was charged.",
+    description:
+      "Promo codes will apply when billing is live. Nothing was charged.",
   },
   paymentNotLive: {
     title: "Payment not connected",

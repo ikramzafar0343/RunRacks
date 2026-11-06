@@ -3,7 +3,7 @@
  * Imagery reuses project-owned demo assets (honest alts).
  */
 import type { Route } from "next";
-import type { FaqItem } from "@/features/vps-faq/model/faqContent";
+import type { FaqItem } from "@/features/vps-faq";
 
 export const CONTACT_META = {
   title: "Contact | RunRacks",

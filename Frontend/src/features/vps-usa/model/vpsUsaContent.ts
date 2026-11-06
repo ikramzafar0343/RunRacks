@@ -4,8 +4,8 @@
  */
 import type { Route } from "next";
 import type { WorldMapDot } from "@/components/ui/map";
-import type { SupportCtaCard } from "@/features/support-cta/model/supportCtaContent";
-import type { FaqItem } from "@/features/vps-faq/model/faqContent";
+import type { SupportCtaCardData } from "@/features/support-cta";
+import type { FaqItem } from "@/features/vps-faq";
 import {
   DEMO_PRICING_ANSWER,
   OTHER_REGIONS_ANSWER,
@@ -238,6 +238,6 @@ export const VPS_USA = {
         imageSrc: "/media/customer-stories/demo-02/portrait.webp",
         imageAlt: "Demo portrait in a workspace — not a verified staff photo",
       },
-    ] satisfies readonly SupportCtaCard[],
+    ] satisfies readonly SupportCtaCardData[],
   },
 } as const;

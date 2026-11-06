@@ -5,7 +5,7 @@
 
 import Image from "next/image";
 import { flagSrc } from "@/features/customize/components/customizeIcons";
-import type { VpsRegion } from "@/features/vps-pricing/model/types";
+import type { VpsRegion } from "@/features/vps-pricing";
 
 type CustomizeRegionSelectProps = {
   regions: readonly VpsRegion[];
@@ -21,9 +21,9 @@ export function CustomizeRegionSelect({
   onChange,
 }: CustomizeRegionSelectProps) {
   return (
-    <div className="czRegionScroll">
+    <div className="czChipScroll">
       <div
-        className="czRegionSeg"
+        className="czChipTrack"
         role="radiogroup"
         aria-labelledby={labelledBy}
       >

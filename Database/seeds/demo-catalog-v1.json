@@ -1,0 +1,16 @@
+{
+  "source": "demo",
+  "notice": "Demo pricing — not live checkout. Authoritative prices come from WHMCS sync.",
+  "exportedFrom": "Frontend/src/features/vps-pricing/model/",
+  "regions": [
+    { "id": "us", "name": "United States", "countryCode": "us" },
+    { "id": "ca", "name": "Canada", "countryCode": "ca" },
+    { "id": "gb", "name": "United Kingdom", "countryCode": "gb" },
+    { "id": "nl", "name": "Netherlands", "countryCode": "nl" },
+    { "id": "de", "name": "Germany", "countryCode": "de" },
+    { "id": "sg", "name": "Singapore", "countryCode": "sg" },
+    { "id": "au", "name": "Australia", "countryCode": "au" },
+    { "id": "jp", "name": "Japan", "countryCode": "jp" }
+  ],
+  "plansNote": "Full plan matrix remains in Frontend demoCatalog until WHMCS GetProducts sync maps live product ids."
+}

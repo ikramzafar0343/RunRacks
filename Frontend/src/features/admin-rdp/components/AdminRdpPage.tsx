@@ -8,18 +8,17 @@ import { ArdpStatistics } from "@/features/admin-rdp/components/ArdpStatistics";
 import { ArdpUseCases } from "@/features/admin-rdp/components/ArdpUseCases";
 import { ArdpPowerSection } from "@/features/admin-rdp/components/ArdpPowerSection";
 import { ADMIN_RDP } from "@/features/admin-rdp/model/adminRdpContent";
-import { CustomerStoriesSection } from "@/features/customer-stories/components/CustomerStoriesSection";
-import { PhInfra } from "@/features/product-hosting/components/PhInfra";
-import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { SUPPORT_CTA_ADMIN_RDP } from "@/features/support-cta/model/supportCtaContent";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
-import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
-import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
-import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
-import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
+import { CustomerStoriesSection } from "@/features/customer-stories";
+import { PhInfra } from "@/features/product-hosting";
+import { SupportCtaSection } from "@/features/support-cta";
+import { SUPPORT_CTA_ADMIN_RDP } from "@/features/support-cta";
+import { FaqSection } from "@/features/vps-faq";
+import { VpsPricingFallback } from "@/features/vps-pricing";
+import { VpsPricingSection } from "@/features/vps-pricing";
+import type { VpsCatalogPayload } from "@/features/vps-pricing";
+import { WhyChooseUs } from "@/features/why-choose";
 import { catalogRegionsIntro } from "@/shared/content/demoPricingCopy";
 import "@/features/admin-rdp/components/admin-rdp-page.css";
-
 
 export type AdminRdpPageProps = {
   initialCatalog: VpsCatalogPayload;

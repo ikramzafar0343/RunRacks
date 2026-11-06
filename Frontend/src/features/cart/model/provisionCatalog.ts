@@ -1,7 +1,7 @@
 /**
  * Demo OS / app catalogs by product family — not live provisioning.
  */
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { VpsFamily } from "@/features/vps-pricing";
 
 export type ProvisionOs = {
   id: string;

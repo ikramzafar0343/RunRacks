@@ -29,7 +29,11 @@
 }
 
 .rrToast[data-tone="success"] {
-  border-color: color-mix(in srgb, var(--color-success) 45%, var(--color-border));
+  border-color: color-mix(
+    in srgb,
+    var(--color-success) 45%,
+    var(--color-border)
+  );
 }
 
 .rrToast[data-tone="error"] {

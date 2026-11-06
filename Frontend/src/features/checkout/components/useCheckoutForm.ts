@@ -4,7 +4,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { useCart } from "@/features/cart/lib/CartProvider";
+import { useCart } from "@/features/cart";
 import {
   ACCOUNT_UNAVAILABLE,
   GOOGLE_UNAVAILABLE,
@@ -15,8 +15,8 @@ import {
   type PayMethod,
 } from "@/features/checkout/components/checkoutConstants";
 import { buildCheckoutTotals } from "@/features/checkout/components/checkoutTotals";
-import { fetchVpsCatalog } from "@/features/vps-pricing/lib/fetchVpsCatalog";
-import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
+import { fetchVpsCatalog } from "@/features/vps-pricing";
+import type { VpsCatalogPayload } from "@/features/vps-pricing";
 
 export function useCheckoutForm() {
   const { lines, line, hydrated, updateLine } = useCart();
@@ -152,8 +152,7 @@ export function useCheckoutForm() {
     if (!catalog) return lines.filter((entry) => entry.custom);
     return lines.filter(
       (entry) =>
-        entry.custom ||
-        catalog.plans.some((plan) => plan.id === entry.planId),
+        entry.custom || catalog.plans.some((plan) => plan.id === entry.planId),
     );
   }, [lines, catalog]);
 

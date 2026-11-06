@@ -1,0 +1,5 @@
+{
+  "ranAt": null,
+  "status": "NOT_RUN",
+  "detail": "Docker was not available on the authoring workstation. Run: cd Backend && docker compose up -d postgres postgres-replica && node scripts/check-replica.mjs (or ops-readiness CI)."
+}

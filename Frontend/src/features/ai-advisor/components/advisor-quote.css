@@ -1,0 +1,9 @@
+.aiAdvisorQuote {
+  margin-top: 0.45rem;
+  width: min(22rem, 100%);
+}
+
+.aiAdvisorQuote .czPriceCard {
+  position: static;
+  top: auto;
+}

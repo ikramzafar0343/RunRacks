@@ -5,24 +5,33 @@
  */
 import { useEffect, useMemo, useState } from "react";
 import { X } from "lucide-react";
-import { VpsPlanList } from "@/features/vps-pricing/components/VpsPlanList";
-import { DEFAULT_LOCATION_ID } from "@/features/vps-pricing/lib/urlState";
-import type {
-  VpsCatalogPayload,
-  VpsFamily,
-} from "@/features/vps-pricing/model/types";
+import {
+  DEFAULT_LOCATION_ID,
+  VpsPlanList,
+  getDemoVpsCatalog,
+  type VpsCatalogPayload,
+  type VpsFamily,
+} from "@/features/vps-pricing";
 import type { ApiSuccessBody } from "@/shared/lib/apiContracts";
+
 import "@/features/vps-pricing/components/vps-plan-cards.css";
 
 type AiPlansDockProps = {
   open: boolean;
   family: VpsFamily | null;
+  planIds: readonly string[] | null;
   onClose: () => void;
 };
 
-export function AiPlansDock({ open, family, onClose }: AiPlansDockProps) {
-  const [catalog, setCatalog] = useState<VpsCatalogPayload | null>(null);
-  const [error, setError] = useState<string | null>(null);
+export function AiPlansDock({
+  open,
+  family,
+  planIds,
+  onClose,
+}: AiPlansDockProps) {
+  const [catalog, setCatalog] = useState<VpsCatalogPayload | null>(() =>
+    getDemoVpsCatalog(),
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -40,33 +49,41 @@ export function AiPlansDock({ open, family, onClose }: AiPlansDockProps) {
       .then((res) => res.json())
       .then((body: ApiSuccessBody<VpsCatalogPayload>) => {
         if (cancelled) return;
-        if (!body.ok) {
-          setError("Plans catalog is unavailable.");
+        if (!body.ok || !body.data) {
+          setCatalog(getDemoVpsCatalog());
           return;
         }
         setCatalog(body.data);
       })
       .catch(() => {
-        if (!cancelled) setError("Plans catalog is unavailable.");
+        if (!cancelled) setCatalog(getDemoVpsCatalog());
       });
     return () => {
       cancelled = true;
     };
   }, [open]);
 
-  const locationId = catalog?.regions.some((region) => region.id === DEFAULT_LOCATION_ID)
+  const locationId = catalog?.regions.some(
+    (region) => region.id === DEFAULT_LOCATION_ID,
+  )
     ? DEFAULT_LOCATION_ID
     : (catalog?.regions[0]?.id ?? DEFAULT_LOCATION_ID);
 
   const plans = useMemo(() => {
     if (!catalog) return [];
+    if (planIds && planIds.length > 0) {
+      const byId = new Map(catalog.plans.map((plan) => [plan.id, plan]));
+      return planIds
+        .map((id) => byId.get(id))
+        .filter((plan): plan is NonNullable<typeof plan> => Boolean(plan));
+    }
     const wanted = family ?? "linux";
-    const matched = catalog.plans.filter(
-      (plan) =>
-        plan.family === wanted && plan.availableRegionIds.includes(locationId),
+    const familyPlans = catalog.plans.filter((plan) => plan.family === wanted);
+    const inRegion = familyPlans.filter((plan) =>
+      plan.availableRegionIds.includes(locationId),
     );
-    return matched.length ? matched : catalog.plans;
-  }, [catalog, family, locationId]);
+    return inRegion.length ? inRegion : familyPlans;
+  }, [catalog, family, locationId, planIds]);
 
   if (!open) return null;
 
@@ -74,7 +91,13 @@ export function AiPlansDock({ open, family, onClose }: AiPlansDockProps) {
     <aside className="aiDock" aria-label="Recommended plans">
       <div className="aiDockHead">
         <div>
-          <h2 className="aiDockTitle">Plans</h2>
+          <h2 className="aiDockTitle">
+            {planIds && planIds.length > 2
+              ? `Plans in budget (${plans.length})`
+              : planIds && planIds.length > 0
+                ? plans.map((plan) => plan.name).join(", ") || "Plans"
+                : "Plans"}
+          </h2>
           <p className="aiDockSub">{catalog?.notice ?? "Loading catalog…"}</p>
         </div>
         <button
@@ -87,12 +110,10 @@ export function AiPlansDock({ open, family, onClose }: AiPlansDockProps) {
         </button>
       </div>
 
-      {error ? <p className="aiDockSub">{error}</p> : null}
-
       {catalog ? (
         <div className="aiDockPlans">
           <VpsPlanList
-            key={`${family ?? "linux"}:${locationId}`}
+            key={`${(planIds ?? []).join(",")}:${family ?? "linux"}:${locationId}`}
             plans={plans}
             term={1}
             locationId={locationId}

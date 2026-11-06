@@ -77,8 +77,8 @@ export function getServerEnv(): ServerEnv {
 }
 
 /**
- * Used by /api/v1/ai/* seams.
- * Keys alone never set isReady — live provider probes required later.
+ * Sync env flags for AI. Keys alone never mean ready — use probeAiReady().
+ * Prefer Backend AI_API_KEY; Frontend AI_* is optional legacy mirror.
  */
 export function getAiIntegrationStatus(): AiIntegrationStatus {
   const serverEnv = getServerEnv();
@@ -90,7 +90,7 @@ export function getAiIntegrationStatus(): AiIntegrationStatus {
     providerConfigured,
     apiKeyConfigured,
     isConfigured,
-    // STOP: do not claim AI ready until real model health checks exist.
+    // Live readiness is async via probeAiReady / Backend /ready.aiConfigured.
     isReady: false,
   };
 }

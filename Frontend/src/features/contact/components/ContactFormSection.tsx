@@ -100,11 +100,7 @@ export function ContactFormSection() {
         onMove: (self) => {
           const ev = self.event as PointerEvent | TouchEvent;
           const point =
-            "clientX" in ev
-              ? ev
-              : ev.touches[0]
-                ? ev.touches[0]
-                : null;
+            "clientX" in ev ? ev : ev.touches[0] ? ev.touches[0] : null;
           if (!point) return;
           const rect = media.getBoundingClientRect();
           const px = (point.clientX - rect.left) / rect.width - 0.5;

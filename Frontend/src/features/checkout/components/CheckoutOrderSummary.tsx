@@ -9,10 +9,7 @@ import {
   HiLockClosed,
   HiShieldCheck,
 } from "react-icons/hi2";
-import {
-  CART_PAYMENT_MARKS,
-  cartFamilyIcon,
-} from "@/features/cart/components/cartProvisionIcons";
+import { CART_PAYMENT_MARKS, cartFamilyIcon } from "@/features/cart";
 import { checkoutTermTitle } from "@/features/checkout/components/checkoutConstants";
 import type { CheckoutReady } from "@/features/checkout/components/useCheckoutForm";
 import { DEMO_PRICING_ANSWER } from "@/shared/content/demoPricingCopy";

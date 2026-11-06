@@ -1,12 +1,12 @@
 /**
  * Helpers to pick peer plans / family defaults for cart configure.
  */
-import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
+import { selectPlanPrice } from "@/features/vps-pricing";
 import type {
   BillingTermMonths,
   VpsFamily,
   VpsPlan,
-} from "@/features/vps-pricing/model/types";
+} from "@/features/vps-pricing";
 import type { CartBillingTerm } from "@/features/cart/model/cartTypes";
 
 export function plansForFamily(
@@ -48,7 +48,11 @@ export function pickPlanForFamily(
     }
     return best;
   }
-  return peers.find((plan) => plan.featured) ?? peers[Math.floor(peers.length / 2)] ?? peers[0]!;
+  return (
+    peers.find((plan) => plan.featured) ??
+    peers[Math.floor(peers.length / 2)] ??
+    peers[0]!
+  );
 }
 
 export function monthlyLabelForPlan(

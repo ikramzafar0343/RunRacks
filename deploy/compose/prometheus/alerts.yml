@@ -1,0 +1,24 @@
+groups:
+  - name: runracks
+    rules:
+      - alert: BackendHighErrorRate
+        expr: sum(rate(http_requests_total{status=~"5.."}[5m])) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: Backend 5xx rate elevated
+      - alert: WhmcsCircuitOpen
+        expr: circuit_breaker_state{name="whmcs"} == 2
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: WHMCS circuit breaker is open
+      - alert: EventLoopDelayHigh
+        expr: process_event_loop_delay_seconds{quantile="0.99"} > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Event loop delay p99 above 50ms

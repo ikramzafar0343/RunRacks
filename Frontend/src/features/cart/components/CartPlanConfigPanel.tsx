@@ -9,9 +9,9 @@ import { cartFamilyIcon } from "@/features/cart/components/cartProvisionIcons";
 import type { CartConfigureReady } from "@/features/cart/components/useCartConfigure";
 import { familyLabel } from "@/features/cart/lib/cartPlanHelpers";
 import { CART_FAMILIES } from "@/features/cart/model/cartTypes";
-import { flagSrc } from "@/features/customize/components/customizeIcons";
-import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
-import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
+import { flagSrc } from "@/features/customize";
+import { selectPlanPrice } from "@/features/vps-pricing";
+import { formatMoneyMinor } from "@/features/vps-pricing";
 
 export function CartPlanConfigPanel({
   cart,

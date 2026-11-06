@@ -11,10 +11,10 @@ import {
   type KeyboardEvent,
   type TouchEvent,
 } from "react";
-import { CarouselArrow } from "@/features/customer-stories/components/CarouselArrow";
-import { CustomerStoryMedia } from "@/features/customer-stories/components/CustomerStoryMedia";
-import { TestimonialQuoteCard } from "@/features/customer-stories/components/TestimonialQuoteCard";
-import type { CustomerStory } from "@/features/customer-stories/model/types";
+import { CarouselArrow } from "./CarouselArrow";
+import { CustomerStoryMedia } from "./CustomerStoryMedia";
+import { TestimonialQuoteCard } from "./TestimonialQuoteCard";
+import type { CustomerStory } from "../model/types";
 
 type CustomerStoryCarouselProps = {
   stories: CustomerStory[];

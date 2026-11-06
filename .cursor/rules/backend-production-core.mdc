@@ -1,0 +1,14 @@
+---
+description: Backend production core (Fastify + Postgres + WHMCS)
+alwaysApply: true
+---
+
+# Backend production core
+
+Source of truth: `Rules/NODEJS_POSTGRESQL_BACKEND_PRODUCTION_RULES.md`.
+
+- Strict TypeScript; max 300 lines per maintained file; parameterized SQL only.
+- No demos, fake WHMCS success, mock repositories in production paths, or TODO behavior.
+- WHMCS owns customers, access, pricing, orders, billing — Postgres caches and local content only.
+- Idempotency + tenant scope (`whmcs_client_id`) on every customer mutation/read of private data.
+- Secrets server-only; never log API secrets, passwords, or raw payment payloads.

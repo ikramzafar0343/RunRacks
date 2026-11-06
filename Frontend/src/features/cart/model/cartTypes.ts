@@ -1,10 +1,7 @@
 /**
  * Client cart lines — multi-server configure UI until live checkout exists.
  */
-import type {
-  BillingTermMonths,
-  VpsFamily,
-} from "@/features/vps-pricing/model/types";
+import type { BillingTermMonths, VpsFamily } from "@/features/vps-pricing";
 
 /** Cart billing terms — matches customize + catalog (1 / 3 / 6 / 12). */
 export type CartBillingTerm = BillingTermMonths;

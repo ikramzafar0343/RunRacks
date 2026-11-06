@@ -96,10 +96,21 @@
   gap: 0.4rem;
 }
 
+.siteHeaderAiMark {
+  display: block;
+  flex: none;
+  width: 0.85rem;
+  height: 1rem;
+  background: currentColor;
+  mask: url("/brand/runracks-logo-light.svg") center / contain no-repeat;
+  -webkit-mask: url("/brand/runracks-logo-light.svg") center / contain no-repeat;
+}
+
 .siteHeaderAi {
   display: none;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
   min-height: 2.4rem;
   padding: 0 0.95rem;
   border-radius: 999px;

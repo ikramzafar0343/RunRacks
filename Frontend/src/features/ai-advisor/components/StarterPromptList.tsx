@@ -2,7 +2,10 @@
  * Three product prompts. Selecting one fills the composer.
  */
 import { AppWindow, Monitor, Server } from "lucide-react";
-import type { AiStarterIconId, AiStarterWithIcon } from "@/features/ai-advisor/model/aiContent";
+import type {
+  AiStarterIconId,
+  AiStarterWithIcon,
+} from "@/features/ai-advisor/model/aiContent";
 
 type StarterPromptListProps = {
   starters: readonly AiStarterWithIcon[];

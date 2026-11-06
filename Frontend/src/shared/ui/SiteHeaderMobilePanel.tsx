@@ -7,7 +7,6 @@ import {
   type HeaderActions,
   type PrimaryNavItem,
 } from "@/shared/config/navConfig";
-import { scrollToTopPinned } from "@/shared/lib/scrollToTop";
 
 function isBlogNavActive(pathname: string, href: string): boolean {
   if (href === "/blog") {
@@ -31,10 +30,8 @@ export function SiteHeaderMobilePanel({
   headerActions,
   onClose,
 }: SiteHeaderMobilePanelProps) {
-  function go(hrefOnClick?: () => void) {
+  function go() {
     onClose();
-    hrefOnClick?.();
-    scrollToTopPinned();
   }
 
   return (
@@ -80,6 +77,7 @@ export function SiteHeaderMobilePanel({
         className="siteHeaderMobileAi"
         onClick={() => go()}
       >
+        <span className="siteHeaderAiMark" aria-hidden />
         {headerActions.ai.label}
       </Link>
     </div>

@@ -28,6 +28,7 @@ import {
   type DocumentTheme,
 } from "@/shared/lib/useDocumentTheme";
 import { SiteHeaderMobilePanel } from "@/shared/ui/SiteHeaderMobilePanel";
+import { SiteLogo } from "@/shared/ui/SiteLogo";
 import "@/shared/ui/site-header.css";
 import "@/shared/ui/site-header-mobile.css";
 
@@ -122,9 +123,14 @@ export function SiteHeaderBar({
         <Link
           href={headerActions.home.href}
           className="siteHeaderBrand"
-          onClick={scrollToTopPinned}
+          aria-label="RunRacks"
+          onClick={() => {
+            if (pathname === "/" || pathname === headerActions.home.href) {
+              scrollToTopPinned();
+            }
+          }}
         >
-          {headerActions.home.label}
+          <SiteLogo size="header" />
         </Link>
 
         <nav className="siteHeaderNav" aria-label="Primary navigation">
@@ -138,7 +144,6 @@ export function SiteHeaderBar({
                   aria-current={
                     isBlogNavActive(pathname, item.href) ? "page" : undefined
                   }
-                  onClick={scrollToTopPinned}
                 >
                   {item.label}
                 </Link>
@@ -178,7 +183,6 @@ export function SiteHeaderBar({
                         }
                         onClick={() => {
                           setOpenMenu(null);
-                          scrollToTopPinned();
                         }}
                       >
                         {child.label}
@@ -192,11 +196,8 @@ export function SiteHeaderBar({
         </nav>
 
         <div className="siteHeaderActions">
-          <Link
-            href={headerActions.ai.href}
-            className="siteHeaderAi"
-            onClick={scrollToTopPinned}
-          >
+          <Link href={headerActions.ai.href} className="siteHeaderAi">
+            <span className="siteHeaderAiMark" aria-hidden />
             {headerActions.ai.label}
           </Link>
 
@@ -225,7 +226,6 @@ export function SiteHeaderBar({
                   }`
                 : headerActions.cart.label
             }
-            onClick={scrollToTopPinned}
           >
             <HiOutlineShoppingBag size={18} aria-hidden="true" />
             {showCartBadge ? (
@@ -239,7 +239,6 @@ export function SiteHeaderBar({
             href={headerActions.profile.href}
             className="siteHeaderIconBtn"
             aria-label={headerActions.profile.label}
-            onClick={scrollToTopPinned}
           >
             <HiOutlineUserCircle size={20} aria-hidden="true" />
           </Link>

@@ -71,7 +71,8 @@
   height: 0.875rem;
   object-fit: cover;
   border-radius: 2px;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-heading) 12%, transparent);
+  box-shadow: 0 0 0 1px
+    color-mix(in srgb, var(--color-heading) 12%, transparent);
 }
 
 .phNetworkRowName {
@@ -93,12 +94,35 @@
 
 .phNetworkRowChip {
   flex-shrink: 0;
+  min-width: 2.85rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--net-status) 35%, transparent);
+  background: color-mix(in srgb, var(--net-status) 14%, var(--color-surface));
+  color: var(--net-status);
   font-size: 0.625rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
-  color: var(--net-chip);
-  min-width: 3.5rem;
-  text-align: right;
+  text-align: center;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--net-status) 12%, transparent),
+    0 0 10px color-mix(in srgb, var(--net-status) 42%, transparent);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--net-status) 45%, transparent);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.phNetworkRow:hover .phNetworkRowChip,
+.phNetworkRow[data-active="true"] .phNetworkRowChip,
+.phNetworkRow:focus-visible .phNetworkRowChip {
+  border-color: color-mix(in srgb, var(--net-status) 55%, transparent);
+  background: color-mix(in srgb, var(--net-status) 22%, var(--color-surface));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--net-status) 18%, transparent),
+    0 0 14px color-mix(in srgb, var(--net-status) 55%, transparent);
 }
 
 .phNetworkRowArrow {
@@ -167,7 +191,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .phNetworkRow,
-  .phNetworkRowArrow {
+  .phNetworkRowArrow,
+  .phNetworkRowChip {
     transition: none;
   }
 }

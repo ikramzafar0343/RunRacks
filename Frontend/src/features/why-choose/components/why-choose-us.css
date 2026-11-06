@@ -156,7 +156,11 @@ html.dark .rrWhy {
 .rrWhyFeat {
   --rr-why-feat-bg: var(--color-lime);
   --rr-why-feat-fg: var(--color-on-lime);
-  --rr-why-feat-muted: color-mix(in srgb, var(--color-on-lime) 78%, transparent);
+  --rr-why-feat-muted: color-mix(
+    in srgb,
+    var(--color-on-lime) 78%,
+    transparent
+  );
   --rr-why-feat-icon-bg: #20372f;
   --rr-why-feat-icon-fg: #f3f6f0;
   --rr-why-feat-hover: color-mix(in srgb, var(--color-lime) 88%, #fff);

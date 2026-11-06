@@ -60,11 +60,7 @@ export function ContactHero() {
         .to(brand, { opacity: 1, y: 0, duration: 0.9 }, 0.12)
         .to(lead, { opacity: 1, y: 0, duration: 0.75 }, 0.3)
         .to(actions, { opacity: 1, y: 0, duration: 0.6 }, 0.44)
-        .to(
-          media,
-          { opacity: 1, scale: 1, rotateY: 0, duration: 1.05 },
-          0.22,
-        );
+        .to(media, { opacity: 1, scale: 1, rotateY: 0, duration: 1.05 }, 0.22);
 
       const parallax = gsap.timeline({
         scrollTrigger: {
@@ -97,11 +93,7 @@ export function ContactHero() {
         onMove: (self) => {
           const ev = self.event as PointerEvent | TouchEvent;
           const point =
-            "clientX" in ev
-              ? ev
-              : ev.touches[0]
-                ? ev.touches[0]
-                : null;
+            "clientX" in ev ? ev : ev.touches[0] ? ev.touches[0] : null;
           if (!point) return;
           const rect = media.getBoundingClientRect();
           const px = (point.clientX - rect.left) / rect.width - 0.5;
@@ -131,9 +123,21 @@ export function ContactHero() {
   return (
     <header ref={rootRef} className="contactHero">
       <div className="contactHeroWash" data-hero-wash aria-hidden />
-      <span className="contactHeroOrb contactHeroOrb--a" data-hero-orb aria-hidden />
-      <span className="contactHeroOrb contactHeroOrb--b" data-hero-orb aria-hidden />
-      <span className="contactHeroOrb contactHeroOrb--c" data-hero-orb aria-hidden />
+      <span
+        className="contactHeroOrb contactHeroOrb--a"
+        data-hero-orb
+        aria-hidden
+      />
+      <span
+        className="contactHeroOrb contactHeroOrb--b"
+        data-hero-orb
+        aria-hidden
+      />
+      <span
+        className="contactHeroOrb contactHeroOrb--c"
+        data-hero-orb
+        aria-hidden
+      />
       <div className="contactInner contactHeroGrid">
         <div className="contactHeroCopy">
           <p className="contactHeroEyebrow" data-hero-eyebrow>

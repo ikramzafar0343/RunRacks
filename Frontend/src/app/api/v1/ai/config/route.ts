@@ -1,6 +1,5 @@
 /**
- * GET /api/v1/ai/config — public advisor config.
- * Always reports not_configured until real AI readiness probes exist.
+ * GET /api/v1/ai/config — ready only after live Backend AI probe.
  */
 import { NextResponse } from "next/server";
 import {
@@ -9,19 +8,31 @@ import {
   AI_STARTERS_PUBLIC,
   AI_TOPICS,
 } from "@/features/ai-advisor/model/aiContent";
-import { getAiIntegrationStatus } from "@/shared/config/env";
+import { probeAiReady } from "@/server/aiProbe";
+import { forwardUpstream, gateAiBackendProxy } from "@/server/aiBackendProxy";
 import type { AiConfigData, ApiSuccessBody } from "@/shared/lib/apiContracts";
 
-export function GET(): NextResponse<ApiSuccessBody<AiConfigData>> {
-  const ai = getAiIntegrationStatus();
-  const timestamp = new Date().toISOString();
+export async function GET(): Promise<
+  NextResponse<ApiSuccessBody<AiConfigData>> | Response
+> {
+  const gate = await gateAiBackendProxy();
+  if (gate.ok) {
+    const upstream = await fetch(`${gate.baseUrl}/v1/ai/config`, {
+      method: "GET",
+      cache: "no-store",
+    });
+    if (upstream.ok) {
+      return forwardUpstream(upstream);
+    }
+  }
 
-  // Env alone never yields ready — probes required later.
-  const status = ai.isReady ? "ready" : "not_configured";
+  const probe = await probeAiReady();
+  const timestamp = new Date().toISOString();
+  const status = probe.ready ? "ready" : "not_configured";
 
   const data: AiConfigData = {
     status,
-    enabled: ai.isReady,
+    enabled: probe.ready,
     maxInputChars: AI_MAX_INPUT_CHARS,
     topics: AI_TOPICS,
     starters: AI_STARTERS_PUBLIC,

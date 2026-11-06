@@ -32,7 +32,11 @@ html.dark .vpsCmp {
   --vps-cmp-muted: var(--color-inverse-muted);
   --vps-cmp-accent: var(--color-lime);
   --vps-cmp-line: var(--color-inverse-border);
-  --vps-cmp-surface: color-mix(in srgb, var(--color-on-inverse) 4%, transparent);
+  --vps-cmp-surface: color-mix(
+    in srgb,
+    var(--color-on-inverse) 4%,
+    transparent
+  );
   --vps-cmp-surface-strong: color-mix(
     in srgb,
     var(--color-on-inverse) 7%,
@@ -154,7 +158,11 @@ html.dark .vpsCmp {
 
 .vpsCmpColFeatured {
   position: relative;
-  background: color-mix(in srgb, var(--vps-cmp-lime) 18%, var(--vps-cmp-surface));
+  background: color-mix(
+    in srgb,
+    var(--vps-cmp-lime) 18%,
+    var(--vps-cmp-surface)
+  );
   box-shadow:
     inset 2px 0 0 var(--vps-cmp-lime),
     inset -2px 0 0 var(--vps-cmp-lime);

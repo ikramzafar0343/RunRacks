@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Portrait / optional video card — play only when a real videoUrl exists.
  * Client boundary is CustomerStoryCarousel (parent).

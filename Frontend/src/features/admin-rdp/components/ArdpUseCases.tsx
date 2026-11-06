@@ -48,8 +48,7 @@ export function ArdpUseCases() {
 
   const videoSrc = item?.videoSrc;
   const mediaOnly = Boolean(item?.mediaOnly && videoSrc);
-  const videoAspect =
-    (videoSrc && aspectBySrc[videoSrc]) || "9 / 16";
+  const videoAspect = (videoSrc && aspectBySrc[videoSrc]) || "9 / 16";
 
   useEffect(() => {
     const video = videoRef.current;
@@ -106,9 +105,7 @@ export function ArdpUseCases() {
   const cta = (
     <a
       className={
-        mediaOnly
-          ? "ardpUseCasesCta ardpUseCasesCtaOverlay"
-          : "ardpUseCasesCta"
+        mediaOnly ? "ardpUseCasesCta ardpUseCasesCtaOverlay" : "ardpUseCasesCta"
       }
       href={useCases.cta.href}
     >
@@ -118,10 +115,7 @@ export function ArdpUseCases() {
   );
 
   return (
-    <section
-      className="ardpUseCases"
-      aria-labelledby={`${baseId}-title`}
-    >
+    <section className="ardpUseCases" aria-labelledby={`${baseId}-title`}>
       <div className="ardpUseCasesInner">
         <header className="ardpUseCasesHeader">
           <h2 id={`${baseId}-title`} className="ardpUseCasesTitle">

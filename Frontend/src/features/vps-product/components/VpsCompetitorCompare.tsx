@@ -16,6 +16,7 @@ import {
   type CompareMetricKey,
   type CompareProvider,
 } from "@/features/vps-product/model/vpsCompetitorCompare";
+import { SiteLogo } from "@/shared/ui/SiteLogo";
 import "@/features/vps-product/components/vps-competitor-compare.css";
 import "@/features/vps-product/components/vps-competitor-compare-marks.css";
 
@@ -30,12 +31,10 @@ function cellClass(provider: CompareProvider, key: CompareMetricKey): string {
 }
 
 function BrandMark({
-  mark,
   logo,
   featured,
   size = "md",
 }: {
-  mark: string;
   logo?: CompareLogo | undefined;
   featured?: boolean | undefined;
   size?: "md" | "sm";
@@ -49,26 +48,26 @@ function BrandMark({
   const imgClass = size === "sm" ? "vpsCmpSaveLogo" : "vpsCmpLogo";
   const px = size === "sm" ? 14 : 24;
 
-  if (logo) {
+  if (!logo) {
     return (
-      <span className={rootClass}>
-        <Image
-          className={imgClass}
-          src={logo.src}
-          alt=""
-          width={px}
-          height={px}
-          unoptimized
-          aria-hidden
-        />
-        <span className="sr-only">{logo.alt}</span>
+      <span className={`${rootClass} vpsCmpMarkLogo`} aria-hidden>
+        <SiteLogo size={size === "sm" ? "compareSm" : "compare"} />
       </span>
     );
   }
 
   return (
-    <span className={rootClass} aria-hidden>
-      {mark}
+    <span className={rootClass}>
+      <Image
+        className={imgClass}
+        src={logo.src}
+        alt=""
+        width={px}
+        height={px}
+        unoptimized
+        aria-hidden
+      />
+      <span className="sr-only">{logo.alt}</span>
     </span>
   );
 }
@@ -188,7 +187,6 @@ export function VpsCompetitorCompare() {
                         <span className="vpsCmpBadgeSpacer" aria-hidden />
                       )}
                       <BrandMark
-                        mark={provider.mark}
                         logo={provider.logo}
                         featured={provider.featured}
                       />
@@ -237,7 +235,7 @@ export function VpsCompetitorCompare() {
             >
               <p className="vpsCmpSaveVs">
                 <span>vs</span>
-                <BrandMark mark="" logo={item.logo} size="sm" />
+                <BrandMark logo={item.logo} size="sm" />
                 <span>{item.name}</span>
               </p>
               <p className="vpsCmpSaveAmount">{item.amountLabel}</p>

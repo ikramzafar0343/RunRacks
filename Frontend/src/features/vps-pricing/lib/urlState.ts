@@ -14,6 +14,8 @@ const FAMILIES: readonly VpsFamily[] = [
 
 const TERMS: readonly BillingTermMonths[] = [1, 3, 6, 12];
 
+const QUERY_KEYS = ["family", "location", "term"] as const;
+
 /** Default location when none is in the URL. */
 export const DEFAULT_LOCATION_ID = "us";
 
@@ -56,9 +58,24 @@ export function parseTerm(raw: string | null): BillingTermMonths {
   return 1;
 }
 
-export function parseLocation(raw: string | null): string {
-  if (!raw || raw.length === 0) return DEFAULT_LOCATION_ID;
-  return raw;
+/** Location stays in the URL only when it is one of the catalog region ids. */
+export function parseLocation(
+  raw: string | null,
+  allowedIds: readonly string[],
+): string {
+  if (raw && allowedIds.includes(raw)) return raw;
+  return DEFAULT_LOCATION_ID;
+}
+
+/** True when the address bar has only the canonical family, location, and term. */
+export function vpsSearchIsCanonical(
+  current: URLSearchParams,
+  canonical: URLSearchParams,
+): boolean {
+  for (const key of current.keys()) {
+    if (!QUERY_KEYS.includes(key as (typeof QUERY_KEYS)[number])) return false;
+  }
+  return current.toString() === canonical.toString();
 }
 
 export function buildVpsSearchParams(input: {

@@ -2,16 +2,16 @@
  * Windows Hosting in USA — hero-first landing (more sections TBD).
  */
 import { Suspense } from "react";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
-import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
-import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
-import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
+import { FaqSection } from "@/features/vps-faq";
+import { SupportCtaSection } from "@/features/support-cta";
+import { VpsPricingFallback } from "@/features/vps-pricing";
+import { VpsPricingSection } from "@/features/vps-pricing";
+import type { VpsCatalogPayload } from "@/features/vps-pricing";
 import { WindowsUsaHero } from "@/features/windows-usa/components/WindowsUsaHero";
 import { WindowsUsaHighlight } from "@/features/windows-usa/components/WindowsUsaHighlight";
 import { WindowsUsaShowcase } from "@/features/windows-usa/components/WindowsUsaShowcase";
 import { WINDOWS_USA } from "@/features/windows-usa/model/windowsUsaContent";
-import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
+import { WhyChooseUs } from "@/features/why-choose";
 import "@/features/windows-usa/components/windows-usa.css";
 
 export type WindowsUsaPageProps = {

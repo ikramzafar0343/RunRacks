@@ -1,0 +1,10 @@
+{
+  "ranAt": "2026-11-06T07:37:07.586Z",
+  "scenario": "api-health-node-sample",
+  "tool": "scripts/ops/perf-health-sample.mjs",
+  "baseUrl": "http://127.0.0.1:4000",
+  "samples": 30,
+  "p95Ms": 16.669899999999984,
+  "p99Ms": 48.392,
+  "note": "Node sample for local evidence; prefer perf/k6/api-latency.js in CI"
+}

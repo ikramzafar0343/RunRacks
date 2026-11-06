@@ -13,12 +13,7 @@ export type EditorialImage = {
 
 /** Lucide icon keys resolved in VpsProductFeatures. */
 export type VpsHeroIconId =
-  | "gauge"
-  | "activity"
-  | "star"
-  | "focus"
-  | "settings"
-  | "wallet";
+  "gauge" | "activity" | "star" | "focus" | "settings" | "wallet";
 
 export type VpsHeroFeature = {
   id: string;

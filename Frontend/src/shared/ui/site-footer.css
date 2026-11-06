@@ -43,9 +43,8 @@
 
 .siteFooterBrand {
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
+  justify-content: center;
   text-decoration: none;
   color: var(--sf-ink);
 }
@@ -54,13 +53,6 @@
   outline: 2px solid var(--color-lime);
   outline-offset: 6px;
   border-radius: 8px;
-}
-
-.siteFooterBrandName {
-  font-size: clamp(3.25rem, 8.5vw, 5.75rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 0.95;
 }
 
 .siteFooterRule {
@@ -84,6 +76,7 @@
   width: max-content;
   transform: translateX(-50%);
   pointer-events: none;
+  font-family: var(--font-heading), var(--font-sans), sans-serif;
   font-size: clamp(3.5rem, 14vw, 9.5rem);
   font-weight: 700;
   letter-spacing: 0.04em;

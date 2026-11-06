@@ -14,7 +14,7 @@ import {
 } from "react-icons/hi2";
 import type { IconType } from "react-icons";
 import { WorldMap } from "@/components/ui/map";
-import { flagSrc } from "@/features/customize/components/customizeIcons";
+import { flagSrc } from "@/features/customize";
 import {
   NETWORK_GROUP_LABELS,
   NETWORK_GROUP_ORDER,
@@ -24,7 +24,8 @@ import {
   pinMetaFor,
   type NetworkGroupId,
 } from "@/features/product-hosting/model/networkLocations";
-import type { VpsRegion } from "@/features/vps-pricing/model/types";
+import type { VpsRegion } from "@/features/vps-pricing";
+import { PhNetworkLatencyChip } from "@/features/product-hosting/components/PhNetworkLatencyChip";
 import "@/features/product-hosting/components/product-hosting-network.css";
 
 type PhInfraProps = {
@@ -158,7 +159,7 @@ export function PhInfra({
         <div
           className="phNetworkLists"
           role="tablist"
-          aria-label="Catalog regions by area"
+          aria-label="Catalog regions by area with illustrative latency"
           onKeyDown={onListKeyDown}
         >
           {groups.map((g) => (
@@ -194,7 +195,7 @@ export function PhInfra({
                         />
                         <span className="phNetworkRowName">{r.name}</span>
                         <span className="phNetworkRowStatus" aria-hidden />
-                        <span className="phNetworkRowChip">In catalog</span>
+                        <PhNetworkLatencyChip key={r.id} regionId={r.id} />
                         <HiArrowRight
                           className="phNetworkRowArrow"
                           aria-hidden

@@ -1,7 +1,7 @@
 /**
  * Product hosting page — content types.
  */
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { VpsFamily } from "@/features/vps-pricing";
 
 export type ProductHostingKey = "vps" | "windows";
 

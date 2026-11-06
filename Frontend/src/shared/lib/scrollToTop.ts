@@ -1,29 +1,15 @@
 /**
- * Force the document viewport to y=0 (window + html/body scroll roots).
+ * Scroll helpers — write-only, no layout reads (avoids forced reflow).
  */
 export function scrollDocumentToTop() {
   if (typeof window === "undefined") return;
-
-  const pin = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-  };
-
-  pin();
-  // Re-pin after layout/paint so soft nav + sticky header don't leave mid-page.
-  requestAnimationFrame(() => {
-    pin();
-    requestAnimationFrame(pin);
-  });
+  window.scrollTo(0, 0);
 }
 
-/** Pin top again after Next soft-nav can restore a cached scroll position. */
+/** Single deferred pin after soft nav / preloader hide. */
 export function scrollToTopPinned() {
   scrollDocumentToTop();
-  window.setTimeout(scrollDocumentToTop, 0);
-  window.setTimeout(scrollDocumentToTop, 50);
-  window.setTimeout(scrollDocumentToTop, 120);
+  requestAnimationFrame(scrollDocumentToTop);
 }
 
 /** True when this click should reset scroll for an in-app path (no hash). */
@@ -56,10 +42,8 @@ export function shouldScrollToTopForClick(
   }
 
   if (url.origin !== window.location.origin) return false;
-  // Keep intentional section landing (e.g. /pricing#pricing-plans).
   if (url.hash) return false;
 
-  // Same path, query-only change (filters) — stay on the current section.
   if (
     url.pathname === window.location.pathname &&
     url.search !== window.location.search

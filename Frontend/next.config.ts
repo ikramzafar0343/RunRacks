@@ -16,21 +16,21 @@ const securityHeaders = [
   },
   ...(isProd
     ? [
-      {
-        key: "Content-Security-Policy",
-        value: [
-          "default-src 'self'",
-          "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-          "style-src 'self' 'unsafe-inline'",
-          "img-src 'self' data: blob:",
-          "font-src 'self' data:",
-          "connect-src 'self'",
-          "frame-ancestors 'none'",
-          "base-uri 'self'",
-          "form-action 'self'",
-        ].join("; "),
-      },
-    ]
+        {
+          key: "Content-Security-Policy",
+          value: [
+            "default-src 'self'",
+            "script-src 'self' 'unsafe-inline'",
+            "style-src 'self' 'unsafe-inline'",
+            "img-src 'self' data: blob:",
+            "font-src 'self' data:",
+            "connect-src 'self'",
+            "frame-ancestors 'none'",
+            "base-uri 'self'",
+            "form-action 'self'",
+          ].join("; "),
+        },
+      ]
     : []),
 ];
 
@@ -42,6 +42,7 @@ const publicAssetCache = [
 ];
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   typedRoutes: true,
   cacheComponents: true,
   async redirects() {
@@ -57,7 +58,7 @@ const nextConfig: NextConfig = {
   compress: true,
   // Off: instant prefetch validation breaks client module proxies in Turbopack dev.
   partialPrefetching: false,
-  allowedDevOrigins: ["192.168.18.105", "localhost"],
+  allowedDevOrigins: ["192.168.18.105", "localhost", "127.0.0.1"],
   experimental: {
     optimizePackageImports: [
       "react-icons",
@@ -77,14 +78,6 @@ const nextConfig: NextConfig = {
     deviceSizes: [360, 480, 640, 750, 828, 1080, 1200],
     imageSizes: [96, 128, 188, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30,
-  },
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
   },
   async headers() {
     return [

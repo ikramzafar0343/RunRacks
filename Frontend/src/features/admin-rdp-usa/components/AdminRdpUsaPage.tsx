@@ -2,17 +2,17 @@
  * Admin RDP in USA — hero → benefits → pricing → FAQ → support CTA.
  */
 import { Suspense } from "react";
-import { AdminRdpBenefitsSection } from "@/features/admin-rdp-benefits/components/AdminRdpBenefitsSection";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
-import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
-import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
-import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
+import { AdminRdpBenefitsSection } from "@/features/admin-rdp-benefits";
+import { FaqSection } from "@/features/vps-faq";
+import { SupportCtaSection } from "@/features/support-cta";
+import { VpsPricingFallback } from "@/features/vps-pricing";
+import { VpsPricingSection } from "@/features/vps-pricing";
+import type { VpsCatalogPayload } from "@/features/vps-pricing";
 import { AdminRdpUsaClarity } from "@/features/admin-rdp-usa/components/AdminRdpUsaClarity";
 import { AdminRdpUsaCompare } from "@/features/admin-rdp-usa/components/AdminRdpUsaCompare";
 import { AdminRdpUsaHero } from "@/features/admin-rdp-usa/components/AdminRdpUsaHero";
 import { ADMIN_RDP_USA } from "@/features/admin-rdp-usa/model/adminRdpUsaContent";
-import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
+import { WhyChooseUs } from "@/features/why-choose";
 import "@/features/windows-usa/components/windows-usa.css";
 import "@/features/admin-rdp-usa/components/admin-rdp-usa.css";
 

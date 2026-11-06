@@ -23,10 +23,7 @@ export function ContactFaqMotion({ children }: ContactFaqMotionProps) {
       if (!root) return;
 
       const heading = root.querySelector(".vpsFaqHeading");
-      const items = gsap.utils.toArray<HTMLElement>(
-        ".vpsFaqList > li",
-        root,
-      );
+      const items = gsap.utils.toArray<HTMLElement>(".vpsFaqList > li", root);
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         gsap.set([heading, ...items], { clearProps: "all", opacity: 1 });

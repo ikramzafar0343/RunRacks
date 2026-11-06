@@ -2,7 +2,8 @@
  * smoke-api — hits readiness + catalog seams after a server is up.
  *
  * Usage: BASE_URL=http://127.0.0.1:3000 node scripts/smoke-api.mjs
- * Expects: ready → 503 NOT_CONFIGURED; catalog → ok + source:demo
+ * Ready: 503 NOT_CONFIGURED when Backend probe fails, or 200 when Backend /ready passes.
+ * Catalog: ok + source:demo until WHMCS-mapped cache exists.
  */
 const base = (process.env.BASE_URL ?? "http://127.0.0.1:3000").replace(
   /\/$/,
@@ -25,20 +26,38 @@ const failures = [];
 
 {
   const { res, body } = await getJson("/api/v1/ready");
-  if (res.status !== 503) {
-    failures.push(`ready: expected 503, got ${res.status}`);
-  }
-  if (body?.ok !== false || body?.error?.code !== "NOT_CONFIGURED") {
-    failures.push(
-      `ready: expected NOT_CONFIGURED error, got ${JSON.stringify(body)}`,
+  if (res.status === 503) {
+    if (body?.ok !== false || body?.error?.code !== "NOT_CONFIGURED") {
+      failures.push(
+        `ready: expected NOT_CONFIGURED error, got ${JSON.stringify(body)}`,
+      );
+    }
+    if (body?.error?.details?.status === "ready") {
+      failures.push("ready: details.status must not be ready on 503");
+    }
+    console.log(
+      `ready: ${res.status} code=${body?.error?.code ?? "?"} blocked=ok`,
     );
+  } else if (res.status === 200) {
+    if (body?.ok !== true || body?.data?.status !== "ready") {
+      failures.push(
+        `ready: expected ok ready payload, got ${JSON.stringify(body)}`,
+      );
+    }
+    if (body?.data?.backendConfigured !== true) {
+      failures.push("ready: backendConfigured must be true on 200");
+    }
+    if (typeof body?.data?.databaseConfigured !== "boolean") {
+      failures.push(
+        "ready: databaseConfigured must be boolean from Backend probe",
+      );
+    }
+    console.log(
+      `ready: ${res.status} databaseConfigured=${body?.data?.databaseConfigured}`,
+    );
+  } else {
+    failures.push(`ready: expected 200 or 503, got ${res.status}`);
   }
-  if (body?.error?.details?.status === "ready") {
-    failures.push("ready: details.status must not be ready");
-  }
-  console.log(
-    `ready: ${res.status} code=${body?.error?.code ?? "?"} isReady-path-blocked=ok`,
-  );
 }
 
 {

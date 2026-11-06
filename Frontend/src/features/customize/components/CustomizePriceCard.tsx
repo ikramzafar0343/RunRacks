@@ -13,15 +13,13 @@ import {
 } from "@/features/customize/components/customizeIcons";
 import { CUSTOMIZE } from "@/features/customize/model/customizeContent";
 import type { CustomizePriceResult } from "@/features/customize/model/customizePricing";
-import {
-  billingNoteForTerm,
-  formatMoneyMinor,
-} from "@/features/vps-pricing/model/formatPrice";
+import { billingNoteForTerm, formatMoneyMinor } from "@/features/vps-pricing";
+import "@/features/customize/components/customize-summary.css";
 import type {
   BillingTermMonths,
   VpsFamily,
   VpsRegion,
-} from "@/features/vps-pricing/model/types";
+} from "@/features/vps-pricing";
 
 export type CustomizePriceCardProps = {
   family: VpsFamily;
@@ -37,6 +35,9 @@ export type CustomizePriceCardProps = {
   price: CustomizePriceResult;
   /** Override secondary compare link (e.g. `#vps-plans` when embedded). */
   plansHref?: string;
+  /** Primary link when the card should open a specific build instead of Pricing. */
+  primaryHref?: string;
+  primaryLabel?: string;
   /** Add configured build to cart (preferred over linking to Pricing). */
   onChoosePlan?: () => void;
 };
@@ -54,6 +55,8 @@ export function CustomizePriceCard({
   automatedBackups,
   price,
   plansHref,
+  primaryHref,
+  primaryLabel,
   onChoosePlan,
 }: CustomizePriceCardProps) {
   const features = [
@@ -64,7 +67,8 @@ export function CustomizePriceCard({
     ...(dedicatedIpv4 ? [CUSTOMIZE.addons.dedicatedIpv4.label] : []),
     ...(automatedBackups ? [CUSTOMIZE.addons.automatedBackups.label] : []),
   ];
-  const secondaryHref = (plansHref ?? CUSTOMIZE.summary.secondary.href) as Route;
+  const secondaryHref = (plansHref ??
+    CUSTOMIZE.summary.secondary.href) as Route;
 
   return (
     <article className="czPriceCard" aria-live="polite">
@@ -107,19 +111,17 @@ export function CustomizePriceCard({
       </div>
 
       {onChoosePlan ? (
-        <button
-          type="button"
-          className="czCtaPrimary"
-          onClick={onChoosePlan}
-        >
+        <button type="button" className="czCtaPrimary" onClick={onChoosePlan}>
           {CUSTOMIZE.summary.cta.label}
         </button>
       ) : (
         <Link
           className="czCtaPrimary"
-          href={(plansHref ?? CUSTOMIZE.summary.cta.href) as Route}
+          href={
+            (primaryHref ?? plansHref ?? CUSTOMIZE.summary.cta.href) as Route
+          }
         >
-          {CUSTOMIZE.summary.cta.label}
+          {primaryLabel ?? CUSTOMIZE.summary.cta.label}
         </Link>
       )}
 

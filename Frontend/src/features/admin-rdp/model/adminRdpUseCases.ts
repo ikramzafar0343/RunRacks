@@ -2,12 +2,7 @@
  * Admin RDP interactive use-case list + detail copy.
  */
 export type ArdpUseCaseIcon =
-  | "server"
-  | "code"
-  | "bot"
-  | "download"
-  | "palette"
-  | "chart";
+  "server" | "code" | "bot" | "download" | "palette" | "chart";
 
 export type ArdpUseCase = {
   id: string;

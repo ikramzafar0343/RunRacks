@@ -1,11 +1,9 @@
 /**
- * GET /api/v1/ready — integration readiness seam
- *
- * Always 503 until real backend + DB probes exist.
- * Env vars alone never yield ready: true.
+ * GET /api/v1/ready — live Backend probe (env alone never yields ready: true).
  */
 import { NextResponse } from "next/server";
 import { getIntegrationStatus } from "@/shared/config/env";
+import { probeBackendReady } from "@/server/backendProbe";
 import type {
   ApiErrorBody,
   ApiSuccessBody,
@@ -13,43 +11,51 @@ import type {
   ReadyData,
 } from "@/shared/lib/apiContracts";
 
-export function GET(): NextResponse<ApiSuccessBody<ReadyData> | ApiErrorBody> {
+export async function GET(): Promise<
+  NextResponse<ApiSuccessBody<ReadyData> | ApiErrorBody>
+> {
   const status = getIntegrationStatus();
   const timestamp = new Date().toISOString();
+  const probe = await probeBackendReady();
 
-  if (!status.isReady) {
+  if (!probe.ready) {
     const blocked: ReadyBlockedData = {
       service: "frontend",
       status: "not_ready",
       backendConfigured: status.backendConfigured,
-      databaseConfigured: status.databaseConfigured,
+      // Frontend DATABASE_URL is unused; report Backend probe when known.
+      databaseConfigured: probe.databaseConfigured ?? status.databaseConfigured,
       timestamp,
     };
 
-    const message = status.isConfigured
-      ? "Backend and database env are set, but live readiness probes are not implemented yet."
-      : "Backend and database are not configured for this frontend yet.";
+    const message = !status.backendConfigured
+      ? "BACKEND_API_BASE_URL is not configured."
+      : probe.detail;
 
     const body: ApiErrorBody = {
       ok: false,
       error: {
         code: "NOT_CONFIGURED",
         message,
-        details: blocked,
+        details: {
+          ...blocked,
+          probe,
+          frontendDatabaseUrlSet: status.databaseConfigured,
+        },
       },
     };
 
     return NextResponse.json(body, { status: 503 });
   }
 
-  // Unreachable until real probes set isReady — kept for future contract.
   const body: ApiSuccessBody<ReadyData> = {
     ok: true,
     data: {
       service: "frontend",
       status: "ready",
       backendConfigured: true,
-      databaseConfigured: true,
+      // Reflect Backend Postgres verification — not Frontend DATABASE_URL.
+      databaseConfigured: probe.databaseConfigured === true,
       timestamp,
     },
   };

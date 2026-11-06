@@ -3,7 +3,7 @@
  */
 import Image from "next/image";
 import Link from "next/link";
-import type { SupportCtaCard as SupportCtaCardType } from "@/features/support-cta/model/supportCtaContent";
+import type { SupportCtaCard as SupportCtaCardType } from "../model/supportCtaContent";
 
 type SupportCtaCardProps = {
   card: SupportCtaCardType;

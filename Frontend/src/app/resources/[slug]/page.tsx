@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { CaseStudiesPage } from "@/features/customer-stories/components/CaseStudiesPage";
+import { CaseStudiesPage } from "@/features/customer-stories";
 
 /** Blog permanently redirects to /blog via next.config. */
 const resourcePages = {

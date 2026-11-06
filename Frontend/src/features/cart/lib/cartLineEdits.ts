@@ -16,10 +16,10 @@ import {
   defaultProvisionForFamily,
   getOsOptions,
 } from "@/features/cart/model/provisionCatalog";
-import { CUSTOMIZE } from "@/features/customize/model/customizeContent";
-import { calculateCustomizePrice } from "@/features/customize/model/customizePricing";
-import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
-import type { VpsFamily, VpsPlan } from "@/features/vps-pricing/model/types";
+import { CUSTOMIZE } from "@/features/customize";
+import { calculateCustomizePrice } from "@/features/customize";
+import { formatMoneyMinor } from "@/features/vps-pricing";
+import type { VpsFamily, VpsPlan } from "@/features/vps-pricing";
 
 type CustomEdit = Partial<{
   locationId: string;

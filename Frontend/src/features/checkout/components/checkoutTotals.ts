@@ -1,14 +1,11 @@
 /**
  * Sum cart lines for checkout summary.
  */
-import { familyLabel } from "@/features/cart/lib/cartPlanHelpers";
-import type { CartBillingTerm, CartLine } from "@/features/cart/model/cartTypes";
-import { selectPlanPrice } from "@/features/vps-pricing/lib/selectPlanPrice";
-import { formatMoneyMinor } from "@/features/vps-pricing/model/formatPrice";
-import type {
-  VpsCatalogPayload,
-  VpsFamily,
-} from "@/features/vps-pricing/model/types";
+import { familyLabel } from "@/features/cart";
+import type { CartBillingTerm, CartLine } from "@/features/cart";
+import { selectPlanPrice } from "@/features/vps-pricing";
+import { formatMoneyMinor } from "@/features/vps-pricing";
+import type { VpsCatalogPayload, VpsFamily } from "@/features/vps-pricing";
 
 export type CheckoutLineRow = {
   id: string;
@@ -50,8 +47,7 @@ export function buildCheckoutTotals(
 
   const rows: CheckoutLineRow[] = lines.map((entry) => {
     const plan = catalog?.plans.find((p) => p.id === entry.planId) ?? null;
-    const family: VpsFamily =
-      plan?.family ?? entry.custom?.family ?? "linux";
+    const family: VpsFamily = plan?.family ?? entry.custom?.family ?? "linux";
     const priced = pricedLine(entry, catalog);
     if (priced) {
       monthly += priced.monthly;

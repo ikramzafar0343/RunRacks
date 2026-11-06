@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { VpsHeroTerminal } from "@/features/vps-product/components/VpsHeroTerminal";
 import { VPS_PRODUCT } from "@/features/vps-product/model/vpsProductContent";
-import type { StartingPrice } from "@/features/product-hosting/model/startingPrice";
+import type { StartingPrice } from "@/features/product-hosting";
 import "@/features/vps-product/components/vps-product-hero.css";
 import "@/features/vps-product/components/vps-product-hero-responsive.css";
 

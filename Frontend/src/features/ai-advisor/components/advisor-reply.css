@@ -1,0 +1,33 @@
+.aiReplyToken {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.aiReplyFlag {
+  display: block;
+  width: 1.7rem;
+  height: 1.13rem;
+  object-fit: contain;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(20, 28, 24, 0.38);
+}
+
+.aiReplyIcon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-brand);
+}
+
+.aiReplyIcon svg {
+  display: block;
+}
+
+.aiAdvisorMsg .aiFollowUpChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}

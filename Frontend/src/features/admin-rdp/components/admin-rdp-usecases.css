@@ -91,9 +91,12 @@
 
 .ardpUseCasesItem[data-active="true"] {
   border-color: var(--color-brand);
-  background: color-mix(in srgb, var(--color-accent-soft) 70%, var(--color-surface));
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--color-brand) 14%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--color-accent-soft) 70%,
+    var(--color-surface)
+  );
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 14%, transparent);
 }
 
 .ardpUseCasesItemLabel {

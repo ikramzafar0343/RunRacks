@@ -54,12 +54,17 @@
   font-size: 0.95rem;
 }
 
-.siteHeaderMobileAi {
+.siteHeaderMobile a.siteHeaderMobileAi {
   margin-top: 1rem;
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   justify-content: center;
+  gap: 0.45rem;
+  width: fit-content;
   min-height: 2.75rem;
+  padding: 0 1.05rem;
+  white-space: nowrap;
   border-radius: 999px;
   /* BEFORE hover — tokens.css --cta-bg / --cta-fg */
   background: var(--cta-bg);
@@ -71,7 +76,7 @@
     color 200ms ease;
 }
 
-.siteHeaderMobileAi:hover {
+.siteHeaderMobile a.siteHeaderMobileAi:hover {
   /* AFTER hover — tokens.css --cta-*-hover */
   background: var(--cta-bg-hover);
   color: var(--cta-fg-hover);

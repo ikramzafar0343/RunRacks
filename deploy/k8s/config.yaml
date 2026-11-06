@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: runracks
+data:
+  HOST: "0.0.0.0"
+  PORT: "4000"
+  NODE_ENV: "production"
+  TRUST_PROXY: "true"
+  AI_PROVIDER: "owned"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: runracks
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backend-secrets
+  namespace: runracks
+type: Opaque
+stringData:
+  # Replace before apply. Empty WHMCS keys keep catalog fail-closed.
+  SESSION_HMAC_SECRET: "replace-with-32plus-char-production-secret"
+  DATABASE_URL: "postgresql://runracks_app:CHANGE_ME@postgres:5432/runracks"
+  CORS_ORIGINS: "https://www.example.com"

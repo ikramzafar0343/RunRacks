@@ -138,4 +138,3 @@ export const approvedBrands: readonly BrandLogo[] = [
     intrinsicHeight: 133,
   },
 ];
-

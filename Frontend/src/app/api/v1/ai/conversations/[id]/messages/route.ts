@@ -1,6 +1,6 @@
 /**
  * POST /api/v1/ai/conversations/:id/messages
- * Validates body; returns 503 NOT_CONFIGURED — never streams fake answers.
+ * Validates locally; proxies SSE stream when Backend AI is live.
  */
 import { NextResponse } from "next/server";
 import {
@@ -8,6 +8,11 @@ import {
   isAiMessageTopic,
 } from "@/features/ai-advisor/model/aiContent";
 import { aiNotConfiguredResponse } from "@/features/ai-advisor/server/aiNotConfigured";
+import {
+  forwardUpstream,
+  gateAiBackendProxy,
+  withForwardedCookies,
+} from "@/server/aiBackendProxy";
 import type { AiMessageRequest, ApiErrorBody } from "@/shared/lib/apiContracts";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -18,9 +23,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function validate(
   body: unknown,
-):
-  | { ok: true; data: AiMessageRequest }
-  | { ok: false; message: string } {
+): { ok: true; data: AiMessageRequest } | { ok: false; message: string } {
   if (!isRecord(body)) {
     return { ok: false, message: "Request body must be a JSON object." };
   }
@@ -47,10 +50,7 @@ function validate(
     };
   }
 
-  const data: AiMessageRequest = {
-    clientRequestId,
-    message,
-  };
+  const data: AiMessageRequest = { clientRequestId, message };
   if (locale) data.locale = locale;
 
   if (body.context !== undefined) {
@@ -62,7 +62,8 @@ function validate(
       if (!isAiMessageTopic(topicRaw)) {
         return {
           ok: false,
-          message: "context.topic must be vps, windows, pricing, contact, or setup.",
+          message:
+            "context.topic must be vps, windows, pricing, contact, or setup.",
         };
       }
       data.context = { topic: topicRaw };
@@ -73,7 +74,7 @@ function validate(
 }
 
 export async function POST(request: Request, context: RouteContext) {
-  await context.params;
+  const { id } = await context.params;
 
   let json: unknown;
   try {
@@ -81,10 +82,7 @@ export async function POST(request: Request, context: RouteContext) {
   } catch {
     const body: ApiErrorBody = {
       ok: false,
-      error: {
-        code: "VALIDATION_ERROR",
-        message: "Invalid JSON body.",
-      },
+      error: { code: "VALIDATION_ERROR", message: "Invalid JSON body." },
     };
     return NextResponse.json(body, { status: 400 });
   }
@@ -93,17 +91,29 @@ export async function POST(request: Request, context: RouteContext) {
   if (!parsed.ok) {
     const body: ApiErrorBody = {
       ok: false,
-      error: {
-        code: "VALIDATION_ERROR",
-        message: parsed.message,
-      },
+      error: { code: "VALIDATION_ERROR", message: parsed.message },
     };
     return NextResponse.json(body, { status: 400 });
   }
 
-  // Validated — still no model/backend. Never invent stream deltas.
-  void parsed.data;
-  return aiNotConfiguredResponse(
-    "RunRacks AI isn’t connected yet. Use Contact or Pricing for now.",
+  const gate = await gateAiBackendProxy();
+  if (!gate.ok) {
+    return aiNotConfiguredResponse(
+      "RunRacks AI isn’t connected yet. Use Contact or Pricing for now.",
+    );
+  }
+
+  const upstream = await fetch(
+    `${gate.baseUrl}/v1/ai/conversations/${encodeURIComponent(id)}/messages`,
+    {
+      method: "POST",
+      headers: withForwardedCookies(request, {
+        "Content-Type": "application/json",
+        Accept: "text/event-stream",
+      }),
+      body: JSON.stringify(parsed.data),
+      cache: "no-store",
+    },
   );
+  return forwardUpstream(upstream);
 }

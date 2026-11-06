@@ -1,7 +1,7 @@
 /**
  * Plan Finder — the three RunRacks products. No invented prices.
  */
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { VpsFamily } from "@/features/vps-pricing";
 
 export const PLAN_CHOICES = [
   { family: "linux", title: "Linux VPS" },

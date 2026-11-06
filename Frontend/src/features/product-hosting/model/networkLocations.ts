@@ -4,7 +4,7 @@
  * Pins use explicit SVG viewBox coords (800×400) aligned to the dotted map landmasses.
  */
 import type { WorldMapDot, WorldMapPoint } from "@/components/ui/map";
-import type { VpsRegion } from "@/features/vps-pricing/model/types";
+import type { VpsRegion } from "@/features/vps-pricing";
 
 export type NetworkGroupId = "na" | "eu" | "apac";
 

@@ -1,0 +1,86 @@
+/* AI Advisor — thinking dots + typewriter caret */
+.aiAdvisorMsgBubble--thinking {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: 1.1rem;
+}
+
+.aiThinkingDots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.aiThinkingDot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ai-muted) 85%, var(--ai-accent));
+  animation: aiThinkPulse 1.15s ease-in-out infinite;
+}
+
+.aiThinkingDot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.aiThinkingDot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.aiThinkingDot:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+@keyframes aiThinkPulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0.28;
+    transform: translateY(0) scale(0.92);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-0.22rem) scale(1);
+  }
+}
+
+.aiAdvisorMsgBubble--typing {
+  position: relative;
+}
+
+.aiTypeCaret {
+  display: inline-block;
+  width: 0.08em;
+  height: 1.05em;
+  margin-left: 0.12em;
+  vertical-align: -0.12em;
+  background: color-mix(in srgb, var(--ai-accent) 80%, var(--ai-heading));
+  animation: aiCaretBlink 0.85s steps(1) infinite;
+}
+
+@keyframes aiCaretBlink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aiThinkingDot,
+  .aiTypeCaret {
+    animation: none;
+  }
+
+  .aiThinkingDot {
+    opacity: 0.7;
+  }
+
+  .aiTypeCaret {
+    opacity: 1;
+  }
+}

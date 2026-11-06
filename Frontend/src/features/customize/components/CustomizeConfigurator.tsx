@@ -3,11 +3,11 @@
  */
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { Route } from "next";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { HiGlobeAlt, HiOutlineCalendarDays, HiServer } from "react-icons/hi2";
-import { useCart } from "@/features/cart/lib/CartProvider";
+import { useCart } from "@/features/cart";
 import { CustomizePriceCard } from "@/features/customize/components/CustomizePriceCard";
 import { CustomizeRegionSelect } from "@/features/customize/components/CustomizeRegionSelect";
 import { CustomizeResourceFields } from "@/features/customize/components/CustomizeResourceFields";
@@ -15,13 +15,14 @@ import { familyIcon } from "@/features/customize/components/customizeIcons";
 import {
   attachedRamGb,
   CUSTOMIZE,
+  parseCustomizeSearchParams,
 } from "@/features/customize/model/customizeContent";
 import { calculateCustomizePrice } from "@/features/customize/model/customizePricing";
 import type {
   BillingTermMonths,
   VpsFamily,
   VpsRegion,
-} from "@/features/vps-pricing/model/types";
+} from "@/features/vps-pricing";
 import { NOTIFY_COPY } from "@/shared/ui/notify/notifyCopy";
 import { useNotify } from "@/shared/ui/notify/NotifyProvider";
 import "@/features/customize/components/customize.css";
@@ -34,23 +35,42 @@ export type CustomizeConfiguratorProps = {
   lockedFamily?: VpsFamily;
 };
 
-export function CustomizeConfigurator({
+function CustomizeConfiguratorInner({
   regions,
   defaultRegionId,
   plansHref,
   lockedFamily,
 }: CustomizeConfiguratorProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { addFromCustomize } = useCart();
   const { toast } = useNotify();
   const d = CUSTOMIZE.defaults;
-  const [family, setFamily] = useState<VpsFamily>(lockedFamily ?? d.family);
-  const [regionId, setRegionId] = useState(defaultRegionId);
-  const [term, setTerm] = useState<BillingTermMonths>(d.billingTermMonths);
-  const [vcpu, setVcpu] = useState<number>(d.vcpu);
-  const [ramGb, setRamGb] = useState<number>(d.ramGb);
-  const [nvmeGb, setNvmeGb] = useState<number>(d.nvmeGb);
-  const [bandwidthTb, setBandwidthTb] = useState<number>(d.bandwidthTb);
+  const fromUrl = useMemo(
+    () => parseCustomizeSearchParams(searchParams),
+    [searchParams],
+  );
+  const [family, setFamily] = useState<VpsFamily>(
+    lockedFamily ?? fromUrl.family ?? d.family,
+  );
+  const [regionId, setRegionId] = useState(() => {
+    const wanted = fromUrl.regionId;
+    if (wanted && regions.some((region) => region.id === wanted)) return wanted;
+    return defaultRegionId;
+  });
+  const [term, setTerm] = useState<BillingTermMonths>(
+    fromUrl.billingTermMonths ?? d.billingTermMonths,
+  );
+  const [vcpu, setVcpu] = useState<number>(fromUrl.vcpu ?? d.vcpu);
+  const [ramGb, setRamGb] = useState<number>(() => {
+    if (fromUrl.ramGb != null) return fromUrl.ramGb;
+    if (fromUrl.vcpu != null) return attachedRamGb(fromUrl.vcpu);
+    return d.ramGb;
+  });
+  const [nvmeGb, setNvmeGb] = useState<number>(fromUrl.nvmeGb ?? d.nvmeGb);
+  const [bandwidthTb, setBandwidthTb] = useState<number>(
+    fromUrl.bandwidthTb ?? d.bandwidthTb,
+  );
   const [dedicatedIpv4, setDedicatedIpv4] = useState<boolean>(d.dedicatedIpv4);
   const [automatedBackups, setAutomatedBackups] = useState<boolean>(
     d.automatedBackups,
@@ -124,23 +144,25 @@ export function CustomizeConfigurator({
               </span>
               Hosting type
             </p>
-            <div
-              className="czSeg"
-              role="group"
-              aria-labelledby="cz-family-label"
-            >
-              {CUSTOMIZE.families.map((f) => (
-                <button
-                  key={f.id}
-                  type="button"
-                  className="czSegBtn"
-                  aria-pressed={family === f.id}
-                  onClick={() => setFamily(f.id)}
-                >
-                  <span className="czSegBtnIcon">{familyIcon(f.id)}</span>
-                  {f.label}
-                </button>
-              ))}
+            <div className="czChipScroll">
+              <div
+                className="czChipTrack"
+                role="group"
+                aria-labelledby="cz-family-label"
+              >
+                {CUSTOMIZE.families.map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    className="czSegBtn"
+                    aria-pressed={family === f.id}
+                    onClick={() => setFamily(f.id)}
+                  >
+                    <span className="czSegBtnIcon">{familyIcon(f.id)}</span>
+                    {f.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -167,18 +189,24 @@ export function CustomizeConfigurator({
             </span>
             Billing term
           </p>
-          <div className="czSeg" role="group" aria-labelledby="cz-term-label">
-            {CUSTOMIZE.terms.map((t) => (
-              <button
-                key={t.months}
-                type="button"
-                className="czSegBtn"
-                aria-pressed={term === t.months}
-                onClick={() => setTerm(t.months)}
-              >
-                {t.label}
-              </button>
-            ))}
+          <div className="czChipScroll">
+            <div
+              className="czChipTrack"
+              role="group"
+              aria-labelledby="cz-term-label"
+            >
+              {CUSTOMIZE.terms.map((t) => (
+                <button
+                  key={t.months}
+                  type="button"
+                  className="czSegBtn"
+                  aria-pressed={term === t.months}
+                  onClick={() => setTerm(t.months)}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -217,5 +245,13 @@ export function CustomizeConfigurator({
         {...(plansHref ? { plansHref } : {})}
       />
     </div>
+  );
+}
+
+export function CustomizeConfigurator(props: CustomizeConfiguratorProps) {
+  return (
+    <Suspense fallback={null}>
+      <CustomizeConfiguratorInner {...props} />
+    </Suspense>
   );
 }

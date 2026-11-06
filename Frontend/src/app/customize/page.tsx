@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { CustomizePage } from "@/features/customize/components/CustomizePage";
-import { CUSTOMIZE } from "@/features/customize/model/customizeContent";
-import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
+import { Suspense } from "react";
+import { CustomizePage } from "@/features/customize";
+import { CUSTOMIZE } from "@/features/customize";
+import { getCatalogForPage } from "@/server/catalogGateway";
 
 export const metadata: Metadata = {
   title: CUSTOMIZE.metaTitle,
@@ -9,7 +10,15 @@ export const metadata: Metadata = {
   alternates: { canonical: "/customize" },
 };
 
-export default function CustomizeRoutePage() {
-  const catalog = getDemoVpsCatalog();
+async function CustomizeCatalog() {
+  const catalog = await getCatalogForPage();
   return <CustomizePage regions={catalog.regions} />;
+}
+
+export default function CustomizeRoutePage() {
+  return (
+    <Suspense fallback={null}>
+      <CustomizeCatalog />
+    </Suspense>
+  );
 }

@@ -28,9 +28,7 @@ export function CartConfigurePage() {
   const { toast, confirm } = useNotify();
 
   const loadError =
-    cart.status === "ready" || cart.status === "empty"
-      ? cart.loadError
-      : null;
+    cart.status === "ready" || cart.status === "empty" ? cart.loadError : null;
 
   useEffect(() => {
     if (loadError) {

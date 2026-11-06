@@ -13,7 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { familyIcon } from "@/features/customize/components/customizeIcons";
+import { familyIcon } from "@/features/customize";
 import {
   FAMILY_META,
   comparisonKeyForFamily,
@@ -21,6 +21,7 @@ import {
   type ComparisonFamilyKey,
 } from "@/features/vps-pricing/model/planComparisonData";
 import { COMPARISON_ROWS } from "@/features/vps-pricing/model/planComparisonRows";
+import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
 import {
   buildVpsSearchParams,
   DEFAULT_LOCATION_ID,
@@ -42,7 +43,10 @@ export function VpsPlanComparison() {
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
   const family = parseFamily(searchParams.get("family"));
-  const locationId = parseLocation(searchParams.get("location"));
+  const locationId = parseLocation(
+    searchParams.get("location"),
+    getDemoVpsCatalog().regions.map((region) => region.id),
+  );
   const term = parseTerm(searchParams.get("term"));
   const familyKey = comparisonKeyForFamily(family);
   const meta = FAMILY_META[familyKey];

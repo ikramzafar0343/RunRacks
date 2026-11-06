@@ -2,7 +2,7 @@
  * VPS customize intro trust — demo customer face pile + demo rating.
  * Portraits are illustrative; score is not a verified review count.
  */
-import type { CustomizeHostingTrust } from "@/features/customize/model/customizeTrust";
+import type { CustomizeHostingTrust } from "@/features/customize";
 import { DEMO_CUSTOMER_AVATARS } from "@/shared/content/demoCustomerAvatars";
 
 export const VPS_CUSTOMIZE_TRUST: CustomizeHostingTrust = {

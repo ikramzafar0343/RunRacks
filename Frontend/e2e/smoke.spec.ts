@@ -41,10 +41,38 @@ test("health is ok", async ({ request }) => {
   expect(body.data?.status).toBe("ok");
 });
 
-test("ready stays NOT_CONFIGURED", async ({ request }) => {
+test("ready is honest about Backend probe", async ({ request }) => {
   const res = await request.get("/api/v1/ready");
-  expect(res.status()).toBe(503);
+  expect([200, 503]).toContain(res.status());
   const body = await res.json();
-  expect(body.ok).toBe(false);
-  expect(body.error?.code).toBe("NOT_CONFIGURED");
+  if (res.status() === 503) {
+    expect(body.ok).toBe(false);
+    expect(body.error?.code).toBe("NOT_CONFIGURED");
+  } else {
+    expect(body.ok).toBe(true);
+    expect(body.data?.status).toBe("ready");
+    expect(body.data?.backendConfigured).toBe(true);
+    expect(typeof body.data?.databaseConfigured).toBe("boolean");
+  }
+});
+
+test("ai advisor page loads", async ({ page }) => {
+  const res = await page.goto("/ai");
+  expect(res?.ok()).toBeTruthy();
+  await expect(page.locator(".aiAdvisor")).toBeVisible();
+});
+
+test("ai config is reachable or honestly unavailable", async ({ request }) => {
+  const res = await request.get("/api/v1/ai/config");
+  expect([200, 503]).toContain(res.status());
+  const body = await res.json();
+  if (res.status() === 503) {
+    expect(body.ok).toBe(false);
+    expect(body.error?.code).toBe("NOT_CONFIGURED");
+  } else {
+    expect(body.ok).toBe(true);
+    expect(
+      body.data?.provider === "owned" || body.data?.enabled != null,
+    ).toBeTruthy();
+  }
 });

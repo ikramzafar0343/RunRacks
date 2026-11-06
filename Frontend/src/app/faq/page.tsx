@@ -2,7 +2,7 @@
  * FAQ — canonical VPS hosting education set.
  */
 import type { Metadata } from "next";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
+import { FaqSection } from "@/features/vps-faq";
 
 export const metadata: Metadata = {
   title: "VPS Hosting FAQ | RunRacks",

@@ -1,0 +1,121 @@
+name: Ops readiness
+
+on:
+  push:
+    paths:
+      - "Backend/**"
+      - "Frontend/Dockerfile"
+      - "deploy/**"
+      - "scripts/**"
+      - "perf/**"
+      - ".github/workflows/ops-readiness.yml"
+  pull_request:
+    paths:
+      - "Backend/**"
+      - "Frontend/Dockerfile"
+      - "deploy/**"
+      - "scripts/**"
+      - "perf/**"
+      - ".github/workflows/ops-readiness.yml"
+  workflow_dispatch:
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install kubeconform
+        run: |
+          curl -sSL -o /tmp/kubeconform.tgz https://github.com/yannh/kubeconform/releases/download/v0.6.7/kubeconform-linux-amd64.tar.gz
+          sudo tar -xzf /tmp/kubeconform.tgz -C /usr/local/bin kubeconform
+          kubeconform -summary -strict deploy/k8s/*.yaml
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: Backend/package-lock.json
+
+      - name: Install Backend
+        working-directory: Backend
+        run: npm ci
+
+      - name: Start Postgres primary + replica
+        working-directory: Backend
+        run: |
+          docker compose up -d postgres postgres-replica
+          for i in $(seq 1 60); do
+            if docker compose exec -T postgres pg_isready -U runracks_admin -d runracks \
+              && docker compose exec -T postgres-replica pg_isready -U runracks_admin; then
+              break
+            fi
+            sleep 2
+          done
+          sleep 5
+          node scripts/check-replica.mjs
+
+      - name: Migrate
+        working-directory: Backend
+        env:
+          DATABASE_URL: postgresql://runracks_admin:runracks_admin_dev@127.0.0.1:5432/runracks
+        run: npm run migrate
+
+      - name: Backend unit tests
+        working-directory: Backend
+        run: npm test
+
+      - name: Start Backend
+        working-directory: Backend
+        env:
+          DATABASE_URL: postgresql://runracks_admin:runracks_admin_dev@127.0.0.1:5432/runracks
+          SESSION_HMAC_SECRET: ci-session-hmac-secret-min-32-characters
+          AI_PROVIDER: owned
+          CORS_ORIGINS: http://127.0.0.1:3000
+          PORT: "4000"
+        run: |
+          npm run build
+          node dist/src/app/server.js &
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:4000/health >/dev/null; then
+              echo up
+              exit 0
+            fi
+            sleep 1
+          done
+          exit 1
+
+      - name: Metrics scrape
+        run: |
+          curl -sf http://127.0.0.1:4000/metrics | grep -q http_requests_total
+          curl -sf http://127.0.0.1:4000/ready | grep -q '"status":"ready"'
+
+      - name: Install k6
+        run: |
+          sudo gpg -k
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install -y k6
+
+      - name: k6 API latency
+        run: |
+          mkdir -p ops/evidence
+          k6 run perf/k6/api-latency.js
+
+      - name: Alert drill (config-ready when webhook unset)
+        run: node scripts/ops/alert-drill.mjs
+
+      - name: DR backup + restore drill
+        run: |
+          sudo apt-get install -y postgresql-client
+          bash scripts/dr/backup.sh
+          bash scripts/dr/restore-drill.sh
+          test -f ops/evidence/dr-last-drill.json
+
+      - name: Upload evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: ops-evidence
+          path: ops/evidence/

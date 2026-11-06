@@ -2,7 +2,7 @@
  * Customize page copy, FAQ, and slider ranges — demo configurator.
  */
 import type { Route } from "next";
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { BillingTermMonths, VpsFamily } from "@/features/vps-pricing";
 import { DEMO_PRICING_ANSWER } from "@/shared/content/demoPricingCopy";
 
 export const CUSTOMIZE = {
@@ -122,3 +122,94 @@ export function attachedRamGb(vcpu: number): number {
   return Math.min(ramGb.max, Math.max(ramGb.min, stepped));
 }
 
+function clampStepped(
+  value: number,
+  min: number,
+  max: number,
+  step: number,
+): number {
+  const capped = Math.min(max, Math.max(min, value));
+  const steps = Math.round((capped - min) / step);
+  return Math.min(max, min + steps * step);
+}
+
+/** Clamp a raw number into a Customize slider range. */
+export function clampCustomizeSlider(
+  key: "vcpu" | "ramGb" | "nvmeGb" | "bandwidthTb",
+  value: number,
+): number {
+  const range = CUSTOMIZE.sliders[key];
+  return clampStepped(value, range.min, range.max, range.step);
+}
+
+const FAMILIES: readonly VpsFamily[] = [
+  "linux",
+  "windows",
+  "windows-admin-rdp",
+];
+
+const REGION_IDS = ["us", "gb", "ca", "nl", "de", "sg", "au", "jp"] as const;
+const TERMS: readonly BillingTermMonths[] = [1, 3, 6, 12];
+
+/** Parse /customize?vcpu&ram&nvme&bw&family&region&term for AI / deep links. */
+export function parseCustomizeSearchParams(
+  params: URLSearchParams,
+): {
+  family?: VpsFamily;
+  vcpu?: number;
+  ramGb?: number;
+  nvmeGb?: number;
+  bandwidthTb?: number;
+  regionId?: string;
+  billingTermMonths?: BillingTermMonths;
+} {
+  const out: {
+    family?: VpsFamily;
+    vcpu?: number;
+    ramGb?: number;
+    nvmeGb?: number;
+    bandwidthTb?: number;
+    regionId?: string;
+    billingTermMonths?: BillingTermMonths;
+  } = {};
+
+  const familyRaw = params.get("family");
+  if (familyRaw && (FAMILIES as readonly string[]).includes(familyRaw)) {
+    out.family = familyRaw as VpsFamily;
+  }
+
+  const vcpu = Number.parseInt(params.get("vcpu") ?? "", 10);
+  if (Number.isFinite(vcpu) && vcpu > 0) {
+    out.vcpu = clampCustomizeSlider("vcpu", vcpu);
+  }
+
+  const ram = Number.parseInt(params.get("ram") ?? "", 10);
+  if (Number.isFinite(ram) && ram > 0) {
+    out.ramGb = clampCustomizeSlider("ramGb", ram);
+  }
+
+  const nvme = Number.parseInt(params.get("nvme") ?? "", 10);
+  if (Number.isFinite(nvme) && nvme > 0) {
+    out.nvmeGb = clampCustomizeSlider("nvmeGb", nvme);
+  }
+
+  const bw = Number.parseInt(
+    params.get("bw") ?? params.get("bandwidth") ?? "",
+    10,
+  );
+  if (Number.isFinite(bw) && bw > 0) {
+    out.bandwidthTb = clampCustomizeSlider("bandwidthTb", bw);
+  }
+
+  const region = params.get("region");
+  if (region && (REGION_IDS as readonly string[]).includes(region)) {
+    out.regionId = region;
+  }
+
+  const term = Number.parseInt(params.get("term") ?? "", 10);
+  if ((TERMS as readonly number[]).includes(term)) {
+    out.billingTermMonths = term as BillingTermMonths;
+  }
+
+  return out;
+}

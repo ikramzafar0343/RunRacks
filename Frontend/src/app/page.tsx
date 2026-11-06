@@ -5,21 +5,21 @@
  */
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { BrandTrustSection } from "@/features/brand-trust/components/BrandTrustSection";
-import { CustomerStoriesSection } from "@/features/customer-stories/components/CustomerStoriesSection";
+import { BrandTrustSection } from "@/features/brand-trust";
+import { CustomerStoriesSection } from "@/features/customer-stories";
 import { FeatureShowcaseSection } from "@/features/feature-showcase/components/FeatureShowcaseSection";
-import { BrandsSection } from "@/features/home/components/BrandsSection";
-import { AiCtaSection } from "@/features/home/components/AiCtaSection";
-import { HeroSection } from "@/features/home/components/HeroSection";
+import { BrandsSection } from "@/features/home";
+import { AiCtaSection } from "@/features/home";
+import { HeroSection } from "@/features/home";
 import { HowWeWorkSection } from "@/features/how-we-work/components/HowWeWorkSection";
 import { StatisticsSection } from "@/features/statistics/components/StatisticsSection";
-import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
-import { HOME_FAQ } from "@/features/vps-faq/model/faqContent";
-import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
-import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
-import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
+import { SupportCtaSection } from "@/features/support-cta";
+import { FaqSection } from "@/features/vps-faq";
+import { HOME_FAQ } from "@/features/vps-faq";
+import { VpsPricingFallback } from "@/features/vps-pricing";
+import { VpsPricingSection } from "@/features/vps-pricing";
 import "@/features/home/components/home-page.css";
+import { getCatalogForPage } from "@/server/catalogGateway";
 
 export const metadata: Metadata = {
   title: "NVMe VPS, Windows & Admin RDP Hosting",
@@ -28,15 +28,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function Home() {
-  const catalog = getDemoVpsCatalog();
+async function HomePricingCatalog() {
+  const catalog = await getCatalogForPage();
+  return <VpsPricingSection variant="embedded" initialCatalog={catalog} />;
+}
 
+export default function Home() {
   return (
     <main className="homePage rrDenseSpacing flex flex-1 flex-col pt-16 md:pt-[4.8rem]">
       <HeroSection />
       <BrandsSection />
       <Suspense fallback={<VpsPricingFallback variant="embedded" />}>
-        <VpsPricingSection variant="embedded" initialCatalog={catalog} />
+        <HomePricingCatalog />
       </Suspense>
       <Suspense fallback={null}>
         <StatisticsSection />

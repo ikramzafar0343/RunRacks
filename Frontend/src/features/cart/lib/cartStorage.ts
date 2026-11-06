@@ -10,7 +10,7 @@ import {
   type CartLine,
   type CartState,
 } from "@/features/cart/model/cartTypes";
-import type { VpsFamily } from "@/features/vps-pricing/model/types";
+import type { VpsFamily } from "@/features/vps-pricing";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;

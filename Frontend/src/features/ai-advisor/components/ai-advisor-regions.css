@@ -1,5 +1,4 @@
-/* AI Advisor — regions panel + motion/mobile */
-/* Regions panel */
+/* AI Advisor — regions panel + mobile layout */
 .aiRegionsPanel {
   position: fixed;
   top: 4.75rem;
@@ -93,16 +92,128 @@
   }
 }
 
+/* Mobile chat column — no overlapping chrome / composer / disclaimer */
+@media (max-width: 899px) {
+  .aiAdvisor {
+    --ai-header-offset: calc(4rem + env(safe-area-inset-top, 0px));
+  }
+
+  .aiAdvisorMain,
+  .aiAdvisorMain--chat {
+    width: 100%;
+    max-width: none;
+    padding: 0.65rem 0.85rem 0;
+    gap: 0.35rem;
+  }
+
+  .aiSidebarToggle {
+    position: static;
+    overflow: hidden;
+    margin-bottom: 0;
+    min-height: 2.5rem;
+    font-size: 0;
+  }
+
+  .aiAdvisorChrome {
+    gap: 0.4rem;
+  }
+
+  .aiSessionNotice {
+    font-size: 0.76rem;
+    padding: 0.4rem 0.65rem;
+  }
+
+  .aiAdvisorTranscriptWrap {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .aiAdvisorTranscript {
+    gap: 0.75rem;
+    padding: 0.35rem 0.1rem 1.75rem;
+  }
+
+  .aiAdvisorMsg {
+    max-width: min(75ch, 100%);
+  }
+
+  .aiAdvisorMsgBubble {
+    font-size: 0.95rem;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .aiFollowUps {
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    padding-bottom: 0.15rem;
+  }
+
+  .aiFollowUpChip {
+    min-height: 40px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .aiAdvisorComposerShell {
+    gap: 0.3rem;
+    padding-top: 0.45rem;
+    border-top: 1px solid color-mix(in srgb, var(--ai-border) 70%, transparent);
+  }
+
+  .aiAdvisorComposerBar {
+    border-radius: 1.35rem;
+  }
+
+  .aiAdvisorTextarea {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .aiComposerNote {
+    margin: 0;
+    padding: 0 0.45rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .aiAdvisorDisclaimer {
+    margin: 0;
+    padding: 0 0.25rem 0.1rem;
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .aiJumpLatest {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    min-height: 40px;
+  }
+
+  .aiAdvisorHeader--hero {
+    gap: 0.45rem;
+  }
+
+  .aiAdvisorTitle {
+    font-size: clamp(1.55rem, 7vw, 2.1rem);
+  }
+
+  .aiAdvisorLead {
+    font-size: 0.9rem;
+  }
+
+  .aiAdvisorChips {
+    width: min(100%, 22rem);
+    margin-top: 0.85rem;
+  }
+}
+
 @media (max-width: 479px) {
-  .aiAdvisorMain {
-    width: min(100% - 1rem, var(--ai-max));
+  .aiAdvisorMain,
+  .aiAdvisorMain--chat {
+    padding-inline: 0.7rem;
   }
 
   .aiPlanGrid {
     grid-template-columns: 1fr;
-  }
-
-  .aiAdvisorComposer {
-    border-radius: 18px;
   }
 }

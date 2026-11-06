@@ -18,8 +18,8 @@ import {
   getPublishedCategories,
   listArticles,
 } from "@/features/blog/server/blogRepository";
-import { SupportCtaSection } from "@/features/support-cta/components/SupportCtaSection";
-import { SUPPORT_CTA_BLOG } from "@/features/support-cta/model/supportCtaContent";
+import { SupportCtaSection } from "@/features/support-cta";
+import { SUPPORT_CTA_BLOG } from "@/features/support-cta";
 
 type CategoryPageProps = {
   params: Promise<{ slug: string }>;

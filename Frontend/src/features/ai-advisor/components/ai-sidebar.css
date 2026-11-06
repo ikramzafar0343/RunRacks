@@ -1,0 +1,248 @@
+/* AI Advisor — Sidebar & Drawer styles */
+
+.aiSidebar {
+  position: fixed;
+  z-index: 45;
+  pointer-events: none;
+  top: var(--ai-header-offset);
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(18.5rem, calc(100vw - 2.75rem));
+  padding: 0.9rem 0.75rem 1.15rem;
+  border-right: 1px solid var(--ai-border);
+  background: var(--ai-panel);
+  transform: translateX(-105%);
+  transition: transform 180ms ease;
+  overflow: hidden;
+}
+
+.aiSidebar--open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.aiSidebarBackdrop {
+  position: fixed;
+  z-index: 44;
+  inset: var(--ai-header-offset) 0 0;
+  border: 0;
+  padding: 0;
+  background: color-mix(in srgb, var(--color-heading) 32%, transparent);
+  cursor: pointer;
+}
+
+.aiSidebarHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.aiSidebarBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  color: var(--ai-heading);
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.aiSidebarMark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+}
+
+.aiSidebarClose {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ai-heading);
+  cursor: pointer;
+}
+
+.aiSidebarClose:hover,
+.aiSidebarClose:focus-visible,
+.aiSidebarItem:hover,
+.aiSidebarItem:focus-visible,
+.aiSidebarChatBtn:hover,
+.aiSidebarChatBtn:focus-visible,
+.aiSidebarChatDelete:hover,
+.aiSidebarChatDelete:focus-visible,
+.aiSidebarToggle:hover,
+.aiSidebarToggle:focus-visible {
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+  outline: none;
+}
+
+.aiSidebarClose:focus-visible,
+.aiSidebarItem:focus-visible,
+.aiSidebarChatBtn:focus-visible,
+.aiSidebarChatDelete:focus-visible,
+.aiSidebarToggle:focus-visible {
+  outline: 2px solid var(--ai-accent);
+  outline-offset: 2px;
+}
+
+.aiSidebarNav {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.aiSidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 0.7rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.aiSidebarSection {
+  margin: 1.15rem 0 0.35rem;
+  padding: 0 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ai-muted);
+}
+
+.aiSidebarEmpty {
+  margin: 0;
+  padding: 0 0.7rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--ai-muted);
+}
+
+.aiSidebarHistory {
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+}
+
+.aiSidebarChats {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.aiSidebarChat {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.aiSidebarChatBtn {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.35rem 0.35rem 0.7rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ai-heading);
+  font: inherit;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aiSidebarChat--active .aiSidebarChatBtn {
+  background: var(--ai-accent-bg);
+  color: var(--ai-accent);
+}
+
+.aiSidebarChatDelete {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ai-muted);
+  cursor: pointer;
+}
+
+.aiSidebarToggle {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 1px solid var(--ai-border);
+  border-radius: 10px;
+  background: var(--ai-panel);
+  color: var(--ai-heading);
+  cursor: pointer;
+}
+
+@media (min-width: 900px) {
+  .aiSidebar {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    flex: none;
+    width: 17rem;
+    height: 100%;
+    margin-top: 0;
+    transform: none;
+    z-index: 2;
+    pointer-events: auto;
+  }
+
+  .aiSidebarClose,
+  .aiSidebarToggle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aiSidebar {
+    transition: none;
+  }
+}
+

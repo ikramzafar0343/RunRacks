@@ -4,10 +4,7 @@
  */
 
 export type CompareProviderId =
-  | "runracks"
-  | "namecheap"
-  | "godaddy"
-  | "hostingcom";
+  "runracks" | "namecheap" | "godaddy" | "hostingcom";
 
 export type CompareLogo = {
   src: string;
@@ -34,13 +31,7 @@ export type CompareProvider = {
 };
 
 export type CompareMetricKey =
-  | "plan"
-  | "price"
-  | "vcpu"
-  | "ram"
-  | "storage"
-  | "bandwidth"
-  | "cheaper";
+  "plan" | "price" | "vcpu" | "ram" | "storage" | "bandwidth" | "cheaper";
 
 export type CompareMetric = {
   key: CompareMetricKey;
@@ -60,8 +51,7 @@ export const VPS_COMPETITOR_COMPARE = {
   headingBefore: "Stop ",
   headingAccent: "Overpaying",
   headingAfter: " for VPS Hosting",
-  lead:
-    "More vCPU, more RAM and 30 TB traffic on NVMe, for less than the big names charge for their entry VPS.",
+  lead: "More vCPU, more RAM and 30 TB traffic on NVMe, for less than the big names charge for their entry VPS.",
   providers: [
     {
       id: "runracks",

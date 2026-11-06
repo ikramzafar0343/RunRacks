@@ -3,7 +3,7 @@
  */
 "use client";
 
-import { useTransition } from "react";
+import { useEffect, useTransition } from "react";
 import type { Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { VpsFamilyTabs } from "@/features/vps-pricing/components/VpsFamilyTabs";
@@ -17,6 +17,7 @@ import {
   parseFamily,
   parseLocation,
   parseTerm,
+  vpsSearchIsCanonical,
 } from "@/features/vps-pricing/lib/urlState";
 import type {
   BillingTermMonths,
@@ -103,12 +104,12 @@ export function VpsPricingSection({
     lockedFamily,
     isEmbedded,
   );
+  const catalog = initialCatalog ?? getDemoVpsCatalog();
   const locationId = parseLocation(
     searchParams.get("location") ?? initialLocation,
+    catalog.regions.map((region) => region.id),
   );
   const term = parseTerm(searchParams.get("term") ?? initialTerm);
-
-  const catalog = initialCatalog ?? getDemoVpsCatalog();
 
   function syncUrl(next: {
     family: VpsFamily;
@@ -130,6 +131,29 @@ export function VpsPricingSection({
   const resolvedLocationId = catalog.regions.some((r) => r.id === locationId)
     ? locationId
     : (catalog.regions[0]?.id ?? DEFAULT_LOCATION_ID);
+
+  useEffect(() => {
+    const canonical = buildVpsSearchParams({
+      family: lockedFamily ?? family,
+      locationId: resolvedLocationId,
+      term,
+      omitFamily: lockedFamily != null,
+    });
+    if (vpsSearchIsCanonical(searchParams, canonical)) return;
+    const qs = canonical.toString();
+    const href = (qs ? `${pathname}?${qs}` : pathname) as Route;
+    startTransition(() => {
+      router.replace(href, { scroll: false });
+    });
+  }, [
+    family,
+    lockedFamily,
+    pathname,
+    resolvedLocationId,
+    router,
+    searchParams,
+    term,
+  ]);
   const filtered = catalog.plans.filter((plan) => {
     if (plan.family !== family) return false;
     return plan.availableRegionIds.includes(resolvedLocationId);

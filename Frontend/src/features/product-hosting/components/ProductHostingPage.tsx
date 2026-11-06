@@ -2,7 +2,7 @@
  * Hostinger-ordered product hosting shell — Sage & Ink, shared sections.
  */
 import { Suspense } from "react";
-import { CustomerStoriesSection } from "@/features/customer-stories/components/CustomerStoriesSection";
+import { CustomerStoriesSection } from "@/features/customer-stories";
 import { PhBenefits } from "@/features/product-hosting/components/PhBenefits";
 import { PhConversion } from "@/features/product-hosting/components/PhConversion";
 import { PhHero } from "@/features/product-hosting/components/PhHero";
@@ -16,14 +16,14 @@ import {
   type ProductHostingKey,
 } from "@/features/product-hosting/model/productHostingContent";
 import { getStartingPrice } from "@/features/product-hosting/model/startingPrice";
-import { FaqSection } from "@/features/vps-faq/components/FaqSection";
-import { WINDOWS_FAQ } from "@/features/vps-faq/model/faqContent";
+import { FaqSection } from "@/features/vps-faq";
+import { WINDOWS_FAQ } from "@/features/vps-faq";
 import { catalogRegionsIntro } from "@/shared/content/demoPricingCopy";
-import { getDemoVpsCatalog } from "@/features/vps-pricing/model/demoCatalog";
-import { VpsPricingFallback } from "@/features/vps-pricing/components/VpsPricingFallback";
-import { VpsPricingSection } from "@/features/vps-pricing/components/VpsPricingSection";
-import type { VpsCatalogPayload } from "@/features/vps-pricing/model/types";
-import { WhyChooseUs } from "@/features/why-choose/components/WhyChooseUs";
+import { getDemoVpsCatalog } from "@/features/vps-pricing";
+import { VpsPricingFallback } from "@/features/vps-pricing";
+import { VpsPricingSection } from "@/features/vps-pricing";
+import type { VpsCatalogPayload } from "@/features/vps-pricing";
+import { WhyChooseUs } from "@/features/why-choose";
 import "@/features/product-hosting/components/product-hosting.css";
 
 export type ProductHostingPageProps = {
@@ -95,9 +95,7 @@ export function ProductHostingPage({
 
       <VpsAiSection />
 
-      <WhyChooseUs
-        variant={product === "windows" ? "windows" : "linux"}
-      />
+      <WhyChooseUs variant={product === "windows" ? "windows" : "linux"} />
 
       <CustomerStoriesSection
         heading="How teams use Windows VPS"

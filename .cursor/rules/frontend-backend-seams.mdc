@@ -1,17 +1,25 @@
 ---
-description: Reserved backend/DB seams; never fake readiness
+description: Backend/DB/WHMCS seams; never fake readiness or invent prices
 alwaysApply: true
 ---
 
-# Backend and database seams
+# Backend, database, and WHMCS seams
 
-Current phase is frontend-only. Reserved plugs live under `Frontend/`:
+Source of truth for backend policy: `Rules/NODEJS_POSTGRESQL_BACKEND_PRODUCTION_RULES.md`.
 
-- Env names: `.env.example` → `DATABASE_URL`, `BACKEND_API_BASE_URL`
+## Ownership
+- **WHMCS** is system of record for customers, server/service access, pricing, products, orders, invoices, and billing.
+- **Backend/** (Fastify) is the only WHMCS client and owns orchestration, idempotency, and Postgres caches.
+- **Frontend/** adapts UI via BFF/`BACKEND_API_BASE_URL` — never call WHMCS or Postgres from the browser.
+- **Database/** holds inventories, schema docs, and seeds — migrations live only under `Backend/migrations/`.
+
+## Frontend reserved plugs
+- Env: `.env.example` → `DATABASE_URL`, `BACKEND_API_BASE_URL`, WHMCS keys are **Backend-only**
 - Validation: `src/shared/config/env.ts` (`getIntegrationStatus`)
 - Contracts: `src/shared/lib/apiContracts.ts`
-- Process health: `GET /api/health`
-- Readiness: `GET /api/v1/ready` → **503** + `NOT_CONFIGURED` until backend and DB env exist
-- DAL home: `src/server/dal/` (no fake queries)
+- Health: `GET /api/health`
+- Readiness: `GET /api/v1/ready` → **503** + `NOT_CONFIGURED` until live Backend + DB probes pass (env alone never means ready)
+- DAL: `src/server/dal/` (no fake queries)
 
-When backend/DB work starts: implement real handlers/DAL; never return simulated success, empty stand-ins, or `ready: true` without real configuration and checks.
+## Honesty
+Never return simulated success, empty stand-ins for live catalog/services, fake login, or `ready: true` without real configuration and checks. Missing WHMCS credentials → durable `NOT_CONFIGURED`, not invented prices or access.

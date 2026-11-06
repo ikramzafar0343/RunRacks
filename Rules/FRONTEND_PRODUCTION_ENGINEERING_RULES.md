@@ -429,7 +429,20 @@ A change is **NOT PRODUCTION READY** if any applicable requirement below is fals
 - [ ] Deployment configuration, production smoke tests, monitoring, and rollback are prepared or verified as applicable.
 - [ ] The implementation report identifies actual changed behavior, executed checks, and remaining limitations.
 
-## 28. Official documentation and standards
+## 28. November 2026 controls adopted without replacing this document
+
+The 6 November Next.js policy was compared with this file. This document stays the operating standard because it already has the MUST/STOP language, the Next.js 16 baseline, the assistant workflow, and the CI script contract. The following compatible controls are adopted. They do not replace npm, Tailwind, the feature folder names, the BFF, or WHMCS ownership.
+
+- A listed enterprise topic is not an order to install an unused product. The same T001–T111 IDs live in `Rules/NODEJS_POSTGRESQL_BACKEND_PRODUCTION_RULES.md` section 28. Applicability, owner, and evidence are in `Rules/CONTROL_RECORD.md`.
+- Package manager: npm and the committed lockfile. Do not introduce pnpm beside npm.
+- Styling: Tailwind is the adopted system. Do not add a second styling system.
+- Feature layout stays `components/`, `model/`, `hooks/`, and `services/`. `src/app/api` remains the BFF. Do not rewrite those routes into Server Actions.
+- `cacheComponents: true` is already set for Next.js 16.4.2. Do not mix legacy `dynamic`, `revalidate`, or `fetchCache` segment recipes into that model.
+- Image budgets, when a delivered raster is the LCP or a card thumbnail: mobile LCP at most 120 KiB, desktop LCP at most 200 KiB, card thumbnail at most 40 KiB. Decorative images use empty alt text. Do not lazy-load the confirmed LCP image.
+- Initial rate-limit defaults, only where that operation exists, and only in addition to the backend's authoritative limit: public costly reads 60/minute with burst 10; contact submissions 5 per 10 minutes per verified IP; ordinary authenticated mutations 30/minute with burst 5. Login, OTP, password reset, and paid actions follow the owning identity or WHMCS policy. If the limiter is unavailable, the protected operation fails closed.
+- Production CSP must keep `unsafe-eval` disabled unless a measured production build proves the installed Next.js runtime still requires it. Record that exception in the control record rather than copying a permissive policy.
+
+## 29. Official documentation and standards
 
 > Documentation below supports framework/platform facts. The naming policy, feature organization, 300-line cap, mandatory scripts, and release gates are intentionally stricter **local engineering standards**.
 

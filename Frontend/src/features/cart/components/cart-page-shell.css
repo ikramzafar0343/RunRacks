@@ -12,7 +12,8 @@
   --cart-radius-lg: 9px;
   --cart-radius-md: 6px;
   --cart-radius-sm: 4px;
-  --cart-shadow: 0 3px 12px color-mix(in srgb, var(--color-brand) 6%, transparent);
+  --cart-shadow: 0 3px 12px
+    color-mix(in srgb, var(--color-brand) 6%, transparent);
   --cart-success: #188b54;
 
   position: relative;

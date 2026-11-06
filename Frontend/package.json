@@ -18,8 +18,9 @@
     "check:lines": "node scripts/check-lines.mjs",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "optimize:assets": "node scripts/optimize-assets.mjs",
-    "test": "node scripts/test-seams.mjs",
+    "test": "node scripts/test-seams.mjs && node scripts/test-advisor-sse.mjs",
     "test:smoke": "node scripts/smoke-api.mjs",
+    "test:advisor": "node scripts/test-advisor-sse.mjs",
     "test:e2e": "playwright test",
     "verify": "npm run format:check && npm run lint && npm run check:lines && npm run check:boundaries && npm run typecheck && npm run test && npm run build && npm run test:e2e"
   },
@@ -46,6 +47,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^16.4.2",
     "@playwright/test": "^1.64.1",
+    "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

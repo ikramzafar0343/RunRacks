@@ -1,28 +1,36 @@
 "use client";
 
-/**
- * Composer — text, photos, files, and browser voice-to-text.
- * Attachments stay on the device; the message API is text-only.
- */
-import { ArrowUp, ImageIcon, Mic, Paperclip, X } from "lucide-react";
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
-import { speechCtor, type SpeechRec } from "@/features/ai-advisor/components/composerSpeech";
-import { AI_COPY, AI_MAX_INPUT_CHARS } from "@/features/ai-advisor/model/aiContent";
+/** Composer — local attachments + browser voice-to-text; API is text-only. */
+import { ArrowUp, ImageIcon, Mic, Paperclip, Square } from "lucide-react";
+import {
+  ComposerAttachments,
+  type ComposerAttachment,
+} from "@/features/ai-advisor/components/ComposerAttachments";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent,
+} from "react";
+import {
+  readSpeechTranscript,
+  speechCtor,
+  type SpeechRec,
+} from "@/features/ai-advisor/components/composerSpeech";
+import {
+  AI_COPY,
+  AI_MAX_INPUT_CHARS,
+} from "@/features/ai-advisor/model/aiContent";
 
 const MAX_FILES = 4;
 const MAX_BYTES = 8 * 1024 * 1024;
-
-type ComposerAttachment = {
-  id: string;
-  name: string;
-  kind: "image" | "file";
-  previewUrl?: string;
-};
 
 type ChatComposerProps = {
   value: string;
   onChange: (value: string) => void;
   onSend: () => void;
+  onStop?: () => void;
   pending: boolean;
   disabled?: boolean;
 };
@@ -31,6 +39,7 @@ export function ChatComposer({
   value,
   onChange,
   onSend,
+  onStop,
   pending,
   disabled = false,
 }: ChatComposerProps) {
@@ -123,18 +132,8 @@ export function ChatComposer({
     recognition.continuous = false;
     prefixRef.current = value.trim();
     recognition.onresult = (event) => {
-      let finalText = "";
-      let interim = "";
-      for (let index = 0; index < event.results.length; index += 1) {
-        const result = event.results[index];
-        if (!result) continue;
-        const chunk = result[0]?.transcript ?? "";
-        if (result.isFinal) finalText += chunk;
-        else interim += chunk;
-      }
-      const spoken = `${finalText}${interim}`.trim();
-      const prefix = prefixRef.current;
-      const next = [prefix, spoken].filter(Boolean).join(" ");
+      const spoken = readSpeechTranscript(event);
+      const next = [prefixRef.current, spoken].filter(Boolean).join(" ");
       onChange(next.slice(0, AI_MAX_INPUT_CHARS));
     };
     recognition.onerror = (event) => {
@@ -178,66 +177,83 @@ export function ChatComposer({
 
   return (
     <form className="aiAdvisorComposer" onSubmit={handleSubmit}>
-      <div className="aiComposerTools">
-        <button
-          type="button"
-          className="aiComposerTool"
-          aria-label={AI_COPY.galleryLabel}
+      <div className="aiAdvisorComposerBar">
+        <div className="aiComposerTools">
+          <button
+            type="button"
+            className="aiComposerTool"
+            aria-label={AI_COPY.galleryLabel}
+            disabled={pending || disabled}
+            onClick={() => imageRef.current?.click()}
+          >
+            <ImageIcon size={18} aria-hidden />
+          </button>
+          <button
+            type="button"
+            className="aiComposerTool"
+            aria-label={AI_COPY.filesLabel}
+            disabled={pending || disabled}
+            onClick={() => fileRef.current?.click()}
+          >
+            <Paperclip size={18} aria-hidden />
+          </button>
+        </div>
+        <label className="sr-only" htmlFor="ai-advisor-input">
+          Message RunRacks AI
+        </label>
+        <textarea
+          id="ai-advisor-input"
+          className="aiAdvisorTextarea"
+          name="message"
+          rows={1}
+          value={value}
+          maxLength={AI_MAX_INPUT_CHARS}
+          placeholder={AI_COPY.placeholder}
           disabled={pending || disabled}
-          onClick={() => imageRef.current?.click()}
-        >
-          <ImageIcon size={18} aria-hidden />
-        </button>
-        <button
-          type="button"
-          className="aiComposerTool"
-          aria-label={AI_COPY.filesLabel}
-          disabled={pending || disabled}
-          onClick={() => fileRef.current?.click()}
-        >
-          <Paperclip size={18} aria-hidden />
-        </button>
-      </div>
-      <label className="sr-only" htmlFor="ai-advisor-input">
-        Message RunRacks AI
-      </label>
-      <textarea
-        id="ai-advisor-input"
-        className="aiAdvisorTextarea"
-        name="message"
-        rows={1}
-        value={value}
-        maxLength={AI_MAX_INPUT_CHARS}
-        placeholder={AI_COPY.placeholder}
-        disabled={pending || disabled}
-        onChange={(event) => onChange(event.target.value)}
-        onCompositionStart={() => {
-          composingRef.current = true;
-        }}
-        onCompositionEnd={() => {
-          composingRef.current = false;
-        }}
-        onKeyDown={handleKeyDown}
-      />
-      <div className="aiComposerActions">
-        <button
-          type="button"
-          className={listening ? "aiComposerTool aiComposerTool--live" : "aiComposerTool"}
-          aria-label={listening ? AI_COPY.micStopLabel : AI_COPY.micLabel}
-          aria-pressed={listening}
-          disabled={pending || disabled}
-          onClick={toggleMic}
-        >
-          <Mic size={18} aria-hidden />
-        </button>
-        <button
-          type="submit"
-          className="aiAdvisorSend"
-          disabled={!canSend}
-          aria-label={pending ? AI_COPY.pendingLabel : AI_COPY.sendLabel}
-        >
-          <ArrowUp size={18} strokeWidth={2.4} aria-hidden />
-        </button>
+          onChange={(event) => onChange(event.target.value)}
+          onCompositionStart={() => {
+            composingRef.current = true;
+          }}
+          onCompositionEnd={() => {
+            composingRef.current = false;
+          }}
+          onKeyDown={handleKeyDown}
+        />
+        <div className="aiComposerActions">
+          <button
+            type="button"
+            className={
+              listening
+                ? "aiComposerTool aiComposerTool--live"
+                : "aiComposerTool"
+            }
+            aria-label={listening ? AI_COPY.micStopLabel : AI_COPY.micLabel}
+            aria-pressed={listening}
+            disabled={pending || disabled}
+            onClick={toggleMic}
+          >
+            <Mic size={18} aria-hidden />
+          </button>
+          {pending && onStop ? (
+            <button
+              type="button"
+              className="aiAdvisorSend aiAdvisorSend--stop"
+              aria-label={AI_COPY.stopLabel}
+              onClick={onStop}
+            >
+              <Square size={14} strokeWidth={2.4} aria-hidden />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="aiAdvisorSend"
+              disabled={!canSend}
+              aria-label={AI_COPY.sendLabel}
+            >
+              <ArrowUp size={18} strokeWidth={2.4} aria-hidden />
+            </button>
+          )}
+        </div>
       </div>
       <input
         ref={imageRef}
@@ -264,27 +280,10 @@ export function ChatComposer({
           event.target.value = "";
         }}
       />
-      {attachments.length > 0 ? (
-        <ul className="aiComposerAttachments">
-          {attachments.map((item) => (
-            <li key={item.id} className="aiComposerChip">
-              {item.previewUrl ? (
-                // Local blob preview — next/image cannot optimize object URLs.
-                // eslint-disable-next-line @next/next/no-img-element -- blob: preview
-                <img src={item.previewUrl} alt="" />
-              ) : null}
-              <span>{item.name}</span>
-              <button
-                type="button"
-                aria-label={`${AI_COPY.removeFileLabel} ${item.name}`}
-                onClick={() => removeAttachment(item.id)}
-              >
-                <X size={14} aria-hidden />
-              </button>
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      <ComposerAttachments
+        attachments={attachments}
+        onRemove={removeAttachment}
+      />
       {note ? <p className="aiComposerNote">{note}</p> : null}
     </form>
   );

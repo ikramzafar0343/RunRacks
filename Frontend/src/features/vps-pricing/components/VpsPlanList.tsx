@@ -5,7 +5,7 @@
 "use client";
 
 import { useState } from "react";
-import { useCart } from "@/features/cart/lib/CartProvider";
+import { useCart } from "@/features/cart";
 import { VpsPlanCard } from "@/features/vps-pricing/components/VpsPlanCard";
 import { VpsPlanRow } from "@/features/vps-pricing/components/VpsPlanRow";
 import type {

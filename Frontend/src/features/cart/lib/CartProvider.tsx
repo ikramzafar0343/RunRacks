@@ -26,7 +26,7 @@ import {
   getCartSnapshot,
   subscribeCart,
 } from "@/features/cart/lib/cartStore";
-import type { BillingTermMonths, VpsFamily } from "@/features/vps-pricing/model/types";
+import type { BillingTermMonths, VpsFamily } from "@/features/vps-pricing";
 
 type SeedCartInput = {
   planId: string;
@@ -42,8 +42,7 @@ type SeedCustomizeInput = {
 };
 
 export type CartAddResult =
-  | { ok: true; line: CartLine }
-  | { ok: false; reason: "full" };
+  { ok: true; line: CartLine } | { ok: false; reason: "full" };
 
 type CartContextValue = {
   lines: CartLine[];

@@ -94,23 +94,11 @@
 }
 
 .siteHeaderBrand {
-  font-size: 1.25rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
   color: var(--color-heading);
   text-decoration: none;
   flex-shrink: 0;
-  transition: font-size var(--header-duration) var(--header-ease);
-}
-
-@media (min-width: 768px) {
-  .siteHeaderBrand {
-    font-size: 1.5rem;
-  }
-
-  .siteHeader--pill .siteHeaderBrand {
-    font-size: 1.3rem;
-  }
 }
 
 .siteHeaderBrand:focus-visible {

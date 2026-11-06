@@ -1,0 +1,130 @@
+/* Brand lockup: R mark + Nourd RUNRACKS wordmark. */
+.siteLogo {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1;
+  color: var(--color-heading);
+}
+
+.siteLogoMark {
+  display: inline-flex;
+  flex-shrink: 0;
+  aspect-ratio: 875 / 1024;
+  line-height: 0;
+}
+
+.siteLogoImg {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.siteLogoDark {
+  display: none;
+}
+
+html.dark .siteLogoLight {
+  display: none;
+}
+
+html.dark .siteLogoDark {
+  display: block;
+}
+
+.siteLogoWord {
+  display: inline-flex;
+  align-items: baseline;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.siteLogoRun,
+.siteLogoRacks {
+  color: #1f7a42;
+}
+
+html.dark .siteLogoRun {
+  color: #ffffff;
+}
+
+html.dark .siteLogoRacks {
+  color: #c6f24c;
+}
+
+/* Header — R mark + RUNRACKS */
+.siteLogo--header .siteLogoMark {
+  height: 1.7rem;
+}
+
+.siteLogo--header .siteLogoWord {
+  font-size: 1.35rem;
+}
+
+@media (min-width: 768px) {
+  .siteLogo--header .siteLogoMark {
+    height: 1.95rem;
+  }
+
+  .siteLogo--header .siteLogoWord {
+    font-size: 1.55rem;
+  }
+}
+
+.siteHeader--pill .siteLogo--header .siteLogoMark {
+  height: 1.55rem;
+}
+
+.siteHeader--pill .siteLogo--header .siteLogoWord {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .siteHeader--pill .siteLogo--header .siteLogoMark {
+    height: 1.75rem;
+  }
+
+  .siteHeader--pill .siteLogo--header .siteLogoWord {
+    font-size: 1.4rem;
+  }
+}
+
+/* Footer — stacked mark above wordmark */
+.siteLogo--footer.siteLogo--wordmark {
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.siteLogo--footer .siteLogoMark {
+  height: clamp(3rem, 7vw, 4.75rem);
+}
+
+.siteLogo--footer .siteLogoWord {
+  font-size: clamp(2rem, 5.2vw, 3.15rem);
+}
+
+.siteLogo--compare .siteLogoMark {
+  height: 24px;
+}
+
+.siteLogo--compareSm .siteLogoMark {
+  height: 14px;
+}
+
+@media (max-width: 380px) {
+  .siteLogo--header.siteLogo--wordmark {
+    gap: 0.35rem;
+  }
+
+  .siteLogo--header .siteLogoMark {
+    height: 1.45rem;
+  }
+
+  .siteLogo--header .siteLogoWord {
+    font-size: 1.1rem;
+  }
+}

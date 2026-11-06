@@ -120,7 +120,11 @@
 
 html.dark .cartOsLogo,
 html.dark .cartAppLogo {
-  background: color-mix(in srgb, var(--cart-primary-soft) 40%, var(--cart-surface));
+  background: color-mix(
+    in srgb,
+    var(--cart-primary-soft) 40%,
+    var(--cart-surface)
+  );
 }
 
 .cartVersions {

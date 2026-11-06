@@ -4,9 +4,9 @@
  */
 import type { Route } from "next";
 import type { GlobeMarker } from "@/components/ui/cobe-globe-analytics";
-import { approvedBrands } from "@/features/home/model/brandsContent";
-import type { SupportCtaCard } from "@/features/support-cta/model/supportCtaContent";
-import type { FaqItem } from "@/features/vps-faq/model/faqContent";
+import { approvedBrands } from "@/features/home";
+import type { SupportCtaCardData } from "@/features/support-cta";
+import type { FaqItem } from "@/features/vps-faq";
 import {
   DEMO_PRICING_ANSWER,
   OTHER_REGIONS_ANSWER,
@@ -105,6 +105,6 @@ export const WINDOWS_USA = {
         imageSrc: "/media/customer-stories/demo-02/portrait.webp",
         imageAlt: "Demo portrait in a workspace — not a verified staff photo",
       },
-    ] satisfies readonly SupportCtaCard[],
+    ] satisfies readonly SupportCtaCardData[],
   },
 } as const;

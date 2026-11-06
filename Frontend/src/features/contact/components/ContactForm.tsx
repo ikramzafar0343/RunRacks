@@ -78,8 +78,7 @@ export function ContactForm() {
         const err = body as ApiErrorBody;
         const code = err.error?.code;
         const details = err.error?.details as
-          | { fields?: FieldErrors }
-          | undefined;
+          { fields?: FieldErrors } | undefined;
 
         if (code === "VALIDATION_ERROR" && details?.fields) {
           setFieldErrors(details.fields);
@@ -128,8 +127,7 @@ export function ContactForm() {
 
       {status.kind === "not_configured" ? (
         <p className="contactFormBanner" role="status">
-          {status.message}{" "}
-          <Link href="/pricing">View plans</Link>
+          {status.message} <Link href="/pricing">View plans</Link>
           {" · "}
           <Link href="/ai">RunRacks AI</Link>
         </p>

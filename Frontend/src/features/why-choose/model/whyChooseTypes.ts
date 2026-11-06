@@ -3,12 +3,7 @@
  */
 
 export type WhyChooseIconId =
-  | "zap"
-  | "tag"
-  | "cpu"
-  | "panel"
-  | "headphones"
-  | "shield";
+  "zap" | "tag" | "cpu" | "panel" | "headphones" | "shield";
 
 export type WhyChooseKpi = {
   value: string;

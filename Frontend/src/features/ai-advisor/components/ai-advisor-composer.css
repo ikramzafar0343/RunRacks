@@ -75,10 +75,42 @@
   outline: none;
 }
 
+.aiAdvisorChrome {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.aiAdvisorComposerShell {
+  position: relative;
+  z-index: 4;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: auto;
+  padding: 0.55rem 0 calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  background: color-mix(
+    in srgb,
+    var(--color-canvas, var(--color-surface)) 96%,
+    transparent
+  );
+}
+
 .aiAdvisorComposer {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.aiAdvisorComposerBar {
+  display: flex;
+  flex-wrap: nowrap;
   align-items: flex-end;
   gap: 0.35rem;
   padding: 0.45rem 0.5rem 0.45rem 0.35rem;
@@ -88,7 +120,7 @@
   box-shadow: none;
 }
 
-.aiAdvisorComposer:focus-within {
+.aiAdvisorComposerBar:focus-within {
   border-color: var(--ai-accent);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--ai-accent) 22%, transparent);
 }
@@ -107,6 +139,12 @@
   font-size: 0.95rem;
   line-height: 1.45;
   padding: 0.45rem 0.35rem;
+}
+
+.aiAdvisorTextarea::placeholder {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .aiAdvisorTextarea:focus {
@@ -213,30 +251,15 @@
 }
 
 .aiComposerNote {
+  flex: none;
   width: 100%;
   margin: 0;
-  padding: 0 0.55rem 0.2rem;
+  padding: 0 0.55rem;
   font-size: 0.75rem;
   line-height: 1.4;
   color: var(--ai-muted);
 }
 
-.aiFollowUps {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem 0.85rem;
-  padding: 0.75rem 0.9rem;
-  border-radius: var(--ai-radius-md);
-  border: 1px solid var(--ai-border);
-  background: var(--ai-panel);
+.aiAdvisorSend--stop {
+  background: color-mix(in srgb, var(--ai-error, #b42318) 88%, #000);
 }
-
-.aiFollowUpsTitle {
-  margin: 0;
-  width: 100%;
-  font-size: 0.85rem;
-  font-weight: 650;
-  color: var(--ai-heading);
-}
-

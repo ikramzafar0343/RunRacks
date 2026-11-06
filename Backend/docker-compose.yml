@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: runracks
+      POSTGRES_USER: runracks_admin
+      POSTGRES_PASSWORD: runracks_admin_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - runracks_pg:/var/lib/postgresql/data
+      - runracks_wal:/wal_archive
+      - ./scripts/init-db-roles.sql:/docker-entrypoint-initdb.d/01-roles.sql:ro
+      - ./docker/postgres/primary/00-replication.sh:/docker-entrypoint-initdb.d/00-replication.sh:ro
+      - ./docker/postgres/primary/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./docker/postgres/primary/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+    command:
+      - postgres
+      - -c
+      - config_file=/etc/postgresql/postgresql.conf
+      - -c
+      - hba_file=/etc/postgresql/pg_hba.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U runracks_admin -d runracks"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  postgres-replica:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      POSTGRES_USER: runracks_admin
+      POSTGRES_PASSWORD: runracks_admin_dev
+      PRIMARY_HOST: postgres
+      PRIMARY_PORT: "5432"
+    ports:
+      - "5433:5432"
+    volumes:
+      - runracks_pg_replica:/var/lib/postgresql/data
+      - ./docker/postgres/replica/docker-entrypoint.sh:/replica-entrypoint.sh:ro
+    entrypoint: ["/bin/bash", "/replica-entrypoint.sh"]
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U runracks_admin && psql -U runracks_admin -d runracks -tAc \"SELECT pg_is_in_recovery()\" | grep -q t",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+volumes:
+  runracks_pg:
+  runracks_pg_replica:
+  runracks_wal:

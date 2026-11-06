@@ -1,0 +1,104 @@
+/* Full-viewport brand flash — paint-only toggles, layout contained. */
+
+.rrPreloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 1.25rem;
+  border: 0;
+  background: var(--color-canvas, #ffffff);
+  color: var(--color-heading, #1c332b);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout paint style;
+  will-change: opacity, visibility;
+  transition:
+    opacity 160ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rrPreloader--on {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.rrPreloaderInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  text-align: center;
+}
+
+.rrPreloaderMark {
+  display: block;
+  height: clamp(2.75rem, 8vw, 4rem);
+  width: auto;
+  transform-origin: center center;
+}
+
+@keyframes rrPreloaderPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+.rrPreloader--on .rrPreloaderMark {
+  animation: rrPreloaderPulse 1.8s ease-in-out infinite;
+}
+
+.rrPreloaderMark--dark {
+  display: none;
+}
+
+html.dark .rrPreloaderMark--light {
+  display: none;
+}
+
+html.dark .rrPreloaderMark--dark {
+  display: block;
+}
+
+.rrPreloaderWord {
+  display: inline-flex;
+  align-items: baseline;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  white-space: nowrap;
+  font-size: clamp(1.75rem, 5.5vw, 2.75rem);
+}
+
+.rrPreloaderRun,
+.rrPreloaderRacks {
+  color: #1f7a42;
+}
+
+html.dark .rrPreloaderRun {
+  color: #ffffff;
+}
+
+html.dark .rrPreloaderRacks {
+  color: #c6f24c;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rrPreloader {
+    transition: none;
+  }
+  .rrPreloader--on .rrPreloaderMark {
+    animation: none;
+  }
+}

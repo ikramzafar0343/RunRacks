@@ -2,8 +2,8 @@
  * Windows product hero — two title lines + homepage portrait scene + trust band.
  */
 import Link from "next/link";
-import { HeroPortraitScene } from "@/features/home/components/HeroPortraitScene";
-import { heroContent } from "@/features/home/model/heroContent";
+import { HeroPortraitScene } from "@/features/home";
+import { heroContent } from "@/features/home";
 import { WindowsProductHeroTitle } from "@/features/product-hosting/components/WindowsProductHeroTitle";
 import type { ProductHostingContent } from "@/features/product-hosting/model/productHostingContent";
 import type { StartingPrice } from "@/features/product-hosting/model/startingPrice";
